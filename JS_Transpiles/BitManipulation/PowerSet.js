@@ -16,9 +16,10 @@ Note that in Binary representation of nos from [0-7], we have the power set
 here if string = "abc" n=3,
 u will require bits till [1 to n]
 
-
-
 Just they are not sorted lexicographically
+sort them later
+
+TC: O(n*2^n + nlog(n))
 */
 function generatePowerset(str) {
     let powSet = new Set();

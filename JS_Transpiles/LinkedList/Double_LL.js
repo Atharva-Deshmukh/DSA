@@ -1,23 +1,24 @@
-class ListNode {
+class DoubleLinkedListNode {
     data;
     next;
+    prev;
     constructor(data) {
         this.data = data;
         this.next = null;
+        this.prev = null;
     }
 }
-;
-class LinkedList {
+class DoublyLinkedList {
     head;
     tail;
     length;
     constructor() {
         this.head = null;
-        this.tail = this.head;
+        this.tail = null;
         this.length = 0;
     }
     addNodeToTail(data) {
-        let newNode = new ListNode(data);
+        let newNode = new DoubleLinkedListNode(data);
         this.length += 1;
         if (!this.head) {
             this.head = newNode;
@@ -26,49 +27,53 @@ class LinkedList {
         else {
             if (this.tail) {
                 this.tail.next = newNode;
+                newNode.prev = this.tail;
                 this.tail = newNode;
             }
         }
     }
     removeNodeFromTail() {
-        // LL is empty
         if (!this.head)
             return;
-        // LL has only one node
         if (this.head === this.tail) {
             this.head = null;
             this.tail = null;
         }
-        // Normally, traverse till second last node and then delete the last node
-        let current = this.head;
-        while (current && current.next !== this.tail)
-            current = current.next;
-        current.next = null;
-        this.tail = current;
+        else {
+            if (this.tail && this.tail.prev) {
+                this.tail = this.tail.prev;
+                this.tail.next = null;
+            }
+        }
+        this.length -= 1;
     }
     addToHead(data) {
-        let newNode = new ListNode(data);
+        let newNode = new DoubleLinkedListNode(data);
         this.length += 1;
         if (!this.head) {
             this.head = newNode;
             this.tail = newNode;
         }
-        newNode.next = this.head;
-        this.head = newNode;
+        else {
+            newNode.next = this.head;
+            this.head.prev = newNode;
+            this.head = newNode;
+        }
     }
     removeFromHead() {
-        // if LL is empty
         if (!this.head)
             return;
-        // if LL has single node
         if (this.head === this.tail) {
             this.head = null;
             this.tail = null;
         }
-        // Normally, move head to the second node and delete first node
-        let newHead = this.head.next;
-        this.head = null;
-        this.head = newHead;
+        else {
+            if (this.head && this.head.next) {
+                this.head = this.head.next;
+                this.head.prev = null;
+            }
+        }
+        this.length -= 1;
     }
     getLength() {
         console.warn(' Length of LL -> ', this.length);
@@ -82,11 +87,11 @@ class LinkedList {
         console.warn(' null ');
     }
 }
-let ll = new LinkedList();
-ll.addNodeToTail(1);
-ll.addNodeToTail(2);
-ll.addNodeToTail(3);
-ll.addNodeToTail(4);
-ll.addToHead(8);
-ll.printList();
-ll.getLength();
+let dll = new DoublyLinkedList();
+dll.addNodeToTail(1);
+dll.addNodeToTail(2);
+dll.addNodeToTail(3);
+dll.addNodeToTail(4);
+dll.addToHead(8);
+dll.printList();
+dll.getLength();

@@ -25,7 +25,7 @@ class CircularQueue {
 
     enqueue(val: number) {
 
-        // agar deuque full nhi hai to
+        // agar cqueue full nhi hai to
         if(this.currentSize !== this.size) {
             
             // agar queue ka size max tak pohoch gya, to rear ko 0th index, uski khudki jagah 

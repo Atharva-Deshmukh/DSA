@@ -70,3 +70,6 @@ cq.enqueue(3);
 cq.display();
 cq.dequeue();
 cq.display();
+cq.enqueue(4);
+cq.enqueue(5);
+cq.display();

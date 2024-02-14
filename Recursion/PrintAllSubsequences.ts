@@ -156,28 +156,32 @@ F(0, [])
 []
 */
 
-let s: string = 'abc'; 
-let len = s.length;
-// let ans = new Set<string>();
+let s: string = 'ab'; 
+function printAllSubsequences(str: string) {
+    let len = str.length;
 
-// wrap it in some other function
-function printAllSubsequences(currentIndex: number, currentString: string): void {
+    function generateSubsequenceRecursively(currentIndex: number, currentString: string): void {
     
-    // Base case
-    if(currentIndex >= len) {
-        console.warn(currentString);
-        return;
+        // Base case
+        if(currentIndex >= len) {
+            console.warn(currentString);
+            return;
+        }
+    
+        // Add the currentIndex element
+        currentString = currentString + s[currentIndex];
+    
+        generateSubsequenceRecursively(currentIndex+1, currentString);
+    
+        // Remove the currentIndex element from the currentString
+        currentString = currentString.substring(0, currentString.length-1);
+    
+        generateSubsequenceRecursively(currentIndex+1, currentString);
     }
-
-    // Add the currentIndex element
-    currentString = currentString + s[currentIndex];
-
-    printAllSubsequences(currentIndex+1, currentString);
-
-    // Remove the currentIndex element
-    currentString = currentString.substring(0, len-1);
-
-    printAllSubsequences(currentIndex+1, currentString);
+    
+    // Call the function
+    generateSubsequenceRecursively(0, "");
 }
 
-printAllSubsequences(0, "");
+printAllSubsequences(s);
+

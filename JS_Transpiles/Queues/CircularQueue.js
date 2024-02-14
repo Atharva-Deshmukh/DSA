@@ -20,11 +20,12 @@ class CircularQueue {
         this.currentSize = 0;
     }
     enqueue(val) {
-        // agar deuque full nhi hai to
+        // agar cqueue full nhi hai to
         if (this.currentSize !== this.size) {
             // agar queue ka size max tak pohoch gya, to rear ko 0th index, uski khudki jagah 
             // pe leke aajao, rear jab yaha aayga to now, hum circular way se handle kar sakte
             //Note that rear is an index, hence size-1
+            // LAST WALE KO 0 PE LAANE SE CIRCULAR EFFECT AATA HAI
             if (this.rear === this.size - 1)
                 this.rear = 0;
             else
@@ -45,6 +46,7 @@ class CircularQueue {
             this.cqueue[this.front] = null;
             // element remove honey ke baad front jo hai vo array me aage aage aata hai, 
             // but if uska index max size barabar hai, to usko 0 pe laao in order to reuse the space
+            // LAST WALE KO 0 PE LAANE SE CIRCULAR EFFECT AATA HAI
             if (this.front === this.size - 1)
                 this.front = 0;
             else

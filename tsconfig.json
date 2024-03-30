@@ -1,7 +1,11 @@
 {
     "compilerOptions": {
         "target": "ES2022",
-        "module": "ES2022",
+        "module": "ESNext",
         "outDir": "JS_Transpiles",
+
+        // solves the problem of cannot redeclare a variable in block scope
+        // treats each ts file as a separate module
+        "moduleDetection":"force"
     },
 }

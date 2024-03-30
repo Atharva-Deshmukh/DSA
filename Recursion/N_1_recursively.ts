@@ -1,7 +1,7 @@
 /* Print 1 to n without using loops
-You are given an integer N. Print numbers from 1 to N without the help of loops.
+You are given an integer N. Print numbers from N to 1 without the help of loops.
 Input: N = 5
-Output: 1 2 3 4 5
+Output: 5, 4, 3, 2, 1
 
 f(5) --> print(5)
    \ 
@@ -19,8 +19,8 @@ let N = parseInt(prompt("Till what number u want to print -> ", "5 (say)"));
 
 function printSeries(n: number) {
   if (n > 0) {
-    printSeries(n - 1);
     console.warn(n);
+    printSeries(n - 1);
   }
   return;
 }

@@ -17,7 +17,17 @@ function sumRec(arr: number[], index: number): number {
 sum += sumRec(arr, 0);
 */
 
-// recursively get the sum
+/* recursively get the sum
+
+f([1,2,3,4])   --> Ans => 10
+      \
+    1 + f([2,3,4])   --> returns 10 above
+         \
+      2 + f([3,4])   --> returns 9 above
+            \
+         3 + f([4])   --> returns 7 above
+
+*/
 function sumRec(arr: number[]): number {
     if(arr.length === 0) return NaN;
     if(arr.length === 1) return arr[0];

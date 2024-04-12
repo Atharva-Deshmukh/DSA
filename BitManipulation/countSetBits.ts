@@ -36,6 +36,18 @@ function countSetBits1_Iterative(n: number) {
     return count;
 }
 
+/* Recursion tree
+
+    f(101)       --> 1 + f(10) --> 2
+        \
+        f(10)     --> 0 + f(1) --> 1 
+          \
+          f(1)    --> 1 + f(0) --> 1
+            \
+            f(0)    --> return 0
+         
+
+    */
 function countSetBits1_Recursive(n: number) {
     if(n === 0) return 0;
     else {

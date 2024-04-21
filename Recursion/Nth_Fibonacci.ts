@@ -41,8 +41,12 @@ function Nth_Fibonacci_it(n: number): number {
        fib(1)   fib(0)
 
 
-    TC: O(n)
+    TC: O(2^n)
     SC: O(n) 
+    
+    To calculate F(4),  you first calculate F(3) and F(2). To compute F(3), you again calculate 
+    F(2) and F(1). Notice the redundancy? F(2) is being calculated twice. Such duplicated effort 
+    multiplies as 'n' grows, leading to this staggering time complexity.
  */
     function Nth_Fibonacci_rec(n: number): number {
       if (n <= 1) return n;

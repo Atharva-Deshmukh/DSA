@@ -1,0 +1,15 @@
+Memoization:
+
+- Top-down approach
+- Caches the results of function calls
+- Recursive implementation
+- Well-suited for problems with a relatively small set of inputs
+- Used when the subproblems have overlapping subproblems
+
+Tabulation: 
+
+- Bottom-up approach
+- Stores the results of subproblems in a table
+- Iterative implementation
+- Well-suited for problems with a large set of inputs
+- Used when the subproblems do not overlap

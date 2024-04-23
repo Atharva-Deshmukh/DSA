@@ -1,0 +1,30 @@
+Ways to perform DP
+
+Memoization:
+
+- Top-down approach
+- Caches the results of function calls
+- Recursive implementation
+- Well-suited for problems with a relatively small set of inputs
+- Used when the subproblems have overlapping subproblems
+
+Tabulation: 
+
+- Bottom-up approach
+- Stores the results of subproblems in a table
+- Iterative implementation
+- Well-suited for problems with a large set of inputs
+- Used when the subproblems do not overlap
+
+When to use DP?
+- when a problem asks u to find all the possible Ways
+- or simply the best way
+
+How to write reccurence relations?
+- Try to represent the problem in terms of index (array index)
+- determine what the recursion will return
+- do all the stuffs as said in the problem on that index
+- if count all ways is asked => sum up all stuffs at this index
+- if minimum path is asked => minimum of all stuff at this index
+
+

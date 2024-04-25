@@ -154,17 +154,21 @@ F(0, [])
 [b]
 [c]
 []
-*/
 
-let s: string = 'ab'; 
+
+TC: O(2^n) since we are making choices to include the current character or not
+SC: O(n)
+*/
+ 
 function printAllSubsequences(str: string) {
     let len = str.length;
+    let subsequences = new Set<string>();
 
     function generateSubsequenceRecursively(currentIndex: number, currentString: string): void {
     
         // Base case
         if(currentIndex >= len) {
-            console.warn(currentString);
+            subsequences.add(currentString);
             return;
         }
     
@@ -174,6 +178,7 @@ function printAllSubsequences(str: string) {
         generateSubsequenceRecursively(currentIndex+1, currentString);
     
         // Remove the currentIndex element from the currentString
+        // since initial recursion goes on adding all characters till end, we start removing from end
         currentString = currentString.substring(0, currentString.length-1);
     
         generateSubsequenceRecursively(currentIndex+1, currentString);
@@ -181,7 +186,9 @@ function printAllSubsequences(str: string) {
     
     // Call the function
     generateSubsequenceRecursively(0, "");
+    console.warn(subsequences);
 }
 
+let s: string = 'ab';
 printAllSubsequences(s);
 

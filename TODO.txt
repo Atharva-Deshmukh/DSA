@@ -1,0 +1,6 @@
+Do mathematical questions like
+- prime number
+- armstrong
+- factorial
+- fibonacci
+- LCM HCF GCD

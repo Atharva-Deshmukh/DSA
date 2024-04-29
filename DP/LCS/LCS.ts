@@ -58,7 +58,7 @@ function LCS_Recursion(i1: number, i2: number): number {
 let s1: string = "abc";
 let s2: string = "adc";
 
-console.log(LCS_Recursion(s1.length - 1, s2.length -1));
+console.log(LCS_Recursion(s1.length - 1, s2.length - 1));
 
 ////////////////////////////////// MEMOISATION /////////////////
 
@@ -106,7 +106,7 @@ SC: O(len1 * len2)
  */
 
 
-function LCS_Recursion_Tabulation(s1: string, s2: string): number {
+function LCS_Tabulation(s1: string, s2: string): number {
     let dp: number[][] = Array(s1.length + 1).fill(null).map(() => Array(s2.length + 1).fill(0));
 
     for(let i = 1; i <= s1.length; i++) {
@@ -121,7 +121,50 @@ function LCS_Recursion_Tabulation(s1: string, s2: string): number {
     return dp[s1.length][s2.length];
 }
 
-console.log(LCS_Recursion_Tabulation("abc", "adc"));
+console.log(LCS_Tabulation("abc", "adc"));
 
+/* In the matrix, we only need previous row, hence this full matrix space can be optimised
+
+             a b c
+           0 0 0 0
+         a 0 1 1 1
+         d 0 1 1 1
+         c 0 1 1 2
+
+        0 0 0 0         r1 = prefilled with 0 
+     a  0 1 1 1         r2 = first element = 0 and after that every element is generated via rules
+
+        0 1 1 1
+     d  0 1 1 1
+
+        0 1 1 1
+     c  0 1 1 2         we iterated till s1.length()
+
+TC: O(len1 * len2)
+SC: 2 * O(len1) = O(len1)
+
+*/
+
+function LCS_SpaceOptimised(s1: string, s2: string): number {
+    let prevRow: number[] = Array(s2.length + 1).fill(0);
+    let currRow: number[] = Array(s2.length + 1).fill(0);  // since size should be same for both arrays
+
+    // i -> iterate row 1, which denotes s1 (vertical string, since itney time hi iterate karna hai)
+    // j -> iterate row 2, which denotes s2 (horizontal, since ab currRow bhi bharni hai based on prev values)
+    for(let i = 1; i <= s1.length; i++) {
+        for(let j = 1; j <=  s2.length; j++) {  
+            if(s1[i-1] === s2[j-1]) currRow[j] = 1 + prevRow[j-1];
+            else {
+                currRow[j] = Math.max(currRow[j-1], prevRow[j]);
+            }
+        }
+        prevRow = [...currRow];
+    }
+
+    return currRow[currRow.length-1];
+}
+
+
+console.log(LCS_SpaceOptimised("abc", "adc"));
 
 

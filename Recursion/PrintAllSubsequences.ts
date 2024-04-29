@@ -158,6 +158,21 @@ F(0, [])
 
 TC: O(2^n) since we are making choices to include the current character or not
 SC: O(n)
+
+let s = aba
+
+                                        f(0, "")
+                                            \
+                                           f(1, "a")
+                                               \
+                                              f(2, "ab")
+                                                /    \ 
+                                        f(2)            f(3, "aba") {"aba"}
+
+
+
+
+
 */
  
 function printAllSubsequences(str: string) {

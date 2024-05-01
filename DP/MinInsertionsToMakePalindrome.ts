@@ -1,5 +1,7 @@
 /* Minimum Insertion Steps to Make a String Palindrome
 
+Solution is same for minimum deletions to make a string palindrome
+
 Given a string s. In one step you can insert any character at any index of the string.
 Return the minimum number of steps to make s palindrome.
 

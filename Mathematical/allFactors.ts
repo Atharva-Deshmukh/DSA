@@ -16,6 +16,23 @@ A better solution:
 - IMP: if n is a perfect square: it will have a repeating factor, which is sqrt * sqrt
        else it will have distince factors in pairs
 
+ countDivisors(n) {
+        let count = 0;
+        if(this.isPrime(n)) return 2;
+        else {
+            for(let i = 0; i <= Math.sqrt(n); i++) {
+                if(n % i === 0) count += 2;
+            }
+        }
+        
+        return this.isPerfSquareUsingSqrt(n)? count-1: count;
+
+        // or u can use 
+         if (Number.isInteger(sqrtN)) {
+        count--;
+    }
+    }
+
 TC: O(sqrt(n)) 
 SC: O(1)
 

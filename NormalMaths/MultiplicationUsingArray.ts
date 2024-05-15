@@ -10,28 +10,39 @@ In an array, we store 9815
                 REVERSE => 51890
  */
 
-function Multiply(N: number, x: number): number[] {
-    if(x === 0) return [0];
-    let res: number[] = Array<number>();
-    let carry: number = 0;
+function numRev(n: number, x: number): number[] {
+  if (x === 0) return [0];
 
-    while(N > 0) {
-        res.push(N%10);
-        N = Math.floor(N/10);
-    }
+  let revNum: number[] = [];
+  let carry: number = 0;
 
-    for(let i = 0; i < res.length; i++) {
-        let product = (res[i] *  x) + carry;
-        res[i] = product % 10;
-        carry = Math.floor(product / 10);
-    }
+  // filling the res[] in reverse order
+  while (n > 0) {
+    revNum.push(n % 10);
+    n = Math.floor(n / 10);
+  }
 
-    if(carry > 0) res.push(carry);
+  if (x === 1) revNum.reverse();
 
-    return res.reverse();
+  // multiplication logic
+  for (let i = 0; i < revNum.length; i++) {
+    let prod = revNum[i] * x + carry;
+    revNum[i] = prod % 10;
+    carry = Math.floor(prod / 10);
+  }
+
+  // append the carry to the number, carry can have >= 2 digits sometimes, hence break it
+  while (carry) {
+    revNum.push(carry % 10);
+    carry = Math.floor(carry / 10);
+  }
+
+  return revNum.reverse();
 }
 
-let x: number = 12; 
+console.log(numRev(12, 200));
+
+let x: number = 12;
 let N: number = 200;
 
-console.log(Multiply(N, x));
+console.log(numRev(N, x));

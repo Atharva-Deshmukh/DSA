@@ -51,7 +51,27 @@ SC: O(1)  THIS DOES NOT happen with all the engines by the way
 
 */
 
-function gcd(a: number, b: number): number { 
+function EuclideanGCD(a: number, b: number): number { 
         if (a === 0) return b; 
-        return gcd(b % a, a); 
-} 
+        return EuclideanGCD(b % a, a); 
+}
+
+/* GCD OF ARRAY of numbers
+
+Concept: The GCD of three or more numbers can be calculated by repeatedly taking the GCDs of pairs of numbers. 
+gcd(a, b, c) = gcd(a, gcd(b, c)) 
+             = gcd(gcd(a, b), c) 
+             = gcd(gcd(a, c), b)
+
+TC: O(length * min(a,b)) recursion goes on till any one (minimum one) becomes 0
+*/
+
+function GCD_Array(nums: number[]): number {
+    let gcd: number = nums[0];
+
+    nums.forEach((n: number) => {
+        gcd = EuclideanGCD(gcd, n);
+    });
+
+    return gcd;
+}

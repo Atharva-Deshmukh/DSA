@@ -1,0 +1,57 @@
+/* Input: a = 20, b = 28     Output: 4
+   Input: a = 0,  b = 28     Output: 28, since 0 into any number is 0, and that any number can be second number also
+   Input: a = 0, b = 0       Output: 0,  since 0 is highest in terms of order of divisibility, so its ranked first
+
+Logic: Normal Looping
+- Loop till the minimum of two numbers and then check for divisors of both, get the maximum
+
+TC: O(min(a,b))
+SC: O(1)
+*/
+
+function GCD(a: number, b: number): number {
+    if( a === 0 && b === 0) return 0;
+    if(a === 0) return b;       
+    if(b === 0) return a;
+
+    /* Optimisation:  else if (a === 0 || b === 0) return a + b; */
+
+    let res: number = 1;
+
+    let min = Math.min(a,b);
+    for(let i = 1; i <= min; i++) {
+        if((a % i === 0) && (b % i === 0)) res = Math.max(i, res);
+    }
+
+    return res;
+}
+
+/*
+Logic: Euclidean method
+- Use: GCD(0,b) = b
+- keep reducing a to 0 and when its 0, return b
+- u can do a-b if(a>b) or simply a%b
+- but when u do a-b, u need to do it if (a>b), else do b-a
+- hence better to use a%b
+
+TC: O(min(a,b)) recursion goes on till any one (minimum one) becomes 0
+
+Reusing Stack Frame: In traditional recursive functions, each recursive call creates a new stack frame, 
+consuming additional memory. However, in tail-recursive functions, the compiler or interpreter can optimize 
+by reusing the current stack frame for the recursive call since the enclosing function doesn't need to preserve 
+any local state after the call returns.
+
+Replacing Stack Frames: Instead of creating a new stack frame for each recursive call, TCO replaces the current 
+stack frame with the new one, effectively eliminating the need for additional stack space.
+
+Continued Optimization: This process continues until the base case is reached, at which point the result is 
+returned. Because each recursive call reuses the same stack frame, TCO prevents stack overflow errors that might 
+occur with deeply nested recursive calls.
+SC: O(1)  THIS DOES NOT happen with all the engines by the way
+
+*/
+
+function gcd(a: number, b: number): number { 
+        if (a === 0) return b; 
+        return gcd(b % a, a); 
+} 

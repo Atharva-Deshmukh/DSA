@@ -1,0 +1,19 @@
+/* Input : 1010 Output : n = 10
+
+- Iterate from last to index 0
+- if the char is 1, multiply with respective Math.pow(2,curr_index)
+
+
+TC: O(logn) since approx bits in a number is logn
+SC: O(1)
+*/
+
+function binaryToDecimal(binary: string): number {
+    let decimal: number = 0;
+
+    for(let i = binary.length - 1; i >= 0; i--) {
+        if(binary[i] === '1') decimal += Math.pow(2,i);
+    }
+
+    return decimal;
+}

@@ -1,5 +1,6 @@
 /* Input : n = 10 Output : 1010
 - keep dividing n by 2 & noting the remainder
+- keep directly attaching that remainder to answer string
 - stop when n is 1
 - print in reverse order
 - Do every operation in bit operators, so that execution is fast

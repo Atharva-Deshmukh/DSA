@@ -36,7 +36,7 @@ XOR TILL N          XOR
 TC: O(1)
 SC: O(1)  */
 
-function XOR_1ton(n: number): number {
+export function XOR_1ton(n: number): number {
     let ans: number = 0;
 
     if(n % 4 === 0) return n;

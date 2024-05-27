@@ -146,8 +146,8 @@ SC: 2 * O(len1) = O(len1)
 */
 
 function LCS_SpaceOptimised(s1: string, s2: string): number {
-    let prevRow: number[] = Array(s2.length + 1).fill(0);
-    let currRow: number[] = Array(s2.length + 1).fill(0);  // since size should be same for both arrays
+    let prevRow: number[] = Array(s1.length + 1).fill(0);
+    let currRow: number[] = Array(s2.length + 1).fill(0); 
 
     // i -> iterate row 1, which denotes s1 (vertical string, since itney time hi iterate karna hai)
     // j -> iterate row 2, which denotes s2 (horizontal, since ab currRow bhi bharni hai based on prev values)

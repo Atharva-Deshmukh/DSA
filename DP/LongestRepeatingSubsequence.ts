@@ -46,12 +46,12 @@ console.log(LRS_Tabulation(s,s));
 /* This can be space optimised, since we are using two rows only at a time
 
 TC: O(n^2)
-SC: O(n)
+SC: O(n^2)  
 */
 
 function LRS_Tabulation_SpaceOptimised(s1: string, s2: string): number {
     let prevRow: number[] = Array(s1.length + 1).fill(0);
-    let currRow: number[] = Array(s1.length + 1).fill(0);
+    let currRow: number[] = Array(s2.length + 1).fill(0);
 
     for(let i = 1; i <= s1.length; i++) {
         for(let j = 1; j <= s2.length; j++) {
@@ -66,3 +66,7 @@ function LRS_Tabulation_SpaceOptimised(s1: string, s2: string): number {
 
     return currRow[currRow.length-1];
 }
+
+/*
+TC: O(n^2)
+SC: O(n)  */

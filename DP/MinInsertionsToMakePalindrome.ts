@@ -14,16 +14,17 @@ Explanation: String can be "mbdadbm" or "mdbabdm".
 
 
 Logic: 
-- a simple way to make a string a palindrome is just do str + str.rev(), this gives maximum operations to do this question
-- else there is a simple observation
-- note that the string already has some palindrome, for s = "mbadm", palindrome = "mam", "mbm", "mdm"
-- if I preserve this palindrome, I just need to add the remaining strings which are not palindrome in a way like 1st point
-- so for s = mbadm, and preserved palindrome = mam, I need to look for b and d, either put bd and db between m and a both sides
-  or put db and bd between m and a both sides
+- a simple way to make a string a palindrome is just do str + str.rev(), this gives maximum operations 
+  to do this question
+- Else, A simple observation => note that the string already has some palindrome, for s = "mbadm", palindrome = "mam", 
+  "mbm", "mdm"
+- if I preserve this palindrome, I just need to add the remaining strings which are not palindrome in a way like 
+  1st point
+- so for s = mbadm, and preserved palindrome = mam, I need to look for b and d, either put bd and db between m and a 
+  both sides or put db and bd between m and a both sides
 - the preserved palindrome is nothing but the longest palindromic subsequence in the string. 
-- we need to take the LPS so that we have to adjust the minimum remaining strings (minimum operations to make string palindrome)
-- so, minimum operations = length of string - length of LPS
-*/
+- we need to take the LPS so that we have to adjust the minimum remaining strings (minimum operations to make string 
+    palindrome) so, minimum operations = length of string - length of LPS */
 
 function LPS_spaceOptimised(s1: string, s2: string): number {
     let prevRow: number[] = Array(s1.length + 1).fill(0);

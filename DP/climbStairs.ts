@@ -15,11 +15,10 @@ Explanation: There are three ways to climb to the top.
 3. 2 steps + 1 step  
 
 LOGIC:
-nth stair can be reached from (n-1)th stair or (n-2)th stair
-similarly we can recur down further to get no. of ways to reach (n-1)th and (n-2)th stair.
-we get total ways by adding them up
-
-hence ways(n) = ways(n-1) + ways(n-2)
+- nth stair can be reached from (n-1)th stair or (n-2)th stair
+- similarly we can recur down further to get no. of ways to reach (n-1)th and (n-2)th stair.
+- we get total ways by adding them up
+- hence ways(n) = ways(n-1) + ways(n-2)
 
 its series but there is one thing to notice, the value of ways(n) is equal to fibonacci(n+1). 
 
@@ -87,7 +86,7 @@ Auxiliary Space: O(1)
 
 */
 function ways(stairs: number): number {
-    // since fib(n+1) =  np. of ways, hence 0 excluded
+    // since fib(n+1) =  ways(n) => no. of ways, hence 0 excluded
     let n_2: number = 1;
     let n_1: number = 1;
 

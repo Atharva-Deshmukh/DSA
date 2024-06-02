@@ -173,7 +173,7 @@ prevInd = [0  1   0  3  2  0]
 
 - NOW, we will backtrack to get the LIS
 
-now max = length 3 in LIS[] and its index in prevInd = 4 (ele = 16), prevInd[4th index] = 2 ele(11) 
+now max = length 3 in LIS[] and its index in arr = 4 (ele = 16), prevInd[4th index] = 2 ele(11) 
 and prevInd(2) = 0 ele(5) so LIS = 5,11,16
 
 */

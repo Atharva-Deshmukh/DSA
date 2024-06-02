@@ -22,8 +22,8 @@
  - we can simply modify LIS code's if condition and use that single dimension dp[]
  - we can use prevIndex[] similarly to backtrack the Longest Divisible Subset
 
-TC:
-SC:
+TC: O(n^2)
+SC: O(n)
 */
 
 function largestDivisibleSubset(arr: number[]): number[] {

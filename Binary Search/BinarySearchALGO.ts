@@ -3,8 +3,8 @@
 - since the array is sorted, we divide the search space in half each time and check if the middle element is the 
   key we are looking for
 - if arr[mid] === key return arr[mid] and stop
-- if arr[mid] > key search from arr[mid+1....n-1]
-- if arr[mid] < key search from arr[0....mid-1]
+- if arr[mid] > key search from arr[0...mid-1]
+- if arr[mid] < key search from arr[mid+1....n-1]
 
 - So, at each search, we are caclulating middle index in order to compare 
   mid = (low + high)/2
@@ -53,7 +53,7 @@ function binarySearchRecursive(arr: number[], key: number): number {
     let mid: number = low + Math.floor((high - low)/2);
 
     if(arr[mid] ===  key) return mid;
-    else if(key < arr[mid]) return searchRecursion(0, mid - 1);
+    else if(arr[mid] > key) return searchRecursion(0, mid - 1);
     else  return searchRecursion(mid + 1, high);
   }
 

@@ -1,10 +1,10 @@
 /* Its the smallest index (say i), for which arr[i] >= key
 
-ex: arr: [0, 1, 2, 3, 3, 5, 8, 8 10, 10] & target = 9
+ex: arr: [0, 1, 2, 3, 3, 5, 8, 8, 10, 10] & target = 9
    index  0  1  2  3  4  5  6  7  8  9   
 
 - Now there are two instances of 10, but we need the smallest index for our lower bound
-- instead of simply doing linear search O(n), we can use Binary Search over here
+- instead of simply doing linear search O(n), we can use Binary Search O(logn) over here since array is sorted
 - let low = 0, high = 9  and ans = some hypothetical index = arr.length + 1 (say)
   mid = (0 + 9)/2 => 4
   arr[mid] NOT >= 9, so low = mid + 1 => low = 5

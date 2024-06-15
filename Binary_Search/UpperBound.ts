@@ -19,11 +19,11 @@ function upperBound_BS(arr: number[], key: number): number {
 
     while(low <= high) {
         let mid: number = low + Math.floor((high - low) / 2);
-        if( key < arr[mid]) {
+        if(arr[mid] > key) {
             ans = (mid < ans)? mid: ans;      // replace answer only if new ans is smaller than it
             high = mid - 1;                    //explore further possibility of getting smallest index
         }
-        else if(key >= arr[mid]) low = mid + 1;
+        else if(arr[mid] <= key) low = mid + 1;
     }
 
     return ans;

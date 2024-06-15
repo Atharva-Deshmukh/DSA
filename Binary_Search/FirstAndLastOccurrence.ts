@@ -7,7 +7,7 @@ Niave way: Iterate in O(n) linearly
 
 Logic:
 - Sorted array hai to BS lagao 
-- Using lower bound, we can directly get the smallest index
+- Using lower bound-like if condition, we can directly get the smallest index
 - For getting largest occurrence Index, we need to modify the code in another while loop
 
 
@@ -38,8 +38,9 @@ function firstAndLastOccurrence(arr: number[], key: number): number[] {
     }
 
     // last Occurrence
-    low = 0;        
+    low = 0;   
     high = n-1;
+    
     while(low <= high) {
         let mid: number = low + Math.floor((high - low)/2);
         if(arr[mid] === key) {

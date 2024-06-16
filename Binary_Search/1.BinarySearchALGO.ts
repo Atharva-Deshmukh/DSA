@@ -1,5 +1,9 @@
 /* Used in a sorted search space ONLY.
 
+TARGET OF BS:
+- Search for the target element (done while comparing the mid with the target)
+- Eliminate half of the search space (done while we decide to check left or right half)
+
 - since the array is sorted, we divide the search space in half each time and check if the middle element is the 
   key we are looking for
 - if arr[mid] === key return arr[mid] and stop

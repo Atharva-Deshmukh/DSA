@@ -105,7 +105,7 @@ function findMultiplePeaks(arr: number[]) {
         // eliminate this right part since peak is on the left part
         else if(arr[mid] > arr[mid + 1])  high = mid - 1;
 
-        low = mid + 1;
+        else low = mid + 1;
     }
 
     // we will never reach here, but needed this line since the function demands return of an integer

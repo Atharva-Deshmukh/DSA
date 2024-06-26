@@ -59,7 +59,24 @@ function linearSqrt(x: number): number {
   See that the search space is also sorted
 
 TC: O(log2(n))
-SC: O(1) */
+SC: O(1) 
+__________________________________________________________________________________________________
+A GREAT OBSERVATION:
+__________________________________________________________________________________________________
+
+our BS array would be like this -> X, X, X, X, X, ✓, ✓, ✓, ✓, ✓, ✓
+                                   |                               |
+                                  low                            high
+
+IT IS OBSERVED THAT when while loop ends, high > low,  low is the minimum possible ans, we can directly return low
+                                    X, X, X, X, X, ✓, ✓, ✓, ✓, ✓, ✓
+                                                |  |
+                                              high low
+            
+
+
+
+*/
 
 function sqrtUsingBinarySearch(x: number): number {
     let ans: number = -1;

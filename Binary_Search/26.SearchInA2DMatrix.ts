@@ -113,3 +113,43 @@ function searchIn2DMat(mat: number[][], key: number): boolean {
   // we will never reach here
   return false;
 }
+
+// Solution of GFG scenario
+
+function binarySearch(arr: number[], key: number): boolean {
+  let low: number = 0;
+  let high: number = arr.length - 1;
+
+  while (low <= high) {
+      let mid: number = low + Math.floor((high - low) / 2);
+
+      if (arr[mid] === key) {
+          return true;
+      } else if (arr[mid] < key) {
+          low = mid + 1;
+      } else {
+          high = mid - 1;
+      }
+  }
+
+  return false;
+}
+function searchMatrix(mat: number[][], key: number): boolean {
+let rows: number = mat.length;
+
+  if (rows === 0) return false;  // empty matrix
+
+  let cols: number = mat[0].length;
+
+  if (rows === 1 && cols === 1 && mat[0][0] === key) return true;
+
+  for (let i = 0; i < rows; i++) {
+
+     // Do BS only if key may lie in that row, dont do BS for all rows
+     if((key >= mat[i][0]) && (key <= mat[i][cols - 1])) {
+       if(binarySearch(mat[i], key)) return true;
+     }
+  }
+
+  return false;
+};

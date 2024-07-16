@@ -27,8 +27,7 @@ LOGIC:
 
 CORNER CASES:
 - Since we are allowed to consider that the arr[0] & arr[n - 1] are greater than arr[-1] & arr[n] (they are -infinity)
-  check for these two elements individually and return, no need to check further, since we are asked for any one peak
- */
+  check for these two elements individually and return, no need to check further, since we are asked for any one peak */
 
 // Now, this code works only when there is a single peak in the array, we can modify it to get multiple peaks as well 
 function findSinglePeak(arr: number[]) {
@@ -67,16 +66,14 @@ function findSinglePeak(arr: number[]) {
 /* The Above went to infinite loop when the mid was in a valley, 
   ex: [1, 5, 1, 2, 1]  low = 5, high = 2 mid = 1, here none of the conditions are getting executed
 
-
   Solution:
   - NOTE that we need only 
   - see Binary search algo will eventually reach any one of the search space having peak and on its way,
     it will keep eliminating the other search spaces with peaks (anyway, we are concerned with anyone peak)
   - We will keep all the three cases intact and just add one more else block, which will be executed when a 
     valley condition arrives, in that case we can move anywhere, either left or right half since we need 
-    anyone peak
+    anyone peak */
 
-*/
 function findMultiplePeaks(arr: number[]) {
     let n: number = arr.length;
 

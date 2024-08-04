@@ -7,6 +7,21 @@ TC: O(x)  OR O(power)
 SC: O(1)
 
 Way 2: Optimised
+
+Logic:
+- let ans = 1;
+- Iterate till currentPower = 0
+
+- if(currentPower === odd) 
+  ans = ans * currentBase
+  currentPower = currentPower - 1
+
+- if(currentPower === even) 
+  currentPower = currentPower / 2
+  currentBase = currentBase * currentBase
+  
+
+Dry run:
 - let ans = 1, n = 2, x = 21
 
 - when power is ODD, separate only one number and do power-1 
@@ -14,7 +29,7 @@ Way 2: Optimised
   multiply this to ans, ans = ans * 2
 
 - when power is EVEN, do n = n*n and power = power/2
-  pow(2,20) =  pow(2^2,20/2) = pow(4,10)  // u just multiply by 2 and divide by 2
+  pow(2,20) =  pow(2^2,20/2) = pow(4,10)  
 
 - now, x is EVEN, 
   pow(4,10) = pow(4^2,10/2) = pow(16,5)
@@ -35,12 +50,12 @@ Way 2: Optimised
 
   return ans          
   
-TC: O(log(2)N) since we are continuously dividing by 2
-SC: O(1)
-  */
+TC: O(log(2) power) since we are continuously dividing by 2
+SC: O(1) */
 
+// used bit manipulation to optimise wherever possible
 function power(n: number, x: number): BigInt {
-    if(x === 0) return 1n;   //conversion to Bigint can be done by number + n OR Bigint(n)
+    if(x === 0) return 1n; 
     if(n === 0) return 0n;
 
     let res: BigInt = 1n;
@@ -61,10 +76,9 @@ function power(n: number, x: number): BigInt {
     return res;
 }
 
-// WITH MOD
-
+// WITH MOD  (GFG AND LC Submissions)
 function power(a, b) {
-    const mod = 1000000007;
+    const mod = 1e7;  // same as 1e+7
     let result = 1;
     while (b > 0) {
         // If the current bit of b is set, multiply the result by a and take modulo mod

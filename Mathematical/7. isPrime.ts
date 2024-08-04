@@ -2,6 +2,7 @@
 
 Way 1:
 - iterate from 2 to n and check if(num % i === 0)
+- we will loop it from 2 to n since we know that 0 and 1 are not prime
 - So, we are checking if any of the FACTORS of n exists between 2 and n 
 
 TC: O(n) 

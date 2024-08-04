@@ -1,13 +1,13 @@
-/* Input: a = 20, b = 28     Output: 4
-   Input: a = 0,  b = 28     Output: 28, since 0 into any number is 0, and that any number can be second number also
-   Input: a = 0, b = 0       Output: 0,  since 0 is highest in terms of order of divisibility, so its ranked first
+/*  Way 1: Normal Brute force method
+Input: a = 20, b = 28     Output: 4
+Input: a = 0,  b = 28     Output: 28, because any non-zero number divides 0 without leaving a remainder.
+Input: a = 0, b = 0       Output: 0,  because 0 divides 0 without leaving a remainder.
 
 Logic: Normal Looping
 - Loop till the minimum of two numbers and then check for divisors of both, get the maximum
 
 TC: O(min(a,b))
-SC: O(1)
-*/
+SC: O(1) */
 
 function GCD(a: number, b: number): number {
     if( a === 0 && b === 0) return 0;
@@ -26,13 +26,12 @@ function GCD(a: number, b: number): number {
     return res;
 }
 
-/*
-Logic: Euclidean method
-- Use: GCD(0,b) = b
+/* Way 2: Euclidean method
+- Uses result: GCD(0,b) = b
 - keep reducing a to 0 and when its 0, return b
-- u can do a-b if(a>b) or simply a%b
+- u can do a-b if(a>b) or simply (b % a)
 - but when u do a-b, u need to do it if (a>b), else do b-a
-- hence better to use a%b
+- hence better to use (b % a) to avoid if else
 
 TC: O(min(a,b)) recursion goes on till any one (minimum one) becomes 0
 
@@ -46,10 +45,8 @@ stack frame with the new one, effectively eliminating the need for additional st
 
 Continued Optimization: This process continues until the base case is reached, at which point the result is 
 returned. Because each recursive call reuses the same stack frame, TCO prevents stack overflow errors that might 
-occur with deeply nested recursive calls.
-SC: O(1)  THIS DOES NOT happen with all the engines by the way
-
-*/
+occur with deeply nested recursive calls. This is why SC = O(1)
+SC: O(1)  THIS DOES NOT happen with all the engines by the way  */
 
 function EuclideanGCD(a: number, b: number): number { 
         if (a === 0) return b; 
@@ -63,8 +60,7 @@ gcd(a, b, c) = gcd(a, gcd(b, c))
              = gcd(gcd(a, b), c) 
              = gcd(gcd(a, c), b)
 
-TC: O(length * min(a,b)) recursion goes on till any one (minimum one) becomes 0
-*/
+TC: O(length * min(a,b)) recursion goes on till any one (minimum one) becomes 0 */
 
 function GCD_Array(nums: number[]): number {
     let gcd: number = nums[0];

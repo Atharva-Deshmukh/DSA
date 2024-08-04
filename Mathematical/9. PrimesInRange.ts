@@ -12,20 +12,21 @@ For the second query, answer is 2 {5, 7}.
 Way 1: Brute force
 - iterate from L -- R and check if n is prime
 
-TC: O(Queries * (R-L+1) * sqrt(n))   ITS LIKE (something) ^ cube
+TC: O(Queries * (R-L+1) * sqrt(n))  -->  its like (something) ^ cube
 SC: O(1)
 
 Way 2: use Sieve to optimise sqrt(n)
 - create sieve for R (maximum of all Rs), can be 10^6 as per GFG question
 
-TC: O(Queries * (R-L+1))   ITS LIKE (something) ^ square
+TC: O(Queries * (R-L+1))   its like (something) ^ square
 SC: O(R) OR O(10^6)  R is the max right limit in the question
 
 Way 3: use prefix sum for further Optimisation
 - It is not possible to OPTIMISE queries as we WILL need to iterate EVERY Query
-- in the question, we need to return the count(prime nos) between [L-R], prefix sum can be used because count = addition of 1s
+- in the question, we need to return the count(prime nos) between [L-R], prefix sum can be used because 
+  count = addition of 1s
   let sieve = [1,0,1,1,0]
-  let prefs = [1,0,2,3,3]
+  let prefs = [1,1,2,3,3]
 - use prefix sum to store the count so that we can return count of primesTill R in O(1)
 - for each query range, no. of primes [L-R] = prefixSum[R] - prefixSum[L-1]
 
@@ -45,8 +46,8 @@ function primesInRange(L: number, R: number): number {
     }
 
     for(let i = 1; i < sieve.length; i++) {
-        prefixSum[i] = sieve[i-1] + sieve[i];
+        prefixSum[i] = prefixSum[i-1] + sieve[i];
     }
 
-    return (prefixSum[R] - prefixSum[L-1]);
+    return (prefixSum[R - 1] - prefixSum[L - 1]);
 }

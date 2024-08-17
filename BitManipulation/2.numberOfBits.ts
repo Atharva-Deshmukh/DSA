@@ -2,7 +2,7 @@
 
 Method 1 (Using Log):
 the expression  ⌊log2(n)⌋+1  gives you the minimum number of bits needed to represent the integer 
-n in binary. The floor function ensures that if the result of the logarithm is not a whole number, 
+n in binary. The floor() ensures that if the result of the logarithm is not a whole number, 
 it is rounded down to the nearest integer.
 
 Time Complexity : O(logn)
@@ -11,8 +11,7 @@ Auxiliary Space : O(1)
 Method 2 (Using Bit Traversal): simply do bit traversal here
 
 Time Complexity : O(logn)
-Auxiliary Space : O(1)
-*/
+Auxiliary Space : O(1) */
 
 function countBits_Way1(n: number): number {
     return (Math.floor(Math.log2(n)) + 1);

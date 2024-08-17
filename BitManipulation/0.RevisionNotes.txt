@@ -1,2 +1,7 @@
 Topics to revise:
 - 4. BK Algo
+- 7. Toggle ith bit 
+  
+  function Toggle_ith_Bit(n: number, k: number): number {
+    return (n ^ (1 << (k-1)));
+  }

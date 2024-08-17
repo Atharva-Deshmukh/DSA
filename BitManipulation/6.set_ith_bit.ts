@@ -3,13 +3,13 @@
 10 => 1 0 1 0
 4  => 1 1 1 0
 
-just like array indices, we have  0th bit, 1st bit and 2nd bit
+From left, we have second bit
 
 Logic: 
 - Corner case: k should not be greater than no of bits in N
 
 - Since we know the pos to set, create mask = 1 and shift left by k
-- Also, 1 is already at 0th pos, so by shifting 1 << k, net shift = k + 1 = required shift
+- Also, 1 is already at 0th pos from right, so by shifting 1 << k, net shift = k + 1 = required shift from left
 - n OR mask since we should not loose the set bis in N.
 
 TC: O(1)

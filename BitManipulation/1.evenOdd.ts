@@ -18,12 +18,10 @@ MSB --> Most Significant Bit --> Leftmost bit since any change in this causes a 
 6 -->  0110
 7 -->  0111
 
-so (even) & (0001) -> 0
-*/
+so (even) & (0001) -> 0   */
 
 function checkEvenOdd(n: number): boolean {
-    if(n & 1) return true;
-    return false;
+    return Boolean(n&1);
 }
 
 console.warn(checkEvenOdd(12));

@@ -1,14 +1,17 @@
 /* Count Total Bits Set i.e bits with 1 value
 
-way 1:
+Way 1: Normal Bitwise iteration 
 right shift the bits and & with 1 till the number is 0
+For a number n, the number of bits in its binary representation is roughly log₂(n). 
 
-complexity: O(logn)
- For a number n, the number of bits in its binary representation is roughly log₂(n). 
- Therefore, traversing a number bitwise has a time complexity of O(log n), not O(log₂ n).
+TC = O(log₂n)
+SC = O(1)
 
-Way 2:
-Brian Kernighan’s Algorithm:
+But, here we traverse each and every bit, this can be further optimised, there is a way where 
+we can iterate on set bits only.
+
+
+Way 2: Brian Kernighan’s (BK) Algorithm:
 Subtracting 1 from a decimal number flips all the bits after the rightmost set bit(which is 1) 
 including the rightmost set bit. 
 for example : 
@@ -23,8 +26,7 @@ The beauty of this solution is the number of times it loops is equal to the numb
 of set bits in a given integer. 
 
 Time Complexity: O(log n)
-Auxiliary Space: O(1)
-*/
+Auxiliary Space: O(1)  */
 
 function countSetBits1_Iterative(n: number) {
     let count = 0;

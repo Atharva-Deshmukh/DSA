@@ -1,7 +1,6 @@
-/*
-Check if a number is power of 2
+/* Check if a number is power of 2
 
-/* Logic: A power of two in binary has only one '1' bit. 
+Logic: A power of two in binary has only one '1' bit. 
 
 2 -->  0010
 4 -->  0100
@@ -13,8 +12,10 @@ If you subtract 1 from a power of two, you get a binary number with all '1' bits
 7 -->  0111
 
 so n & (n-1) -> 0
-Hence power of two
-*/
+Hence power of two 
+
+TC: O(1)
+SC: O(1) */
 
 function powOfTwo(n: number): boolean {
     return ((n & (n-1)) === 0);

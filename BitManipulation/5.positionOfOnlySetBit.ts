@@ -1,8 +1,11 @@
 /*Find position of the only set bit
 
-it must be power of two so verify if its a power of two 
-and keep left shifting 1 till u get the first set bit from right
-*/
+1 set bit === a power of two 
+
+Create a mask = 1 and left shift till u get 1, pos++ on the way 
+
+TC: O(log n)
+SC: O(1) */
 
 function isPowOf2(n: number): boolean {
     return ((n > 0) && ((n & (n-1)) === 0));

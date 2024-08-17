@@ -3,7 +3,7 @@
 10 => 1 0 1 0
 4  => 1 1 1 0
 
-From left, we have second bit
+ORIGIN = left
 
 Logic: 
 - Corner case: k should not be greater than no of bits in N

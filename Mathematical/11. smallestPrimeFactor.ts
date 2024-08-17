@@ -8,10 +8,11 @@ let query = [12, 16, 60]
 16 --> 2 2 2 2               spf = 2
 60 --> 2 2 3 5               spf = 2
 
-so this query based question can be solved using earlier solved primeFactors question, but there I caclulated unique
-prime factors, here we need all prime factors (including duplicates)
+so this query based question can be solved using earlier solved primeFactors question, 
+but there I calculated unique prime factors, here we need all prime factors (including duplicates)
 
-Logic is same as primeFactors.ts with just a slight change since we need to include all prime factors
+Logic is same as primeFactors.ts with just a slight change since we need to include all prime 
+factors
 
 function allPrimeFactors(n: number): Set<number> {
     //DONT USE SET, USE ARRAY

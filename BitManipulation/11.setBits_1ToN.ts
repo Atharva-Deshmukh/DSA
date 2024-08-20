@@ -86,8 +86,16 @@ subproblem now:
 
 so overall solution using recursion: 
 for N , if highest power of 2 is x, then
-total set bits from 1 to N = [ x*(2^(x-1)) + (N-2*x)+1 ] keep recursing till u get 1 as highest power of 2 */
+total set bits from 1 to N = [ x*(2^(x-1)) + (N-2*x)+1 ] keep recursing till u get 1 as highest power of 2 
 
+
+TC: O(logN) * O(logN) --> O((logN) ^ 2)
+SC: O(logN)
+
+Since log is in decimal, its powers will be in decimals
+O(N * logN)  > O((log𝑁) ^ 2)
+
+*/
 
 /*  3 2 1 0
 9 - 1 0 0 1         pos of MSB = 4, highest power of 2 = 3 = pos - 1
@@ -122,7 +130,6 @@ function totalSetBits(N: number): number {
     let x = highestPow2TillN(N);
 
     return (x * Math.pow(2, x - 1)) + (N - Math.pow(2, x) + 1) + totalSetBits(N - Math.pow(2, x));
-
 }
 
 

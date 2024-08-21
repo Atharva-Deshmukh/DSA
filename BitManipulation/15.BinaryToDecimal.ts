@@ -1,12 +1,11 @@
-/* Input : 1010 Output : n = 10
+/* Input: 1010          Output: n = 10
 
-- Iterate from last to index 0
+- Iterate from [(binary.length - 1 )... 0]
 - if the char is 1, multiply with respective Math.pow(2,curr_index)
 
 
 TC: O(logn) since approx bits in a number is logn
-SC: O(1)
-*/
+SC: O(1) */
 
 // A little niave way
 function binaryToDecimal(binary: string): number {

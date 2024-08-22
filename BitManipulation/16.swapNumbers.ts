@@ -10,8 +10,7 @@ a = a ^ b: The XOR of a and b is stored in a.
 b = a ^ b: --> (a ^ b) ^ b --> a
 a = a ^ b: --> (a ^ b) ^ a --> b
 
-a^b me dono stored hai, a me b daalna hai to a^b ka XOR a ke saath lo
-*/
+a^b me dono stored hai, a me b daalna hai to a^b ka XOR a ke saath lo */
 
 function swapUsingXor(a: number, b: number) {
     console.warn('XOR Swap input -> ' + a + b);

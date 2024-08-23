@@ -1,4 +1,4 @@
-import { XOR_1ton } from "./XOR_from_1toN";
+import { XOR_1ton } from "./18.XOR_from_1toN";
 
 /* 
 Input: L = 4, R = 8                 Output: 8 

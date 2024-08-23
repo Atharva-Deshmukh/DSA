@@ -6,7 +6,7 @@ Way 1:
 TC: O(n)
 SC: O(1) 
 
-Way 2:  MUST MEMORISE way, Not possible to derive in interveiws
+Way 2:  MUST MEMORISE way, Not possible to derive in interviews
 - Observe a pattern
 
 XOR TILL N          XOR

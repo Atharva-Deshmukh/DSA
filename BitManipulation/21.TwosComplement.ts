@@ -1,6 +1,6 @@
-/* 2’s complement of a binary number is 1, added to the 1’s complement of the binary number. 
-In the 2’s complement representation of binary numbers, the MSB represents the sign with a ‘0’ used 
-for plus sign and a  ‘1’ used for a minus sign. the remaining bits are used for representing magnitude.  
+/* 2’s complement =  1 + 1’s complement
+
+Significance: It is also used to store negative numbers
 
 2's complement of "0111" is  "1001"        ||         2's complement of "1100" is  "0100"
 
@@ -8,7 +8,7 @@ for plus sign and a  ‘1’ used for a minus sign. the remaining bits are used 
 Way 1: Obvious
 - get ones complement and add 1 to it
 
-Way 2: New!!
+Way 2: New
 - Start from the Least Significant Bit and traverse left until you find a 1.  
   Until you find 1, the bits stay the same
 - Once you have found 1, let the 1 as it is, and now
@@ -16,23 +16,19 @@ Way 2: New!!
 
 EXAMPLE => FIND 2s Complement of 100100
 
-- Traverse and let the bit stay the same until you find 1. Here x is not known yet. Answer = xxxx00 –
-- You found 1. Let it stay the same. Answer = xxx100
-- Flip all the bits left into the 1. Answer = 011100.
-  Hence, the 2s complement of 100100 is 011100.
+Step 1      =>  1 0 0 1 0 0
+                      |
+                   One Found
 
+Step 2 and 3 =>  0 1 1 1 0 0
+                       
+Hence, the 2s complement of 100100 is 011100.
 
 TC: O(len)
 SC: O(1)
 
-0 1 2 3 
-let rightmost set index = 1
-no of 0 bits = 2 = (4 - 1 - 1) OR (binary.length - rightMostSetBitPositionIndex - 1)
-
-0 1 2 3 4 5 6 7
-let rightmost set index = 5
-no of 0 bits = 2 = (8 - 2 - 1) OR (binary.length - rightMostSetBitPositionIndex - 1)
-*/
+Logic is straight forward.
+We could use bit manipulation to get rightmost set bit but for that, we need n in number form, we have a string input. */
 
 let rightMostSetBitPositionIndex = (binary: string): number => {
     for(let i = binary.length-1; i >= 0; i--) {

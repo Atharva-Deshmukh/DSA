@@ -24,6 +24,7 @@ SIGNIFICANCE OF 1s complement:
 TC: O(len)
 SC: O(1) */
 
+//Solution When a binary string is passed: 
 let flipBit = (char: string): string => (char === '0')? '1': '0';
 
 function OnesComplement(binary: string): string {
@@ -34,4 +35,24 @@ function OnesComplement(binary: string): string {
     });
 
     return onesComp;
+}
+
+// Solution when a number is passed in the input
+function OnesComplementNumInput(n: number): number {
+
+  // Edge case: 1's complement of 0 is 1
+  if(n === 0) return 1;
+
+  let mask: number = 0;
+  let nPreserved: number = n;
+
+  // create a mask of all 1s in the bit range of n
+  while(n) {
+      mask = (mask << 1) | 1; 
+      n = n >> 1;
+  }
+
+  // xor flips 1s to 0s since they are same with mask bits and 0s to 1s since they
+  // are different
+  return (nPreserved ^ mask);
 }

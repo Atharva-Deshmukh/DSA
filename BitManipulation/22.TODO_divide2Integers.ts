@@ -1,10 +1,10 @@
-/* Divide two integers without using multiplication, division and mod operator
+/* Divide two integers without using *, / and % operator
 
                         dividend = divisor * quotient + remainder
 
-Way 1: Keep subtracting the divisor from the dividend until the dividend becomes less than 
-the divisor. The dividend becomes the remainder, and the number of times subtraction is done 
-becomes the quotient.
+Way 1: Keep subtracting the divisor from the dividend until the dividend <= divisor. 
+       remainder = dividend
+       quotient  = the number of times subtraction is done
 
 ex: 25/5 --> 25-5
              20-5
@@ -24,14 +24,12 @@ write in terms of 5 * since quotient nikaalna hai
 25 = 5 * (2^2) + 5
 
 Other ex: 43/8
-43 = 8*(2^5) + 3
+43 = 8*(2^2 + 2^0) + 3
 
 BE CAREFULL!!
 The maximum positive integer that can be represented with a 32-bit signed integer is 2^31 - 1, 
-which is 2147483647. When the result of b << i exceeds this maximum positive value, 
-it wraps around to the minimum value of a 32-bit signed integer, which is -2^31 or -2147483648.
-
-*/
+When the result of b << i exceeds this maximum positive value, 
+it wraps around to the minimum value of a 32-bit signed integer, which is -2^31. */
 
 function divideBitManipulation(a: number, b: number): number {
     // Handle division by zero

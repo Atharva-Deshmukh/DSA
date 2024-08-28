@@ -5,3 +5,5 @@ Topics to revise:
   function Toggle_ith_Bit(n: number, k: number): number {
     return (n ^ (1 << (k-1)));
   }
+
+  concept of buckets in single number 2 problem

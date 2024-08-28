@@ -12,17 +12,18 @@ TC: O(len)
 SC: O(no.of unique elements) 
 
 Way 2: Bit wise
-- XOR all elements in the array, we are left with XOR(two distince elements in the array)
+
+- XOR all elements, we are left with XOR (two distinct elements in the array)
+
 - Now, separate the two numbers from their XOR 
 - get the rightmost set bit and create two buckets a & b.
 - a stores all numbers that have this rightmost bit set
 - b stores all numbers that have this rightmost bit NOT set
-- now iterate the array again and now, and XOR while storing, so duplicates get eliminated and we are left with
+- Iterate the array again and XOR while storing, so duplicates get eliminated and we are left with
   two unique numbers
 
 TC: O(len)
-SC: O(1) constant space for two buckets 
-*/
+SC: O(1) constant space for two buckets  */
 
 function singleNumber3(a: number[]): number[] {
     let buckets: number[] = [0,0];  //first element stores all set bits 
@@ -33,7 +34,7 @@ function singleNumber3(a: number[]): number[] {
     a.forEach((num) => {
         // if the rightmost bit is set for the current number, put it in bucket 1, else in bucket 2
         if(num & rightMostSetBit) buckets[0] = buckets[0] ^ num;
-        else buckets[1] = buckets[1] ^ num;;
+        else buckets[1] = buckets[1] ^ num;
     });
 
     return buckets;

@@ -7,3 +7,5 @@ Topics to revise:
   }
 
   concept of buckets in single number 2 problem
+
+  To separate two numbers from XOR (bucket in single number 3)

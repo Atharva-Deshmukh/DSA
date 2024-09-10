@@ -80,3 +80,54 @@ function minFlips(a: number, b: number, c: number): number {
 
     return flip;
 };
+
+/* VARIATION ON LEETCODE ---------------------------------------------
+2997. Minimum Number of Operations to Make Array XOR Equal to K
+
+You are given a 0-indexed integer array nums and a positive integer k.
+
+You can apply the following operation on the array any number of times:
+Choose any element of the array and flip a bit in its binary representation. 
+Return the minimum number of operations required to make the bitwise XOR of all elements of the final array equal to k.
+
+Note that you can flip leading zero bits in the binary representation of elements. 
+For example, for the number 101 you can flip the fourth bit and obtain 1101.
+
+
+Input: nums = [2,1,3,4], k = 1              Output: 2
+
+Explanation: We can do the following operations:
+- Choose arr[2] which is 3 == 011, we flip the first bit and we obtain 010 == 2. nums becomes [2,1,2,4].
+- Choose arr[0] which is 2 == 010, we flip the third bit and we obtain 110 = 6. nums becomes [6,1,2,4].
+The XOR of elements of the final array is (6 ^ 1 ^ 2 ^ 4) == 1 == k.
+It can be shown that we cannot make the XOR equal to k in less than 2 operations.
+
+
+Input: nums = [2,0,2,0], k = 0              Output: 0
+
+Explanation: The XOR of elements of the array is (2 ^ 0 ^ 2 ^ 0) == 0 == k. So no operation is needed.
+
+BRUTE FORCE
+- try every combination and then get the answer
+- It is very time taking and complex.
+
+Approach: note an observation regarding xor here
+- Observations, when we xor many nos, even number of bits cancel out and odd bits remains.
+          2 - 0010
+          1 - 0001
+          3 - 0011
+          4 - 0100
+          ---------
+final XOR     0100  -> see, indices with odd number of bits will give 1 in xor and indices with even bits gives 0 in xor
+our target k  0001
+
+now take ((FINAL XOR) ^ k) and get bit count, thats our answer
+
+TC: O(n)
+SC: O(1) */
+
+function minOperations(a: number[], k: number): number {
+    let xor: number = a.reduce((acc, value) => acc ^ value);
+    
+    return countSetBits_BK_Algo(xor ^ k);
+};

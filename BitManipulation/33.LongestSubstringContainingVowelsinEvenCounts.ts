@@ -175,7 +175,7 @@ make vowelIndexMap --> vowelShiftMap to represent number of shifts for modifying
 
 */
 
-function findTheLongestSubstring(s: string): number {
+function findTheLongestSubstringBitManipulation(s: string): number {
     let n: number = s.length;
     let vowels: string = 'aeiou';
 

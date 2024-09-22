@@ -193,3 +193,45 @@ function maximumXorProductSAMPLE_CODE(a: number, b: number, n: number): number {
 
     return (axorx * bxorx);
 }
+
+/* THE C++ CODE IS ACCEPTED ON LEETCODE ALTHOUGH, WITH SAME LOGIC:
+
+    int maximumXorProduct(long long a, long long b, int n) {
+            const long long mod = 1e9 + 7;
+    long long axorx = 0;
+    long long bxorx = 0;
+
+    // Prefill axorx and bxorx from 49th bit to nth bit
+    for (int i = 49; i >= n; i--) {
+        bool a_ith_bit = ((a >> i) & 1) > 0;
+        bool b_ith_bit = ((b >> i) & 1) > 0;
+
+        if (a_ith_bit) axorx ^= (1LL << i);  // Use 1LL for long long bit shifts
+        if (b_ith_bit) bxorx ^= (1LL << i);
+    }
+
+    // Calculate x for the lower n bits
+    for (int i = n - 1; i >= 0; i--) {
+        bool a_ith_bit = ((a >> i) & 1) > 0;
+        bool b_ith_bit = ((b >> i) & 1) > 0;
+
+        // If current bit in a and b are equal, set this bit in both axorx and bxorx
+        if (a_ith_bit == b_ith_bit) {
+            axorx ^= (1LL << i);
+            bxorx ^= (1LL << i);
+        }
+        // If bits are different, increase the smaller xor to maximize product
+        else {
+            if (axorx > bxorx) {
+                bxorx ^= (1LL << i);
+            } else {
+                axorx ^= (1LL << i);
+            }
+        }
+    }
+
+    // Return the product modulo the large prime
+    return (axorx % mod) * (bxorx % mod) % mod;
+    }   
+
+*/

@@ -9,3 +9,22 @@ Topics to revise:
   concept of buckets in single number 2 problem
 
   To separate two numbers from XOR (bucket in single number 3)
+
+  --------------------------------------------Topics to revise--------------------------------------------
+- BK Algo
+
+  --------------------------------------------CONCEPTS HERE ITSELF--------------------------------------------
+
+  EVEN-ODD:
+  - check last bit --> return Boolean(n&1);
+
+  NO OF BITS in n:
+  - return (Math.floor(Math.log2(n)) + 1);
+
+  CHECK FOR POWER OF 2:
+  - has only 1 bit
+  -  return ((n & (n-1)) === 0);
+
+  COUNT SET BITS: 
+  - Revise full Q4
+  - Recursion and BK Algo

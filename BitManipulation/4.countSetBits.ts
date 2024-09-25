@@ -118,7 +118,7 @@ When n is even, no of bits in n === no of bits in n/2
 ex: 6 - 2 | 8 - 1
     3 - 2 | 4 - 1
 
-When n is odd, no of bits in n === (no of bits in n/2 + 1)
+When n is odd, no of bits in n === ((no of bits in n/2) + 1)
 ex: 7 - 3 | 9 - 2
     3 - 2 | 4 - 1
 

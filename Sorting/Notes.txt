@@ -1,0 +1,19 @@
+Stable sorting algorithms preserve the relative order of records with equal keys (values). 
+For example, if two elements have the same key, they will appear 
+in the same order in the sorted output as they did in the input.
+
+Ex: 
+Merge Sort
+Bubble Sort
+Insertion Sort
+Counting Sort
+Radix Sort
+Bucket Sort (can be stable, depending on the implementation)
+
+Unstable sorting algorithms may change the relative order of records with equal keys during sorting.
+
+Ex: 
+Quick Sort (in most implementations)
+Heap Sort
+Selection Sort
+Shell Sort

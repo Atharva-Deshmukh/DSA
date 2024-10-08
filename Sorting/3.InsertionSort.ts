@@ -35,7 +35,7 @@ Iterate Backwards
 TC: O(n ^ 2) worst case and best case = O(n) when array is already sorted, inner whle loop won't be executed
 SC: O(1) */
 
-function insertionSort(a: number[]): number[] {
+function insertionSortIterative(a: number[]): number[] {
     let n: number = a.length;
 
     // corner case
@@ -44,11 +44,26 @@ function insertionSort(a: number[]): number[] {
     for(let i = 1; i < n; i++) {
         let j: number = i;
 
-        while(((j - 1) >= 0) && (j > 0) && (a[j] > a[j - 1])) {
+        while(((j - 1) >= 0) && (j >= 0) && (a[j] < a[j - 1])) {
             [a[j], a[j - 1]] = [a[j - 1], a[j]];
             j--;
         }
     }
 
     return a;
+}
+
+function insertionSortRecursive(a: number[], start: number = 1, n: number = a.length): number[] {
+
+    // corner case and base case
+    // start >= n since processing of a[n - 1] is also necessary 
+    if((n <= 1) || (start >= n)) return a;
+
+    let j: number = start;
+    while(((j - 1) >= 0) && (j >= 0) && (a[j] < a[j - 1])) {
+        [a[j], a[j - 1]] = [a[j - 1], a[j]];
+        j--;
+    }
+
+    return insertionSortRecursive(a, start + 1);
 }

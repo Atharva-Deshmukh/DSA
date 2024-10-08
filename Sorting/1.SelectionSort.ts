@@ -45,7 +45,7 @@ function findMinEleIndex(a: number[], start: number, end: number): number {
     return minIndex;
 }
 
-function selectionSort(a: number[]): number[] {
+function selectionSortIterative(a: number[]): number[] {
     let n: number = a.length;
 
     // iterate till second last element
@@ -55,4 +55,18 @@ function selectionSort(a: number[]): number[] {
     }
 
     return a;
+}
+
+function selectionSortRecursive(a: number[], start: number = 0, n: number = a.length): number[] {
+
+    // Corner case and base case
+    if((n <= 1) || (start === (n - 2))) return a;
+
+    // perform first iteration as usual
+    let minNumIndex: number = findMinEleIndex(a, start, n);
+    [a[start], a[minNumIndex]] = [a[minNumIndex], a[start]];
+    
+
+    // now perform remaining iterations
+    return selectionSortRecursive(a, start + 1);
 }

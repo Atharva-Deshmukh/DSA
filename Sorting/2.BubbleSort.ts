@@ -53,7 +53,7 @@ In code, a little optimisation condition:
 TC: O(n ^ 2) Worst case and O(n) for best case
 SC: O(1) */
 
-function bubbleSort(a: number[]): number[] {
+function bubbleSortIterative(a: number[]): number[] {
     let n: number = a.length;
 
     // corner case
@@ -63,7 +63,7 @@ function bubbleSort(a: number[]): number[] {
         let didSwappedAnything: boolean = false;
 
         for(let j = 0; j < (n - i); j++) {
-            if(a[j] > a[j + 1]) {
+            if(((j + 1) < n) && (a[j] > a[j + 1])) {
                 [a[j], a[j + 1]] = [a[j + 1], a[j]];
                 didSwappedAnything = true;
             }
@@ -75,3 +75,26 @@ function bubbleSort(a: number[]): number[] {
 
     return a;
 }
+
+function bubbleSortRecursive(a: number[], n: number = a.length): number[] {
+
+    // corner case and base case
+    if(n <= 1) return a;
+
+    // perform one pass of bubble sort and push the largest element to the end
+    let didSwappedAnything: boolean = false;
+
+    for(let i = 0; i < n; i++) {
+        if(((i + 1) < n) && (a[i] > a[i + 1])) {
+            [a[i], a[i + 1]] = [a[i + 1], a[i]];
+            didSwappedAnything = true;
+        }
+    }
+
+    // if no elements were swapped, the array is already sorted
+    if (didSwappedAnything === false) return a;
+
+    return bubbleSortRecursive(a, n - 1);
+}
+
+/* SC = O(n) for recursive */

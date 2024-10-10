@@ -6,6 +6,7 @@
 
         // solves the problem of cannot redeclare a variable in block scope
         // treats each ts file as a separate module
-        "moduleDetection":"force"
+        "moduleDetection":"force",
+        "strict": true,
     },
 }

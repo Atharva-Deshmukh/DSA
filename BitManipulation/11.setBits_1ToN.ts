@@ -88,14 +88,50 @@ so overall solution using recursion:
 for N , if highest power of 2 is x, then
 total set bits from 1 to N = [ x*(2^(x-1)) + (N-2*x)+1 ] keep recursing till u get 1 as highest power of 2 
 
+--------------------Time and space complexity----------------------
 
-TC: O(logN) * O(logN) --> O((logN) ^ 2)
+highestPow2TillN():
+     TC = O(logN) 
+     SC = O(1)
+
+totalSetBits():
+    TC: each recursive call reduces N by 2^x, since n is subtracted by 2^x
+        if N = 10, x = 3 since (2^3 => 8 <= 10)
+        if N = 20, x = 4 since (2^4 => 16 <= 20)
+        So x = Math.floor(log2(N))
+
+        At each recursive step, N = N - 2^x, this is roughly half of less than it
+
+        ex: 
+            totalSetBits(20)
+            N = 20, so x = 4
+            new N = N - 2^4 = 4
+
+            totalSetBits(4)
+            N = 4, so x = 2
+            new N = N - 2^2 = 0
+
+            totalSetBits(0)
+            return 0 // base case
+
+            In each recursive call, you reduce N by a large factor (approximately half), 
+            so the number of recursive calls is proportional to the logarithm of 𝑁.
+
+    For Each recursion call, we have O(logN) to get highest power of 2
+    and depth = O(logN), So, TC = O(logN) * O(logN) --> O((logN) ^ 2)
+   
+    SC: the number of recursive calls is proportional to the logarithm of 𝑁.
+        So, SC becomes = O(logN)
+
+
+
+TC: O((logN) ^ 2)
 SC: O(logN)
 
-Since log is in decimal, its powers will be in decimals
-O(N * logN)  > O((log𝑁) ^ 2)
+Since log is in decimal, its powers will be in decimals, hence even though we have log square, its
+TC is lower than previous one
 
-*/
+O(N * logN)  > O((log𝑁) ^ 2) */
 
 /*  3 2 1 0
 9 - 1 0 0 1         pos of MSB = 4, highest power of 2 = 3 = pos - 1
@@ -124,11 +160,12 @@ function highestPow2TillN(n: number): number {
 }
 
 function totalSetBits(N: number): number {
-    if (N === 0) return 0;
-    if (N === 1) return 1;
+
+    // base case: stop when N reduces to 0 or 1
+    if (N <= 1) return N;
 
     let x = highestPow2TillN(N);
-
+                                                                 // recurse for new N
     return (x * Math.pow(2, x - 1)) + (N - Math.pow(2, x) + 1) + totalSetBits(N - Math.pow(2, x));
 }
 

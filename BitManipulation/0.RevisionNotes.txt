@@ -27,4 +27,8 @@ Topics to revise:
 
   COUNT SET BITS: 
   - Revise full Q4
-  - Recursion and BK Algo
+  - Recursion and BK 
+  
+  SET kth bit: (k = 1st, second i.e. absolute position)
+  - return ((1 << (k - 1)) | n)  
+  - OR used since 0 -> 1 and 1 -> 1

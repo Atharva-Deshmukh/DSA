@@ -7,6 +7,10 @@
   To separate two numbers from XOR (bucket in single number 3)
   --------------------------------------------CONCEPTS HERE ITSELF--------------------------------------------
 
+  MASK FROM [L-R]
+    The bit mask that has set bits in the range [L, R] can be generated using:
+    [((1 << (L-1)) - 1) ^ ((1 << R) - 1)]  
+
   EVEN-ODD:
   - check last bit --> return Boolean(n&1);
 

@@ -1,5 +1,7 @@
 /* N = 5, K = 2  Output: 7
 
+Here, k = 2 means actual 2nd position. 
+
 5 => 0 1 0 1
 7 => 0 1 1 1
 

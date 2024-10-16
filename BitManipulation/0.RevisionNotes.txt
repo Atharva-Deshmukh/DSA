@@ -32,3 +32,10 @@ Topics to revise:
   SET kth bit: (k = 1st, second i.e. absolute position)
   - return ((1 << (k - 1)) | n)  
   - OR used since 0 -> 1 and 1 -> 1
+
+  TOGGLE kth bit: (k = 1st, second i.e. absolute position)
+  - return ((1 << (k - 1)) ^ n)  
+  - XOR used since 0 -> 1 and 1 -> 0
+
+  REMOVE LAST SET BIT
+  - return (n & (n - 1))  

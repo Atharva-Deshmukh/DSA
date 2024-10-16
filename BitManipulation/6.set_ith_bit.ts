@@ -1,7 +1,9 @@
 /* N = 10  K = 2            Output: 14
 
+ASK THE INTERVIEWER: 2 means from 0 - 2 or 1 - 2 positions.
+
 10 => 1 0 1 0
-4  => 1 1 1 0
+14 => 1 1 1 0
 
 ORIGIN = left
 

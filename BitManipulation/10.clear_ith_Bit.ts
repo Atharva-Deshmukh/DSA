@@ -1,5 +1,7 @@
 /* Input: N = 5, K = 1      Output: 4
 
+here positon is absolute!, i.e k = 1 means first position itself unlike 0-based indexing
+
 5 => 0 1 0 1
 4 => 0 1 0 0
 
@@ -27,5 +29,5 @@ SC: O(1) */
 
 function clear_ith_Bit(n: number, k: number): number {
   if(k > Math.log2(n)) return -1;
-    return (n & (~(1 << k-1)));
+    return (n & (~(1 << (k-1))));
 }

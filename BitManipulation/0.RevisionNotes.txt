@@ -39,3 +39,6 @@ Topics to revise:
 
   REMOVE LAST SET BIT
   - return (n & (n - 1))  
+
+  POSITION OF RIGHTMOST SET BIT
+  - return Math.log2((n & (n - 1)) ^ n)  

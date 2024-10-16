@@ -42,3 +42,6 @@ Topics to revise:
 
   POSITION OF RIGHTMOST SET BIT
   - return Math.log2((n & (n - 1)) ^ n)  
+
+  CLEAR kth bit
+  - return (n & ~ (1 << (k - 1)))  

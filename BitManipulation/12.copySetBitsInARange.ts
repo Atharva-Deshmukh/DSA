@@ -2,9 +2,10 @@
 
 Given two numbers x and y, and a range [l, r] where 1 <= l, r <= 32. 
 The task is consider set bits of y in range [l, r] and set these bits in x also.
-Examples : 
 
-Input  : x = 10, y = 13, l = 2, r = 3
+NOTE: l and r are absolute positions, not 0 based ones
+
+Input  : x = 10, y = 13, l = 2, r = 3, 
 Output : x = 14
 10 --> 1010 
 13 --> 1101. 
@@ -31,9 +32,8 @@ The bit mask that has set bits in the range [L, R] can be generated using:
                            L    R
 A mask is created -->  0000111111000
 
-TC: O(R) // just to create mask
-SC: O(1)
-*/
+TC: O(1)
+SC: O(1) */
 
 function createMaskInRange(L: number, R: number): number {
     return ( ((1 << (L - 1)) - 1) ^ ((1 << R) - 1) );

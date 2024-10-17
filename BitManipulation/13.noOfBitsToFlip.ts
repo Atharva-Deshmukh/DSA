@@ -87,7 +87,8 @@ function minFlips(a: number, b: number, c: number): number {
 You are given a 0-indexed integer array nums and a positive integer k.
 
 You can apply the following operation on the array any number of times:
-Choose any element of the array and flip a bit in its binary representation. 
+- Choose any element of the array and flip a bit in its binary representation. 
+
 Return the minimum number of operations required to make the bitwise XOR of all elements of the final array equal to k.
 
 Note that you can flip leading zero bits in the binary representation of elements. 
@@ -108,7 +109,7 @@ Input: nums = [2,0,2,0], k = 0              Output: 0
 Explanation: The XOR of elements of the array is (2 ^ 0 ^ 2 ^ 0) == 0 == k. So no operation is needed.
 
 BRUTE FORCE
-- try every combination and then get the answer
+- try every combination and then get the answer.
 - It is very time taking and complex.
 
 Approach: note an observation regarding xor here
@@ -121,7 +122,9 @@ Approach: note an observation regarding xor here
 final XOR     0100  -> see, indices with odd number of bits will give 1 in xor and indices with even bits gives 0 in xor
 our target k  0001
 
-now take ((FINAL XOR) ^ k) and get bit count, thats our answer
+we, now need min flips needed to convert final xor --> k
+
+now take ((FINAL XOR) ^ k) and get bit count using BK Algo, thats our answer
 
 TC: O(n)
 SC: O(1) */

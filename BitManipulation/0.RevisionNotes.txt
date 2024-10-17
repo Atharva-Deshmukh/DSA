@@ -5,6 +5,8 @@
   --------------------------------------------Topics to revise--------------------------------------------
 - 4. BK Algo
 - 11. Set bits from 1-N Logic
+- 14. Decimal to Binary
+- 15. Binary to Decimal
 
   concept of buckets in single number 2 problem
 

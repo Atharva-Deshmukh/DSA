@@ -18,11 +18,12 @@ function binaryToDecimal(binary: string): number {
     return decimal;
 }
 
-// this can be made faster
+// this can be made faster by using (1 << x) to simulate (2 ^ x)
 function binaryToDecimalFaster(binary: string): number {
     let decimal: number = 0;
-    let pow_2 = 1; // since 1 to sabhi me add hoga, 2 ^ 0 to hoga hi sab me
+    let pow_2 = 1; // initialise 1
 
+    // keep left shifting pow_2 (1 here) and whenever we have current bit = 1, just add it in the decimal
     for(let i = binary.length - 1; i >= 0; i--) {
         if(binary[i] === '1') decimal += pow_2;
         pow_2 = pow_2 << 1 ; //n = n * 2, left me iterate karte time double hote jaygega

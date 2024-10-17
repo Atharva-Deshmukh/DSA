@@ -1,3 +1,7 @@
+  ----------------------------------------Leetcode questions to revise-----------------------------------
+- Q4
+- Q13
+
   --------------------------------------------Topics to revise--------------------------------------------
 - 4. BK Algo
 - 11. Set bits from 1-N Logic
@@ -5,11 +9,20 @@
   concept of buckets in single number 2 problem
 
   To separate two numbers from XOR (bucket in single number 3)
+
   --------------------------------------------CONCEPTS HERE ITSELF--------------------------------------------
 
   MASK FROM [L-R]
     The bit mask that has set bits in the range [L, R] can be generated using:
     [((1 << (L-1)) - 1) ^ ((1 << R) - 1)]  
+
+  When n is odd, no of bits in n === ((no of bits in n/2) + 1)
+  ex: 7 - 3 | 9 - 2
+      3 - 2 | 4 - 1
+
+  When n is even, no of bits in n === no of bits in n/2
+  ex: 6 - 2 | 8 - 1
+      3 - 2 | 4 - 1
 
   EVEN-ODD:
   - check last bit --> return Boolean(n&1);
@@ -54,3 +67,6 @@
     3 - 0 0 1 1         pos of MSB = 2, highest power of 2 = 1 = pos - 1 
 
     highest pow of 2 = (Position of MSB - 1)
+
+    NUMBER OF BITS TO FLIP TO CONVERT a to b
+    - return countSetBitsUsingBKAlgo(a ^ b)

@@ -38,7 +38,7 @@ The maximum positive integer that can be represented with a 32-bit signed intege
 When the result of b << i exceeds this maximum positive value, 
 it wraps around to the minimum value of a 32-bit signed integer, which is -2^31. */
 
-function divideBitManipulation(a: number, b: number): number {
+function divideUsingBitManipulation(a: number, b: number): number {
     // Handle division by zero
     if (b === 0) {
       return Infinity;

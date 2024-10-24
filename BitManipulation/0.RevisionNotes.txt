@@ -19,6 +19,15 @@
 
   --------------------------------------------CONCEPTS HERE ITSELF--------------------------------------------
 
+  create a mask of all 1s in the bit range of n (as per no of bits in n)
+  say, n = 7 (0111) ==> mask = 1111
+
+  let mask = 1;
+  while(n) {
+      mask = (mask << 1) | 1; 
+      n = n >> 1;
+  }
+
   XOR till N:
   if(n % 4 === 0) XOR till n = n itself
   if(n % 4 === 1) XOR till n = 1
@@ -55,22 +64,16 @@
   - Revise full Q4
   - Recursion and BK 
   
-  SET kth bit: (k = 1st, second i.e. absolute position)
+  SET kth bit: (where k = 1st, 2nd i.e. absolute position)
   - return ((1 << (k - 1)) | n)  
   - OR used since 0 -> 1 and 1 -> 1
 
-  TOGGLE kth bit: (k = 1st, second i.e. absolute position)
+  TOGGLE kth bit: (where k = 1st, 2nd i.e. absolute position)
   - return ((1 << (k - 1)) ^ n)  
   - XOR used since 0 -> 1 and 1 -> 0
 
   REMOVE LAST SET BIT
   - return (n & (n - 1))  
-
-  // create a mask of all 1s in the bit range of n
-  while(n) {
-      mask = (mask << 1) | 1; 
-      n = n >> 1;
-  }
 
   POSITION OF RIGHTMOST SET BIT
   - return Math.log2((n & (n - 1)) ^ n)  
@@ -78,7 +81,7 @@
   CLEAR kth bit
   - return (n & ~ (1 << (k - 1)))  
 
-  THOUGH PROCESS for getting highest power of 2 till N (from 1 - N)
+  THOUGHT PROCESS for getting highest power of 2 till N (from 1 - N)
 
         3 2 1 0
     9 - 1 0 0 1         pos of MSB of N = 4, highest power of 2 = 3 = pos - 1
@@ -89,7 +92,7 @@
         3 2 1 0
     3 - 0 0 1 1         pos of MSB of N = 2, highest power of 2 = 1 = pos - 1 
 
-    highest pow of 2 = (Position of MSB - 1)
+    highest pow of 2 from [1 to N] = (MSB pos of N - 1)
 
     NUMBER OF BITS TO FLIP TO CONVERT a to b
     - We need to flip the different bits only

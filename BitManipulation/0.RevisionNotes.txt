@@ -20,10 +20,10 @@
   --------------------------------------------CONCEPTS HERE ITSELF--------------------------------------------
 
   XOR till N:
+  if(n % 4 === 0) XOR till n = n itself
   if(n % 4 === 1) XOR till n = 1
   if(n % 4 === 2) XOR till n = n + 1
   if(n % 4 === 3) XOR till n = 0
-  if(n % 4 === 0) XOR till n = n itself
 
   XOR in range [L-R] = XOR_1ton(L-1) ^ XOR_1ton(R);
 

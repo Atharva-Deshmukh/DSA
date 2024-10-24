@@ -27,7 +27,7 @@ SC: O(1) */
 //Solution When a binary string is passed: 
 let flipBit = (char: string): string => (char === '0')? '1': '0';
 
-function OnesComplement(binary: string): string {
+function OnesComplementStringInput(binary: string): string {
     let onesComp: string = '';
 
     binary.split('').forEach((bit) => {

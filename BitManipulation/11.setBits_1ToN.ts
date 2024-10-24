@@ -90,11 +90,11 @@ total set bits from 1 to N = [ x*(2^(x-1)) + (N-2*x)+1 ] keep recursing till u g
 
 --------------------Time and space complexity----------------------
 
-highestPow2TillN():
+highestPow2TillN() takes
      TC = O(logN) 
      SC = O(1)
 
-totalSetBits():
+totalSetBits() takes
     TC: each recursive call reduces N by 2^x, since n is subtracted by 2^x
         if N = 10, x = 3 since (2^3 => 8 <= 10)
         if N = 20, x = 4 since (2^4 => 16 <= 20)

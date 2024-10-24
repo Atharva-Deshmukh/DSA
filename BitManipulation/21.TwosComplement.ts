@@ -9,7 +9,7 @@ Significance: It is also used to store negative numbers
 Way 1: Obvious
 - get ones complement and add 1 to it
 
-Way 2: New
+Way 2: an OBSERVATION
 - Start from the Least Significant Bit and traverse left until you find a 1.  
   Until you find 1, the bits stay the same
 - Once you have found 1, let the 1 as it is, and now

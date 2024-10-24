@@ -22,7 +22,7 @@
   create a mask of all 1s in the bit range of n (as per no of bits in n)
   say, n = 7 (0111) ==> mask = 1111
 
-  let mask = 1;
+  let mask = 0;
   while(n) {
       mask = (mask << 1) | 1; 
       n = n >> 1;

@@ -23,7 +23,7 @@ function singleNumberMapSolution(arr: number[]): number {
     });
 
     for(let [key, val] of map) {
-        if(val === 3) return key;
+        if(val === 1) return key;
     }
 
     return -1;
@@ -84,7 +84,8 @@ bucket 1 => ones for elements with count 1
 bucket 2 => twos for elements with count 2
 bucket 3 => threes
 
-Note that, 
+Note that,
+- First element will always go to ones. 
 - If the element is not in twos already, it will go to ones
 - If the element is in ones already, it will go to twos
 - If the element is in twos already, it will go to threes

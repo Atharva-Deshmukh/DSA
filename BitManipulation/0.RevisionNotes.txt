@@ -14,10 +14,24 @@
 - 22. Divide two numbers using Bit Manipulation
 - 23. Logic for power set (all input combinations)
 - 25. all Observations + MEMORISE concept of buckets in single number
-
-  To separate two numbers from XOR (bucket in single number 3)
+- 26. Technique to separate two numbers from their XOR
 
   --------------------------------------------CONCEPTS HERE ITSELF--------------------------------------------
+
+  Sort array based on count of set bits in them, if count of set bits is same, then sort numbers by values
+  
+  // No need of map, directly write custom sort()
+  function sortByBits(arr: number[]): number[] {
+      let n = arr.length;
+      if (n === 1) return arr;
+    
+      arr = arr.sort((a, b) => {
+        if(bitCount_BK_Algo(a) === bitCount_BK_Algo(b)) return a - b;
+        else return bitCount_BK_Algo(a) - bitCount_BK_Algo(b);
+      });
+      
+      return arr;
+  }
 
   create a mask of all 1s in the bit range of n (as per no of bits in n)
   say, n = 7 (0111) ==> mask = 1111

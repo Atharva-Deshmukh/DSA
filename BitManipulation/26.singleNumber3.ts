@@ -29,7 +29,7 @@ function singleNumber3(a: number[]): number[] {
     let buckets: number[] = [0,0];  //first element stores all set bits 
 
     let XOR = a.reduce((acc, val) => acc = acc ^ val, 0);
-    let rightMostSetBit = (XOR & (XOR - 1)) ^ XOR;
+    let rightMostSetBit = (XOR & (XOR - 1)) ^ XOR;  // (n & (n - 1)) ^ n
 
     a.forEach((num) => {
         // if the rightmost bit is set for the current number, put it in bucket 1, else in bucket 2

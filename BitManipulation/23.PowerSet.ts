@@ -12,24 +12,24 @@ Note that in Binary representation of nos from [0-7], we have the power set
 6 -->  110    {a, b}
 7 -->  111    {a, b, c}
 
-For every power of 2, if we iterate from 0 to (2^n)-1, we find the bits are in proper power set permutation
+Observaton: For every power of 2, IF we iterate from 0 to (2^n)-1, we find the bits are in proper power set permutation
 
 0 -->  00000
 1 -->  00001
 2 -->  00010
-3 -->  00011   ---- power set till here
-4 -->  00100
+3 -->  00011   ---- power set till here for string of length = 2, [0, (2 ^ (2 - 1))]
+4 -->  00100   
 5 -->  00101
 6 -->  00110
-7 -->  00111  ---- power set till here
-8 -->  01000
+7 -->  00111  ---- power set till here for string of length = 3, [0, (2 ^ (3 - 1))]
+8 -->  01000  
 9 -->  01001
 10 --> 01010
 11 --> 01011
 12 --> 01100
 13 --> 01101
 14 --> 01110
-15 --> 01111  ---- power set till here
+15 --> 01111  ---- power set till here for string of length = 4, [0, (2 ^ (4 - 1))]
 16 --> 10000 
 
 LETS GET back to problem,
@@ -69,11 +69,12 @@ function generatePowersetForUniqueElements(str: string): Set<string> {
 Input: nums = [1,2,2]
 Output: [[],[1],[1,2],[1,2,2],[2],[2,2]]
 
-By bit manipulation, we will include [1, 2] two times, but we need it once only.
+By bit manipulation, we will include [1, 2] two times, (index 0, index 1) & (index 0, index 2), but we need it once only.
 
 Steps:
 - Note that we don't have [2, 1] and [1, 2], hence SORT the generated subset before stringifying,
-- Stringifying generates identical strings which are compared by sets and only one string is stored
+- Duplicate elements will not always be in sorted order as the above example, hence [2, 1] and [1, 2] need to be
+  considered same only, hence sort the string before pushing it to a set.
 
 Why Stringify?
 In JavaScript, arrays and objects are reference types. This means that when you compare two arrays, 
@@ -97,9 +98,7 @@ mySet.add(JSON.stringify([1, 2]));
 mySet.add(JSON.stringify([1, 2]));
 
 
-console.log(mySet);  // Outputs {"[1,2]"}
-
-*/
+console.log(mySet);  // Outputs {"[1,2]"}  */
 
 function subsetsWithDuplicates(nums: number[]): number[][] {
     let tempPowSet = new Set<string>(); // Use a Set to store string representations of subsets
@@ -126,7 +125,7 @@ function subsetsWithDuplicates(nums: number[]): number[][] {
     return ans;
 };
 
-/* For string output, and that too, lexicographically,
+/* For string output, and that too, lexicographically sorted,
 
 Sort the input string: This ensures that the subsets are generated in lexicographical order.
 Generate subsets.

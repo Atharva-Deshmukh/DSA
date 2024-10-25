@@ -12,6 +12,7 @@
 - 20. Logic for 1s complement
 - 21. Logic for 2s complement
 - 22. Divide two numbers using Bit Manipulation
+- 23. Logic for power set (all input combinations)
 
   concept of buckets in single number 2 problem
 

@@ -79,7 +79,7 @@ function sortByBits(arr: number[]): number[] {
   return ans;
 }
 
-// Way - 2:
+// Way - 2: No need of map, directly write custom sort()
 function sortByBits(arr: number[]): number[] {
     let n = arr.length;
     if (n === 1) return arr;

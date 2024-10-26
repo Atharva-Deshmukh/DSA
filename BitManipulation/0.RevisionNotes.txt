@@ -17,6 +17,7 @@
 - 26. Technique to separate two numbers from their XOR
 - 27. Revise logic
 - 28. Revise logic
+- 29. Amazing logic (MEMORISE)
 
   --------------------------------------------CONCEPTS HERE ITSELF--------------------------------------------
 

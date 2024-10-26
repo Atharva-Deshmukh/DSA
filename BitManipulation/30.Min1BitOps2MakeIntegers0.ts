@@ -11,7 +11,7 @@ Return the minimum number of operations to transform n into 0.
 
 Input: n = 3                Output: 2
 Explanation: The binary representation of 3 is "11".
-"11" -> "01" with the 2nd operation since the 0th bit is 1. (Assume, all the bits after rightmost ar 0)
+"11" -> "01" with the 2nd operation since the 0th bit is 1. (Assume, all the bits after rightmost are all 0)
 "01" -> "00" with the 1st operation.
 
 Input: n = 6                Output: 4

@@ -4,6 +4,9 @@
 - Q19
 
   --------------------------------------------Topics to revise--------------------------------------------
+
+  +, - *, / using bit manipulation
+
 - 4. BK Algo
 - 11. Set bits from 1-N Logic
 - 14. Decimal to Binary

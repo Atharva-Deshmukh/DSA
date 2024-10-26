@@ -20,6 +20,7 @@
 - 29. Amazing logic (MEMORISE)
 - 30. Amazing logic (MEMORISE) // PENDING
 - 32. Amazing logic (MEMORISE) 
+- 33. Amazing logic (MEMORISE) 
   --------------------------------------------CONCEPTS HERE ITSELF--------------------------------------------
 
   Sort array based on count of set bits in them, if count of set bits is same, then sort numbers by values

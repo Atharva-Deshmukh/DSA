@@ -1,0 +1,64 @@
+/* Given two integers a and b, return the sum of the two integers without using the operators + and -.
+
+Input: a = 1, b = 2         Output: 3
+
+Input: a = 9, b = 11         Output: 20
+
+Observations regarding Addition:
+
+     0           1
+   + 0         + 1                   Same bits -> we get 0
+    --          --
+     0           0  (carry 1)                             | =>     just like XOR
+                                                          | =>
+     1           0
+   + 0         + 1                    Different bits -> we get 1
+    --          --
+     1           1  
+
+     How to take care of Carry?
+     We get carry only when both bits are same, i.e (a & b) === 1
+     and we left shift this, ((a & b) << 1)
+
+     DRY RUN:
+     a = 09 = 1 0 0 1
+     b = 11 = 1 0 1 1
+
+     sum = a ^ b    =   0 0 1 0
+              carry = 1 0 0 1 0     Where,  carry = ((a & b) << 1) 
+
+     Now, sum = sum ^ carry = 1 0 0 0 0
+                      carry = 0 0 1 0 0    carry = ((sum & carry) << 1)
+
+     Now, sum = sum ^ carry = 0 0 0 0 0, XOR = 0, STOP!!
+
+     when (sum & carry) == 0, return sum ^ carry = 1 0 1 0 0 = 20 = Ans
+
+     Focus on code now, implementation is important, dry run was just for concept
+
+     TC: O(max(number of bits in a, number of bits in b))
+     SC: O(1) */
+
+function addUsingBitManipulation(a: number, b: number): number {
+
+    // corner case: if any one of them is 0, return other
+    if((a | b) === a) return a;
+    if((a | b) === b) return b;
+
+    // corner case: if both are 0, return 0
+    if((a & b) === 0) return 0;
+
+    // Iterate till there is no carry 
+    while (b !== 0) {
+        
+        // carry contains common set bits of a and b, left shifted by 1
+        let carry: number = (a & b) << 1;
+
+        // Update a with (a + b without carry)
+        a = a ^ b;
+      
+        // Update b with carry
+        b = carry; 
+    } 
+    return a;
+}

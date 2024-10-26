@@ -12,7 +12,6 @@ Return the number of triplets (i, j and k) Where a == b.
 
 Input: arr = [2,3,1,6,7]            Output: 4
 Explanation: The triplets are (0,1,2), (0,2,2), (2,3,4) and (2,4,4)
-Example 2:
 
 Input: arr = [1,1,1,1,1]            Output: 10
 
@@ -22,17 +21,17 @@ TC: O(n ^ 3)
 SC: O(1)
 
 Optimised - 1:
-- [i -- j-1] = a
-  [j -- k]   = b            And we are verifing a = b, can also be written as (a ^ b) = 0
+- [i -- (j-1)] = a
+  [j -- k]     = b            And we are verifing a = b, can also be written as (a ^ b) = 0
 
-- So, this can be written as ([i -- j-1] ^ [j -- k]) = 0
+- So, this can be written as ([i -- (j-1)] ^ [j -- k]) = 0
   OR
   [i --- k] such that a[i] ^ a[i+1] ^ ... a[k] = 0, j can be kept anywhere in between
   so, ans = no of places where j can be placed.
   Basically, we beed to find the subarray whose XOR = 0 and then get the count from it
 
-
-  ex: xor [1...5] = 0,
+  POSITION OF j
+  Ex: xor [1...5] = 0,
       j can be placed at index 2, 3, 4, 5 = (k - i) places total
       count = k - i
  
@@ -113,7 +112,7 @@ function countTripletsUsingTwoLoops(a: number[]): number {
 
     let count: number = 0;
 
-    // i will go till n - 2 only and k will always be ahead of i
+    // Since k < n and i < k always, so i will go till n - 2 only and k will always be ahead of i
     for(let i = 0; i < xor.length - 1; i++) {
         for(let k = i + 1; k < xor.length; k++) {
             if(xor[i] === xor[k]) count = count + (k - i - 1);

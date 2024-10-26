@@ -23,15 +23,15 @@ Brute force:
 TC: O(right - left + 1)
 SC: O(1)
 
-but if we see ex 2, when right = 2 ^ 31 something, it will take lot of time although it is linear, some O(1) or O(logn) 
-needs to be thought of
+but if we see ex 2, when right = 2 ^ 31 something, it will take lot of time although it is linear, 
+hence, some O(1) or O(logn) needs to be thought of
 
 Observation:
 5 - 0101
 6 - 0110
 7 - 0111             In the AND, if ith bit = 1, it means ith bit of every number is 1
 --------             Also, range diya hai means numbers are in sorted order
-4 - 0100             Notice, in AND, the equal part in all three bits is the answer, since tabhi all 1s bits same honge n
+4 - 0100             Notice, in AND, the equal part in all three bits is the answer, since tabhi all 1s bits same honge
 
 5 - 01 | 01
 6 - 01 | 10         
@@ -50,7 +50,7 @@ SC: O(1)  */
 function rangeBitwiseAnd(left: number, right: number): number {
 
     // corner case
-    if(left === right) return left;  // if left = right, return the number itself
+    if(left === right) return left;  // if left = right, return the number itself Since & same hoga
 
     let shifts: number = 0;
     while(left != right) {
@@ -63,8 +63,9 @@ function rangeBitwiseAnd(left: number, right: number): number {
 }
 
 /* Most efficient way:
-- Instead of shifting every bit in both numbers, recall that we have right >= left always
-- so, try eliminating the rightmost set bit of right untill it becomes <= left
+- Instead of shifting every bit in both numbers, recall that we have right >= left always since all nums 
+  are sorted in range
+- so, keep eliminating the rightmost set bit of right untill it becomes <= left
 
 TC: O(log(n)) = O(32)
 SC: O(1) */

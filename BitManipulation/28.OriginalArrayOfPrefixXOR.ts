@@ -64,6 +64,7 @@ function solution(pref: number[]): number[] {
     return ans;
 }
 
+/* Starting se edit karenge to baad wala caclulate krna difficult hoga, so start from end */
 function solutionSpaceEfficient(pref: number[]): number[] {
     let n = pref.length;
 

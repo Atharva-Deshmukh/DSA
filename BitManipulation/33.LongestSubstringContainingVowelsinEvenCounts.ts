@@ -34,10 +34,10 @@ let s = e l e e
 Maintain a map with counts of each vowel vowelCount = [0, 0, 0, 0, 0]
                                                        a  e  i  o  u
 
-whenever we encounter a vower, voweCount[vowel]++ and then %2 to keep track of even or odd number of 
-times each vowel appear and store the state of vowelCount[] in a map with latest index
-of where this array state was found
+whenever we encounter a vowel, voweCount[vowel]++ and then %2 to keep track of even or odd number of 
+times each vowel appear
 
+Store the state of vowelCount[] in a map with latest index of where this array state was found
 and whenever the state of vowelCount[] repeats, do currentIndex - prev.Index recorded in a map
 ans = Max(ans, currCount)
 
@@ -52,7 +52,7 @@ i = -1:                          store the initial state, to compare later
 vowelCount = [0, 0, 0, 0, 0] 
               a  e  i  o  u
 
-map[0, 0, 0, 0, 0] = -1
+map[0, 0, 0, 0, 0] = -1          store vowelCount in map with key = vowelCount state & latest index as value
 
 i = 0:                         
 vowelCount = [0, 1, 0, 0, 0]   totalCount = 1
@@ -115,12 +115,10 @@ vowelCount = [0, 3, 0, 0, 0]
 map[0, 0, 0, 0, 0] = -1  after doing % 2 => [0, 3, 0, 0, 0] -> [0, 1, 0, 0, 0] found at index 0
 map[0, 1, 0, 0, 0] = 0
 
-so ans = (3 - 0) = 3 => "ele" OR "lee" ONLY;
+so ans = (3 - 0) = 3 => "ele" OR "lee" ONLY; */
 
-*/
-
-/* NOTE THAT IN MAPS IN JS
-n JavaScript, arrays are compared by reference, not by value. This means that two arrays with the same 
+/* NOTE: For MAPS IN JS
+In JS, arrays are compared by reference, not by value. This means that two arrays with the same 
 content will not be treated as equal unless they are the exact same object in memory. In your case, 
 you're updating vowelCount at each iteration, but the Map won't recognize it as the same key because 
 the reference changes with every update. */
@@ -171,16 +169,14 @@ we use a bit mask to represent vowelCountMap[]. mask will be an integer only
            aeiou
 let mask = 00000
 
-make vowelIndexMap --> vowelShiftMap to represent number of shifts for modifying that bit 
-
-*/
+make vowelIndexMap --> vowelShiftMap to represent number of shifts for modifying that bit  */
 
 function findTheLongestSubstringBitManipulation(s: string): number {
     let n: number = s.length;
     let vowels: string = 'aeiou';
 
     // corner case
-    if (n === 1) return 0;  // even if there is one vowel, ans substring = 0 length
+    if (n === 1) return 0;  // even if there is one vowel, ans substring = 0 length since single occurrence === ODD
 
     let ans: number = Number.MIN_SAFE_INTEGER;
     /*

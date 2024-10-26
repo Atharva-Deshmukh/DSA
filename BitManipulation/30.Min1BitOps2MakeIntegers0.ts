@@ -49,13 +49,18 @@ Thought process:
   ex: n = 010000, so, if we solve from right to left, we need to make sure that to turn ith bit = 0, (i - 1)th bit 
   should be 1, so better to solve from left to right, since fastest way for n -> 0 = eliminate all leftmost bits
 
+  Go by hint: Solve from left -> right
+
 - now, break this problem into sub-problems as per the hint of the question.
+
+  Subproblem: Take only powers of 2 first
+
   ex: n = 0100 --> 0010 --> 0000  to convert ith bit -> 0, (i - 1)th bit = 1 in some x steps
-  see, in some x steps 0000 --> 0010
-  hence in x steps:    0010 --> 0000
+      0000 --> 0010  see, if this takes some x steps
+      0010 --> 0000  Obviously, vice-versa will also take x steps
 
   so, 0100 -> 0000, we need: 
-    x (0000 -> 0010, to make (i-t) = 1) + 1 (ith bit = 0) + x (0010 --> 0000) = 2x + 1
+    x (0000 -> 0010, to make (i-1) = 1) + 1 (ith bit = 0) + x (0010 --> 0000) = 2x + 1
     x = no of steps to unset ith bit when n has only 1 bit = F(i)
 
     F(i) = no of steps to convert a number to 0 if that number has only ith set bit
@@ -74,7 +79,7 @@ Thought process:
           |------a---------|---------b-----|  
           |--------------total-------------|        b = total - a
 
-    So, F(10010-00000) = F(10010-00000) - F(10010-01010)   left most set bit gaya ab
+    So, F(01010-00000) = F(10010-00000) - F(10010-01010)   left most set bit gaya ab
              F(4)      =       F(4)     -   now, focus on i = 3 only, ignore other set bits, we made i = 3 [0 -> 1], its equivalent to [1 -> 0]
                                            (F(0000) - F(1000)) 
                                            (F(0) - F(3))

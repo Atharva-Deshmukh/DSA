@@ -9,8 +9,7 @@ Logic:
 - separate out digits of num and keep doing res*10 + digit except for the first digit
 
 TC: O(log10(N)) since no. of digits in a number are Math.floor(log10(N)) + 1
-SC: O(1)
-*/
+SC: O(1) */
 
 function revNum(n: number): number {
     if(n === 0) return 0;

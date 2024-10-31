@@ -30,7 +30,7 @@ function isPerfSquareUsingSqrt(n: number) {
     return (Math.ceil(Math.sqrt(n)) === Math.floor((Math.sqrt(n))));
 }
 
-function isPerfSquareWithoutUsingSqrt (n: number) {
+function isPerfSquareWithoutUsingSqrt(n: number) {
     let odd: number = 1;
     while(n > 0) {
         n -= odd;

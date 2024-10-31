@@ -1,8 +1,5 @@
 Do +, - , *, and / when numbers are in string
 
 Do mathematical questions like
-- prime number
-- armstrong
 - factorial
 - fibonacci
-- LCM HCF GCD

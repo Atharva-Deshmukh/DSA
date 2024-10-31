@@ -1,0 +1,7 @@
+KNOW THAT: sum of odd numbers is a perfect square
+For 1,3,5,7,9,11
+1 + 3 = 4                      Iterations = 2 = sqrt(4)
+1 + 3 + 5 = 9                  Iterations = 3 = sqrt(9)
+1 + 3 + 5 + 7 = 16 and so on,
+
+Power exponentiation trick:

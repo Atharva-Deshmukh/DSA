@@ -18,7 +18,7 @@ Logic:
 
 - if(currentPower === even) 
   currentPower = currentPower / 2
-  currentBase = currentBase * currentBase
+  currentBase = (currentBase * currentBase) = (currentBase ^ 2)
   
 
 Dry run:
@@ -50,7 +50,7 @@ Dry run:
 
   return ans          
   
-TC: O(log(2) power) since we are continuously dividing by 2
+TC: O(log2(power)) since we are continuously dividing by 2
 SC: O(1) */
 
 // used bit manipulation to optimise wherever possible

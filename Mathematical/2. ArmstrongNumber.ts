@@ -17,8 +17,7 @@ Logic:
 TC: O(no. of digits * k), k is constant time for multiplication
 SC: O(1)
 
-No.of digits in a number = Math.floor(log10(n)) + 1
-*/
+No.of digits in a number = Math.floor(log10(n)) + 1 */
 
 // TC is O(1)
 function countDigits(n: number): number {

@@ -14,11 +14,11 @@ function GCD(a: number, b: number): number {
     if(a === 0) return b;       
     if(b === 0) return a;
 
-    /* Optimisation:  else if (a === 0 || b === 0) return a + b; */
+    /* Optimisation Possible here:  else if (a === 0 || b === 0) return a + b; */
 
     let res: number = 1;
 
-    let min = Math.min(a,b);
+    let min: number = Math.min(a,b);
     for(let i = 1; i <= min; i++) {
         if((a % i === 0) && (b % i === 0)) res = Math.max(i, res);
     }

@@ -14,7 +14,7 @@ SC: O(1)
 - our target is to somewhere change the prime check (O(sqrt(n))) to O(1)
 
 Way 2: Sieve
-- create Array(n+1) filled with 1
+- create Array(n+1) filled with 1 so that the Array is from i = 0 --- n
 - we will loop it from 2 to n since we know that 0 and 1 are not prime
 
 Dry run:
@@ -49,7 +49,7 @@ Dry run:
     - In the for loop we are iterating from 2 * i to n everytime although we don't need it
       2*2 = 4    3*2 = 6     4*2 = 8
       2*3 = 6    3*3 = 9     4*3 = 12
-      2*4 = 4    3*4 = 12    4*4 = 16
+      2*4 = 8    3*4 = 12    4*4 = 16
       2*5 = 10   3*5 = 15    4*5 = 20
 
       for 3, 3*2 is already calculated during 2's computation

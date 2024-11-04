@@ -3,6 +3,8 @@
 - Q.5
 - Q.7
 - Q.8
+- Q.9
+- Q.10
 
 ////////////////////////////////////// CONCEPTS //////////////////////////////////////////////////////////////
 
@@ -28,6 +30,8 @@ Logic:
 
 Dry run:
 - let ans = 1, n = 2, x = 21
+
+while (x > 0)
 
 - when power is ODD, separate only one number and do power-1 
   pow(2,21) = 2 *  pow(2,20)

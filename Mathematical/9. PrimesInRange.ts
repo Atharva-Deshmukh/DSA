@@ -31,8 +31,7 @@ Way 3: use prefix sum for further Optimisation
 - for each query range, no. of primes [L-R] = prefixSum[R] - prefixSum[L-1]
 
 TC: O(10^6*log(log(n))) for sieve +  O(10^6) for prefix sum + O(no.of queries)
-SC: O(R) OR O(10^6)  for Sieve
- */
+SC: O(R) OR O(10^6)  for Sieve */
 
 // I am implementing this function for without query, directly for L-R
 function primesInRange(L: number, R: number): number {

@@ -39,7 +39,7 @@ function primeFactors(n: number): Set<number> {
         } 
     }
 
-    // case: if n itself is a prime number
+    // case: if n itself is a prime number, we add it in the last after we have exhausted every multiple
     if(n > 2) ans.add(n);
 
     return ans;

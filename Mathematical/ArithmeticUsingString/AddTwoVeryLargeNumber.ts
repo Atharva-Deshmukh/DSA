@@ -16,7 +16,8 @@ i = 0:
 after loop ends
 if(carry > 0) sum = carry + sum;
 
- */
+TC: O(length1 + length2)
+SC: O(1)  */
 
 function sumOfLargeNumbers(a: string, b: string): string {
     let sum: string = "";
@@ -32,39 +33,51 @@ function sumOfLargeNumbers(a: string, b: string): string {
     let i: number = n1-1;
     let j: number = n2-1;
 
-    while((i > 0) && (j > 0)) {
+    while((i >= 0) && (j >= 0)) {
         let d1: number = Number(a[i]);
         let d2: number = Number(b[j]);
 
         sum = String(((d1 + d2) + carry) % 10) + sum;
-        carry = (((d1 + d2) + carry) / 10);
+        carry = Math.floor(((d1 + d2) + carry) / 10);
 
         i--;
         j--;
     }
 
     // if n1 > n2, n2 will be exhausted and n1 remains
-    while(i > 0) {
+    while(i >= 0) {
         let d1: number = Number(a[i]);
 
         sum = String((d1 + carry) % 10) + sum;
-        carry = ((d1 + carry) / 10);
+        carry = Math.floor((d1 + carry) / 10);
 
         i--;
     }
 
     // if n2 > n1, n1 will be exhausted and n2 remains
-        while(j > 0) {
+        while(j >= 0) {
         let d2: number = Number(b[j]);
 
         sum = String((d2 + carry) % 10) + sum;
-        carry = ((d2 + carry) / 10);
+        carry = Math.floor((d2 + carry) / 10);
 
         j--;
     }
 
     // if carry remains in last, add it to the sum itself at the beginning
-    if(carry > 0) sum = Number(carry) + sum;
+    if(carry > 0) sum = carry.toString() + sum;
+
+    // remove leading zeros if any, reusing same i
+    i = 0;
+    let count: number = 0;
+    let n: number = sum.length;
+    while((i < n) && (sum[i] === '0')) { 
+        count++; 
+        i++; 
+    }
+
+    if(count === n) return '0';
+    sum = sum.substring(count, n);
 
     return sum;
 }

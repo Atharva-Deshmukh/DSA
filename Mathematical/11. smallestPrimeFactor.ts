@@ -98,7 +98,7 @@ function fillSPF() {
     for(let i = 0; i < SPF.length; i++) SPF[i] = i;
 
     for(let i = 2; i < SPF.length; i++) {
-        //if its prime, then only override the multiples also, override such that smallest override is there in the array
+        //if its untouched, then only override the multiples also, override such that smallest override is there in the array
         if(SPF[i] === i) {
             for(let j = i * i;j < SPF.length; j += i) {
                 if(i <= SPF[j]) SPF[j] = i;

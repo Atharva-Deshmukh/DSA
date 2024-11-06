@@ -14,8 +14,8 @@ Also, we know, 1,2,3,4,5,6,7...
 One number is even, other is odd, if we have an odd number n, n + 1 = even!
 
 if b is Odd:
-
-    b = 2 * (b / 2) + 1
+                                                                                      
+    b = 2 * (b / 2) + 1   --> Solve brackets first and do floor in division, ex: let b = 5, [2 * (5/2) + 1] => [2 * 2 + 1]
 
     a * b = a * (2 * (b / 2) + 1)
 
@@ -28,6 +28,8 @@ Hence, we are partially calculating product by iterating on every bit of b and
 keep adding to the result
 
 for '+', we can use addition using bit manipulation
+
+-------------------------------------------------------------------------------------
 
 Russian peasant algo:
 
@@ -69,25 +71,3 @@ function multiplyUsingBitManipulation(a: number, b: number): number {
 
     return product;
 }
-
-
-/* Leetcode 43
-
-Given two non-negative integers num1 and num2 represented as strings, return the product of num1 and num2, 
-also represented as a string.
-Note: You must not use any built-in BigInteger library or convert the inputs to integer directly.
-
-Input: num1 = "2", num2 = "3"
-Output: "6"
-
-Input: num1 = "123", num2 = "456"
-Output: "56088"
- 
-
-Constraints:
-- 1 <= num1.length, num2.length <= 200
-- num1 and num2 consist of digits only.
-- Both num1 and num2 do not contain any leading zero, except the number 0 itself.
-
-
-*/

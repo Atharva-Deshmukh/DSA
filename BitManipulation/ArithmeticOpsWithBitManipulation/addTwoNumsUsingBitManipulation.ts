@@ -36,14 +36,21 @@ Observations regarding Addition:
 
      Focus on code now, implementation is important, dry run was just for concept
 
+     The key insight here is that the number of times the loop iterates depends on how many times a carry occurs. 
+     With each iteration, the carry bits (shifted left) reduce, eventually leading to b becoming zero.
+     In the worst case, the number of iterations required is proportional to the number of bits in the 
+     binary representation of the numbers. For n-bit integers, this could be O(n) iterations.
+     Therefore, the time complexity of this function is O(n), where n is the number of bits required to
+    represent the larger of the two numbers, a and b.
+
      TC: O(max(number of bits in a, number of bits in b))
      SC: O(1) */
 
 function addUsingBitManipulation(a: number, b: number): number {
 
     // corner case: if any one of them is 0, return other
-    if((a | b) === a) return a;
-    if((a | b) === b) return b;
+    if(b === 0) return a;
+    if(a === 0) return b;
 
     // corner case: if both are 0, return 0
     if((a & b) === 0) return 0;

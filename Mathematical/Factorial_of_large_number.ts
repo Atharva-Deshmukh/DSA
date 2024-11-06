@@ -1,3 +1,26 @@
+/* First, normal factorial calculation.
+TODO: 1006. Clumsy Factorial */
+
+function factorialIterative(n: number): number {
+
+    // corner case
+    if(n === 0) return 1;
+
+    let res = 1;
+    for(let i = 2; i <= n; i++) res *= i;
+
+    return res;
+}
+
+function factorialRecursive(n: number): number {
+    
+    // base case
+    if(n === 0) return 1;
+
+    return n * factorialRecursive(n - 1);
+}
+
+
 /*   Program for factorial of a large number
 
 A factorial of 100 has 158 digits. It is not possible to store these many digits even if we use long int. 

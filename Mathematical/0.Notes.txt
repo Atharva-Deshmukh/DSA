@@ -6,7 +6,8 @@
 - Q.9
 - Q.10
 - Q.11  2 questions are there
-- Q.12  great question
+- Q.12  NEW way to print zigzag number pattern
+- Q.13  SimpleLogic but great implementation
 
 ////////////////////////////////////// CONCEPTS //////////////////////////////////////////////////////////////
 

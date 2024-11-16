@@ -156,18 +156,22 @@ Another Method:
 function multiplyTwoStrings(a: string, b: string): string {
   let res: string = "";
 
+  // Edge case
+  if (a === "0" || b === "0") return "0";
+
   let n1: number = a.length;
   let n2: number = b.length;
   let product: number[] = new Array(n1 + n2).fill(0);
-
-  let additionCarry: number = 0;
-  let productCarry: number = 0;
 
   // Iterate b from last
   for(let i = n2 - 1; i >= 0; i--) {
 
       // shift = index distance between any digit of b and last digit of b
       let shift: number = (n2 - 1) - i;
+
+      // Each product with current digit of b needs separate carries to avoid addition with previous carries
+      let additionCarry: number = 0;
+      let productCarry: number = 0;
 
       // Iterate a from last
       for(let j = n1 - 1; j >= 0; j--) {
@@ -187,7 +191,7 @@ function multiplyTwoStrings(a: string, b: string): string {
       }
 
       // if any carry remains, push it in the end
-      product[n1 + shift] = productCarry;
+      product[n1 + shift] = product[n1 + shift] + additionCarry + productCarry;
 
   }
 
@@ -195,7 +199,9 @@ function multiplyTwoStrings(a: string, b: string): string {
       res = digit + res;  // elements automatically typecasts since they are added to a string
   });
 
-  return res;
+  // Remove leading zeros, if any
+  return res.replace(/^0+/, "");
+
 }
 
 

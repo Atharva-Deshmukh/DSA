@@ -1,5 +1,7 @@
 Do +, - , *, and / when numbers are in string
 
+- When time is there: Karatsuba algorithm
+
 Do mathematical questions like
 - factorial
 - fibonacci

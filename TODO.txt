@@ -1,5 +1,5 @@
-- When time is there: Karatsuba algorithm
+- When time is there: Karatsuba algorithm (prioritize later)
 
 Do mathematical questions like
-- factorial
-- fibonacci
+- factorial  -- Cover during DP to get optimised solution
+- fibonacci  -- Cover during DP to get optimised solution

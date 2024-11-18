@@ -1,0 +1,5 @@
+Radix Sort
+Bucket Sort (can be stable, depending on the implementation)
+Quick Sort (in most implementations)
+Heap Sort
+Shell Sort

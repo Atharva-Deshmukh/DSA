@@ -77,46 +77,93 @@ Step 3: Sort by Hundreds Place
 
             Collected: [2, 24, 45, 66, 75, 90, 170, 802]
 
-Final Output => [2, 24, 45, 66, 75, 90, 170, 802]
-
-*/
+Final Output => [2, 24, 45, 66, 75, 90, 170, 802]  */
 
 function getDigitsInLargestNumber(a: number[]): number {
-    let maxDigits: number = Number.MIN_SAFE_INTEGER;
+    if (a.length === 0) return 0; // Handle empty array edge case
+
+    let maxDigits: number = 0;
 
     a.forEach((ele) => {
-        if((Math.floor(Math.log10(Math.abs(ele))) + 1) >= maxDigits) maxDigits = Math.floor(Math.log10(Math.abs(ele))) + 1;
+        const digits = Math.floor(Math.log10(Math.abs(ele))) + 1;
+        if (digits > maxDigits) maxDigits = digits;
     });
 
     return maxDigits;
 }
 
 function getDigitAtPlace(n: number, place: number): number {
-    return (Math.floor(Math.abs(n) / Math.pow(10, place)) % 10);
+    return Math.floor(Math.abs(n) / Math.pow(10, place)) % 10;
 }
 
 function radixSort(a: number[]): number[] {
+    if (a.length <= 1) return a; // Handle small arrays (already sorted)
 
-    let maxDigits: number = getDigitsInLargestNumber(a);
-    let combinedBucket: number[] = [];
+    const maxDigits: number = getDigitsInLargestNumber(a);
+    let combinedBucket: number[] = a; // Start with the original array since in for loop we are iterating combined array only
 
-    // outer loop represents digit positions from units --- till we have
-    for(let place = 0; place < maxDigits; place++) {
+    for (let place = 0; place < maxDigits; place++) {
+        // Create 10 buckets for digits 0-9
+        let buckets: number[][] = Array.from({ length: 10 }, () => []);
 
-        // Create 10 buckets for digits 0-9, we need to initialise buckets for every digit iteration
-        let buckets: number[][] = Array.from({ length: 10 }, () => []); // each element is an array of array
-
-        // Iterate the input array and fill the buckets with respective elements
-        for(let num of a) {
-            let digit: number = getDigitAtPlace(num, place);
+        // Fill the buckets based on the current digit
+        for (let num of combinedBucket) {
+            const digit: number = getDigitAtPlace(num, place);
             buckets[digit].push(num);
         }
 
-        // join the buckets together each time
+        // Flatten the buckets into the combined bucket
         combinedBucket = buckets.flat();
-        // Another way => combinedBucket = ([] as number[]).concat(...buckets); 
-        // Spread operator used here to pass elements of buckets, which are arrays to concatenate them
+    }
+
+    // Separate negative and non-negative numbers for final output
+    const negatives = combinedBucket.filter(num => num < 0).reverse(); // Reverse negatives for correct order
+    const nonNegatives = combinedBucket.filter(num => num >= 0);
+
+    return [...negatives, ...nonNegatives];
+}
+
+// STRING INPUTS:
+
+function getMaxStringLength(arr: string[]): number {
+    if (arr.length === 0) return 0; // Handle empty array edge case
+
+    let maxLength = 0;
+
+    arr.forEach((str) => {
+        if (str.length > maxLength) maxLength = str.length;
+    });
+
+    return maxLength;
+}
+
+function getCharAtPlace(str: string, place: number, maxLength: number): string {
+    // Treat shorter strings as having "empty" characters (less than any character)
+    const adjustedIndex = maxLength - place - 1; // Start from the rightmost character
+    return adjustedIndex >= 0 ? str[adjustedIndex] : ''; // Return '' if the index is out of bounds
+}
+
+function radixSortStrings(arr: string[]): string[] {
+    if (arr.length <= 1) return arr; // Handle small arrays (already sorted)
+
+    const maxLength = getMaxStringLength(arr);
+    let combinedBucket = [...arr]; // Start with the original array
+
+    for (let place = 0; place < maxLength; place++) {
+        // Create 27 buckets (26 for 'a'-'z' and 1 for empty characters '')
+        let buckets: string[][] = Array.from({ length: 27 }, () => []);
+
+        for (const str of combinedBucket) {
+            const char = getCharAtPlace(str, place, maxLength);
+            const bucketIndex = char === '' ? 0 : char.charCodeAt(0) - 'a'.charCodeAt(0) + 1;
+            buckets[bucketIndex].push(str);
+        }
+
+        // Flatten the buckets into the combined bucket
+        combinedBucket = buckets.flat();
     }
 
     return combinedBucket;
 }
+
+console.log(radixSortStrings(['-12', '20', '200', '120']))

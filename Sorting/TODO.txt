@@ -1,5 +1,4 @@
 Quick Sort (in most implementations)
 Heap Sort
-Shell Sort
 
 Classify comparision based, in-place based and best case worst case and avg case

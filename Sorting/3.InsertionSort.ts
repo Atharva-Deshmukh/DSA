@@ -53,6 +53,7 @@ function insertionSortIterative(a: number[]): number[] {
     return a;
 }
 
+// we can just recurse over outer loop
 function insertionSortRecursive(a: number[], start: number = 1, n: number = a.length): number[] {
 
     // corner case and base case

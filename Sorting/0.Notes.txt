@@ -1,3 +1,24 @@
+HANDY TABLE
+
+Summary of Sorting Algorithms:
+
+Sorting Algorithm      | Best-case Time Complexity | Average-case Time Complexity | Worst-case Time Complexity | Space Complexity
+-----------------------|---------------------------|------------------------------|----------------------------|------------------
+Bubble Sort            | O(n)                      | O(n^2)                       | O(n^2)                     | O(1)
+Insertion Sort         | O(n)                      | O(n^2)                       | O(n^2)                     | O(1)
+Selection Sort         | O(n^2)                    | O(n^2)                       | O(n^2)                     | O(1)
+Merge Sort             | O(n log n)                | O(n log n)                   | O(n log n)                 | O(n)
+Quick Sort             | O(n log n)                | O(n log n)                   | O(n^2)                     | O(log n)
+Heap Sort              | O(n log n)                | O(n log n)                   | O(n log n)                 | O(1)
+Radix Sort             | O(nk)                     | O(nk)                        | O(nk)                      | O(n + k)
+Counting Sort          | O(n + k)                  | O(n + k)                     | O(n + k)                   | O(k)
+Bucket Sort            | O(n + k)                  | O(n + k)                     | O(n^2)                     | O(n)
+Shell Sort             | O(n log n)                | O(n log n)                   | O(n^2)                     | O(1)
+Tim Sort               | O(n)                      | O(n log n)                   | O(n log n)                 | O(n)
+
+
+
+
 Stable sorting algorithms preserve the relative order of records with equal keys (values). 
 For example, if two elements have the same key, they will appear 
 in the same order in the sorted output as they did in the input.

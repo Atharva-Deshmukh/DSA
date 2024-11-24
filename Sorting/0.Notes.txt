@@ -1,23 +1,56 @@
-HANDY TABLE
-
 Summary of Sorting Algorithms:
 
-Sorting Algorithm      | Best-case Time Complexity | Average-case Time Complexity | Worst-case Time Complexity | Space Complexity
------------------------|---------------------------|------------------------------|----------------------------|------------------
-Bubble Sort            | O(n)                      | O(n^2)                       | O(n^2)                     | O(1)
-Insertion Sort         | O(n)                      | O(n^2)                       | O(n^2)                     | O(1)
-Selection Sort         | O(n^2)                    | O(n^2)                       | O(n^2)                     | O(1)
-Merge Sort             | O(n log n)                | O(n log n)                   | O(n log n)                 | O(n)
-Quick Sort             | O(n log n)                | O(n log n)                   | O(n^2)                     | O(log n)
-Heap Sort              | O(n log n)                | O(n log n)                   | O(n log n)                 | O(1)
-Radix Sort             | O(nk)                     | O(nk)                        | O(nk)                      | O(n + k)
-Counting Sort          | O(n + k)                  | O(n + k)                     | O(n + k)                   | O(k)
-Bucket Sort            | O(n + k)                  | O(n + k)                     | O(n^2)                     | O(n)
-Shell Sort             | O(n log n)                | O(n log n)                   | O(n^2)                     | O(1)
-Tim Sort               | O(n)                      | O(n log n)                   | O(n log n)                 | O(n)
+Sorting Algorithm | Best TC   | Avg TC     | Worst TC   | Worst SC | Stable | In-place | Online
+------------------|-----------|------------|------------|----------|--------|----------|--------
+Bubble Sort       | O(n)      | O(n^2)     | O(n^2)     | O(1)     | Yes    | Yes      | No
+Insertion Sort    | O(n)      | O(n^2)     | O(n^2)     | O(1)     | Yes    | Yes      | Yes
+Selection Sort    | O(n^2)    | O(n^2)     | O(n^2)     | O(1)     | No     | Yes      | No
+Merge Sort        | O(n log n)| O(n log n) | O(n log n) | O(n)     | Yes    | No       | No
+Quick Sort        | O(n log n)| O(n log n) | O(n^2)     | O(log n) | No     | Yes      | No
+Heap Sort         | O(n log n)| O(n log n) | O(n log n) | O(1)     | No     | Yes      | No
+Radix Sort        | O(nk)     | O(nk)      | O(nk)      | O(n + k) | Yes    | No       | No
+Counting Sort     | O(n + k)  | O(n + k)   | O(n + k)   | O(k)     | Yes    | No       | No
+Bucket Sort       | O(n + k)  | O(n + k)   | O(n^2)     | O(n)     | Yes    | No       | No
+Shell Sort        | O(n log n)| O(n log n) | O(n^2)     | O(1)     | No     | Yes      | No
 
 
 
+
+                                                ONLINE OFFLINE ALGOS
+                                                --------------------
+
+Offline Sorting Algorithms:
+- They require the entire dataset to be available before they start processing. They cannot handle data incrementally 
+  as it arrives. The algorithm assumes that all the data is known and stored beforehand.
+
+Example:
+
+Merge Sort: The algorithm needs all the input data before it can begin sorting. It divides the data into smaller chunks, 
+sorts them, and then merges them together.
+
+Quick Sort: Similarly, Quick Sort requires access to the entire data set to perform its partitioning and recursive sorting.
+
+
+Use case: Offline sorting is suitable when the entire dataset is already available, such as when sorting files on a 
+disk or sorting data in memory where all items are accessible at once.
+
+Online Sorting Algorithms:
+- They can handle data that arrives incrementally, i.e., they can start processing data as soon as it starts coming in.
+   Basically in stream. 
+  They don’t need the complete dataset to be available upfront. They adjust their sorting as new data arrives.
+   The algorithm can update its sort in real-time as new elements are added to the data.
+
+Example:
+
+Insertion Sort: It processes data one element at a time. Each new element is inserted into its correct position relative 
+                to the elements already sorted. As each new element arrives, it’s placed in the right spot.
+
+Use case: Online sorting is useful in scenarios where data is continuously coming in, such as real-time data streams, 
+live sensor data, or when processing incoming network packets.
+
+
+                                                STABLE UNSTABLE ALGOS
+                                                ---------------------
 
 Stable sorting algorithms preserve the relative order of records with equal keys (values). 
 For example, if two elements have the same key, they will appear 

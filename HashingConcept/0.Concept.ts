@@ -45,5 +45,5 @@
 
                                                 AN IMPORTANT FORMULA
 
-        hash(cd) = (hash(abcd) - hash(ab)) / P^2, P = base
+        hash[i...j] = (hash[0...j] - hash[0...(i-1)]) / P^i, P = base
 */

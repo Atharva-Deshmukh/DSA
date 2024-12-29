@@ -77,7 +77,7 @@ function power(n: number, x: number): BigInt {
 }
 
 // WITH MOD  (GFG AND LC Submissions)
-function power(a, b) {
+function powerUsingModuloExponentiation(a, b) {
     const mod = 1e7;  // same as 1e+7
     let result = 1;
     while (b > 0) {

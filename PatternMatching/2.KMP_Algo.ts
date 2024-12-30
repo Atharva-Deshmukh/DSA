@@ -96,7 +96,122 @@ lps = [0  0  1  2  3  1]
 
 KMP DRY RUN:
 
+- construct lps[] for pattern string
 
+let txt = [a b a b a b c a b a b c]
+let pat = [a b a b c]
+let lps = [0 0 1 2 0]
+
+ans = []
+
+ i                             j
+[a b a b a b c a b a b c]     [a b a b c]
+
+txt[i] === pat[j]
+i++;
+j++;
+
+   i                             j
+[a b a b a b c a b a b c]     [a b a b c]
+
+txt[i] === pat[j]
+i++;
+j++;
+
+     i                             j
+[a b a b a b c a b a b c]     [a b a b c]
+
+txt[i] === pat[j]
+i++;
+j++;
+
+       i                             j
+[a b a b a b c a b a b c]     [a b a b c]
+
+txt[i] === pat[j]
+i++;
+j++;
+
+         i                             j
+[a b a b a b c a b a b c]     [a b a b c]
+
+txt[i] !== pat[j]  lps = [0 0 1 2 0]
+j = lps[j - 1] = 2
+
+         i                         j
+[a b a b a b c a b a b c]     [a b a b c]
+
+txt[i] === pat[j]
+i++;
+j++;
+
+           i                         j
+[a b a b a b c a b a b c]     [a b a b c]
+
+txt[i] === pat[j]
+i++;
+j++;
+
+             i                         j
+[a b a b a b c a b a b c]     [a b a b c]
+
+txt[i] === pat[j]             lps = [0 0 1 2 0]
+i++;
+j++;
+
+               i                         j
+[a b a b a b c a b a b c]     [a b a b c]
+
+j === m now
+
+PATTERN TRAVERSED FULLY
+j = m = 5
+i = 7
+ans.push(i - j) since i is on length j in its window, we need to move j back to get starting index
+j = lps[j - 1] = lps[5 - 1] = lps[4] = 0
+
+
+               i               j
+[a b a b a b c a b a b c]     [a b a b c]
+
+txt[i] === pat[j]
+i++;
+j++;
+
+                 i               j
+[a b a b a b c a b a b c]     [a b a b c]
+
+txt[i] === pat[j]
+i++;
+j++;
+
+                   i               j
+[a b a b a b c a b a b c]     [a b a b c]
+
+txt[i] === pat[j]
+i++;
+j++;
+
+                     i               j
+[a b a b a b c a b a b c]     [a b a b c]
+
+txt[i] === pat[j]
+i++;
+j++;
+
+                       i               j
+[a b a b a b c a b a b c]     [a b a b c]
+
+txt[i] === pat[j]
+i++;
+j++;
+
+j === m, 
+
+                         i               j
+[a b a b a b c a b a b c]     [a b a b c]
+
+ans.push(i - j) = [2, 7]
 
 */
 
@@ -197,8 +312,44 @@ function calculateLPS_Array(pattern: string): number[] {
     
 
     return ans;
-}
+} */
 
-*/
+function kmpAlgo(pat: string, txt: string): number[] {
+    let pat_len: number = pat.length;
+    let txt_len: number = txt.length;
+
+    // corner case
+    if(txt_len < pat_len) return [];
+
+    let i: number = 0;
+    let j: number = 0;
+    let ans: number[] = [];
+
+    let lps: number[] = calculateLPS_Array(pat);
+
+    while(i < txt_len) {
+        // if there is a match, move both pointers forward
+        if(txt[i] === pat[j]) {
+            i++;
+            j++;
+
+            // if entire pattern is traversed and matched
+            // store the starting index of the window
+            if(j === pat_len) {
+                ans.push(i - j);
+
+                // using lps of previous index to skip redundant comparision
+                j = lps[j - 1];
+            }
+        } 
+        // if there is a mismatch 
+        else {
+            if(j === 0) i++;
+            else j = lps[j - 1];
+        }
+    }
+
+    return ans;
+}
 
 

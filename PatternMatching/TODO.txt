@@ -1,3 +1,15 @@
 ALL PRACTICE QUESTIONS FROM 
 
 https://www.geeksforgeeks.org/pattern-searching/
+
+TODO: 
+https://www.geeksforgeeks.org/maximum-length-prefix-one-string-occurs-subsequence-another/
+https://www.geeksforgeeks.org/find-all-the-patterns-of-101-in-a-given-string-using-regular-expression/
+https://www.geeksforgeeks.org/find-count-number-given-string-present-2d-character-array/
+https://www.geeksforgeeks.org/longest-prefix-also-suffix/
+https://www.geeksforgeeks.org/check-whether-an-array-is-subarray-of-another-array/
+https://www.geeksforgeeks.org/count-of-substrings-containing-only-the-given-character/
+https://www.geeksforgeeks.org/find-substrings-contain-vowels/
+https://www.geeksforgeeks.org/a-program-to-check-if-strings-are-rotations-of-each-other/
+https://www.geeksforgeeks.org/anagram-substring-search-search-permutations/
+https://www.geeksforgeeks.org/frequency-substring-string/

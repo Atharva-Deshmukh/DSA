@@ -1,0 +1,33 @@
+
+APPLICATION OF PATTERN matching
+--------------------------------------------------------
+You are searching for multiple patterns in a single text 
+(e.g., plagiarism detection or DNA sequence matching).
+
+
+KMP Algo vs Rabin Karp Algo
+--------------------------------------------------------
+Rabin-Karp Algorithm: 
+Rabin-Karp is efficient in handling multiple patterns simultaneously but can be slower due to the 
+overhead of hash computation and collision checking, especially with large texts or when hash 
+collisions occur.
+
+Excellent for multiple pattern matching. If there are k patterns, it can preprocess them into hashes and search efficiently.
+Easier to implement for straightforward problems, especially for single-pattern matching.
+Can be modified for specific needs, like detecting anagrams in a text.
+
+Hash collisions can degrade performance to O(nm).
+Requires careful hash function design for efficient and collision-free behavior.
+Overhead of modular arithmetic and hash recalculation.
+
+
+KMP Algorithm: 
+KMP is efficient because it avoids redundant comparisons by using the LPS (Longest Prefix Suffix) array. 
+This makes it particularly suitable for longer patterns or texts where partial matches frequently occur.
+
+Guaranteed Linear Performance: KMP always processes the text in O(n), making it highly predictable.
+Ideal for single pattern search in a large text.
+Doesn't involve hash calculations, avoiding potential hash collisions.
+
+Slightly more complex to implement due to the prefix table construction.
+Not well-suited for searching multiple patterns simultaneously.

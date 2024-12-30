@@ -1,2 +1,0 @@
-You are searching for multiple patterns in a single text 
-(e.g., plagiarism detection or DNA sequence matching).

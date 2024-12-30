@@ -13,6 +13,7 @@ overhead of hash computation and collision checking, especially with large texts
 collisions occur.
 
 Excellent for multiple pattern matching. If there are k patterns, it can preprocess them into hashes and search efficiently.
+Preprocessing: O(m) (to compute the hash of the pattern).
 Easier to implement for straightforward problems, especially for single-pattern matching.
 Can be modified for specific needs, like detecting anagrams in a text.
 
@@ -25,9 +26,24 @@ KMP Algorithm:
 KMP is efficient because it avoids redundant comparisons by using the LPS (Longest Prefix Suffix) array. 
 This makes it particularly suitable for longer patterns or texts where partial matches frequently occur.
 
-Guaranteed Linear Performance: KMP always processes the text in O(n), making it highly predictable.
+Guaranteed Linear Performance: KMP always processes the text in O(n), no backward iteration like niave method,  making it highly predictable.
+Preprocessing: O(m) (to construct the LPS array).
 Ideal for single pattern search in a large text.
 Doesn't involve hash calculations, avoiding potential hash collisions.
 
 Slightly more complex to implement due to the prefix table construction.
 Not well-suited for searching multiple patterns simultaneously.
+
+-------------------------------------------------------------------------------------------------------------------------------
+Aspect                      KMP Algorithm                               Rabin-Karp Algorithm
+-------------------------------------------------------------------------------------------------------------------------------
+Best Case Complexity        O(n + m)                                   O(n + m)
+Average Case Complexity     O(n + m)                                   O(n + m)
+Worst Case Complexity       O(n + m)                                   O(nm) (due to hash collisions)
+Preprocessing Time          O(m) (to build the prefix table)           O(m) (to compute the hash of the pattern)
+Space Complexity            O(m)                                       O(1) (or O(k) for multiple patterns, where k is the number of patterns)
+Matching Approach           Deterministic (uses prefix table)          Probabilistic (relies on hash functions)
+Strengths                   - Guaranteed linear performance.           - Excellent for searching multiple patterns simultaneously.
+                            - Robust for exact pattern matching.       - Easier to modify for special cases like finding anagrams.
+Weaknesses                  - Not suitable for multiple patterns.      - Hash collisions can cause worst-case O(nm) behavior.
+                            - Slightly harder to implement.           - Requires careful hash function design.

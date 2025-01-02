@@ -6,4 +6,3 @@ TODO:
 https://www.geeksforgeeks.org/maximum-length-prefix-one-string-occurs-subsequence-another/
 https://www.geeksforgeeks.org/find-all-the-patterns-of-101-in-a-given-string-using-regular-expression/
 https://www.geeksforgeeks.org/find-substrings-contain-vowels/
-https://www.geeksforgeeks.org/anagram-substring-search-search-permutations/

@@ -149,7 +149,7 @@ Another Method:
         additionCarry = 1
         product[] = [8, 4, 4, 1]
 
-        productCarry still remaining, so add it in last => 1 + 6 = 7
+        additionCarry and productCarry still remaining, so add them in last => 1 + 6 = 7
 
         product[] = [8, 4, 4, 7]
 
@@ -185,10 +185,10 @@ function multiplyTwoStrings(a: string, b: string): string {
           // product[] is to be filled in reverse order, hence convert the index
           // also we need to modify the existing digit in the array 
           //                                            existing digit + productDigit + carry due to addition
-          let totalSumAfterAdditionInArray: number = product[(n1 - j - 1) + shift] + productDigit + additionCarry;
+          let totalSumAfterAdditionInArray: number = product[(n1 - 1 - j) + shift] + productDigit + additionCarry;
           let digitToStoreInArray: number = totalSumAfterAdditionInArray % 10;
           additionCarry = Math.floor(totalSumAfterAdditionInArray / 10);
-          product[(n1 - j - 1) + shift] = digitToStoreInArray;
+          product[(n1 - 1 - j) + shift] = digitToStoreInArray;
 
       }
 

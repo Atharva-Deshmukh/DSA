@@ -1,16 +1,16 @@
 /* Some observations: 
 
-if (dividend.length <= divisor.length) && (Number(dividend) < Number(divisor)) return divisor as remainder
+if (dividend.length <= divisor.length) && (Number(dividend) < Number(divisor)) return 0 since quotient = 0
 
 
 Approach: School maths for divison
-                                                   2 4
+                                                   1 4
                                                    ---
-                                               2  )4 8(
-                                                   4
+                                               2  )3 8(
+                                                   2
                                                    ---
-                                                   0 8   --> carry = 0, for 8, we do (carry * 10 + 8)
-                                                     8       to get next number to divide
+                                                   1 8     --> for (3/2): carry = 1 for next division
+                                                     8         hence next num x = (carry * 10) + currDigit
                                                    ---
                                                    0 0
 
@@ -28,6 +28,7 @@ Approach: School maths for divison
     - Update carry with the remainder of this division: carry = x % b.
     - Append the quotient digit to the result string res.
     - Remove Leading Zeros using regex
+
 
                                                     DRY RUN:
 
@@ -81,13 +82,13 @@ function divideTwoStrings(a: string, b: string): string {
     let res: string = '';
 
     // corner case:
-    if(b === '0') res = 'Infinity';  // write this first, case a === 0 and b === 0, b should be considered
-    if(a === '0') res = '0';
+    if(b === '0') return 'Infinity';  // write this first, case a === 0 and b === 0, b should be considered
+    if(a === '0') return '0';
 
     let n1: number = a.length;
     let n2: number = b.length;
 
-    if((n1 <= n2) && (BigInt(a) < BigInt(b))) res = b;  // bigint is used since it is known that numbers are large
+    if((n1 <= n2) && (BigInt(a) < BigInt(b))) return '0';  // bigint is used since it is known that numbers are large
 
     let carry: number = 0;
     for(let i = 0; i < n1; i++) {

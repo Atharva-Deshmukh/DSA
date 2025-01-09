@@ -1,0 +1,7 @@
+ALL PRACTICE QUESTIONS FROM 
+
+https://www.geeksforgeeks.org/pattern-searching/
+
+TODO: 
+https://www.geeksforgeeks.org/find-all-the-patterns-of-101-in-a-given-string-using-regular-expression/
+https://www.geeksforgeeks.org/find-substrings-contain-vowels/

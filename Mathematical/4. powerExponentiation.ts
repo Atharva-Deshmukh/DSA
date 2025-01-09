@@ -78,7 +78,7 @@ function power(n: number, x: number): BigInt {
 
 // WITH MOD  (GFG AND LC Submissions)
 function power(a, b) {
-    const mod = 1e7;  // same as 1e+7
+    const mod = 1e9 + 7; 
     let result = 1;
     while (b > 0) {
         // If the current bit of b is set, multiply the result by a and take modulo mod

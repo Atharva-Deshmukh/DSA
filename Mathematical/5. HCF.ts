@@ -27,6 +27,9 @@ function GCD(a: number, b: number): number {
 }
 
 /* Way 2: Euclidean method
+
+The logic relies on the mathematical property ==> GCD(a, b) = GCD(b % a, a)
+
 - Uses result: GCD(0,b) = b
 - keep reducing a to 0 and when its 0, return b
 - u can do a-b if(a>b) or simply (b % a)
@@ -38,14 +41,8 @@ TC: O(min(a,b)) recursion goes on till any one (minimum one) becomes 0
 Reusing Stack Frame: In traditional recursive functions, each recursive call creates a new stack frame, 
 consuming additional memory. However, in tail-recursive functions, the compiler or interpreter can optimize 
 by reusing the current stack frame for the recursive call since the enclosing function doesn't need to preserve 
-any local state after the call returns.
-
-Replacing Stack Frames: Instead of creating a new stack frame for each recursive call, TCO replaces the current 
-stack frame with the new one, effectively eliminating the need for additional stack space.
-
-Continued Optimization: This process continues until the base case is reached, at which point the result is 
-returned. Because each recursive call reuses the same stack frame, TCO prevents stack overflow errors that might 
-occur with deeply nested recursive calls. This is why SC = O(1)
+any local state after the call returns.Because each recursive call reuses the same stack frame, TCO prevents stack 
+overflow errors that might occur with deeply nested recursive calls. This is why SC = O(1)
 SC: O(1)  THIS DOES NOT happen with all the engines by the way  */
 
 function EuclideanGCD(a: number, b: number): number { 

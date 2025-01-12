@@ -30,7 +30,8 @@ BETTER APPROACH: Rabin karp algo
 - We will use a very simple hash function which just store the ASCII code of that character.
 - Calculate hash of first window and the pattern string
 - keep rolling the hash with window slide and verify using rabin karp if the hashes match
-- but when there is a spurious hit, we check if the matches are anagrams or not, this can cause TLE if there are many spurious hits
+- but when there is a spurious hit, we check if the matches are anagrams or not, this can cause TLE 
+  if there are many spurious hits
 
 
 BEST APPROACH: Simply use hashing + sliding window
@@ -49,8 +50,8 @@ Explaination:
                                 a b c d        --> window 2
                                   | |
 
-                      i is exhausted. THE LAST WINODW IS REMAINING 
-                      --------------------------------------------
+                      i is exhausted. THE LAST WINODW IS REMAINING, hence check for last window separately 
+                      ------------------------------------------------------------------------------------
 
 txt = [b a d a b]  pat = [a b]
 
@@ -157,7 +158,6 @@ function rabinKarpApproach(pat: string, txt: string): number[] {
 
     return ans;
 }
-
 
 function hashingPlusSlidingWindow(pat: string, txt: string): number[] {
     let ans: number[] = [];

@@ -21,11 +21,13 @@ Space Complexity: O(1)
 
 Efficient Approach: Maths Observation
 A string of length N forms N*(N+1)/2 substrings.
-Therefore, for N consecutive occurrence of character C in the string, N*(N+1)/2 substrings are generated. 
+Therefore, for N consecutive occurrence of character C in the string
+(aisi string jo puri C se bani ho with length N), N*(N+1)/2 substrings are generated. 
 
 "0110111"  let char = "1"
 
-- Iterate through full string and keep count of consequtive 1s, use formula for a substring and keep adding to total count
+- Iterate through full string and keep count of consequtive 1s, use formula for a substring and 
+  keep adding to total count
 
 TC: O(n)
 SC: O(1) */

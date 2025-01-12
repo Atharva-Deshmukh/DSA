@@ -35,7 +35,7 @@ DRY RUN:
 s = "digger"
 t = "biggerdiagram"
 
-1. Initialize: i = 0, j = 0, prefix = "".
+1. Initialize: i = 0 for s, j = 0 for t, prefix = "".
 2. Traverse t:
    - Compare s[0] = 'd' with t[0] = 'b': No match → Increment j.
    - Compare s[0] = 'd' with t[1] = 'i': No match → Increment j.

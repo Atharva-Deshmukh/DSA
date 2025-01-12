@@ -38,6 +38,20 @@ BEST APPROACH: Simply use hashing + sliding window
 - maintain two such hash maps in place of any hash function
 - Sliding window part will be modified as below
 
+Explaination:
+
+/*                                  
+                                    i
+                                a b c d        --> window 1
+                                | |
+
+                                      i
+                                a b c d        --> window 2
+                                  | |
+
+                      i is exhausted. THE LAST WINODW IS REMAINING 
+                      --------------------------------------------
+
 txt = [b a d a b]  pat = [a b]
 
 hashPat = [a-1, b-1]
@@ -54,7 +68,7 @@ Match, push i-m in ans
 NEXT WINDOW CALCULATION
 
 hashTxt[i-m]--;
-hashTxt[i-m]++;
+hashTxt[i]++;
 
 TC: O(m) + O((n - m) * 256)
 SC: O(256) + O(256) = O(256) + O(k) to store answer */

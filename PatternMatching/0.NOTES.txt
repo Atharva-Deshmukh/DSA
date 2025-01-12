@@ -1,4 +1,6 @@
 
+Memorise Question 8 Approach
+
 APPLICATION OF PATTERN matching
 --------------------------------------------------------
 You are searching for multiple patterns in a single text 

@@ -31,7 +31,8 @@ KMP Algorithm:
 KMP is efficient because it avoids redundant comparisons by using the LPS (Longest Prefix Suffix) array. 
 This makes it particularly suitable for longer patterns or texts where partial matches frequently occur.
 
-Guaranteed Linear Performance: KMP always processes the text in O(n), no backward iteration like niave method,  making it highly predictable.
+Guaranteed Linear Performance: KMP always processes the text in O(n), no backward iteration like niave method,  
+making it highly predictable.
 Preprocessing: O(m) (to construct the LPS array).
 Ideal for single pattern search in a large text.
 Doesn't involve hash calculations, avoiding potential hash collisions.

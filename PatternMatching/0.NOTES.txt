@@ -1,4 +1,7 @@
 
+Memorise Niave Approach
+Memorise KMP Algo
+Memorise Rabin Karp Algo
 Memorise Question 8 Approach
 
 APPLICATION OF PATTERN matching

@@ -15,30 +15,29 @@ Shell Sort        | O(n log n)| O(n log n) | O(n^2)     | O(1)     | No     | Ye
 
 
 
-
                                                 ONLINE OFFLINE ALGOS
                                                 --------------------
 
 Offline Sorting Algorithms:
-- They require the entire dataset to be available before they start processing. They cannot handle data incrementally 
-  as it arrives. The algorithm assumes that all the data is known and stored beforehand.
+- They require the entire dataset to be available before they start processing. They cannot handle data 
+  incrementally as it arrives. The algorithm assumes that all the data is known and stored beforehand.
 
 Example:
 
-Merge Sort: The algorithm needs all the input data before it can begin sorting. It divides the data into smaller chunks, 
-sorts them, and then merges them together.
+Merge Sort: The algorithm needs all the input data before it can begin sorting. It divides the data into 
+smaller chunks, sorts them, and then merges them together.
 
-Quick Sort: Similarly, Quick Sort requires access to the entire data set to perform its partitioning and recursive sorting.
+Quick Sort: Similarly, Quick Sort requires access to the entire data set to perform its partitioning and 
+recursive sorting.
 
-
-Use case: Offline sorting is suitable when the entire dataset is already available, such as when sorting files on a 
-disk or sorting data in memory where all items are accessible at once.
+Use case: Offline sorting is suitable when the entire dataset is already available, such as when sorting 
+files on a disk or sorting data in memory where all items are accessible at once.
 
 Online Sorting Algorithms:
-- They can handle data that arrives incrementally, i.e., they can start processing data as soon as it starts coming in.
-   Basically in stream. 
+- They can handle data that arrives incrementally, i.e., they can start processing data as soon as it starts 
+  coming in, Basically in stream. 
   They don’t need the complete dataset to be available upfront. They adjust their sorting as new data arrives.
-   The algorithm can update its sort in real-time as new elements are added to the data.
+  The algorithm can update its sort in real-time as new elements are added to the data.
 
 Example:
 

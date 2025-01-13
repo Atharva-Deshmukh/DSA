@@ -227,8 +227,9 @@ function calculateLPS_Array(pattern: string): number[] {
     // Corner cases
     if(n === 0) return [];  // empty string
     if(n === 1) return [0]; // single char string
-
-    let lps: number[] = Array(n).fill(0); // initialise the lps[] with 0 of same size, first element will be 0 to cover case => n === 1
+    
+    // initialise the lps[] with 0 of same size, first element will be 0 to cover case => n === 1
+    let lps: number[] = Array(n).fill(0); 
     let len: number = 0;
     let i: number = 1;       // start from first index directly
 

@@ -1,4 +1,4 @@
-/*Niave Approach:
+/* Niave Approach:
 
 txt = “abcab”,  
 pat = “ab”

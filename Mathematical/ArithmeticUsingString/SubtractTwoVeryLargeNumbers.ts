@@ -45,23 +45,23 @@ SC:  O(max(n1, n2))  While storing larger and smaller number of two inputs  */
  * @param s2 
  */
 function identifyLargerNum(s1: string, s2: string): number {
-    let n1: number = s1.length;
-    let n2: number = s2.length;
+  let n1: number = s1.length;
+  let n2: number = s2.length;
 
-    // Sure shot cases where no comparision needed
-    if(n1 > n2) return 1; 
-    if(n1 < n2) return 2;
+  // Sure shot cases where no comparision needed
+  if(n1 > n2) return 1; 
+  if(n1 < n2) return 2;
 
-    /* Here we need comparision of just the first digits of both
-                299
-                300
+  /* Here we need comparision of just the first digits of both
+              299
+              300
 
-       So, if first digit is greater, anyhow that whole number is greater */
-    if(n1 === n2) {
-        return (Number(s1[0]) >= Number(s2[0])) ? 1: 2;
-    }
+     So, if first digit is greater, anyhow that whole number is greater */
+  if(n1 === n2) {
+      return (Number(s1[0]) >= Number(s2[0])) ? 1: 2;
+  }
 
-    return -1;
+  return -1;
 }
 
 function subtractLargeNumbers(s1: string, s2: string): string {
@@ -100,7 +100,11 @@ function subtractLargeNumbers(s1: string, s2: string): string {
               d1 = 9; 
               isBorrowFromZeroTaken = true;
           }
-          else d1 = d1 - 1; 
+          else {
+              d1 = d1 - 1;
+              isBorrowTaken = false;
+              isBorrowFromZeroTaken = false;
+          }
       }
 
       if(d1 < d2) {                              // After digit--, if num1 < num2, add carry else directly subtract

@@ -65,74 +65,83 @@ function identifyLargerNum(s1: string, s2: string): number {
 }
 
 function subtractLargeNumbers(s1: string, s2: string): string {
-    let difference: string = "";
-    let isBorrowTaken: boolean = false;
+  let difference: string = "";
+  let isBorrowTaken: boolean = false;
+  let isBorrowFromZeroTaken: boolean = false;
 
-    let largerNumResp: number = identifyLargerNum(s1, s2);
-    
-    let largerNum: string ;
-    let smallerNum: string;
+  let largerNumResp: number = identifyLargerNum(s1, s2);
+  
+  let largerNum: string ;
+  let smallerNum: string;
 
-    if(largerNumResp === 1) {
-      largerNum = s1;
-      smallerNum = s2;
-    } else {
-      largerNum = s2;
-      smallerNum = s1;
-    }
+  if(largerNumResp === 1) {
+    largerNum = s1;
+    smallerNum = s2;
+  } else {
+    largerNum = s2;
+    smallerNum = s1;
+  }
 
-    let n1: number = largerNum.length;
-    let n2: number = smallerNum.length;
+  let n1: number = largerNum.length;
+  let n2: number = smallerNum.length;
 
-    // Iterating from end to save reverse overhead
-    let i: number = n1 - 1;
-    let j: number = n2 - 1;
+  // Iterating from end to save reverse overhead
+  let i: number = n1 - 1;
+  let j: number = n2 - 1;
 
-    // traversing both at once 
-    while((i >= 0) && (j >= 0)) {
+  // traversing both at once 
+  while((i >= 0) && (j >= 0)) {
 
-        let d1: number = Number(largerNum[i]);
-        let d2: number = Number(smallerNum[j]);
-
-        if(isBorrowTaken === true) d1 = d1 - 1;    // common in both if and else, hence here
-
-        if(d1 < d2) {                              // After digit--, if num1 < num2, add carry else directly subtract
-            d1 = 10 + d1;
-            isBorrowTaken = true;
-            difference = (d1 - d2) + difference;  // automatically typecasts into string
-        } else {
-            isBorrowTaken = false;
-            difference = (d1 - d2) + difference;
-        }
-
-        i--;
-        j--;
-    }
-
-    // Case when second number is exhausted, we are guaranteed that second num is always
-    // less than first num
-
-    while((j <= 0) && (i >= 0)) {
       let d1: number = Number(largerNum[i]);
+      let d2: number = Number(smallerNum[j]);
 
       if(isBorrowTaken === true) {
-        d1 = d1 - 1;
-        isBorrowTaken = false;
+          if(d1 === 0) {
+              d1 = 9; 
+              isBorrowFromZeroTaken = true;
+          }
+          else d1 = d1 - 1; 
       }
 
-      difference = d1 + difference;
+      if(d1 < d2) {                              // After digit--, if num1 < num2, add carry else directly subtract
+          d1 = 10 + d1;
+          isBorrowTaken = true;
+          difference = (d1 - d2) + difference;  // automatically typecasts into string
+      } else {
+          (isBorrowFromZeroTaken === true)? isBorrowTaken = true: false;
+          difference = (d1 - d2) + difference;
+      }
+
       i--;
+      j--;
+  }
+
+  // Case when second number is exhausted, we are guaranteed that second num is always
+  // less than first num
+  while((j < 0) && (i >= 0)) {
+    let d1: number = Number(largerNum[i]);
+
+    if(isBorrowTaken === true) {
+      if(d1 === 0) d1 = 9;
+      else {
+      d1 = d1 - 1;
+      isBorrowTaken = false;
+      }
     }
 
-    // remove trailing zeros, reusing existing variable
-    i = 0;
-    let count: number = 0;
-    while(i < difference.length) {
-      if(difference[i] === '0') count++;
-      i++;
-    }
+    difference = d1 + difference;
+    i--;
+  }
 
-    if(count > 0) difference = difference.substring(count - 1, difference.length);
+  // remove trailing zeros, reusing existing variable
+  i = 0;
+  let count: number = 0;
+  while(i < difference.length) {
+    if(difference[i] === '0') count++;
+    i++;
+  }
 
-    return difference;
+  if(count > 0) difference = difference.substring(count - 1, difference.length);
+
+  return difference;
 }

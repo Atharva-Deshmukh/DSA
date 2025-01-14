@@ -114,7 +114,7 @@
         3 2 1 0
     3 - 0 0 1 1         pos of MSB of N = 2, highest power of 2 = 1 = pos - 1 
 
-    highest pow of 2 from [1 to N] = (MSB pos of N - 1)
+    highest pow of 2 from [1 to N] = ((MSB pos of N) - 1)
 
     NUMBER OF BITS TO FLIP TO CONVERT a to b
     - We need to flip the different bits only

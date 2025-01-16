@@ -1,5 +1,5 @@
-/*  Given an integer array nums, in which exactly two elements appear only once and all the other elements appear 
-    exactly twice. Find the two elements that appear only once. You can return the answer in any order.
+/*  Given an integer array nums, in which exactly two elements appear only once and all the other elements 
+    appear exactly twice. Find the two elements that appear only once. You can return the answer in any order.
     You must write an algorithm that runs in linear runtime complexity and uses only constant extra space.
 
     Input: nums = [1,2,1,3,2,5]     Output: [3,5]  || [5, 3] is also a valid answer.
@@ -11,7 +11,7 @@ Way 1: Map solution
 TC: O(len)
 SC: O(no.of unique elements) 
 
-Way 2: Bit wise
+Way 2: Bit wise (Need to memorize)
 
 - XOR all elements, we are left with XOR (two distinct elements in the array)
 

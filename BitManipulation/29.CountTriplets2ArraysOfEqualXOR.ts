@@ -66,16 +66,7 @@ ex: arr = [1, 3, 2, -2, 1]
 
     We fix i and k, iterate using two loops for possible i and k on xor[] and check where we get xor[i] === xor[k]
     TC: O(n ^ 2) 
-    SC: O(1) 
-
-Optimised - 3: 
-- use map in format: uniqueEle: [all the indices]
-- no need to add 0 at beginning of xor[], since we will directly iterate map and figure out the count.
-- in two loops method, if any element say 1 is found at index 0, 2, 4, we use count+=((2 - 0) + (4 - 0) + (4 - 2)), 
-  we tried all possible combinations here, hence we need to store all indices in the map
-
-BUT MAP is a BIT COMPLICATED since for every pair of indices, we need to calulate with all previous indices in the map,
-it will be better done using two loops */
+    SC: O(1)  */
 
 function xorInRange(a: number[], low: number, high: number): number {
     let xor: number = 0;
@@ -121,51 +112,3 @@ function countTripletsUsingTwoLoops(a: number[]): number {
 
     return count;
 }
-
-// function solutionUsingMap(a: number[]): number {
-//     let count: number = 0;
-//     let n: number = a.length;
-
-//     if(n === 1) return 0;
-
-//     //fill xor[]
-//     let xor: number[]= [];
-//     xor.push(a[0]);            //Since, xor[0] === a[0]
-//     for(let i = 1; i < n; i++) xor.push((xor[i - 1] ^ a[i]));
-
-//     // create a map in format: uniqueEle: [all occurrences]
-//     let map = new Map<number, number[]>();
-//     xor.forEach((ele, currentIndex) => {
-//         if(!map.has(ele)) map.set(ele, [currentIndex]);
-//         else if(map.has(ele)) {
-//             let currentArr: number[] = map.get(ele);
-//             currentArr.push(currentIndex);
-//             map.set(ele, currentArr);
-//         }
-//     });
-
-//     /*                0  1  2  3   4  5
-//     for 0, say xor = [1, 0, 2, 0 , 3, 0]
-//     count += ((1 - 0) + (3 - 0) + (5 - 0) + (3 - 2) + (5 - 4))
-
-//     for rest of numbers, we dont need to count from 0, just consider combinations among those indices only
-//     */
-//     for(let [key, value] of map) {
-//         if(key === 0) {
-//             // wrt index 0 for every element
-//             value.forEach((ele) => {
-//                 count += (ele - 0)
-//             });
-
-//             // now for among themselves just try all combinations, works only if there are multiple occurrences
-//             if(value.length > 1) {
-//                 for(let i = 1; i < value.length; i++) count += (value[i] - value[i - 1]);
-//             }
-//         }
-//         else if((key !== 0) && (value.length > 1)) {
-//             for(let i = 1; i < value.length; i++) count += (value[i] - value[i - 1]);
-//         }
-//     }
-
-//     return count;
-// }

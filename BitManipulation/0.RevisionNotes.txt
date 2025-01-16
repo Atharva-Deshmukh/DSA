@@ -124,3 +124,25 @@
       a = a ^ b: The XOR of a and b is stored in a.
       b = a ^ b: --> (a ^ b) ^ b --> a
       a = a ^ b: --> (a ^ b) ^ a --> b
+
+
+Single Number - 2: MEMORISE THIS BUCKET TECHNIQUE
+Input: nums = [2,2,3,2]             Output: 3
+Input: nums = [0,1,0,1,0,1,99]      Output: 99
+
+function singleNumberBucketSolution(a: number[]): number {
+    let ones: number = 0;
+    let twos: number = 0;
+
+    a.forEach((num) => {
+        // add it to ones if it is not in twos, for the next element in the array, if the element is same 
+        // this ones line will automatically remove the element from ones since ones ^ ones = 0 and 0 & 0 = 0
+        ones = (num ^ ones) & (~twos);
+
+        // add it to twos if it is there in ones, but here we already removed it from ones, so this line works fine
+        twos = (num ^ twos) & (~ones);
+    });
+
+    return ones;
+}
+

@@ -50,12 +50,47 @@ function selectionSortIterative(a: number[]): number[] {
 
     // iterate till second last element
     for(let i = 0; i < n - 1; i++) {
-        let minNumIndex: number = findMinEleIndex(a, i, n);
+        let minNumIndex: number = findMinEleIndex(a, i, n-1);  // [i...(n-1)]
         [a[i], a[minNumIndex]] = [a[minNumIndex], a[i]];
     }
 
     return a;
 }
+
+/* Recursive tree
+        
+              s
+              |
+            [64, 25, 12, 22, 11]    =>  [11, 25, 12, 22, 64]
+             
+                 s
+                 |
+            [11, 25, 12, 22, 64]    =>  [11, 12, 25, 22, 64]
+
+                     s
+                     |
+            [11, 12, 25, 22, 64]    =>  [11, 12, 22, 25, 64]
+
+                         s
+                         |
+            [11, 12, 22, 25, 64]    =>  [11, 12, 22, 25, 64]  -- Recurse till n - 1 only
+
+                                                                 Also, if a.len <= 1 that is also a base case
+
+            
+                 How to Design of recursive function:
+            -------------------------------------------------
+
+            F(arr[], start, n) {
+
+                if((n <= 1) || (start === (n - 2))) // base case and corner case
+
+                swap(a[start], a[minIndex]);
+
+                // iterate using tail recursion so that space is optimised
+                return F(arr[], start + 1, n)
+            }
+*/
 
 function selectionSortRecursive(a: number[], start: number = 0, n: number = a.length): number[] {
 

@@ -66,7 +66,7 @@ We have 0 <= x < 2^n
       7 6 5 4 3 2 1 0
 2^2 = 0 0 0 0 0 1 0 0
 2^5 = 0 0 1 0 0 0 0 0   
-2^7 = 1 0 0 0 0 0 0 0
+2^7 = 1 0 0 0 0 0 0 0         so 2^n === nth index in bit representation 
 
 We have constraint: 0 <= a, b < 2^50
 means, if n < say 2 ^ 3, it will have 3 bits atmost, not above that,
@@ -103,7 +103,7 @@ Goal: To Maximise our product, try to keep max 1s in both xors
 
 i = 0: we have unequal bit in a and b at this pos, Whenever bits are unequal,
        try to maximise the smaller of the two xors to increase the overall product
-       if(axorx >= bxorx) set ith bit in bxorx
+       if(axorx >= bxorx) set ith bit in bxorx, since axorx is already larger
        else set ith bit in axorx
 
      a   1 1 0 0            b   0 1 0 1
@@ -132,8 +132,6 @@ i = 3: we have unequal bit in a and b at this pos, Whenever bits are unequal,
      x   0 0 1 0            x   0 0 1 0  --> x changes accordingly then
          --------               --------
 a xor x  1 1 1 0       b xor x  0 1 1 1
-
-a xor x = 6, b xor x = 7, maximise smaller xor, hence set ith bit in axor
 
 a xor x = 14 and b xor x = 7, prod = 98 = MAX.
 
@@ -194,44 +192,44 @@ function maximumXorProductSAMPLE_CODE(a: number, b: number, n: number): number {
     return (axorx * bxorx);
 }
 
-/* THE C++ CODE IS ACCEPTED ON LEETCODE ALTHOUGH, WITH SAME LOGIC:
+/* ACCEPTED ON LEETCODE using bitint: 
 
-    int maximumXorProduct(long long a, long long b, int n) {
-            const long long mod = 1e9 + 7;
-    long long axorx = 0;
-    long long bxorx = 0;
+In the for loop, operations like (1 << i) will fail for i >= 31 because JavaScript/TypeScript treats numbers 
+as 32-bit signed integers when performing bitwise operations. As a result, values like 1 << 49 will produce 
+incorrect results.
+
+function maximumXorProduct(a: number, b: number, n: number): number {
+    const mod: bigint = BigInt(1e9 + 7);
+    let axorx: bigint = BigInt(0);
+    let bxorx: bigint = BigInt(0);
+    const bigA = BigInt(a);
+    const bigB = BigInt(b);
 
     // Prefill axorx and bxorx from 49th bit to nth bit
-    for (int i = 49; i >= n; i--) {
-        bool a_ith_bit = ((a >> i) & 1) > 0;
-        bool b_ith_bit = ((b >> i) & 1) > 0;
+    for (let i = 49; i >= n; i--) {
+        const a_ith_bit = ((bigA >> BigInt(i)) & BigInt(1)) > BigInt(0);
+        const b_ith_bit = ((bigB >> BigInt(i)) & BigInt(1)) > BigInt(0);
 
-        if (a_ith_bit) axorx ^= (1LL << i);  // Use 1LL for long long bit shifts
-        if (b_ith_bit) bxorx ^= (1LL << i);
+        if (a_ith_bit) axorx ^= BigInt(1) << BigInt(i);
+        if (b_ith_bit) bxorx ^= BigInt(1) << BigInt(i);
     }
 
-    // Calculate x for the lower n bits
-    for (int i = n - 1; i >= 0; i--) {
-        bool a_ith_bit = ((a >> i) & 1) > 0;
-        bool b_ith_bit = ((b >> i) & 1) > 0;
+    for (let i = n - 1; i >= 0; i--) {
+        const a_ith_bit = ((bigA >> BigInt(i)) & BigInt(1)) > BigInt(0);
+        const b_ith_bit = ((bigB >> BigInt(i)) & BigInt(1)) > BigInt(0);
 
-        // If current bit in a and b are equal, set this bit in both axorx and bxorx
-        if (a_ith_bit == b_ith_bit) {
-            axorx ^= (1LL << i);
-            bxorx ^= (1LL << i);
-        }
-        // If bits are different, increase the smaller xor to maximize product
-        else {
+        if (a_ith_bit === b_ith_bit) {
+            axorx ^= BigInt(1) << BigInt(i);
+            bxorx ^= BigInt(1) << BigInt(i);
+        } else {
             if (axorx > bxorx) {
-                bxorx ^= (1LL << i);
+                bxorx ^= BigInt(1) << BigInt(i);
             } else {
-                axorx ^= (1LL << i);
+                axorx ^= BigInt(1) << BigInt(i);
             }
         }
     }
 
-    // Return the product modulo the large prime
-    return (axorx % mod) * (bxorx % mod) % mod;
-    }   
-
+    return Number(((axorx % mod) * (bxorx % mod)) % mod);
+};
 */

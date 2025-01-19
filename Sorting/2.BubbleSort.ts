@@ -97,4 +97,22 @@ function bubbleSortRecursive(a: number[], n: number = a.length): number[] {
     return bubbleSortRecursive(a, n - 1);
 }
 
-/* SC = O(n) for recursive */
+/* 
+TC: 
+
+Worst-Case Time Complexity:
+- The first recursive call performs n comparisons.  
+- The second recursive call performs n−1 comparisons.  
+- The third performs n−2, and so on.  
+
+    The total number of comparisons in the worst case can be expressed as:
+
+    T(n) = n + (n−1) + (n−2) + ⋯ + 1  
+
+    This is the sum of the first n natural numbers:
+
+    T(n) = n(n+1)/2  
+
+    Thus, the time complexity is O(n²).
+
+SC = O(n) for recursive */

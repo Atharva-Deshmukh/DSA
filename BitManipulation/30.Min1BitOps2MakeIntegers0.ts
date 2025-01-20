@@ -71,19 +71,19 @@ Thought process:
     we know, if n = 0010 (2), ans = 3, (1st bit in n is set)
     using our equation: F(1) = 2 * F(0) + 1
                         F(0) means such number whose 0th bit is set, it is 1 itself, ops for 1 --> 0 = 1 only,
-                        Hence, F(0) = 1
+                        Hence, F(0) = 1 = base case
 
     Now, what if n = 10010, where multiple bits are set.
 
     10010 --------------- 01010 ------------ 00000, intermediate steps me vo beech ka number ek baar to aaya hoga
           |------a---------|---------b-----|  
-          |--------------total-------------|        b = total - a
+          |--------------total-------------|        a = total - b
 
-    So, F(01010-00000) = F(10010-00000) - F(10010-01010)   left most set bit gaya ab
+
+    So, F(10010-01010) = F(10010-00000) - F(01010-00000)   left most set bit gaya ab
              F(4)      =       F(4)     -   now, focus on i = 3 only, ignore other set bits, 
                                             we made i = 3 [0 -> 1], its equivalent to [1 -> 0]
-                                           (F(0000) - F(1000)) 
-                                           (F(0) - F(3))
+                                           (F(1000) - F(0000)) 
                                            (F(3) - F(0))   since 0001 -> 0000 === 0000 -> 0001 steps
 
             here, we ignored remaining set bits after i, so, we took F(0), its actually F(i-1)

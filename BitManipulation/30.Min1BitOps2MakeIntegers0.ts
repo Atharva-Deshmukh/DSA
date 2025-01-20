@@ -3,7 +3,7 @@
 Given an integer n, you must transform it into 0 using the following operations any number of times:
 
 - Flip the rightmost bit
-- Change the ith bit in the binary representation of n if the (i-1)th bit is set to 1 and 
+- Change the ith bit (from right) in the binary representation of n if the (i-1)th bit is set to 1 and 
   the (i-2)th through 0th bits are set to 0.
   It means, (i-1)th bit ke baad agar koi bit hai to sab 0 hone chaiye.
 
@@ -80,12 +80,13 @@ Thought process:
           |--------------total-------------|        b = total - a
 
     So, F(01010-00000) = F(10010-00000) - F(10010-01010)   left most set bit gaya ab
-             F(4)      =       F(4)     -   now, focus on i = 3 only, ignore other set bits, we made i = 3 [0 -> 1], its equivalent to [1 -> 0]
+             F(4)      =       F(4)     -   now, focus on i = 3 only, ignore other set bits, 
+                                            we made i = 3 [0 -> 1], its equivalent to [1 -> 0]
                                            (F(0000) - F(1000)) 
                                            (F(0) - F(3))
                                            (F(3) - F(0))   since 0001 -> 0000 === 0000 -> 0001 steps
 
-                                here, we ignored remaining set bits after i, so, we took F(0), its actually F(i-1)
+            here, we ignored remaining set bits after i, so, we took F(0), its actually F(i-1)
             hence F(4) = F(4) - F(3) + F(1) - F()... whichever positions are set, in alternate + and - signs,
 
             so F(110010) = F(100000) - F(10010) + F(10), so, alternate + and - signs for all set bit postions,

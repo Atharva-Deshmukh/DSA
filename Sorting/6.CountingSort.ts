@@ -15,7 +15,7 @@ ALGO:
 TC: O(n + klogk)
 
 Counting frequencies: 
-𝑂(𝑛), n is the size of the input array.
+𝑂(n), n is the size of the input array.
 
 Sorting the map: 
 O(klogk), where k is the number of unique elements.
@@ -24,10 +24,8 @@ Generating the sorted array:
 O(n), since you iterate through the map and write values.
 
 SC:
-
 Map to store frequencies: 
 O(k)
-
 
 2. Using a range-based array to count frequencies
 
@@ -37,8 +35,7 @@ O(k)
 
 TC: O(n+m)
 
-Counting frequencies: 
-O(n)
+Counting frequencies: O(n)
 
 Iterating through the range array to generate the sorted array: 
 
@@ -50,7 +47,7 @@ SC:
 Range array to count frequencies: 
 O(m), where m=max−min+1.
 
-                                                        Which is better?
+                                            Which is better?
 
 Map-Based Implementation:
 

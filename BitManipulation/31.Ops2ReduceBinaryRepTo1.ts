@@ -93,14 +93,14 @@ function addOne(s: string, n: number): string {
     let binaryArr: string[] = s.split('');
 
     let i: number = n - 1;
-    while((i > 0) && (binaryArr[i] !== '0')) {
+    while((i > 0) && (binaryArr[i] !== '0')) {      // Scenario: 11110111 + 1, 0 is in somewhere middle
         binaryArr[i] = '0';
         i--;
     }
 
     if((i >= 0) && (binaryArr[i] === '0')) binaryArr[i] = '1';
     else if((i === 0) && (binaryArr[i] !== '0')) {
-        binaryArr[i] = '0';
+        binaryArr[i] = '0';                       // Scenario: 11111111 + 1, All 1s
         binaryArr.unshift('1');
     }
 
@@ -164,9 +164,7 @@ len = 1: ("1")
     STOP !!
 
 But, we still have carry = 1 left, so add that to the ans since that denotes we deal with the last remaining '1' in 
-string
-
-*/
+string */
 
 function solution_3(s: string): number {
     let count: number = 0;

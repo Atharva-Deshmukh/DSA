@@ -14,6 +14,14 @@ row-3 --> 2 spaces + 5 stars + 2 spaces   ((2 * 3) - 1 stars) ((2 * (5 - (row - 
 row-4 --> 3 spaces + 3 stars + 3 spaces   ((2 * 2) - 1 stars) ((2 * (5 - (row - 1))) - 1 stars)
 row-5 --> 4 spaces + 1 stars + 4 spaces   ((2 * 1) - 1 stars) ((2 * (5 - (row - 1))) - 1 stars)
 
+                                        OR
+
+row-1 --> 0 spaces + 9 stars + 0 spaces   starsInRow => (maxStarsPossible - (2 * 0))
+row-2 --> 1 spaces + 7 stars + 1 spaces   starsInRow => (maxStarsPossible - (2 * 1))
+row-3 --> 2 spaces + 5 stars + 2 spaces   starsInRow => (maxStarsPossible - (2 * 2))
+row-4 --> 3 spaces + 3 stars + 3 spaces   starsInRow => (maxStarsPossible - (2 * 3))
+row-5 --> 4 spaces + 1 stars + 4 spaces   starsInRow => (maxStarsPossible - (2 * 4))
+
 */
 
 function invertedFullPyramidStar(n: number) {

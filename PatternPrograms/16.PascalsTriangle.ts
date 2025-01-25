@@ -70,3 +70,57 @@ function pascalsTriangle(n: number) {
       console.log(patRow);
   }
 }
+
+/* VARIATIONS:
+Input: n = 5
+Output: [1, 4, 6, 4, 1]
+Explanation: 5th row of pascal's triangle is {1, 4, 6, 4, 1}.
+
+                                          1 
+                                          1 1 
+                                          1 2 1 
+                                          1 3 3 1 
+                                          1 4 6 4 1 
+
+- We can use same dp[], just with some minor changes
+- dp[] = [1] // to simulate row1
+- for new row, we will push 0 to prev row dp[] and use dp[i] = dp[i] + dp[i - 1]
+
+DRY RUN
+dp[] = [1];  // row1 covered here itself
+
+row2
+  dp.push(0) = [1, 0]
+  dp[1] of row2 = (dp[1] + dp[0]) of row1 = [1, 1]
+
+row3
+  dp.push(0) = [1, 1, 0]
+  loop dp[i] = dp[i] + dp[i - 1] = [1, 2, 1]
+.
+.
+.
+row (n + 1)
+
+*/
+
+function nthRowPascalTriangle(n: number): number[] {
+  if(n <= 0) return [0];
+  if(n === 1) return [1];
+
+  let nthRow: number[] = [1];
+
+  for(let row = 2; row <= n; row++) {
+    // push 0 in previous row
+    nthRow.push(0);
+
+    // get new length
+    let len: number = nthRow.length;
+
+    for(let i = (len - 1); i >= 1; i--) {
+      if((i - 1) >= 0) nthRow[i] = nthRow[i] + nthRow[i - 1];
+    }
+
+  }
+
+  return nthRow;
+}

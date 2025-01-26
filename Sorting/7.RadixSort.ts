@@ -47,7 +47,7 @@ Step 1: Sort by Ones Place
             Buckets:
 
             0: [170, 90]
-            2: [802, 2]
+            2: [802, 2] 
             4: [24]
             5: [45, 75]
             6: [66]
@@ -100,7 +100,9 @@ function radixSort(a: number[]): number[] {
     if (a.length <= 1) return a; // Handle small arrays (already sorted)
 
     const maxDigits: number = getDigitsInLargestNumber(a);
-    let combinedBucket: number[] = a; // Start with the original array since in for loop we are iterating combined array only
+
+    // Start with the original array since in for loop we are iterating combined array only
+    let combinedBucket: number[] = a; 
 
     for (let place = 0; place < maxDigits; place++) {
         // Create 10 buckets for digits 0-9
@@ -117,7 +119,8 @@ function radixSort(a: number[]): number[] {
     }
 
     // Separate negative and non-negative numbers for final output
-    const negatives = combinedBucket.filter(num => num < 0).reverse(); // Reverse negatives for correct order
+    // negatives are also sorted based on magnitude, not signs, hence reverse them for getting correct order
+    const negatives = combinedBucket.filter(num => num < 0).reverse();
     const nonNegatives = combinedBucket.filter(num => num >= 0);
 
     return [...negatives, ...nonNegatives];

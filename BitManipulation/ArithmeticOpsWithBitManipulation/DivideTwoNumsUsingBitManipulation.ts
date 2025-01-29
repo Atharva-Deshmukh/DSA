@@ -26,7 +26,8 @@ Way 2: Using Bit Manipulation
 - Every number can be written in terms of 2's powers since every number can be represented in binary
 - With the help of 2's power, we will try making the quotient
 - Also, (num * 2^3) === (num << 3)
-- from 31st to 0th bit posn, try (divisor * 2's power), and accept this 2s power if (divisor * 2's power) <= dividend
+- from 31st to 0th bit posn, try (divisor * 2's power), and accept this 2s power 
+  if (divisor * 2's power) <= dividend
 
 ex: 25 = 5 * (2^2) + 5
 ex: 25 = 5 * 4 + 5

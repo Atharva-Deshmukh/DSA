@@ -93,8 +93,10 @@ Another Method:
   let a = 9 8    product[] = [_, _, _, _]   max_size = (a + b)
       b = 7 6    taken these a and b to make sure every digit is unique
 
-      let productCarry = 0;     We will need two carries to track product and to perform addition while
-      let additionCarry = 0;    adding in the array
+      We will need two carries to track product and to perform addition while adding in the array
+  
+      let productCarry = 0;      stores the product
+      let additionCarry = 0;     helps to add this product into the single product[]
 
   - Initialise product[] of size (n1 + n2)
   - Now, iterate second number from last (units place)
@@ -110,7 +112,7 @@ Another Method:
         digitToStore = 8
         productCarry = 4
         product[] = [8, _, _, _]
-
+ 
         (6 * 9) + productCarry(4)  = 58
         digitToStore = 8
         productCarry = 5
@@ -182,9 +184,14 @@ function multiplyTwoStrings(a: string, b: string): string {
           let productDigit: number = prod % 10;
           productCarry = Math.floor(prod / 10);
 
-          // product[] is to be filled in reverse order, hence convert the index
-          // also we need to modify the existing digit in the array 
-          //                                            existing digit + productDigit + carry due to addition
+          /*  j iterates n1 from last, but we are filling product[] from 0, so shift index
+
+                         a    =  e  f  g
+                      product[a, b, c, d]
+
+                      so, we are getting index in a from start onwards, since with shift that will be adjusted
+          
+                                                                   existing digit + productDigit + carry due to addition*/                                         
           let totalSumAfterAdditionInArray: number = product[(n1 - 1 - j) + shift] + productDigit + additionCarry;
           let digitToStoreInArray: number = totalSumAfterAdditionInArray % 10;
           additionCarry = Math.floor(totalSumAfterAdditionInArray / 10);

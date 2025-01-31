@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STACK</title>
+</head>
+<body>
+    <style>
+        #input-container {
+            margin-left: 40%; 
+            margin-right: 50%;
+            margin-top: 20%; 
+            display: flex;
+        }
+        
+        #pop {
+            color: black; 
+            font-weight: bold; 
+            background-color: rgb(231, 126, 96);
+        }
+
+        #push {
+            color: black; 
+            font-weight: bold; 
+            background-color: rgb(93, 243, 98);
+        }
+
+        #stack {
+            width: fit-content; 
+            color: black; 
+            font-weight: bold; 
+            background-color: rgb(237, 230, 104); 
+            border: 1px solid black;
+            margin-left: 50%; 
+            margin-right: 50%;
+        }
+    </style>
+
+<div id="input-container">
+    <button id="pop" onclick="popValue()">Pop</button>
+    <input id="value" type="text" placeholder="Input here"/>
+    <button id="push" onclick="pushValue()">Push</button>
+</div>
+
+<p id="stack">STACK</p>
+
+<script>
+    let stack = [];
+
+    function pushValue() {
+        let inputElement = document.getElementById('value');
+        let value = inputElement.value.trim(); // Get input value and trim spaces
+
+        if (value === "") {
+            alert("Please enter a value!");
+            return;
+        }
+
+        stack.push(value); // Push value to stack
+        updateStackDisplay();
+        inputElement.value = ""; // Clear input field
+    }
+
+    function popValue() {
+        if (stack.length === 0) {
+            alert("CANNOT POP! STACK IS EMPTY");
+            return;
+        }
+
+        stack.pop(); // Remove last element
+        updateStackDisplay();
+    }
+
+    function updateStackDisplay() {
+        document.getElementById('stack').textContent = stack.join(",");
+    }
+</script>
+</body>
+
+</html>

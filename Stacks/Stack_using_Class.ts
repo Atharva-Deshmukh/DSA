@@ -9,6 +9,22 @@ class Stack {
         this.stack = [];
     }
 
+    /*
+    - push ele in []     i.e length 0 -> pushed at index 0;
+    - push ele in [1] i.e    length 1 -> pushed at index 1;
+    - push ele in [1, 2] i.e length 2 -> pushed at index 2;
+
+    So, element is being pushed at arr[currentSize]
+
+
+    Direction of stack filling in array
+
+      origin
+        |
+        [1, 2, 3, 4]  <-- push/pop happens here for last element of array
+ 
+     */
+
     push(element: number) {
 
         if(this.currentSize === this.size) alert('STACK IS FULL');
@@ -18,6 +34,7 @@ class Stack {
         }
     }
 
+    /* Just free the memory of the last element stored in the array */
     pop() {
         if(this.currentSize === 0 ) alert('STACK IS EMPTY');
         else  {

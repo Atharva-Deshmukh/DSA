@@ -1,6 +1,7 @@
 export class Stack {
     private size: number;
-    private currentSize: number;
+    public currentSize: number;
+    public poppedElement: number;
     private stack: number[];
 
     constructor(size: number) {
@@ -38,6 +39,7 @@ export class Stack {
     pop() {
         if(this.currentSize === 0 ) alert('STACK IS EMPTY');
         else  {
+            this.poppedElement = this.stack[this.currentSize-1];
             this.currentSize--;
             this.stack.length = this.currentSize;
         }

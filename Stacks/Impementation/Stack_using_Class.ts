@@ -1,4 +1,4 @@
-class Stack {
+export class Stack {
     private size: number;
     private currentSize: number;
     private stack: number[];

@@ -48,7 +48,7 @@ class Queue {
     }
 
     enqueue(element: number) {
-        if(this.totalSize === this.currentSize) console.log('QUEUE IS FULL');
+        if(this.isQueueFull()) console.log('QUEUE IS FULL');
         else {
             this.queue[this.currentSize] = element;
             this.currentSize++;
@@ -56,7 +56,7 @@ class Queue {
     }
 
     dequeue() {
-        if(this.currentSize === 0) console.log('QUEUE IS EMPTY');
+        if(this.isQueueEmpty()) console.log('QUEUE IS EMPTY');
         else if(this.currentSize === 1) {
             this.dequeuedElement = this.queue[this.currentSize - 1];
             this.currentSize--;
@@ -77,6 +77,14 @@ class Queue {
 
     displayQueue() {
         console.log('QUEUE -> ', this.queue);
+    }
+
+    private isQueueFull() {
+        return (this.currentSize === this.totalSize)? true: false;
+    }
+
+    private isQueueEmpty() {
+        return (this.currentSize === 0)? true: false;
     }
 };
 

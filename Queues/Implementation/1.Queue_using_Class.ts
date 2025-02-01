@@ -70,6 +70,20 @@ class MyQueue {
 	} 
 }
 
+                                        SPACE WASTAGE in above approach:
+                                        if size === 3
+
+                                        queue =   <-- [1, 2, 3] <--
+
+                                        pop()
+
+                                        queue =   <-- [ , 2, 3] <--
+
+                                        push(), alert, size is full although we have one space left
+                                        hence we either shift every element left or we use circular queue
+
+
+
 */
 
 class Queue {

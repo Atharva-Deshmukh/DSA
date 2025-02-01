@@ -28,7 +28,7 @@ export class Stack {
 
     push(element: number) {
 
-        if(this.currentSize === this.size) alert('STACK IS FULL');
+        if(this.isStackFull()) alert('STACK IS FULL');
         else {
             this.stack[this.currentSize] = element;
             this.currentSize++;
@@ -37,7 +37,7 @@ export class Stack {
 
     /* Just free the memory of the last element stored in the array */
     pop() {
-        if(this.currentSize === 0 ) alert('STACK IS EMPTY');
+        if(this.isStackEmpty()) alert('STACK IS EMPTY');
         else  {
             this.poppedElement = this.stack[this.currentSize-1];
             this.currentSize--;
@@ -47,6 +47,14 @@ export class Stack {
 
     display() {
         console.warn(this.stack);
+    }
+
+    private isStackFull() {
+        return (this.currentSize === this.size)? true: false;
+    }
+
+    private isStackEmpty() {
+        return (this.currentSize === 0)? true: false;
     }
 };
 

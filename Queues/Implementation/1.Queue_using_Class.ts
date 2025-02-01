@@ -33,6 +33,43 @@ WAY 2:
                               clear memory location arr[n - 1]
 
 
+
+// A NIAVE WAY FOR IMPLEMENTATION OF QUEUE, is static way
+push() we do rear++;
+pop() we do front++, wasting the space that can be used if we shift the array to left
+
+class MyQueue {
+    
+    constructor(){
+		this.front = 0;
+		this.rear = 0;
+		this.arr = new Array(100005);
+	}
+	
+    
+	//Function to push an element x in a queue.
+	push(x)
+	{
+	    // Your code here
+	    this.arr[this.rear] = x;
+	    this.rear++;
+	} 
+	
+
+    //Function to pop an element from queue and return that element.
+	pop()
+	{
+       if (this.front === this.rear) {
+            return -1; // Queue is empty
+        }
+        
+        let poppedEle = this.arr[this.front]; // Get front element
+        this.front++; // Move front pointer forward
+
+        return poppedEle;
+	} 
+}
+
 */
 
 class Queue {

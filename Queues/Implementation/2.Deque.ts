@@ -1,10 +1,12 @@
-/* Insertion Removal is possible at both ends
+/* De-queue: Doubly-ended queue 
 
-     Front                  Rear
-        ____________________
-        ____________________
+                    Insertion Removal is possible at both ends
 
-       < ----see-like-this---     
+                        Front                  Rear
+                            ____________________
+                            ____________________
+
+                           < ----see-like-this---     
 */
 
 class Dequeue {

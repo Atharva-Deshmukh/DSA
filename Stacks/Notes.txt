@@ -1,0 +1,3 @@
+USES OF STACKS:
+- in recursion
+- in text editors for undo redo last operations

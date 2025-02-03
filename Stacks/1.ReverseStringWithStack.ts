@@ -1,4 +1,4 @@
-import { Stack } from "./Impementation/Stack_using_Class";
+import { Stack } from "./Impementation/stack_using_class_number";
 
 function revString(s: string): string {
     let n: number = s.length;

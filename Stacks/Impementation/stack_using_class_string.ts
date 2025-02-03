@@ -12,7 +12,7 @@ export class Stack {
     }
 
     push(element: string) {
-        if(this.isFull()) console.log('STACK FULL');
+        if(this.isFull()) return;
         else {
             this.stack[this.currentSize] = element;
             this.currentSize++;
@@ -20,7 +20,7 @@ export class Stack {
     }
 
     pop() {
-        if(this.isEmpty()) console.log('STACK EMPTY');
+        if(this.isEmpty()) return;
         else {
             this.poppedElement = this.stack[this.currentSize - 1];
             this.currentSize--;
@@ -28,11 +28,17 @@ export class Stack {
         }
     }
 
-    isFull() {
+    private isFull() {
         return (this.currentSize === this.totalSize)
     }
 
-    isEmpty() {
+    private isEmpty() {
         return (this.currentSize === 0)
     }
-} 
+
+    // track top element of the stack so that it can be used in further problems
+    top() {
+        if(this.isEmpty()) return '';
+        return this.stack[this.currentSize - 1];
+    }
+};

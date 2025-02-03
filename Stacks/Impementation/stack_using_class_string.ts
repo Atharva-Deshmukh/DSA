@@ -1,5 +1,5 @@
 export class Stack {
-    private currentSize: number;
+    public currentSize: number;   // exposing current size so that to be used in problems ahead
     private totalSize: number;
     private stack: string[];
     public poppedElement: string;

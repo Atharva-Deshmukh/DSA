@@ -25,6 +25,7 @@ When getMin() is called, it should return 18 which is the minimum in the current
   SC: O(n)
 
                 Approach-2: Modifing the stack by pushing <element, minElementTillNow>
+                            same can be modified to implement maxStack: <element, maxElementTillNow>
 
 --> pop() direction
     push(2) [(2, 2)]

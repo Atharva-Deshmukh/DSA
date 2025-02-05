@@ -100,9 +100,10 @@ function nextGreaterElement(a: number[]): number[] {
     if(n === 0) return [];
     if(n === 1) return [-1];
 
-    let ans: number[] = []; 
+    let ans: number[] = Array(n); 
     let stack = new Stack(n);
 
+    // don't use unshift, unshift for large arrays is inefficient
     for(let i = (n - 1); i >= 0; i--) {
 
         // LESS THAN EQUAL TO bhi hai to bhi pop() kar do

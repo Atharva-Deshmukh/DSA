@@ -49,11 +49,16 @@ export class Stack {
         console.warn(this.stack);
     }
 
+    top() {
+        if(this.currentSize > 0) return this.stack[this.currentSize - 1];
+        else return NaN;
+    }
+
     private isStackFull() {
         return (this.currentSize === this.size)? true: false;
     }
 
-    private isStackEmpty() {
+    isStackEmpty() {
         return (this.currentSize === 0)? true: false;
     }
 };

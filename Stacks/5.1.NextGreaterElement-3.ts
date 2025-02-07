@@ -74,7 +74,7 @@ function nextPermutation(num: number) {
     if(i <= 0) return -1;  // means nowhere we encountered a decreasing trend
 
     // our (i - 1) is pivot now since we compare (i - 1) for i
-    let pivot: number = i;
+    let pivot: number = (i - 1);
 
     // iterate from (n - 1) -- (pivot+1) to get smallest number greater than pivot and swap them
     for(let j = (n - 1); j > pivot; j--) {

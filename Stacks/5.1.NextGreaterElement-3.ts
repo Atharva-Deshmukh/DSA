@@ -112,3 +112,34 @@ function nextPermutation(num: number) {
     return (reversedNum > 2147483647)? -1: reversedNum;
 }
 
+
+// LC submission:
+
+function nextPermutation(numStringArray: number[]): void {
+
+    let n: number = numStringArray.length; 
+
+    let i: number = (n - 1);
+
+    while((i > 0) && (Number(numStringArray[i - 1]) >= Number(numStringArray[i]))) i--;
+
+    // our i is pivot now
+    let pivot: number = i - 1;
+
+    // iterate from (n - 1) -- pivot to get smallest number greater than pivot and swap them
+    for(let j = (n - 1); j > pivot; j--) {
+        if(numStringArray[j] > numStringArray[pivot]) { [numStringArray[j], numStringArray[pivot]] = [numStringArray[pivot], numStringArray[j]];
+        break;  // break here since we need smalles num > pivot
+        }
+    }
+
+    // reverse string right of pivot, using two pointers to reverse in O(1) space
+    let left: number = (pivot + 1);
+    let right: number = (n - 1);
+
+    while(left < right) {
+        [numStringArray[left], numStringArray[right]] = [numStringArray[right], numStringArray[left]];
+        left++;
+        right--;
+    }
+};

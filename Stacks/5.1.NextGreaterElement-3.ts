@@ -69,17 +69,15 @@ function nextPermutation(num: number) {
     let n: number = numStringArray.length; 
 
     let i: number = (n - 1);
-    let pivot: number = (n - 1);
+    while((i > 0) && (Number(numStringArray[i - 1]) >= Number(numStringArray[i]))) i--;
 
-    while((i >= 0) && (Number(numStringArray[i - 1]) >= Number(numStringArray[i]))) i--;
+    if(i <= 0) return -1;  // means nowhere we encountered a decreasing trend
 
-    if(i === 0) return -1;  // means nowhere we encountered a decreasing trend
+    // our (i - 1) is pivot now since we compare (i - 1) for i
+    let pivot: number = i;
 
-    // our i is pivot now
-    pivot = i;
-
-    // iterate from (n - 1) -- pivot to get smallest number greater than pivot and swap them
-    for(let j = (n - 1); j >= pivot; j--) {
+    // iterate from (n - 1) -- (pivot+1) to get smallest number greater than pivot and swap them
+    for(let j = (n - 1); j > pivot; j--) {
         if(numStringArray[j] > numStringArray[pivot]) { [numStringArray[j], numStringArray[pivot]] = [numStringArray[pivot], numStringArray[j]];
         break;  // break here since we need smalles num > pivot
         }

@@ -78,7 +78,8 @@ function nextPermutation(num: number) {
 
     // iterate from (n - 1) -- (pivot+1) to get smallest number greater than pivot and swap them
     for(let j = (n - 1); j > pivot; j--) {
-        if(numStringArray[j] > numStringArray[pivot]) { [numStringArray[j], numStringArray[pivot]] = [numStringArray[pivot], numStringArray[j]];
+        if(numStringArray[j] > numStringArray[pivot]) { 
+        [numStringArray[j], numStringArray[pivot]] = [numStringArray[pivot], numStringArray[j]];
         break;  // break here since we need smalles num > pivot
         }
     }

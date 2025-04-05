@@ -17,7 +17,9 @@ For 1,3,5,7,9,11
 1 + 3 + 5 = 9                  Iterations = 3 = sqrt(9)
 1 + 3 + 5 + 7 = 16 and so on,
 
+-------------------------------------------------------------------------------------------------------------
 POWER EXPONENTIATION TRICK:
+
 Logic:
 - let ans = 1;
 - Iterate till currentPower = 0
@@ -60,4 +62,43 @@ while (x > 0)
   pow(65536,1) = 65536 * pow(65536,0) = 65536 * 1 = 65536
   ans = ans * 65536
 
-  return ans     
+  return ans   
+
+------------------------------------------------------------------------------------------------
+TRICK to get unique prime factors:
+  - exhaust all 2s and store in SET 
+  - since all 2s are exhausted, we now get odd number, odd numbers differ by 2, so (i += 2)
+  - then exhaust remaining factors and keep pushing them in SET.
+
+------------------------------------------------------------------------------------------------
+TRICK to get all prime factors:
+
+  WAY-1:
+  - use unique prime factors method, just use normal array instead of SET.
+
+  WAY-2:
+  - We can use smallest prime factors to get prime factors
+    SPF(20) = 2   now 20/2 = 10
+    SPF(10) = 2   now 10/2 = 5
+    SPF(5) = 5    now 5/5 = 1  
+
+    STOP at 1 !!
+    
+    this iterations take max O(logN) which happens when a number is power of 2
+    for power of 2, we need max iterations since every time I need to divide by 2  
+
+                      How to get spf[]? => adapt sieve approach
+
+  -  let spf[n+1] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                     0  1  2  3  4  5  6  7  8  9  10
+  - start from (2 - sqrt(n)), and for every multiple of 2, replace it with 2, similar for 3
+  - basically, whenever spf[i] > i, replace it with i
+
+  -  replace 2's multiples = [0, 1, 2, 3, 2, 5, 2, 7, 2, 9, 2]
+                              0  1  2  3  4  5  6  7  8  9  10
+  -  replace 3's multiples = [0, 1, 2, 3, 2, 5, 2, 7, 2, 3, 2]
+                              0  1  2  3  4  5  6  7  8  9  10
+  -  replace 5's multiples = [0, 1, 2, 3, 2, 5, 2, 7, 2, 3, 2]
+                              0  1  2  3  4  5  6  7  8  9  10
+
+  - replace only if spf[i] is untouched, to be untouched, spf[i] = i, very initial state of the array

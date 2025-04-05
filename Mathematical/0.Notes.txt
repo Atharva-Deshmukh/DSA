@@ -70,6 +70,7 @@ TRICK to get unique prime factors:
   - since all 2s are exhausted, we now get odd number, odd numbers differ by 2, so (i += 2)
   - then exhaust remaining factors and keep pushing them in SET.
 
+
 ------------------------------------------------------------------------------------------------
 TRICK to get all prime factors:
 
@@ -102,3 +103,25 @@ TRICK to get all prime factors:
                               0  1  2  3  4  5  6  7  8  9  10
 
   - replace only if spf[i] is untouched, to be untouched, spf[i] = i, very initial state of the array
+------------------------------------------------------------------------------------------------
+
+TRICK for getting all factors:
+- Prime factors occur in pairs
+
+  Input : n = 10       Output: 1 2 5 10
+  Input:  n = 100      Output: 1 2 4 5 10 20 25 50 100
+
+  WAY-1:
+  - Iterate from 1 to sqrt(n), print i and then (n / i)
+    But this way, we will get zigzag pattern: 1, 100, 2, 20, 4, 25, 5, 20
+
+  WAY-2: 
+  - Iterate first from 1 to sqr(n), if((n % i) === 0) print(i);
+  - Now iterate from sqrt(n) to 1, if (i !== sqrt(n)) to avoid printing sqrt twice in case of perfect square
+    if((n%/ i) === 0) print(n / i);
+
+    TC: O(sqrt(n)) + O(sqrt(n)) = O(sqrt(n))
+    SC: O(1)
+  
+
+

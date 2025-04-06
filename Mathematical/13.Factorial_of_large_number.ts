@@ -96,32 +96,29 @@ Implementation of this is quite tricky
 TC: O(n ^ 2)
 SC: O(1) */
 
-
-function factorialUsingArray(n: number): number[] {
+function factorialOfLargeNum(n: number): number[] {
     let res: number[] = [1];  // By default, we will have 1 since every factorial calculation starts with 1
-
-    let counter: number = 2;  // to iterate from 2 -- n
     let carry: number = 0;
-    let product: number = 0;
-    let digitToPlace: number = 0;
+    let size: number = res.length;
 
-    while(counter <= n) {
-        let i: number = 0;
-        for(i = 0; i < res.length; i++) {
-            product = (res[i] * counter) + carry;          
-            digitToPlace = product % 10;             // capturing units place
-            carry = Math.floor(product / 10);        // capturing remaining places
-            res[i] = digitToPlace;
+    if((n === 0) || (n === 1)) return res;
+
+    for(let i = 2; i <= n; i++) {
+        for(let j = 0; j < size; j++) { 
+            let product: number = (res[j] * i) + carry;
+            let digitToPlace: number = (product % 10);
+            res[j] = digitToPlace;
+            carry = Math.floor(product / 10);
         }
 
-        // While there is a carry, push each digit separately to the array
-        while (carry > 0) {
-            res.push(carry % 10);    // Push the last digit of carry
-            carry = Math.floor(carry / 10);  // Reduce carry by removing last digit
+        // if carry remains, add it at the end of the array
+        while(carry> 0) {
+            res.push((carry % 10));
+            carry = Math.floor(carry / 10);
         }
 
-        counter++;
-    }   
+        size = res.length; // update res size
+    }
 
     return res.reverse();
 }

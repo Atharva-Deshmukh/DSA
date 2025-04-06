@@ -122,6 +122,36 @@ TRICK for getting all factors:
 
     TC: O(sqrt(n)) + O(sqrt(n)) = O(sqrt(n))
     SC: O(1)
+------------------------------------------------------------------------------------------------
   
+FACTORIAL of very large number:
+- needed since factorial of 100 has 158 digits
+
+WAY-1: use BigInt(), but its language specific (1n or BigInt(1))
+WAY-2: Use array to store the result (language independent)
+
+let n = 5, let us have an array res = [];  size = 0
+
+Now, fill with 1 initially since 1 will be there in every factorial and make size = 1
+res = [1] size = 1 carry = 0
+
+multiply all elements of array with 2 (school mathematics). 
+since array needs to be modified now.
+res = [2]  // 2 * 1
+size = 1
+carry = 0 
+
+multiply all elements of array with 3 (school mathematics). 
+since array needs to be modified now.
+res = [6]  // 3 * 2
+size = 1
+carry = 0 
+
+Note that above, we multiply all array elements (equal to size)
+multiply all elements of array with 4 (school mathematics). 
+6 * 4 = 24, arr[0] = 4 and carry = 2, push carry in array and now size = 2
+res = [4, 2] 
+size = 2
+carry = 2 
 
 

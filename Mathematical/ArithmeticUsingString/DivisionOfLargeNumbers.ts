@@ -18,12 +18,12 @@ Approach: School maths for divison
   - Compare with 8 => it is divisible, divide and move ahead
   - String ends, return quotient
 
-                                                    LOGIC:
+                                                     LOGIC:
 
     - Initialise a Carry = 0, this carry is the remainder we obtained from previous divison, we 
       do (carry * 10) + current digit to get new number x to divide by current digit of a
     - Process each digit of a from i = 0 to n1
-    - Update the value being divided by appending the current digit of a to the carry (x = carry * 10 + digit).
+    - Update the value being divided by appending the current digit of a to the carry (x = (carry * 10) + digit).
     - Calculate the quotient digit by performing integer division: Math.floor(x / b).
     - Update carry with the remainder of this division: carry = x % b.
     - Append the quotient digit to the result string res.

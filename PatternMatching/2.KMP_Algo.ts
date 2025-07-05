@@ -18,6 +18,20 @@ Similarly, Suffixes of the string are “”, “c”, “bc”, and “abc”. 
 lps[i] => length of the longest proper prefix of pat[0..i] which is also a suffix of pat[0..i].
 
 ---------------------------------------------------------------------------------------------
+
+pattern = "abacab"
+
+pattern[0..i]	LPS[i]
+    a	          0
+    ab	          0
+    aba	          1        -> "a" is the longest proper prefix which is also a suffix
+    abac	      0
+    abaca	      1        -> "a" is the longest proper prefix which is also a suffix
+    abacab	      2        -> "ab" is the longest proper prefix which is also a suffix
+
+
+
+---------------------------------------------------------------------------------------------
                                 CONSTRUCTION OF LPS[] on PAT:
 
 let pattern pat = [a, b, a, b, a, a]
@@ -145,6 +159,8 @@ j = lps[j - 1] = 2
 
          i                         j
 [a b a b a b c a b a b c]     [a b a b c]
+
+--> "aba" are already matched, so we can skip redundant comparisons
 
 txt[i] === pat[j]
 i++;
@@ -274,52 +290,8 @@ function calculateLPS_Array(pattern: string): number[] {
         string = b
 
         LOGIC to get lps string:
-        - get the last value in lps
-        - loop from i = lps.len - 1 and keep concatenating untill it i becomes 0
-
-function lpsString(pattern: string): string {
-    let n: number = pattern.length;
-
-    // Corner cases
-    if(n <= 1) return "";
-
-    // STEP-1: Calculate LPS[] first
-
-    // initialise the lps[] with 0 of same size, first element will be 0 to cover case => n === 1
-    let lps: number[] = Array(n).fill(0); 
-    let len: number = 0;
-    let i: number = 1;       // start from first index directly
-    let ans: string = "";
-
-    while(i < n) {
-        // if there is match
-        if(pattern[len] === pattern[i]) {
-            len++;
-            lps[i] = len;
-            i++;
-        }
-        else {
-            if(len === 0) {
-                lps[i] = 0;
-                i++;
-            } else {
-                // Update len to the previous lps value to avoid redundant comparisons
-                len = lps[len - 1];
-            }
-        }
-    }
-
-    // STEP-2: Now genererate lps string from this array
-    let num = lps[n - 1];
-    let k = n - 1;
-    while((k >= 0) && (num > 0)) {
-        ans = pattern[k] + ans;
-        num--;
-        k--;
-    }
-    
-    return ans;
-  } */
+        - get the last value in lps => let num = lps[n - 1];
+        - ans = pattern.substring(0, num); */
 
 function kmpAlgo(pat: string, txt: string): number[] {
     let pat_len: number = pat.length;

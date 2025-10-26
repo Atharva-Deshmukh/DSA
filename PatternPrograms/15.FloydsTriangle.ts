@@ -9,35 +9,29 @@ Pattern (n = 5)
 - rowNum = no of chars/digits in that row
 - counter = start from 1
   counter will be tracked automatically
+
+row1 => 1 number 3 spaces
+row2 => 2 number 2 spaces
+row3 => 3 number 1 spaces
+row4 => 4 number 1 spaces
+
+Actually, we don't even need to account the spaces, directly print the numbers
+spaces will be adjusted automatically
 */
 
-function floydsTriangleNumber(n: number) {
-    let counter: number = 1;
-    let patRow: string = '';
+function pattern(n: number): void {
 
-    for(let row = 1; row <= n; row++) {
-        patRow = '';
-        for(let num = 1; num <= row; num++) {
-            patRow += ' ' + counter;
+    let counter: number = 1;
+
+    for(let i = 1; i <= n; i++) {
+        let patRow: string = '';
+
+        for(let j = 1; j <= i; j++) {
+            patRow += counter + ' ';
             counter++;
         }
-
         console.log(patRow);
     }
 }
 
-function floydsTriangleChars(n: number, starChar: string = 'A') {
-    let counter: number = 1;
-    let patRow: string = '';
-    let startCharIndex: number = starChar.charCodeAt(0) - 1;
-
-    for(let row = 1; row <= n; row++) {
-        patRow = '';
-        for(let charIndex = 1; charIndex <= row; charIndex++) {
-            patRow += ' ' + String.fromCharCode(startCharIndex + counter);
-            counter++;
-        }
-
-        console.log(patRow);
-    }
-}
+pattern(4);

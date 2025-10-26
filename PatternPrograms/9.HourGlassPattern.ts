@@ -12,22 +12,13 @@
 
 Pattern: (n = 5)
 - No of rows = (2n - 1)
-- Thought process:
-
-         for(row = 1; row <= (2n - 1); row++) {
-            if(row <= 5) // inverted Pyramid printing -- already did full pyramid q.6
-            if(row > 5)  // Pyramid printing
-         }
-
 
 (row <= n) 
-    row-1 --> 0 spaces + 9 stars + 0 spaces   starsInRow => (maxStarsPossible - (2 * 0))
-    row-2 --> 1 spaces + 7 stars + 1 spaces   starsInRow => (maxStarsPossible - (2 * 1))
-    row-3 --> 2 spaces + 5 stars + 2 spaces   starsInRow => (maxStarsPossible - (2 * 2))
-    row-4 --> 3 spaces + 3 stars + 3 spaces   starsInRow => (maxStarsPossible - (2 * 3))
-    row-5 --> 4 spaces + 1 stars + 4 spaces   starsInRow => (maxStarsPossible - (2 * 4))
-
-    This logic we already covered in inverted full pyramid code
+    row-1 --> 0 spaces + 9 stars + 0 spaces  
+    row-2 --> 1 spaces + 7 stars + 1 spaces 
+    row-3 --> 2 spaces + 5 stars + 2 spaces 
+    row-4 --> 3 spaces + 3 stars + 3 spaces 
+    row-5 --> 4 spaces + 1 stars + 4 spaces 
 
 (row > n) 
     row6 --> 3 spaces + 3 stars + 3 spaces
@@ -35,93 +26,113 @@ Pattern: (n = 5)
     row8 --> 1 spaces + 7 stars + 1 spaces
     row9 --> 0 spaces + 9 stars + 0 spaces
 
-    Here, no of stars in rowNum = (2 * rowNum) - maxStarsPossible
-
 */
 
 function hourGlassPatternStar(n: number) {
-    let totalRows: number = (2 * n) - 1;
-    let maxStarsPossible: number = (2 * n) - 1;
-    let patRow: string = '';
+    const maxChars: number = (2 * n) - 1;
+    const mid: number = Math.floor(maxChars / 2) + 1;
 
-    for(let row = 1; row <= totalRows; row++) {
-        patRow = '';
-        if(row <= n) {
-            let starsInRow: number = (maxStarsPossible - (2 * (row - 1)));
-            let spacesInRowEachSide: number = Math.floor((maxStarsPossible - starsInRow) / 2);
+    let oddNumStarter: number = 3;
 
-            patRow += '  '.repeat(spacesInRowEachSide);
-            patRow += ' *'.repeat(starsInRow);
-            patRow += '  '.repeat(spacesInRowEachSide);
+    for (let i = 1; i <= maxChars; i++) {
+        let patRow: string = '';
 
-            console.log(patRow);
-        } else {
-            let starsInRow: number = ((2 * row) - maxStarsPossible);
-            let spacesInRowEachSide: number = Math.floor((maxStarsPossible - starsInRow) / 2);
+        if (i <= mid) {
+            const spacesOnEachSide: number = (i - 1);
+            const charsInTheRow: number = maxChars - (2 * spacesOnEachSide);
 
-            patRow += '  '.repeat(spacesInRowEachSide);
-            patRow += ' *'.repeat(starsInRow);
-            patRow += '  '.repeat(spacesInRowEachSide);
-
-            console.log(patRow);
+            patRow = '  '.repeat(spacesOnEachSide) + '* '.repeat(charsInTheRow) + '  '.repeat(spacesOnEachSide);
         }
+        else {
+            const charsInTheRow: number = oddNumStarter;
+            oddNumStarter += 2; // update the current odd number
+
+            const spacesOnEachSide: number = Math.floor((maxChars - charsInTheRow) / 2);
+
+            patRow = '  '.repeat(spacesOnEachSide) + '* '.repeat(charsInTheRow) + '  '.repeat(spacesOnEachSide);
+        }
+
+        console.log(patRow);
     }
 }
 
 function hourGlassPatternNumber(n: number) {
-    let totalRows: number = (2 * n) - 1;
-    let maxNumsPossible: number = (2 * n) - 1;
-    let patRow: string = '';
+    const maxChars: number = (2 * n) - 1;
+    const mid: number = Math.floor(maxChars / 2) + 1;
 
-    for(let row = 1; row <= totalRows; row++) {
-        patRow = '';
-        if(row <= n) {
-            let numsInRow: number = (maxNumsPossible - (2 * (row - 1)));
-            let spacesInRowEachSide: number = Math.floor((maxNumsPossible - numsInRow) / 2);
+    let oddNumStarter: number = 3;
 
-            patRow += '  '.repeat(spacesInRowEachSide);
-           for(let num = 1; num <= numsInRow; num++) patRow += ' ' + num;
-            patRow += '  '.repeat(spacesInRowEachSide);
+    for (let i = 1; i <= maxChars; i++) {
+        let patRow: string = '';
 
-            console.log(patRow);
-        } else {
-            let numsInRow: number = ((2 * row) - maxNumsPossible);
-            let spacesInRowEachSide: number = Math.floor((maxNumsPossible - numsInRow) / 2);
+        if (i <= mid) {
+            const spacesOnEachSide: number = (i - 1);
+            const charsInTheRow: number = maxChars - (2 * spacesOnEachSide);
 
-            patRow += '  '.repeat(spacesInRowEachSide);
-           for(let num = 1; num <= numsInRow; num++) patRow += ' ' + num;
-            patRow += '  '.repeat(spacesInRowEachSide);
+            // add numbers
+            for (let j = 1; j <= charsInTheRow; j++) {
+                patRow += j + ' ';
+            }
 
-            console.log(patRow);
+            // add spaces now
+            patRow = '  '.repeat(spacesOnEachSide) + patRow + '  '.repeat(spacesOnEachSide);
         }
+        else {
+            const charsInTheRow: number = oddNumStarter;
+            oddNumStarter += 2; // update the current odd number
+
+            const spacesOnEachSide: number = Math.floor((maxChars - charsInTheRow) / 2);
+
+            // add numbers
+            for (let j = 1; j <= charsInTheRow; j++) {
+                patRow += j + ' ';
+            }
+
+            // add spaces now
+            patRow = '  '.repeat(spacesOnEachSide) + patRow + '  '.repeat(spacesOnEachSide);
+        }
+
+        console.log(patRow);
     }
 }
-function hourGlassPatternChar(n: number, startChar: string = 'A') {
-    let totalRows: number = (2 * n) - 1;
-    let maxCharsPossible: number = (2 * n) - 1;
-    let patRow: string = '';
-    let startCharIndex: number = startChar.charCodeAt(0) - 1;
 
-    for(let row = 1; row <= totalRows; row++) {
-        patRow = '';
-        if(row <= n) {
-            let charsInRow: number = (maxCharsPossible - (2 * (row - 1)));
-            let spacesInRowEachSide: number = Math.floor((maxCharsPossible - charsInRow) / 2);
+function hourGlassPatternChar(n: number) {
+    const maxChars: number = (2 * n) - 1;
+    const mid: number = Math.floor(maxChars / 2) + 1;
+    const startChar: string = 'A';
 
-            patRow += '  '.repeat(spacesInRowEachSide);
-           for(let charNum = 1; charNum <= charsInRow; charNum++) patRow += ' ' + String.fromCharCode(startCharIndex + charNum);
-            patRow += '  '.repeat(spacesInRowEachSide);
+    let oddNumStarter: number = 3;
 
-            console.log(patRow);
-        } else {
-            let charsInRow: number = ((2 * row) - maxCharsPossible);
-            let spacesInRowEachSide: number = Math.floor((maxCharsPossible - charsInRow) / 2);
+    for (let i = 1; i <= maxChars; i++) {
+        let patRow: string = '';
 
-            patRow += '  '.repeat(spacesInRowEachSide);
-           for(let charNum = 1; charNum <= charsInRow; charNum++) patRow += ' ' + String.fromCharCode(startCharIndex + charNum);
-            patRow += '  '.repeat(spacesInRowEachSide);
+        if (i <= mid) {
+            const spacesOnEachSide: number = (i - 1);
+            const charsInTheRow: number = maxChars - (2 * spacesOnEachSide);
 
-            console.log(patRow);
+            // add characters
+            for (let j = 1; j <= charsInTheRow; j++) {
+                patRow += String.fromCharCode(startChar.charCodeAt(0) + (j - 1)) + ' ';
+            }
+
+            // add spaces now
+            patRow = '  '.repeat(spacesOnEachSide) + patRow + '  '.repeat(spacesOnEachSide);
         }
+        else {
+            const charsInTheRow: number = oddNumStarter;
+            oddNumStarter += 2; // update the current odd number
+
+            const spacesOnEachSide: number = Math.floor((maxChars - charsInTheRow) / 2);
+
+            // add characters
+            for (let j = 1; j <= charsInTheRow; j++) {
+                patRow += String.fromCharCode(startChar.charCodeAt(0) + (j - 1)) + ' ';
+            }
+
+            // add spaces now
+            patRow = '  '.repeat(spacesOnEachSide) + patRow + '  '.repeat(spacesOnEachSide);
+        }
+
+        console.log(patRow);
     }
 }

@@ -22,6 +22,13 @@ row7 -> 2 spaces + 5 char + 2 spaces
 row8 -> 3 spaces + 3 char + 3 spaces
 row9 -> 4 spaces + 1 char + 4 spaces
 
+NOTE: in such questions where there are increasing decreasing combinations
+like upper and lower pyramid
+And, if we are given n = 5
+
+automatically understand that we need to iterate till (2 * n) - 1 => 9
+based on maxChar count
+
 */
 
 function diamondPatternNumber(n: number): void {

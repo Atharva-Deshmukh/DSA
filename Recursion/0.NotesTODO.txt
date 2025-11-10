@@ -1,0 +1,31 @@
+                                Functional Recursion (Return-based)
+                                -----------------------------------
+
+You return the final result from each recursive call.
+
+Example: Sum of first n numbers
+int sumFunctional(int n) {
+    if (n == 0) return 0;
+    return n + sumFunctional(n - 1);
+}
+
+
+                        Parameterized Recursion (Carry value as parameter)
+                        --------------------------------------------------
+
+You pass the intermediate result as a parameter.
+
+Example: Sum of first n numbers
+void sumParameterized(int n, int sum) {
+    if (n == 0) {
+        cout << sum << endl;
+        return;
+    }
+    sumParameterized(n - 1, sum + n);
+}
+
+It builds the result as it goes, like carrying a running total.
+
+
+                            Tail Recursion and how it is optimal?
+                            -------------------------------------

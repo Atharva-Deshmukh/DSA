@@ -15,14 +15,12 @@ f(5) --> print(5)
         
 
 */
-let N = parseInt(prompt("Till what number u want to print -> ", "5 (say)"));
+function printFirstN_NumbersReverse(n: number): void {
 
-function printSeries(n: number) {
-  if (n > 0) {
-    console.warn(n);
-    printSeries(n - 1);
-  }
-  return;
+    if(n <= 0) return;
+
+    console.log(n);
+    printFirstN_NumbersReverse(n-1);
 }
 
-printSeries(N);
+printFirstN_NumbersReverse(5);

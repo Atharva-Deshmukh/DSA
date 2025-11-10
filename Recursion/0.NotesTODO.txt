@@ -19,6 +19,7 @@ It builds the result as it goes, like carrying a running total.
                                 -----------------------------------
 
 You return the final result from each recursive call.
+You want the function to return something.
 
 Example: Sum of first n numbers
 int sumFunctional(int n) {

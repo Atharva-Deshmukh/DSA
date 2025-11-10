@@ -15,14 +15,15 @@ f(5) --> print(5)
         
 print starts from bottom up
 */
-let N = parseInt(prompt("Till what number u want to print -> ", "5 (say)"));
 
-function printSeries(n: number) {
-  if (n > 0) {
-    printSeries(n - 1);
-    console.warn(n);
-  }
-  return;
+function printFirstN_Numbers(n: number): void {
+
+    if(n <= 0) return;
+
+    printFirstN_Numbers(n-1);
+
+    console.log(n);
+
 }
 
-printSeries(N);
+printFirstN_Numbers(5);

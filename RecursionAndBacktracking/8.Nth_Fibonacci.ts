@@ -86,7 +86,7 @@ function nthFibonacciNumber_Iterative(n: number): number {
     return f1;
 }
  
- /* Recursive WAY 1
+ /* Recursive WAY 1 - Functional recursion
 
                             fib(4)
                             /     \
@@ -110,56 +110,29 @@ function nthFibonacciNumber_Recursive(n: number): number {
     else return nthFibonacciNumber_Recursive(n-1) + nthFibonacciNumber_Recursive(n-2);
 }
 
-    /* Recursive    WAY 2             if series --> 1,1,2,3,5,8,13,21,34,55,89
+/* Recursive WAY 2 - Parametric Recursion  
 
-    f(5, 0, 1)             
-          \
-       f(4, 1, 1)          
-            \
-        f(3, 1, 2)         
-              \
-            f(2, 2, 3)     
+            F(5, 0, 1)
                 \
-                f(1, 3, 5) 
-                  \
-                  f(0, 5, 8)    --> 5 and keeps this returning to parent
+                F(4, 1, 1)
+                    \
+                    F(3, 1, 2)
+                        \
+                        F(2, 2, 3)
+                            \
+                            F(1, 3, 5)  --> nth fibonacci number, if we start from 0
+                                \
+                                F(0, 5, 8)
 
-    TC: O(n)
-    SC: O(n)
-*/
-    function N_Fibonacci_REV_rec(n: number, f1: number, f2: number): number {
-      if (n === 0) {
-        return f1;
+    0 1 1 2 3 5
+                                    
+ */
+
+    function N_Fibonacci(n: number, f0: number, f1: number): number {
+      if (n === 1) {
+        return f0;
       }
 
-      return N_Fibonacci_REV_rec(n - 1, f2, f1 + f2);
+      return N_Fibonacci(n - 1, f1, f0 + f1);
     }
-
-    let n1: number = 5;
-    console.warn(N_Fibonacci_REV_rec(n1, 0, 1));
-
-    /* Recursive    WAY 3             if series --> 0, 1,1,2,3,5,8,13,21,34,55,89
-
-    f(5, 0, 1)             
-          \
-       f(4, 1, 1)          
-            \
-        f(3, 1, 2)         
-              \
-            f(2, 2, 3)     
-                \
-                f(1, 3, 5)  --> 3 and keeps this returning to parent
-     
-
-    TC: O(n)
-    SC: O(n)
-*/
-function N_Fibonacci_REV_rec(n: number, f1: number, f2: number): number {
-   if (n === 1) {
-     return f1;
-   }
-
-   return N_Fibonacci_REV_rec(n - 1, f2, f1 + f2);
- }
-
 

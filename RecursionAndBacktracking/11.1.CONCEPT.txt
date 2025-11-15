@@ -1,0 +1,13 @@
+You use ans.push([...currentCombo]) to create a new copy of the current combination — not a reference.
+If you just use ans.push(currentCombo), you're pushing a reference to the same array that keeps changing 
+during backtracking.
+
+💥 What goes wrong with ans.push(currentCombo)?
+
+Arrays in JavaScript are reference types.
+
+So when you do ans.push(currentCombo), all entries in ans will eventually point to the same array, 
+which will be mutated during backtracking.
+
+Final output will have repeated or wrong values, because all saved combinations refer to the same 
+changing array.

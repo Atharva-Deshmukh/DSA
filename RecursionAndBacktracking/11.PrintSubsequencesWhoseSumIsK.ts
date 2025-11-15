@@ -1,3 +1,11 @@
+/* Patterns generally asked:
+
+- Print all
+- Print any one
+- Print count
+
+*/
+
 function genrateAllSubsequencesWithSumK(inputArr: number[], n: number, k: number): number[][] {
 
     let subsequencesWithSumK: Set<number[]> = new Set<number[]>();

@@ -156,8 +156,9 @@ F(0, [])
 [c]
 []
 
-
-TC: O(2^n) since we are making choices to include the current character or not
+Number of subsequences to generate = 2^n
+Time required to generate each subsequence = O(n) to print/store it
+TC: n * O(2^n) since we are making choices to include the current character or not
 SC: O(n)
 
 let s = aba
@@ -310,6 +311,7 @@ console.log(genrateAllPossibleSubsequences("abc", 3));
    ["", "a", "ab", "abc", "ac", "b", "bc", "c"] 
 
 TC: O(m * log m)     // where m = number of unique subsequences (≤ 2^n)
+Mathematically: O(n² · 2ⁿ)
 */
 
 

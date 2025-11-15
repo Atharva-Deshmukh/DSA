@@ -72,3 +72,38 @@ function genrateAllSubsequencesWithSumK(inputArr: number[], n: number, k: number
 
     return Array.from(subsequencesWithSumK);
 }
+
+/* Little modification to print only the count */
+function countAllSubsequencesWithSumK(inputArr: number[], n: number, k: number): number {
+
+    let subsequencesWithSumK: Set<number[]> = new Set<number[]>();
+
+    function generateSubsequencesOfArray(arr: number[], n: number, currIndex: number, sumTillNow: number): void {
+        // Base case: Return the array generated till now
+        if (currIndex >= n) {
+            if (sumTillNow === k)  subsequencesWithSumK.add([...arr]); // send a copy, due to reference duplication
+            sumTillNow = 0; // reset the sum for the next combination
+            return;
+        }
+
+        // include the current element OF INPUT ARRAY in the subsequence and get the further possible combinations
+        const currentElement: number = inputArr[currIndex];
+        arr.push(currentElement);
+        sumTillNow += currentElement;
+        generateSubsequencesOfArray(arr, n, currIndex + 1, sumTillNow);
+
+        // exclude the current element OF INPUT ARRAY in the subsequence and get the further possible combinations
+        sumTillNow -= currentElement;
+        arr.pop();
+        generateSubsequencesOfArray(arr, n, currIndex + 1, sumTillNow);
+    }
+
+    generateSubsequencesOfArray([], n, 0, 0);
+
+    return subsequencesWithSumK.size;
+}
+
+let arr: number[] = [5, 2, 3, 10, 6, 8];
+let n: number = arr.length
+let k: number = 10;
+console.log(countAllSubsequencesWithSumK(arr, n, k));

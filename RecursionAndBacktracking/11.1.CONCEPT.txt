@@ -11,3 +11,28 @@ which will be mutated during backtracking.
 
 Final output will have repeated or wrong values, because all saved combinations refer to the same 
 changing array.
+
+------------------------------------------------------------------------------------
+
+let arr: number[][] = [
+    [1, 2],
+    [3, 4]
+];
+let numArr: number[] = [4, 5, 6];
+
+We stringified the array here
+console.log(arr.join(',')); "1,2,3,4" 
+console.log(numArr.join(',')); "4,5,6" 
+
+let adArr: number[] = [11];
+let arrSet = new Set<number[]>();
+arrSet.add([1,2]);
+arrSet.add([1,2]);
+arrSet.add([...adArr]);
+arrSet.add([...adArr]);
+console.log(arrSet); // Set (4) {[1, 2], [1, 2], [11], [11]} 
+/* Even though both arrays contain the same numbers, they are different references in memory, 
+   and Sets only check reference equality, not value equality. 
+   You need to serialize the array into a format that supports value-based comparison (like a string), 
+   and store strings in the Set, then parse them back.
+*/

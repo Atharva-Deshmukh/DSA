@@ -64,14 +64,18 @@ So, Space = O(N) (stack + path) + O(M × N) (output size)
 */
 
 function combinationSum2(candidates: number[], target: number): number[][] {
-    const result: Set<string> = new Set<string>();
-    const output: number[][] = [];
+    let result: Set<string> = new Set<string>();
+    let output: number[][] = [];
 
     /* Sort to bring duplicates together */
     candidates.sort((a, b) => a - b);
 
     function backtrack(currCombo: number[], currIndex: number, currSum: number) {
         if (currSum === target) {
+
+            /* Stingify the array and then check if it there in set or not\
+               Set compares references, not actual value, hence stingify is needed */
+
             const key = currCombo.join(',');
             if (!result.has(key)) {
                 result.add(key);

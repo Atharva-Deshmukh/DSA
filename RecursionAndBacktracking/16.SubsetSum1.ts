@@ -33,34 +33,25 @@ TC: O(n * (2^n))
 SC: O(n)
 */
 
-function isSubsetSum(arr, sum) {
-    let subsetsWithSumK = [];
+function subsets(arr: number[]): number[][] {
+    let subsets: number[][] = [];
     let n = arr.length;
 
-    function backtrack(currComb, n, currIndex, sumTillNow) {
-        // Base case: Return the array generated till now
+    function backtrack(currComb: number[], n: number, currIndex: number): void {
         if (currIndex >= n) {
-            if (sumTillNow === sum) {
-                subsetsWithSumK.push([...currComb]); // send a copy, due to reference duplication
-                sumTillNow = 0;
-            }
+            subsets.push([...currComb]);
             return;
         }
 
-        // include the current element OF INPUT ARRAY in the subsequence and get the further possible combinations
         const currentElement = arr[currIndex];
         currComb.push(currentElement);
-        sumTillNow += currentElement;
-        backtrack(currComb, n, currIndex + 1, sumTillNow);
+        backtrack(currComb, n, currIndex + 1);
 
-        // exclude the current element OF INPUT ARRAY in the subsequence and get the further possible combinations
-        sumTillNow -= currentElement;
         currComb.pop();
-        backtrack(currComb, n, currIndex + 1, sumTillNow);
+        backtrack(currComb, n, currIndex + 1);
     }
 
-    backtrack([], n, 0, 0);
+    backtrack([], n, 0);
 
-    return subsetsWithSumK;
-
-}
+    return subsets;
+};

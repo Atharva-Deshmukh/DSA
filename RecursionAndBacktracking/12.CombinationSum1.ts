@@ -97,6 +97,64 @@ T = max length of one combination
 
 */
 
+/* TREE DIAGRAM
+candidates = [1, 2], target = 2, 
+
+backtrack([], 0, 0)
+    include 1
+    ---------
+    backtrack([1], 0, 1)  
+    index = 0
+    sum = 1
+    sum < target
+        
+        include 1
+        ---------
+        backtrack([1, 1], 0, 2)
+        sum = 2 = target
+        RETURN → result = [[1,1]]
+
+        exclude 1
+        ---------
+        backtrack([1], 1, 1)  
+        index = 1
+        sum = 1 
+        sum < target
+
+                include 2
+                ---------
+                backtrack([1, 2], 1, 3)
+                sum = 3 > target
+                RETURN
+
+                exclude 2
+                ---------
+                backtrack([1], 2, 1)
+                sum = 1 < target
+                index >= 2 
+                RETURN
+
+`
+    exclude 1
+    ---------
+    backtrack([], 1, 0)
+    index = 1
+    sum = 0 < target
+
+        include 2
+        ---------
+            backtrack([2], 1, 2)
+            sum = 2 = target
+            result = [[1,1], [2]]
+
+            exclude 2
+            ---------
+            backtrack([], 2, 0)
+            sum = 0 < target
+            index >= 2 
+            RETURN
+*/
+
 function combinationSum(candidates: number[], target: number): number[][] {
     let result: number[][] = [];
 

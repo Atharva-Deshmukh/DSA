@@ -67,6 +67,7 @@ function combinationSum2(candidates: number[], target: number): number[][] {
     const result: Set<string> = new Set<string>();
     const output: number[][] = [];
 
+    /* Sort to bring duplicates together */
     candidates.sort((a, b) => a - b);
 
     function backtrack(currCombo: number[], currIndex: number, currSum: number) {

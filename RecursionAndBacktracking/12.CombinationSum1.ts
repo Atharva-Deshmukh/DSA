@@ -98,7 +98,7 @@ T = max length of one combination
 */
 
 function combinationSum(candidates: number[], target: number): number[][] {
-    const result: number[][] = [];
+    let result: number[][] = [];
 
     function backtrack(currCombo: number[], currIndex: number, currSum: number): void {
         if (currSum === target) {

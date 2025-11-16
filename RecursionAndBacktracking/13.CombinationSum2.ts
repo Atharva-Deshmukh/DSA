@@ -34,71 +34,95 @@ Two Backtracking Styles
 | 2. For-loop recursion    | You loop through choices and only recurse on “take”.                        |                                                  |
 |                          | “Not-take” happens naturally by skipping in the loop                        | Combination Sum II (Leetcode 40), Permutations   |
 
-Time Complexity = O(2^N × K)
+Time Complexity = O(2^N)
+
+Explanation:
+- In the worst case (when no pruning or duplicate skipping helps), each element can either be picked or not → 2^N combinations.
+- Each recursive call does constant work (push, pop, add), and copying the array (res.push([...curr])) takes O(K), where K is the current combination size.
+- But since we're only adding **valid combinations summing to target**, actual branching is heavily reduced by:
+  1. Sorting
+  2. Skipping duplicates: (i > start && candidates[i] === candidates[i - 1])
+  3. Pruning: (sum + candidates[i] > target) ⇒ breaks further exploration.
+
+So:
+👉 Worst case (loose upper bound): **O(2^N × K)**  
+👉 Average case (with pruning + skip): **Much better**
+
+---
+
+Space Complexity = O(N) [stack + path] + O(M × K) [output]
 
 Where:
-- 2^N is the number of subsets (worst case)
-- K is the average length of each combination (for .join(','), output.push([...]), etc.)
+- N = number of input elements
+- M = number of valid combinations in output
+- K = average size of each combination
 
-The number of recursive calls is bounded by 2^N in worst case (subset-style).
+1. **Recursive Call Stack**: O(N) in worst case (depth of tree)
+2. **Current Path (`curr`)**: O(N) at most
+3. **Output `res[][]`**:
+   - Can store up to M combinations
+   - Each of up to K length (≤ N)
+   - ⇒ O(M × K)
 
-But due to:
-Sorting
-Duplicate skipping (if (i > start && arr[i] == arr[i-1]) continue)
-Early pruning (if (sum > target) break)
+So:
+👉 Total space: **O(N + M × K)**
 
-… the actual number of valid paths is far fewer.
+                    []
+              /     |       \
+          [1]      [1]❌   [2]
+         /   \                 \
+     [1,1]  [1,2]*             [2,X]
+     /
+[1,1,2] (sum=4 ❌)
 
-Space Complexity = O(N) (stack + path) + O(M × N) (output size)
+✅ = Valid combination (sum == target)
+X  = End of array
+*  = Result added
 
-1. Recursive Call Stack:
-Max recursion depth = O(N) (you go from index 0 to N)
+[]
+├── 1 (index 0) → [1], sum = 1
+│   ├── 1 (index 1) → [1,1], sum = 2
+│   │   └── 2 (index 2) → [1,1,2], sum = 4 ❌ skip (sum > target)
+│   └── 2 (index 2) → [1,2], sum = 3 ✅ valid → push [1,2]
+├── 1 (index 1) ❌ skipped (duplicate at same level)
+└── 2 (index 2) → [2], sum = 2
+    └── (no more elements) → end
 
-2. Current Combination Storage (currCombo):
-At any point, currCombo holds up to O(N) elements
 
-3. Result Storage:
-Let M be number of valid combinations
-Each is up to O(N) in size
-So, Space = O(N) (stack + path) + O(M × N) (output size)
 */
 
+
 function combinationSum2(candidates: number[], target: number): number[][] {
-    let result: Set<string> = new Set<string>();
-    let output: number[][] = [];
+    const res: number[][] = [];
 
     /* Sort to bring duplicates together */
     candidates.sort((a, b) => a - b);
 
-    function backtrack(currCombo: number[], currIndex: number, currSum: number) {
-        if (currSum === target) {
-
-            /* Stingify the array and then check if it there in set or not\
-               Set compares references, not actual value, hence stingify is needed */
-
-            const key = currCombo.join(',');
-            if (!result.has(key)) {
-                result.add(key);
-                output.push([...currCombo]);
-            }
+    function backtrack(start: number, currCombo: number[], sum: number) {
+        if (sum === target) {
+            res.push([...currCombo]);
             return;
         }
 
-        for (let i = currIndex; i < candidates.length; i++) {
-            if ((i > currIndex) && (candidates[i] === candidates[i - 1])) continue; // skip dup
+        for (let i = start; i < candidates.length; i++) {
 
-            // whenever there is a break in the loop, don't mutate before checking, it will pass incorrect inputs for next iterations
-            // currSum += candidates[i];
-            if ((currSum + candidates[i]) > target) break;
+            /* “If I already included this number at this level (i.e., arr[i] == arr[i-1]), 
+            don’t pick it again from the same level.”
+            This is level-based pruning — it skips over duplicate decisions at the same depth.
+            So:
+            - Only one path per duplicate is allowed.
+            - No need for Set — duplicates never get generated at all.
+            */
+            if (i > start && candidates[i] === candidates[i - 1]) continue;
+
+            if (sum + candidates[i] > target) break;
 
             currCombo.push(candidates[i]);
-            backtrack(currCombo, i + 1, currSum + candidates[i]);
-
-            /* The loop automatically handles not-take scneario, so we basically take only when needed */
+            backtrack(i + 1, currCombo, sum + candidates[i]);
             currCombo.pop();
         }
     }
 
-    backtrack([], 0, 0);
-    return output;
+    backtrack(0, [], 0);
+    return res;
 }

@@ -1,0 +1,73 @@
+                        Parameterized Recursion (Carry value as parameter)
+                        --------------------------------------------------
+
+You pass the intermediate result as a parameter.
+You want the parameter to do the work.
+
+Example: Sum of first n numbers
+void sumParameterized(int n, int sum) {
+    if (n == 0) {
+        cout << sum << endl;
+        return;
+    }
+    sumParameterized(n - 1, sum + n);
+}
+
+It builds the result as it goes, like carrying a running total.
+                                
+                                Functional Recursion (Return-based)
+                                -----------------------------------
+
+You return the final result from each recursive call.
+You want the function to return something.
+
+Example: Sum of first n numbers
+int sumFunctional(int n) {
+    if (n == 0) return 0;
+    return n + sumFunctional(n - 1);
+}
+
+
+
+                            Tail Recursion and how it is optimal?
+                            -------------------------------------
+
+A function is tail recursive if the recursive call is the last operation in the function — i.e., 
+the function returns the result of the recursive call directly, with no further computation needed 
+after the recursive call.
+
+// Tail Recursive
+int factorial_tail(int n, int acc = 1) {
+    if (n == 0) return acc;
+    return factorial_tail(n - 1, acc * n);
+}
+
+🔁 What is Normal Recursion?
+
+Normal recursion (also called non-tail recursion) performs some operations after the recursive call returns, 
+such as multiplying, adding, etc.
+
+// Normal Recursion
+int factorial_normal(int n) {
+    if (n == 0) return 1;
+    return n * factorial_normal(n - 1);
+}
+
+
+Why is Tail Recursion More Optimal?
+
+1. Stack Frame Optimization (Tail Call Optimization - TCO):
+In tail recursion, since no work is needed after the recursive call, the current stack frame is not needed anymore.
+Many compilers/languages optimize tail recursive functions by reusing the current function’s stack frame, avoiding stack buildup.
+➡️ This leads to constant stack space (O(1)), even for deep recursion.
+
+2. In Normal Recursion:
+
+Every recursive call adds a new stack frame, which must be kept until the final result is calculated.
+This leads to O(n) space complexity and risk of stack overflow for large n.
+
+Why do we write SC = O(n) even when tail recursion exists?
+🔹 Because most languages do not guarantee TCO.
+
+In interviews and competitive programming, unless explicitly stated, we assume no TCO.
+Even tail-recursive code still consumes stack space without TCO.

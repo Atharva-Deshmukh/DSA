@@ -1,0 +1,32 @@
+Hashing – Interview Problem List (SDET-2 Optimized)
+
+🟢 Core Must-Do (Highest Priority)
+
+1. First non-repeating character in a string
+2. Check if two strings are anagrams
+3. Find all duplicate elements in an array
+4. Check if array contains duplicates
+5. Count frequency of elements in an array
+6. Find element with maximum frequency
+7. Find element with minimum frequency
+8. Majority element (frequency > n/2)
+9. Two Sum
+10. Intersection of two arrays
+11. Union of two arrays
+12. Find missing number using hashing
+13. Find repeating and missing number
+14. Check if string is palindrome (using hash map)
+15. Longest substring without repeating characters
+
+🟡 Medium Level (Very Common in Interviews)
+
+16. Subarray with sum equal to K
+17. Longest subarray with equal 0s and 1s
+18. Count pairs with given sum
+19. Count distinct elements in every window of size K
+20. Group anagrams
+21. Sort characters by frequency
+22. Find all anagrams in a string
+23. Longest consecutive sequence
+24. Find common elements in three sorted arrays
+25. Check if two arrays are equal

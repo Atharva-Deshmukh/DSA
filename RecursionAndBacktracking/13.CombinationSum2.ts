@@ -89,6 +89,32 @@ X  = End of array
     └── (no more elements) → end
 
 
+TREE DIAGRAM
+candidates = [1, 1, 2, 3], target = 3, 
+
+backtrack([], 0, 0)
+│
+├── i=0: candidates[0]=1
+│   backtrack([1], 1, 1)
+│   │
+│   ├── i=1: candidates[1]=1 → SKIPPED (i > currIndex && candidates[i] === candidates[i-1])
+│   │
+│   ├── i=2: candidates[2]=2
+│   │   backtrack([1,2], 3, 3) → TARGET FOUND → Add [1,2]
+│   │
+│   └── i=3: candidates[3]=3 → SKIPPED (1+3=4 > 3)
+│
+├── i=1: candidates[1]=1 → SKIPPED (i > currIndex && candidates[i] === candidates[i-1])
+│
+├── i=2: candidates[2]=2
+│   backtrack([2], 3, 2)
+│   │
+│   └── i=3: candidates[3]=3 → SKIPPED (2+3=5 > 3)
+│
+└── i=3: candidates[3]=3
+    backtrack([3], 4, 3) → TARGET FOUND → Add [3]
+
+
 */
 
 
@@ -98,13 +124,13 @@ function combinationSum2(candidates: number[], target: number): number[][] {
     /* Sort to bring duplicates together */
     candidates.sort((a, b) => a - b);
 
-    function backtrack(start: number, currCombo: number[], sum: number) {
+    function backtrack(currCombo: number[], currIndex: number, sum: number) {
         if (sum === target) {
             res.push([...currCombo]);
             return;
         }
 
-        for (let i = start; i < candidates.length; i++) {
+        for (let i = currIndex; i < candidates.length; i++) {
 
             /* “If I already included this number at this level (i.e., arr[i] == arr[i-1]), 
             don’t pick it again from the same level.”
@@ -113,16 +139,16 @@ function combinationSum2(candidates: number[], target: number): number[][] {
             - Only one path per duplicate is allowed.
             - No need for Set — duplicates never get generated at all.
             */
-            if (i > start && candidates[i] === candidates[i - 1]) continue;
+            if (i > currIndex && candidates[i] === candidates[i - 1]) continue;
 
             if (sum + candidates[i] > target) break;
 
             currCombo.push(candidates[i]);
-            backtrack(i + 1, currCombo, sum + candidates[i]);
+            backtrack(currCombo, i + 1, sum + candidates[i]);
             currCombo.pop();
         }
     }
 
-    backtrack(0, [], 0);
+    backtrack([], 0, 0);
     return res;
 }

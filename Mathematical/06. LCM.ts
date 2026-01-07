@@ -1,4 +1,42 @@
-/* Input: a = 15, b = 25     Output: 75
+/* WHAT IS LCM?
+
+ It is the smallest positive number that is evenly divisible by both of them. 
+ For example, the LCM of 4 and 6 is 12, as 12 is the smallest number that is 
+ divisible by both 4 and 6.
+
+
+                                    PRACTICAL USE OF LCM:
+                                    --------------------
+
+Ex-1: What is the dimension of smallest square that can be formed with this tile (4 cm * 6 cm)
+====> LCM (4, 6) = 12 Square -> 12 * 12
+
++------+------+ 
+|      |      |  ← 4 cm
+|  6×4 |  6×4 |
++------+------+ 
+|      |      |  ← 4 cm
+|  6×4 |  6×4 |
++------+------+ 
+|      |      |  ← 4 cm
+|  6×4 |  6×4 |
++------+------+
+
+Ex-1: What is the smallest equal length that both rods can form together?
+      Rods -> 6 cm, 8 cm
+====> LCM (6, 8) = 24
+
+          6       6      6     6
+Rod-1: |------|------|------|------|
+
+            8        8       8
+Rod-2: |--------|--------|--------|
+
+
+
+
+
+Input: a = 15, b = 25     Output: 75
 
 Way 1: Extreme brute force
 - A simple solution is to find all prime factors of both numbers, then find union of 

@@ -7,7 +7,22 @@ Logic: Normal Looping
 - Loop till the minimum of two numbers and then check for divisors of both, get the maximum
 
 TC: O(min(a,b))
-SC: O(1) */
+SC: O(1) 
+
+
+                                    PRACTICAL USE OF GCD / HCF:
+                                    ---------------------------
+
+Lets say we have 9 candies and 6 chocolates.
+What are Max NUMBER OF GROUPS that can be formed such that each group has equal number of both items.
+
+Here, we need such a max number that can divide both 9 and 6 -> 3
+
+Group-1 --> 3 candies 2 chocolates
+Group-2 --> 3 candies 2 chocolates
+Group-3 --> 3 candies 2 chocolates
+
+*/
 
 function GCD(a: number, b: number): number {
     if( a === 0 && b === 0) return 0;

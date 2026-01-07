@@ -11,6 +11,12 @@ SC: O(1)
 
 Way 2:
 - Observe that the factors of n exists in pair ALWAYS
+
+  Ex: 100 --> 1, 2, 4, 5, 10, 20, 25, 50, 100
+                           |
+            If we check till 10, then 20, 25... don't need to be checked as only pairs will be factors
+            no other number after 10, hence go till sqrt(n)
+
 - so rather than checking from [2,n], check only till sqrt(n)
 - Recall that a perfect square has a duplicate factor pair, (10,10) in case of 100  
 

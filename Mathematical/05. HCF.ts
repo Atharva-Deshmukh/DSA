@@ -1,4 +1,8 @@
-/*  Way 1: Normal Brute force method
+/*  WHAT IS HCF/GCD?
+
+It is the greatest number that divides a set of numbers without leaving a remainder.
+
+Way 1: Normal Brute force method
 Input: a = 20, b = 28     Output: 4
 Input: a = 0,  b = 28     Output: 28, because any non-zero number divides 0 without leaving a remainder.
 Input: a = 0, b = 0       Output: 0,  because 0 divides 0 without leaving a remainder.

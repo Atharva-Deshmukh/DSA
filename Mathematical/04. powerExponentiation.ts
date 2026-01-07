@@ -93,3 +93,73 @@ function power(a, b) {
     }
     return result;
 }
+
+/* LEETCODE: 
+
+  1 large edge case misses -> 306/307
+
+  This fails for 
+  Input x = 2.00000 
+  n = -2147483648 
+  
+  Output 1.00000 
+  Expected 0.00000  X
+
+  Constraint was given: (( -2^31 <= base <= 2^31-1 )) 
+
+  Why it fails for power = -2147483648?
+  -------------------------------------
+
+  In many languages: abs(-2^31) = 2^31  ❌ (overflow) because upper limit = 2^31 - 1
+
+  In JavaScript All bitwise operations work on 32-bit signed integers
+
+  Range: [-2^31, 2^31 - 1]
+
+------------------------------------------------------
+INTERNALLY, JS WORKS THIS WAY:
+------------------------------------------------------
+
+Number (64-bit float)
+↓
+ToInt32 (32-bit signed integer)
+↓
+Apply bitwise operation
+------------------------------------------------------
+
+  Number in JS can safely represent integers up to 2^53 - 1
+  So, 2147483648 is perfectly valid here
+
+  But when we use bitwise operators, the above 32 bit transformation occurs
+
+  when we have =abs(-2^31) = 2^31 this crossed 32 bit, so its converted to -(2 ^ 31)
+
+  For power = 2147483648:
+
+  2147483648 (binary) → overflows → becomes -2147483648
+
+  while (power > 0) is skipped
+
+*/
+
+function myPow(base: number, power: number): number {
+    let ans = 1;
+
+    /* Before loop, modify base and power for negative indices */
+    if (power < 0) {
+        base = 1 / base;
+        power = Math.abs(power);
+    }
+
+    while (power > 0) {
+        if (power % 2 === 1) {
+            ans *= base;
+            power -= 1;
+        } else {
+            base *= base;
+            power = Math.floor(power / 2);
+        }
+    }
+
+    return ans;
+}

@@ -78,9 +78,15 @@ Dry run:
 
 
 TC: O(n * log(log(n)))  //Mathematically proven, Reason: Prime Harmonic Series
-SC: O(n) for maintaining sieve */
+SC: O(n) for maintaining sieve 
+
+O(n * log(log(n))) < O (n * sqrt(n)) 
+
+As n increases, (n * sqrt(n)) increases asymptotically, and exponentially, while log stays somewhat linear */
 
 function primeTillN(n: number): void {
+
+    // (n + 1) because we need to include n also
     let sieve: number[] = Array(n+1).fill(1);
 
     // mark the sieve

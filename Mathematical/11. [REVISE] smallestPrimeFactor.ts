@@ -1,6 +1,6 @@
-/* Its a query based question. I am covering 2 problems together
-- query wise prime factorisation
-- Smallest Prime factor 
+/* I am covering 2 problems together
+- query wise prime factorisation (school way to get Prime factors)
+- Prime factorisation using SPF (Smallest Prime Factor)
 
 let query = [12, 16, 60]
 12 --> 2 2 3                 spf = 2 

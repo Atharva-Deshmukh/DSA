@@ -1,6 +1,0 @@
-- REVISE, CONSOLIDATE AND MAKE NOTES
-
-- FIND RELATED QUESTIONS ON LC
-
-All +, -, * and / without using arithmetic operators
-DO THIS:  https://leetcode.com/problems/sum-of-two-integers/description/ 

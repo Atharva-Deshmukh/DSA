@@ -157,61 +157,70 @@ Another Method:
 
 */
 
-function multiplyTwoStrings(a: string, b: string): string {
-  let res: string = "";
-
-  // Edge case
-  if (a === "0" || b === "0") return "0";
-
-  let n1: number = a.length;
-  let n2: number = b.length;
-  let product: number[] = new Array(n1 + n2).fill(0);
-
-  // Iterate b from last
-  for(let i = n2 - 1; i >= 0; i--) {
-
-      // shift = index distance between any digit of b and last digit of b
-      let shift: number = (n2 - 1) - i;
-
-      // Each product with current digit of b needs separate carries to avoid addition with previous carries
-      let additionCarry: number = 0;
-      let productCarry: number = 0;
-
-      // Iterate a from last
-      for(let j = n1 - 1; j >= 0; j--) {
-
-          let prod: number = (Number(b[i]) * Number(a[j])) + productCarry;
-          let productDigit: number = prod % 10;
-          productCarry = Math.floor(prod / 10);
-
-          /*  j iterates n1 from last, but we are filling product[] from 0, so shift index
-
-                         a    =  e  f  g
-                      product[a, b, c, d]
-
-                      so, we are getting index in a from start onwards, since with shift that will be adjusted
-          
-                                                                   existing digit + productDigit + carry due to addition*/                                         
-          let totalSumAfterAdditionInArray: number = product[(n1 - 1 - j) + shift] + productDigit + additionCarry;
-          let digitToStoreInArray: number = totalSumAfterAdditionInArray % 10;
-          additionCarry = Math.floor(totalSumAfterAdditionInArray / 10);
-          product[(n1 - 1 - j) + shift] = digitToStoreInArray;
-
-      }
-
-      // if any carry remains, push it in the end
-      product[n1 + shift] = product[n1 + shift] + additionCarry + productCarry;
-
-  }
-
-  product.forEach((digit) => {
-      res = digit + res;  // elements automatically typecasts since they are added to a string
-  });
-
-  // Remove leading zeros, if any
-  return res.replace(/^0+/, "");
-
+function multiplyTwoLargeNumbers(a: string, b: string): string {
+    let res: string = "";
+    
+    const n1: number = a.length;
+    const n2: number = b.length;
+    
+    // product[] can be of size <= (n1 + n2)
+    let product: number[] = Array(n1 + n2).fill(0);
+    
+    
+    // corner cases
+    if( ((n1 === 1) || (n2 === 1)) && ((Number(a[0]) === 0) || (Number(b[0]) === 0)) ) return '0';
+    
+    // iterate second number from last
+    for(let i = (n2-1); i >= 0; i--) {
+        
+        let productCarry: number = 0;
+        let additionCarry: number = 0;
+        
+        // we are iterating from second number first, second number is multiplied with all digits in first number
+        // position of second number's digit = shift basically, 0th index in second number = 0 shift
+        const shift: number = (n2-1) - i;
+        
+        // iterate first number from last
+        for(let j = (n1-1); j >= 0; j--) {
+            const prod: number = (Number(b[i]) * Number(a[j])) + productCarry;
+            const prodDigit: number = prod % 10;
+            productCarry = Math.floor(prod / 10);
+            
+            // now, we will place fill product[] as a single array only
+            // currentDigit in product[] after calculating the shift = product[(n1-1-j) + shift]
+            
+            // n1-1-j instead of direct j since we are filling product[] from start, but j is in reverse order (n1-1 --> 0)
+            // to convert reverse order indexing to 0-based ascending indexing we use (n1-1-j)
+            // basically, adjustedIndex + shift
+            //                 (n1-1-j) + shift
+            
+            //                           existing digit in product[]  
+            const totalProduct: number = product[(n1-1-j) + shift] + prodDigit + additionCarry;
+            const digitToPlace: number = totalProduct % 10;
+            additionCarry = Math.floor(totalProduct / 10);
+            
+            // place the digit inside product[] after proper shifting
+            product[(n1-1-j) + shift] = digitToPlace;
+        }
+        
+            // if any carry remains, directly attach it at the end 
+            // no need to look for type of indexing since we will reverse product[] in the end, 
+            // go directly by size, directly attach carries at the end
+            product[n1 + shift] = product[n1 + shift] + productCarry + additionCarry;
+    }
+    
+    
+    // convert product[] to string in reversed format
+    product.forEach((ele) => {
+        res = ele + res;
+    });
+    
+    // remove any leading zeros
+    res = res.replace(/^0+/, "");
+    
+    return res;
 }
+
 
 
 

@@ -38,114 +38,70 @@ Scenarios of subtraction:
 TC: O(n1 + n2)
 SC:  O(max(n1, n2))  While storing larger and smaller number of two inputs  */
 
-/**
- * Returns 1 if s1 is larger or equal
- * Returns 2 if s2 is larger
- * @param s1 
- * @param s2 
- */
-function identifyLargerNum(s1: string, s2: string): number {
-  let n1: number = s1.length;
-  let n2: number = s2.length;
-
-  // Sure shot cases where no comparision needed
-  if(n1 > n2) return 1; 
-  if(n1 < n2) return 2;
-
-  /* Here we need comparision of just the first digits of both
-              299
-              300
-
-     So, if first digit is greater, anyhow that whole number is greater */
-  if(n1 === n2) {
-      return (Number(s1[0]) >= Number(s2[0])) ? 1: 2;
-  }
-
-  return -1;
-}
-
-function subtractLargeNumbers(s1: string, s2: string): string {
-  let difference: string = "";
-  let isBorrowTaken: boolean = false;
-  let isBorrowFromZeroTaken: boolean = false;
-
-  let largerNumResp: number = identifyLargerNum(s1, s2);
-  
-  let largerNum: string ;
-  let smallerNum: string;
-
-  if(largerNumResp === 1) {
-    largerNum = s1;
-    smallerNum = s2;
-  } else {
-    largerNum = s2;
-    smallerNum = s1;
-  }
-
-  let n1: number = largerNum.length;
-  let n2: number = smallerNum.length;
-
-  // Iterating from end to save reverse overhead
-  let i: number = n1 - 1;
-  let j: number = n2 - 1;
-
-  // traversing both at once 
-  while((i >= 0) && (j >= 0)) {
-
-      let d1: number = Number(largerNum[i]);
-      let d2: number = Number(smallerNum[j]);
-
-      if(isBorrowTaken === true) {
-          if(d1 === 0) {
-              d1 = 9; 
-              isBorrowFromZeroTaken = true;
-          }
-          else {
-              d1 = d1 - 1;
-              isBorrowTaken = false;
-              isBorrowFromZeroTaken = false;
-          }
-      }
-
-      if(d1 < d2) {                              // After digit--, if num1 < num2, add carry else directly subtract
-          d1 = 10 + d1;
-          isBorrowTaken = true;
-          difference = (d1 - d2) + difference;  // automatically typecasts into string
-      } else {
-          (isBorrowFromZeroTaken === true)? isBorrowTaken = true: false;
-          difference = (d1 - d2) + difference;
-      }
-
-      i--;
-      j--;
-  }
-
-  // Case when second number is exhausted, we are guaranteed that second num is always
-  // less than first num
-  while((j < 0) && (i >= 0)) {
-    let d1: number = Number(largerNum[i]);
-
-    if(isBorrowTaken === true) {
-      if(d1 === 0) d1 = 9;
-      else {
-      d1 = d1 - 1;
-      isBorrowTaken = false;
-      }
+/* Assume a > b */
+function subtractTwoLargeNumbers(a: string, b: string): string {
+    let res: string = "";
+    
+    const n1: number = a.length;
+    const n2: number = b.length;
+    
+    // corner cases
+    if((n2 === 0) && (n1 !== 0)) return a;
+    
+    let i: number = n1 - 1;
+    let j: number = n2 - 1;
+    let borrow: number = 0;
+    let isBorrowTaken: boolean = false;
+    
+    while((i >= 0) && (j >= 0)) {
+        let d1: number = Number(a[i]);
+        let d2: number = Number(b[j]);
+        
+        // if due to previous operation, borrow was taken, reduce d1 by 1
+        // but if d1 is 0, then we make it 9
+        if(isBorrowTaken === true) {
+            if(d1 === 0) d1 = 9;
+            else {
+                d1 = d1 - 1;
+                isBorrowTaken = false;      // borrow had been consumed
+            }
+        }
+         
+        if(d1 < d2) {
+            d1 = 10 + d1;
+            isBorrowTaken = true;
+        }
+        
+        const difference: number = d1 - d2;
+        const digitToPlace: number = difference;
+        
+        res = digitToPlace + res;
+        
+        i--;
+        j--;
     }
+    
+    while(i >= 0) {
+        let d1: number = Number(a[i]);
+        
+        // if due to previous operation, borrow was taken, reduce d1 by 1
+        // but if d1 is 0, then we make it 9
+        if(isBorrowTaken === true) {
+            if(d1 === 0) d1 = 9;
+            else {
+                d1 = d1 - 1;
+                isBorrowTaken = false;      // borrow had been consumed
+            }
+        }
+        
+        const difference: number = d1;
+        const digitToPlace: number = difference;
+        
+        res = digitToPlace + res;
+        
+        i--;
+    }
+  
 
-    difference = d1 + difference;
-    i--;
-  }
-
-  // remove trailing zeros, reusing existing variable
-  i = 0;
-  let count: number = 0;
-  while(i < difference.length) {
-    if(difference[i] === '0') count++;
-    i++;
-  }
-
-  if(count > 0) difference = difference.substring(count - 1, difference.length);
-
-  return difference;
+    return res;
 }

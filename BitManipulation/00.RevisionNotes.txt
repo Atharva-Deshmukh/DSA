@@ -1,31 +1,116 @@
-  ----------------------------------------Leetcode questions to revise-----------------------------------
-- Q4
-- Q13
-- Q19
+ --------------------------------------------CONCEPTS HERE ITSELF--------------------------------------------
+ ------------------------------------------------------------------------------------------------------------
+CHECK EVEN ODD:
 
-  --------------------------------------------Topics to revise--------------------------------------------
+            The LSB is set in case of Odd numbers
 
-  +, - *, / using bit manipulation
+            (n & 1) === 0 ==> EVEN
+            (n & 1) === 1 ==> ODD
 
-- 4. BK Algo
-- 11. Set bits from 1-N Logic
-- 14. Decimal to Binary
-- 15. Binary to Decimal
-- 17. Square of N
-- 20. Logic for 1s complement
-- 21. Logic for 2s complement
-- 22. Divide two numbers using Bit Manipulation
-- 23. Logic for power set (all input combinations)
-- 25. all Observations + MEMORISE concept of buckets in single number
-- 26. Technique to separate two numbers from their XOR
-- 27. Revise logic
-- 28. Revise logic
-- 29. Amazing logic (MEMORISE)
-- 30. Amazing logic (MEMORISE) // PENDING
-- 32. Amazing logic (MEMORISE) 
-- 33. Amazing logic (MEMORISE) 
-  --------------------------------------------CONCEPTS HERE ITSELF--------------------------------------------
+            function checkEvenOdd(n: number): boolean {
+                return Boolean(n&1);
+            }
 
+-------------------------------------------------------------------------------------------------------------
+COUNT TOTAL BITS A NUMBER WILL TAKE (NOT SET BITS):
+
+                0 -> 00 --> 0
+                1 -> 01 --> 1
+                2 -> 10 --> 1
+                3 -> 11 --> 2
+                4 -> 001 --> 1
+
+                function countBits_Way1(n: number): number {
+                    return (Math.floor(Math.log2(n)) + 1);
+                }
+
+------------------------------------------------------------------------------------------------------------
+POWER OF 2: 
+                It has a single bit only
+
+                4 -->  0100
+            4 - 1 -->  0011
+          (4 & 3) -->  0000
+
+                function powOfTwo(n: number): boolean {
+                    if(n === 0) return false;
+                    if(Math.abs(n) >= Math.pow(2, 31)) return false;
+                    return ((n & (n-1)) === 0);
+                }
+
+
+------------------------------------------------------------------------------------------------------------
+COUNT SET BITS:
+
+                                Brian Kreigan Algorithm
+                                -----------------------
+
+                When we do (n & (n - 1)), rightmost set bit becomes unset
+                BK Algo = Keep doing (n & (n - 1)) till number becomes 0 and count the times we run the loop
+                That's the number of set bits
+
+                function countSetBits2(n: number) {
+                    var count = 0;
+                    while (n > 0)
+                    {
+                        n &= (n - 1);
+                        count++;
+                    }
+                    return count;
+                }
+
+COUNTING SET BITS FROM [0 - N]
+
+                    There is one observation
+
+0 --> 0000          6 --> 0110                
+1 --> 0001          7 --> 0111
+2 --> 0010          8 --> 1000
+3 --> 0011          9 --> 1001
+4 --> 0100         10 --> 1010
+5 --> 0101         11 --> 1011
+
+When n is even, no of bits in n === no of bits in n/2
+ex: 6 - 2 | 8 - 1
+    3 - 2 | 4 - 1
+
+When n is odd, no of bits in n === ((no of bits in n/2) + 1)
+ex: 7 - 3 | 9 - 2
+    3 - 2 | 4 - 1
+
+- we can keep storing the halves in a dp[]
+- store basic counts like 0, 1 and 2 in dp[0, 1, 1], index = number itself
+- start from 3 now, 
+
+------------------------------------------------------------------------------------------------------------
+  SET kth bit: (where k = 1st, 2nd i.e. absolute position)
+
+  - return ((1 << (k - 1)) | n)  
+  - OR used since 0 -> 1 and 1 -> 1
+------------------------------------------------------------------------------------------------------------
+  TOGGLE kth bit: (where k = 1st, 2nd i.e. absolute position)
+
+  - return ((1 << (k - 1)) ^ n)  
+  - XOR used since 0 -> 1 and 1 -> 0
+
+  If k = 0-based, then 
+  - return ((1 << k) ^ n)
+------------------------------------------------------------------------------------------------------------
+  REMOVE LAST SET BIT
+
+  - return (n & (n - 1))  
+------------------------------------------------------------------------------------------------------------
+  POSITION OF RIGHTMOST SET BIT
+
+  - return Math.log2((n & (n - 1)) ^ n)     --> 0-based indexing
+    Log returns the position
+
+ - return Math.log2(n ^ (n & (n - 1))) + 1; --> 1-based indexing
+------------------------------------------------------------------------------------------------------------
+  CLEAR kth bit
+
+  - return (n & ~ (1 << (k - 1)))  
+------------------------------------------------------------------------------------------------------------
   Sort array based on count of set bits in them, if count of set bits is same, then sort numbers by values
   
   // No need of map, directly write custom sort()
@@ -62,46 +147,7 @@
 
   MASK FROM [L-R]
     The bit mask that has set bits in the range [L, R] can be generated using:
-    [((1 << (L-1)) - 1) ^ ((1 << R) - 1)]  
-
-  When n is odd, no of bits in n === ((no of bits in n/2) + 1)
-  ex: 7 - 3 | 9 - 2
-      3 - 2 | 4 - 1
-
-  When n is even, no of bits in n === no of bits in n/2
-  ex: 6 - 2 | 8 - 1
-      3 - 2 | 4 - 1
-
-  EVEN-ODD:
-  - check last bit --> return Boolean(n&1);
-
-  NO OF BITS in n:
-  - return (Math.floor(Math.log2(n)) + 1);
-
-  CHECK FOR POWER OF 2:
-  - has only 1 bit
-  -  return ((n > 0) & (n & (n-1)) === 0);
-
-  COUNT SET BITS: 
-  - Revise full Q4
-  - Recursion and BK 
-  
-  SET kth bit: (where k = 1st, 2nd i.e. absolute position)
-  - return ((1 << (k - 1)) | n)  
-  - OR used since 0 -> 1 and 1 -> 1
-
-  TOGGLE kth bit: (where k = 1st, 2nd i.e. absolute position)
-  - return ((1 << (k - 1)) ^ n)  
-  - XOR used since 0 -> 1 and 1 -> 0
-
-  REMOVE LAST SET BIT
-  - return (n & (n - 1))  
-
-  POSITION OF RIGHTMOST SET BIT
-  - return Math.log2((n & (n - 1)) ^ n)  
-
-  CLEAR kth bit
-  - return (n & ~ (1 << (k - 1)))  
+    [((1 << (L-1)) - 1) ^ ((1 << R) - 1)]   
 
   THOUGHT PROCESS for getting highest power of 2 till N (from 1 - N)
 

@@ -68,10 +68,6 @@ function countSetBits2(n: number) {
     return count;
 }
 
-console.warn('way 1 Iterative-->', countSetBits1_Iterative(3));
-console.warn('way 1 Recursive-->', countSetBits1_Recursive(3));
-console.warn('way 2 -->', countSetBits2(3));
-
 
 /* LEETCODE QUESTION: 
 338. Counting Bits

@@ -15,9 +15,22 @@ so n & (n-1) -> 0
 Hence power of two 
 
 TC: O(1)
-SC: O(1) */
+SC: O(1) 
+
+CORNER CASES HERE:
+
+n === 0
+this doesn't work there
+
+Also, when n <= -2^31 = -2147...648, it breaks at that time
+*/
 
 function powOfTwo(n: number): boolean {
+
+    if(n === 0) return false;
+
+     if(Math.abs(n) >= Math.pow(2, 31)) return false;
+
     return ((n & (n-1)) === 0);
 }
 

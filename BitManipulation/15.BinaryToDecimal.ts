@@ -7,15 +7,31 @@
 TC: O(logn) since approx bits in a number is logn
 SC: O(1) */
 
-// A little niave way
-function binaryToDecimal(binary: string): number {
-    let decimal: number = 0;
+/* Way-1: Iterate from last -> 0
+          if bit === 1, then Math.pow(2, reversed_index)
 
-    for(let i = binary.length - 1; i >= 0; i--) {
-        if(binary[i] === '1') decimal += Math.pow(2,i);
-    }
+          reversed_index = (n - 1) - i
 
-    return decimal;
+    3 2 1 0
+    -------
+    1 0 1 0     --> (n-1) -> 3
+    -------
+    0 1 2 3
+
+
+
+    (n - 1) - i
+
+*/
+function binaryToDecimal(b: string): number {
+        let num = 0;
+        const n = b.length;
+        
+        for(let i = (n - 1); i >= 0; i--) {
+            if(b[i] == '1') num += Math.pow(2, ((n - 1) - i));
+        }
+        
+        return num;
 }
 
 // this can be made faster by using (1 << x) to simulate (2 ^ x)

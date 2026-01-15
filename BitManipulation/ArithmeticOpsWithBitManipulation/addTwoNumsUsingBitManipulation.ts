@@ -52,9 +52,6 @@ function addUsingBitManipulation(a: number, b: number): number {
     if(b === 0) return a;
     if(a === 0) return b;
 
-    // corner case: if both are 0, return 0
-    if((a & b) === 0) return 0;
-
     // Iterate till there is no carry 
     while (b !== 0) {
         

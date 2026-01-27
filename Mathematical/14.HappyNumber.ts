@@ -14,15 +14,6 @@ Those numbers for which this process ends in 1 are happy.
 Return true if n is a happy number, and false if not.
 
 
-Input: n = 19                   Output: true
-
-Explanation:
-12 + 92 = 82
-82 + 22 = 68
-62 + 82 = 100
-12 + 02 + 02 = 1
-
-
 Input: n = 2                    Output: false
  
 Constraints: 1 <= n <= 2^31 - 1

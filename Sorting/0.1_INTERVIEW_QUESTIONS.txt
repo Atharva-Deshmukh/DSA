@@ -1,0 +1,138 @@
+--------------------------------------------------------------------------------------------
+What is Sorting? Why is it important?
+
+- Arranging the elements in a definite order (ascending/descending)
+Use:
+- Sorting makes it easier to compare data like API Responses, identify duplicates
+--------------------------------------------------------------------------------------------
+Which algo for sorting is used in JS/TS Built in Array.sort()?
+- Its a hybrid of Merge sort + quick sort + insertion sort + Tim sort.
+- Its specified in ECMAScript
+
+Is JS Array.sort() stable? -> Not guaranteed in ECMAScript, we need to use comparator
+
+Time complexity of Array.sort()? -> Typically O(n log n)
+--------------------------------------------------------------------------------------------
+Why do languages use hybrid sorting?
+
+Because no single algorithm is best for all cases.
+--------------------------------------------------------------------------------------------
+Why care for stable sorting?
+
+While Multiple-level sorting, the relative order is preserved.
+--------------------------------------------------------------------------------------------
+Which sorting algorithms are in-place?
+
+In-place means O(1) extra space (or constant).
+
+Bubble Sort ✅
+Selection Sort ✅
+Insertion Sort ✅
+Quick Sort ✅ (recursive stack ignored sometimes)
+
+Merge Sort ❌
+--------------------------------------------------------------------------------------------
+Why is O(n log n) optimal for comparison-based sorting?
+
+Answer:
+Because comparison-based sorting has a lower bound of Ω(n log n).
+You can’t do better unless you avoid comparisons (like Counting Sort).
+--------------------------------------------------------------------------------------------
+Merge Sort vs Quick Sort
+
+Aspect       | Merge Sort              | Quick Sort
+-----------------------------------------------
+Time         | O(n log n)               | Avg O(n log n), Worst O(n^2)
+Space        | O(n)                     | O(log n)
+Stability   | Stable                   | Not stable
+Use case    | Large data, linked lists | Fast in practice, arrays
+
+--------------------------------------------------------------------------------------------
+Why is QuickSort fast in practice?
+
+- In-place
+- Average case dominates real inputs
+--------------------------------------------------------------------------------------------
+Worst case of QuickSort and how to avoid it?
+
+Worst case: O(n²) when pivot is always smallest/largest.
+
+Avoid by:
+- Randomized pivot
+- Median-of-three pivot
+- Hybrid with insertion sort
+--------------------------------------------------------------------------------------------
+When would you prefer Insertion Sort?
+- Nearly sorted data (because then inner loop won't run so we can get O(n))
+--------------------------------------------------------------------------------------------
+Can sorting be done without comparisons?
+
+Yes.
+    Counting Sort
+    Radix Sort
+    Bucket Sort
+
+These are O(n) but work only for specific data types.
+--------------------------------------------------------------------------------------------
+Why Merge sort is preferred for Linked List?
+
+- Merge sort accesses data sequentially, which is highly efficient for linked lists.
+  
+- Merge Sort is a stable sort, which means it maintains the relative order of equal elements in the sorted list. 
+  This is important for linked lists, where the original order of equal elements may be significant. 
+--------------------------------------------------------------------------------------------
+Why Quick Sort is preferred for arrays?
+
+- It can be easily implemented in-place.
+- Quicksort relies heavily on random access to elements (e.g., choosing a pivot and partitioning around it), 
+  which results in poor performance on linked lists
+--------------------------------------------------------------------------------------------
+How do you test a sorting algorithm?
+
+Test with:
+- Empty input
+- Single element
+- Already sorted
+- Reverse sorted
+- Duplicates
+- Negative values
+- Large datasets
+--------------------------------------------------------------------------------------------
+When should you NOT sort?
+
+- Streaming data
+--------------------------------------------------------------------------------------------
+Why is sorting large datasets expensive?
+
+- CPU intensive
+- Memory overhead
+- Network cost in distributed systems
+--------------------------------------------------------------------------------------------
+How does sorting affect pagination in APIs?
+
+Common failure scenarios
+- Sorting only by a non-unique field (e.g., createdAt)
+
+Correct approach
+- Always sort by a unique, deterministic key
+--------------------------------------------------------------------------------------------
+How would you test sorting in distributed systems?
+
+Distributed systems have:
+
+Multiple nodes
+Sharded data
+Parallel writes
+
+Testing strategies (this is what interviewers want)
+
+Composite keys (timestamp + unique ID)
+--------------------------------------------------------------------------------------------
+How do you test sorting with null values?
+
+Questions to clarify (or infer)
+- Are nulls ignored?
+- Are nulls invalid?
+--------------------------------------------------------------------------------------------
+
+

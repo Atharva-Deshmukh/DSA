@@ -87,3 +87,89 @@ function GCD_Array(nums: number[]): number {
 
     return gcd;
 }
+
+//////////////////////////// GCD OF STRINGS ///////////////////////////////////////////
+
+/* 1071. Greatest Common Divisor of Strings
+
+For two strings s and t, we say "t divides s" if and only if s = t + t + t + ... + t + t 
+(i.e., t is concatenated with itself one or more times).
+
+Given two strings str1 and str2, return the largest string x such that x divides both str1 and str2.
+
+
+Input: str1 = "ABCABC", str2 = "ABC"        -->         Output: "ABC"
+
+Input: str1 = "ABABAB", str2 = "ABAB"       -->         Output: "AB"
+
+Input: str1 = "LEET", str2 = "CODE"         -->         Output: ""
+
+Input: str1 = "AAAAAB", str2 = "AAA"        -->         Output: ""​​​​​​​
+
+Constraints:
+
+1 <= str1.length, str2.length <= 1000
+str1 and str2 consist of English uppercase letters.
+
+Logic is same as the Euclidean algorithm for numbers
+*/
+
+function gcdOfStrings(s1: string, s2: string): string {
+    /* Base case */
+    if ((s1.length === 0) && (s2.length > 0)) return s2;
+
+    /* Assume S1 > S2 always */
+    if (s1.length < s2.length) {
+        return gcdOfStrings(s2, s1);
+    }
+
+    if (s1.startsWith(s2) === true) {
+        return gcdOfStrings(s1.substring(s2.length), s2);
+    }
+
+    if (s1.startsWith(s2) === false) {
+        return "";
+    }
+};
+
+/*                                           Time Complexity
+
+Let
+n = length of s1
+m = length of s2
+(assume n ≥ m)
+
+Key operations per recursive call
+
+startsWith(s2) --> Compares up to m characters --> Time: O(m)
+
+substring(s2.length) --> Creates a new string of size (n - m) --> Time: O(n - m)
+
+How many recursive calls?
+
+Each recursive call removes m characters from s1, similar to modulo in the Euclidean algorithm.
+
+Worst case -> Roughly n / m recursive calls
+
+Total time complexity
+
+Across all recursive calls, the total amount of string copying and comparisons adds up to: O(n+m)
+
+👉 Even though recursion happens multiple times, the total number of characters 
+processed overall is linear, not quadratic.
+
+✅ Time Complexity: O(n + m)
+
+                                                Space Complexity
+
+1.Recursion stack
+
+Maximum depth ≈ n / m
+In the worst case (e.g., m = 1): depth = O(n)
+
+2. New strings from substring
+Each recursive call creates a new string
+Total memory used across all calls is proportional to the total characters created
+
+Overall space complexity -> O(n+m)
+*/

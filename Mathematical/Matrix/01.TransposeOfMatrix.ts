@@ -6,6 +6,17 @@ Input: matrix = [[1,2,3],[4,5,6]]
 Output: [[1,4],[2,5],[3,6]]
 
 
+Logic: indexwise visualisation
+
+00 01 02
+10 11 12
+20 21 22
+
+00 10 20
+01 11 21
+02 12 22
+
+
 In place algo only works for square matrix */
 
 function transpose(matrix: number[][]): number[][] {

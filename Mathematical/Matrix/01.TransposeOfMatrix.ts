@@ -16,10 +16,22 @@ Logic: indexwise visualisation
 01 11 21
 02 12 22
 
+Way-1:
+- Use extra space to store Answer. 
+  NOTE: Create answer matrix of n * m instead of m * n, otherwise there will be overflow
+- Iterate whole input matrix, and keep putting transposeMat[j][i] = input[i][j];
 
-In place algo only works for square matrix */
+TC: O(m * n)
+SC: O(m * n)
 
-function transpose(matrix: number[][]): number[][] {
+Way-2: In-place
+- NOTE: In place algo only works for square matrix (n * n)
+- Notice that diagonals are in-place unaffected, only elements around diagonals are swapped
+- We have a trick here -> i = 0, j = (i + 1) - MEMORISE this trick
+
+*/
+
+function transposeExtraSpace(matrix: number[][]): number[][] {
     const m: number = matrix.length;
     const n: number = matrix[0].length;
 
@@ -33,4 +45,18 @@ function transpose(matrix: number[][]): number[][] {
     }
 
     return res;
+}
+
+/* Memorise this index trick */
+function transposeInPlace(matrix: number[][]): number[][] {
+    const m: number = matrix.length;
+    const n: number = matrix[0].length;
+
+    for(let i = 0; i < n; i++) {
+        for(let j = (i + 1); j < n; j++) {
+            [matrix[i][j], matrix[j][i]] = [matrix[j][i], matrix[i][j]];
+        }
+    }
+
+    return matrix;
 }

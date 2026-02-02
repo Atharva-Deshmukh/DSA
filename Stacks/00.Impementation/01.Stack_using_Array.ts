@@ -15,7 +15,7 @@ function push(element: number) {
 
 function pop() {
 
-    if(currentSize === 0) alert('Stack is EMPTY');
+    if(currentSize === 0) console.log('Stack is EMPTY');
 
     currentSize--;
     stack.length = currentSize; // free the memory of last element

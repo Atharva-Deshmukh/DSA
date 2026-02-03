@@ -23,7 +23,7 @@ Explanation: The expression is not balanced because there is a closing ‘]’ b
 Approach:
 - Iterate the array and whenever we encounter a closed bracket, we must find the corresponding open bracket
   immediately to make the string balanced.
-  We will use staor this since we need to know the last open bracket encountered.
+  We will use stack for this since we need to know the last open bracket encountered.
 - KISI CLOSING BRACKET KE CORRESPONDING AGAR OPEN BRACKET HAI NAHI STACK ME IMMEDIATELY, RETURN FALSE
 
   let stack = [] and s = "[{()}]"
@@ -73,16 +73,20 @@ function isStringBalanced(s: string) {
 
     let stack = new Stack(n);
     let openBrackets: string = '({[';                                           
-    let anyOpenBracketEncountered: boolean = false;  // for case: ')}]'
+    let anyOpenBracketEncountered: boolean = false;  // for case: ')}] since we push only open brackets'
 
+    /* Iterate the string */
     for(let i = 0; i < n; i++) {
+
+        /* Push only open brackets in the stack and mark the flag */
         if(openBrackets.includes(s[i])) { anyOpenBracketEncountered = true; stack.push(s[i]);}
         else {
+            /* Pop the open brackets based on corresponding close brackets */
             if((stack.top() === '(') && (s[i] === ')')) stack.pop();
             else if((stack.top() === '{') && (s[i] === '}')) stack.pop();
             else if((stack.top() === '[') && (s[i] === ']')) stack.pop();
 
-            // KISI CLOSING BRACKET KE CORRESPONDING AGAR OPEN BRACKET HAI NAHI STACK ME IMMEDIATELY, RETURN FALSE
+            /* If stack.top() does not have corresponding open bracket immediately, return false */
             else return false;  // Case: ")(){}"
         }
     }

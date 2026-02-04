@@ -64,7 +64,7 @@ Approach:
     TC: O(n)
     SC: O(n) when string only has open brackets */
 
-import { Stack } from "./Impementation/stack_using_class_string";
+import { Stack } from "./00.Impementation/03.stack_using_class_stringData";
 
 function isStringBalanced(s: string) {
     let n: number = s.length;

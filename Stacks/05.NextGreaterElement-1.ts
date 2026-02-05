@@ -80,20 +80,49 @@ i = 0:
 
         stack = [12 3                ans = [12, -1, 6, 9, 9, -1]
 
-TC: O(2*N)
-    At first it might seem like the two loops, and it may seem O(n^2) since for some element, we pop full stack
-    but, the total elements that are ever gonna stored in the stack = N only when the array is sorted
-    in ascending order,  
-
-    Case: when array is sorted in descending order, we pop at each i but inner loop for popping won't 
-          run n times for every i, since ek baar jo pop hua vo firse stack me nahi jaayega
-          stack is going to contain N elements only
+TC: O(n)
 
 
 SC: O(n) + O(n) for stack and storing answer */
 
 import { Stack } from "./Impementation/stack_using_class_number";
 
+/* My logic that was inefficient due to unshift() */
+class Solution {
+    nextLargerElement(a) {
+    const n = a.length;
+    let res = [];
+    let stack = new Stack(n);
+
+    for (let i = n - 1; i >= 0; i--) {
+        if (stack.isStackEmpty()) {
+            stack.push(a[i]);
+            res.unshift(-1);
+        } 
+        else if (stack.top() > a[i]) {
+            res.unshift(stack.top());
+            stack.push(a[i]);
+        } 
+        else {
+            while (!stack.isStackEmpty() && stack.top() <= a[i]) {
+                stack.pop();
+            }
+
+            if (stack.isStackEmpty()) {
+                res.unshift(-1);
+            } else {
+                res.unshift(stack.top());
+            }
+            stack.push(a[i]);
+        }
+    }
+
+    return res;
+        
+    }
+}
+
+/* Efficient solution */
 function nextGreaterElement(a: number[]): number[] {
     let n: number = a.length;
 
@@ -103,10 +132,9 @@ function nextGreaterElement(a: number[]): number[] {
     let ans: number[] = Array(n); 
     let stack = new Stack(n);
 
-    // don't use unshift, unshift for large arrays is inefficient
     for(let i = (n - 1); i >= 0; i--) {
 
-        // LESS THAN EQUAL TO bhi hai to bhi pop() kar do
+        /*  pop() for <= also, since we need striclty greater elements on right */
         while((!stack.isStackEmpty()) && (stack.top() <= a[i])) stack.pop();
 
         // If stack is empty after popping, there's no greater element

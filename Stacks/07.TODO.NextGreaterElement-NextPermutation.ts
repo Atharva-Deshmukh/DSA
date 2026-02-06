@@ -1,7 +1,4 @@
-/* NOTE: Considering time crunch, just remember the logic 
-
-
-This is slightly different question but asked commonly
+/* This is slightly different question but asked commonly
 
 Given a positive integer n, find the smallest integer which has exactly the 
 same digits existing in the integer n and is greater in value than n. 

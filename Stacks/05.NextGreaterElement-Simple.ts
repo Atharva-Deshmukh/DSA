@@ -122,7 +122,7 @@ class Solution {
     }
 }
 
-/* Efficient solution */
+/* Efficient solution with Preinitilaised Array of size n - Without unshift() because unshift() is inefficient for large arrays */
 function nextGreaterElement(a: number[]): number[] {
     let n: number = a.length;
 

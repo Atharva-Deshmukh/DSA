@@ -80,44 +80,82 @@ function previousSmallerElement(a: number[]): number[] {
 
 Private Fields: private is not valid in traditional JavaScript classes. Instead, use # for private fields.
 
-class Stack {
-    #currentSize;
-    #stack;
+ class myStack {
+  constructor() {
+    this.currentSize = 0;
+    this.stack = [];
+    this.minElement = Number.MAX_SAFE_INTEGER;
+  }
 
-    constructor() {
-        this.#currentSize = 0;
-        this.#stack = [];
+  // if stack is empty, simply push the current element and update minElement
+  push(element) {
+    if (this.isEmpty()) {
+      this.stack[this.currentSize] = element;
+      this.minElement = element;
+    } else {
+      if (element < this.minElement) {
+        this.stack[this.currentSize] = 2 * element - this.minElement;
+        this.minElement = element;
+      } else {
+        this.stack[this.currentSize] = element;
+      }
+    }
+    this.currentSize++;
+  }
+
+  pop() {
+    if (this.isEmpty()) return;
+
+    const topElement = this.stack[this.currentSize - 1];
+
+    if (topElement < this.minElement) {
+      this.minElement = 2 * this.minElement - topElement;
     }
 
-    push(element) {
-        this.#stack[this.#currentSize] = element;
-        this.#currentSize++;
-    }
+    this.currentSize--;
+    this.stack.length = this.currentSize;
 
-    pop() {
-        if (this.isStackEmpty()) {
-            alert('STACK IS EMPTY');
-            return null;
-        } else {
-            const poppedElement = this.#stack[this.#currentSize - 1];
-            this.#currentSize--;
-            this.#stack.pop();
-            return poppedElement;
-        }
+    // if after popping, stack becomes empty, reset minElement
+    if (this.isEmpty()) {
+      this.minElement = Number.MAX_SAFE_INTEGER;
     }
+  }
 
-    display() {
-        console.warn(this.#stack);
+  top() {
+    if (this.isEmpty()) return -1;
+
+    const topElement = this.stack[this.currentSize - 1];
+
+    // If stored value is less than minElement, actual value is minElement
+    return topElement < this.minElement ? this.minElement : topElement;
+  }
+
+  getMin() {
+    return this.isEmpty() ? -1 : this.minElement;
+  }
+
+  isEmpty() {
+    return this.currentSize === 0;
+  }
+};
+
+class Solution {
+    prevSmaller(a) {
+    const n = a.length;
+    let res = Array(n);
+    
+    let stack = new myStack();
+    
+    for(let i = 0; i < n; i++) {
+        while((!stack.isEmpty()) && (stack.top() >= a[i])) stack.pop();
+        
+        res[i] = (stack.isEmpty())? -1: stack.top();
+        
+        stack.push(a[i]);
     }
-
-    top() {
-        if (this.#currentSize > 0) return this.#stack[this.#currentSize - 1];
-        else return NaN;
-    }
-
-    isStackEmpty() {
-        return this.#currentSize === 0;
+    
+    return res;
+        
     }
 }
-
 */

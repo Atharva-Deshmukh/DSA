@@ -3,25 +3,25 @@ so push elements in the array from the end.
 While removing element, shift all elements from last to start by 1 and then decrease array
 size by 1 to free up memory for the last element.
 
-
 we have two choices to implement queue using an array
 
-WAY 1:
+WAY 1: Using array as it is -> Both enqueue and dequeue operations become costly
                                  
                                  0  1  2  3
                   enqueue  -->  [1, 2, 3, 4] --> dequeue
                                  |        |
                             rear/tail  front/head
 
-                    But, here to enqueue, u need to use add element to start of array using shift()
-                    and to dequeue, u need to use pop(), both are not allowed
+                    dequeue -> just shift (i-1) -> i
+                    enqueue -> shift (i+1) -> (i+2) to add i
 
-                    Else, here on pop(), shift all elements to right by 1, so, pop() is costly
-                    Also, for push(), move all elements to right by 1, so push() is also costly
+                  enqueue() = O(n)
+                  dequeue() = O(n),
 
                     Hence, we will implement queue using another way:
 
-WAY 2: 
+WAY 2: Using array from reverse side -> dequeue becomes costly
+
                                   0  1  2  3
                    dequeue  <--  [1, 2, 3, 4] <-- enqueue
                                   |        |
@@ -107,20 +107,22 @@ class Queue {
     }
 
     dequeue() {
-        if(this.isQueueEmpty()) console.log('QUEUE IS EMPTY');
-        else if(this.currentSize === 1) {
+        if (this.isQueueEmpty()) console.log('QUEUE IS EMPTY');
+        else if (this.currentSize === 1) {
             this.dequeuedElement = this.queue[this.currentSize - 1];
             this.currentSize--;
             this.queue.length = this.currentSize;
         }
         else {
+
+            // store the element being dequeued
+            this.dequeuedElement = this.queue[0];
+
             // shift every element to left by 1
-            for(let i = 1; i < this.currentSize; i++) {
-                if((i - 1) >= 0) this.queue[i - 1] = this.queue[i];
+            for (let i = 1; i < this.currentSize; i++) {
+                if ((i - 1) >= 0) this.queue[i - 1] = this.queue[i];
             }
 
-            // clear memory for arr[n - 1] to simulate dequeue operation
-            this.dequeuedElement = this.queue[this.currentSize - 1];
             this.currentSize--;
             this.queue.length = this.currentSize;
         }
@@ -128,6 +130,10 @@ class Queue {
 
     displayQueue() {
         console.log('QUEUE -> ', this.queue);
+    }
+
+    getDequeuedElement() {
+        console.log('Dequeued Element -> ', this.dequeuedElement);
     }
 
     private isQueueFull() {

@@ -4,10 +4,7 @@ is connected to the first element of the queue forming a circle.
 
 It is also called ring buffer.
 
-REFER THE IMAGE TO KNOW WHY DO WE USE A CICRULAR QUEUE 
-Since, in a normal queue, which is an array under the hood, we cannot add further elements
-even though we have space at front, since our rear/tail pointer has reached the end,
-we use circular queue here
+A circular queue exists to avoid shifting since we pay time cost for shifting
 
 We use array of specific size here since we can add a new element by first removing any 
 existing one, so Its MEMORY EFFICIENT

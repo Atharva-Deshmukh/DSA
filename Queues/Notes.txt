@@ -1,25 +1,19 @@
 USES OF QUEUES:
 
+Regular queue
+-------------
 - CPU resource scheduling
 
 Deques (Double-Ended Queues)
-  Browser Cache (Forward and Backward Navigation)
-  Web browsers store recently visited pages in a deque.
-  You can navigate backward and forward efficiently.
+----------------------------
+- Recently visited browser pages (Forward and Backward Navigation)
 
 Circular Queues
+---------------
 
-Operating System Process Scheduling
-  Round Robin Scheduling uses a circular queue to cycle through running processes.
-Traffic Light System
- Traffic lights cycle through green, yellow, and red in a circular queue. 
- Each light gets its turn in a fixed sequence.
+OS Process Scheduling -> Round Robin Scheduling and Traffic Light System
 
 Priority Queues
+----------------
 
-Operating System Process Scheduling (Priority Scheduling)
-  Higher priority tasks execute first before lower-priority tasks.
-  Example: Real-time systems (air traffic control, medical systems).
-Hospital Emergency Rooms (Triage System)
-  Patients with critical conditions are treated first.
-  Example: A heart attack patient is treated before a minor injury patient.
+OS Process Scheduling (Priority Scheduling) -> Example: Real-time systems (air traffic control, medical systems).

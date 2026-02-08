@@ -34,57 +34,14 @@ WAY 2: Using array from reverse side -> dequeue becomes costly
 
 
 
-// A NIAVE WAY FOR IMPLEMENTATION OF QUEUE, is static way
-push() we do rear++;
-pop() we do front++, wasting the space that can be used if we shift the array to left
 
-class MyQueue {
-    
-    constructor(){
-		this.front = 0;
-		this.rear = 0;
-		this.arr = new Array(100005);
-	}
-	
-    
-	//Function to push an element x in a queue.
-	push(x)
-	{
-	    // Your code here
-	    this.arr[this.rear] = x;
-	    this.rear++;
-	} 
-	
+SPACE WASTAGE in above approach:
+if size === 3
+queue =   <-- [1, 2, 3] <--
+pop()
+queue =   <-- [ , 2, 3] <--
 
-    //Function to pop an element from queue and return that element.
-	pop()
-	{
-       if (this.front === this.rear) {
-            return -1; // Queue is empty
-        }
-        
-        let poppedEle = this.arr[this.front]; // Get front element
-        this.front++; // Move front pointer forward
-
-        return poppedEle;
-	} 
-}
-
-                                        SPACE WASTAGE in above approach:
-                                        if size === 3
-
-                                        queue =   <-- [1, 2, 3] <--
-
-                                        pop()
-
-                                        queue =   <-- [ , 2, 3] <--
-
-                                        push(), alert, size is full although we have one space left
-                                        hence we either shift every element left or we use circular queue
-
-
-
-*/
+now, in enqueue, we shift elements to left, to avoid this shift, we use circular queues */
 
 class Queue {
     private queue: number[];

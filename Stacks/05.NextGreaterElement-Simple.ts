@@ -146,3 +146,30 @@ function nextGreaterElement(a: number[]): number[] {
 
     return ans;
 }
+
+
+//////////////////////////////// USEFUL VARIATION //////////////////////////////////////////////////////
+
+/* Calculate Indices of the next greater elements, not the actual elements
+
+                0  1  2  3  4
+Input: arr[] = [6, 8, 0, 1, 3]
+Output:        [1, n, 3, 4, n] -> whenever we didn't have NGE, we pushed n (size of array)
+
+Approach: Keep pushing indices in stack instead of actual elements in case of NGE
+
+At any moment (while scanning right → left):
+- Stack contains indices of elements to the right (we earlier had elements to the right)
+- Values at those indices are in strictly decreasing order
+- Top of stack = nearest greater element index
+- This is a monotonic decreasing stack
+
+let ngeStack = new myStack();
+for (let i = (n - 1); i >= 0; i--) {
+    while ((!ngeStack.isEmpty()) && (a[ngeStack.top()] <= a[i])) ngeStack.pop();
+    NGEIndex[i] = (ngeStack.isEmpty()) ? n : ngeStack.top();
+    ngeStack.push(i);
+}
+
+
+*/

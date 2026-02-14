@@ -44,8 +44,8 @@ Way-3: Most Optimal.
   |
   rowHash
 
-  First row = rowHash
-  First col = colHash
+  First row = colHash
+  First col = rowHash
 
   NOTE: mat[0][0] = overlapping, single element representing two states
         So, colHash starts from mat[0][1] - mat[0][m-1]

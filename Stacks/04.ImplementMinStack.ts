@@ -102,7 +102,7 @@ When getMin() is called, it should return 18 which is the minimum in the current
         this.currentSize--;
         this.stack.length = this.currentSize;
 
-        // if after poppint, stack becomes empty, reset the minimum element
+        // if after popping, stack becomes empty, reset the minimum element
         if (this.isEmpty()) {
             this.minElement = Number.MAX_SAFE_INTEGER;
         }

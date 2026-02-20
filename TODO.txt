@@ -1,5 +1,42 @@
-- When time is there: Karatsuba algorithm (prioritize later)
+Kadane's algo - after time allows
 
-Do mathematical questions like
-- factorial  -- Cover during DP to get optimised solution
-- fibonacci  -- Cover during DP to get optimised solution
+Stacks
+- Infix, Prefix, Postfix
+- Stack using queue
+- Insert at the end of the stack
+- Reverse stack using recursion
+- Sort stack using recursion
+- 2781. Length of the Longest Valid Substring
+- https://www.geeksforgeeks.org/expression-contains-redundant-bracket-not/
+- Stack Permutations (Check if an array is stack permutation of other)
+- Baseball Game
+- Daily Temperatures
+- Car Fleet
+- Simplify Path
+- Decode String
+- Maximum Frequency Stack
+
+Queues
+- Queue using stack
+- Circular Queue implementation
+- Reverse queue using recursion
+- Reverse first k elements of queue
+- Interleave the first half of the queue with second half
+- Find the first circular tour that visits all Petrol Pumps
+- Minimum time required to rot all oranges
+- First negative integer in every window of size "k"
+- Sum of minimum and maximum elements of all subarrays of size "k".
+
+Intervals
+    Insert Interval 
+    Merge Intervals 
+    Non Overlapping Intervals 
+    Meeting Rooms 
+    Meeting Rooms II 
+    Meeting Rooms III 
+    Minimum Interval to Include Each Query 
+
+
+Linked List
+- LRU Cache
+- LFU Cache

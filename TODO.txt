@@ -4,9 +4,7 @@ Stacks
 - Infix, Prefix, Postfix
 - Stack using queue
 - 2781. Length of the Longest Valid Substring
-- https://www.geeksforgeeks.org/expression-contains-redundant-bracket-not/
 - Baseball Game
-- Daily Temperatures
 - Car Fleet
 - Simplify Path
 - Decode String

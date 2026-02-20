@@ -53,6 +53,26 @@ function insertAtBottom(st: number[], value: number): void {
     st.push(temp);
 }
 
+/* GFG: Insert element at the bottom of the stack - Asked to return the modified stack */
+class Solution {
+    // Function to insert an element at the bottom of a stack.
+    insertAtBottom(st, x) {
+        
+        /* Once stack is empty, push the passed value */
+        if(st.length === 0) {
+            st.push(x);
+            return st;
+        }
+        
+        
+        const temp = st.pop();
+        this.insertAtBottom(st, x);
+        st.push(temp);
+        
+        return st;
+    }
+}
+
 /* Separate out the elements and insert at bottom */
 function reverseStackRec(st: number[]): void {
     /* Base condition */

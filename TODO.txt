@@ -3,8 +3,6 @@ Kadane's algo - after time allows
 Stacks
 - Infix, Prefix, Postfix
 - Stack using queue
-- Insert at the end of the stack
-- Reverse stack using recursion
 - Sort stack using recursion
 - 2781. Length of the Longest Valid Substring
 - https://www.geeksforgeeks.org/expression-contains-redundant-bracket-not/

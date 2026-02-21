@@ -5,7 +5,6 @@ Stacks
 - Stack using queue
 - 2781. Length of the Longest Valid Substring
 - Baseball Game
-- Car Fleet
 - Simplify Path
 - Decode String
 - Maximum Frequency Stack

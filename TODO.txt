@@ -3,13 +3,10 @@ Kadane's algo - after time allows
 Stacks
 - Infix, Prefix, Postfix
 - Stack using queue
-- 2781. Length of the Longest Valid Substring
-- Baseball Game
 - Simplify Path
-- Decode String
-- Maximum Frequency Stack
 
-Queues
+Queues and sliding window
+- 2781. Length of the Longest Valid Substring
 - Queue using stack
 - Circular Queue implementation
 - Reverse queue using recursion
@@ -33,3 +30,6 @@ Intervals
 Linked List
 - LRU Cache
 - LFU Cache
+
+Heap:
+- Maximum Frequency Stack

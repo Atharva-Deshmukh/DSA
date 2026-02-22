@@ -1,5 +1,5 @@
 /* Algo: 
-- Select the min and keep it leftmost side and shift that leftmost element to the original place of min element
+- Iterate each array element, Find the minimum, swap with left pointer, do leftPointer++
 - Now, we have one element sorted and the remaining array unsorted, repeat for the remaining array
 
 DRY RUN:

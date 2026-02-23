@@ -2,7 +2,6 @@ Kadane's algo - after time allows
 
 Stacks
 - Infix, Prefix, Postfix
-- Stack using queue
 - Simplify Path
 
 Queues and sliding window

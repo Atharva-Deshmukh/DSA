@@ -90,6 +90,7 @@ function merge(a: number[], low: number, mid: number, high: number): number {
             i++;
         }
         else {
+            /* On left subarray because, array will be sorted as [...left, ...right] */
             a[k] = rightArr[j];
             inversionCount += (n1 - i); // our logic to count inversions
             j++;                        // j++ is happening, so we automatically move to next element in right array
@@ -118,8 +119,8 @@ function mergeSort(a: number[], low: number, high: number): number {
     const mid: number = low + Math.floor((high - low)/2);
 
     /* In merge sort, you recursively sort the left and right halves — and each of those parts may 
-       have internal inversions that need to be counted. Then, during merge, you count the cross 
-       inversions between the two sorted parts.
+       have internal inversions that need to be counted. 
+       During merge -> we count the cross inversions between the two sorted parts.
     */
 
     inversionCount += mergeSort(a, low, mid);

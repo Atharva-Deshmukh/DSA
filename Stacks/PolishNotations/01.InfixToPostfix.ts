@@ -1,5 +1,7 @@
 /* Infix to postfix
 
+Memorise this
+
 Input: s = "a*(b+c)/d"
 Output: abc+*d/
 Explanation: The expression is a*(b+c)/d. First, inside the brackets, b+c becomes bc+. 

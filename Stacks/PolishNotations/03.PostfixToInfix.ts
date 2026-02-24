@@ -119,3 +119,9 @@ function postToInfix(s) {
 
     return st.top();
 }
+
+/*
+TC: O(n) for loop + O(n) while adding strings, if strings are of larger size
+
+SC: O(n) stack
+*/

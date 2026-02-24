@@ -1,0 +1,46 @@
+Operator: It is a symbol that defines a specific action/Calculations. 
+Operand: It is the data, variable, or value upon which the operator acts.
+
+Priority order of operators:
+----------------------------
+
+Exponentiation (^) -> 1
+Multiplication and division -> 2
+Addition and subtraction -> 3
+Anything else -> can be given -1
+
+Types of notations:
+-------------------
+
+Infix:
+    - This is the most common one that we use
+    - Operators are between the operands
+    - (p + q) * (m - n)
+    - Used everywhere
+
+prefix:
+    - Operators are before the operands
+    - * + pq - mn
+    - Used in LISP programming language specifically and tries
+
+postfix:
+    - Operators are after the operands
+    - pq + mn - *
+    - Used in stacks based calculators
+
+What Is Associativity?
+----------------------
+
+When two operators of the same precedence appear together,
+associativity decides which one is evaluated first.
+
+It answers this: If operators have equal priority, do we evaluate left to right or right to left?
+
+Example: a - b - c
+Since - is left associative, it becomes: (a - b) - c
+Common left-associative operators: +, -, *, /, %
+
+Right-Associative Operators -> Evaluated from right to left.
+Example: a ^ b ^ c
+Since ^ is right associative, it becomes: a ^ (b ^ c)
+

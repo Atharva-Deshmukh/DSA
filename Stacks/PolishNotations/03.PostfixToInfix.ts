@@ -112,6 +112,7 @@ function postToInfix(s) {
             const e1 = st.top(); st.pop();
             const e2 = st.top(); st.pop();
 
+            /* concatenata in reverse order as stack has elements in reversed order */
             st.push('(' + e2 + s[i] + e1 + ')');
         }
     }

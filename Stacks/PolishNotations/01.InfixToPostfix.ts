@@ -78,10 +78,7 @@ answer -> abcd^e-*+
 Also, keep one thing in mind:
     When priorities are equal:
         If operator is left associative → POP from stack
-        If operator is right associative → DO NOT POP
-
-
-*/
+        If operator is right associative → DO NOT POP */
 
 class myStack {
     public currentSize: number;
@@ -166,6 +163,7 @@ function infixToPostfix(s) {
             while (
                 !st.isEmpty() &&
                 ( getPriority(s[i]) < getPriority(st.top()) ||
+                    //                                         don't pop if its right associative OR '^'
                     ( getPriority(s[i]) === getPriority(st.top()) && !isRightAssociative(s[i]))
                 )
             ) {

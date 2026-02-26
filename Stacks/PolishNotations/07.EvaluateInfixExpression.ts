@@ -183,3 +183,13 @@ function evaluateInfix(s) {
     return opndStack.top();
 
 }
+
+/*
+TC: O(n)
+
+It may look that the while loop causes O(n^2) but at most, each element is pushed and popped once, so
+max elements pushed in the whole iteration would be <= n
+
+SC: O(n) + O(n) for both stacks
+
+*/

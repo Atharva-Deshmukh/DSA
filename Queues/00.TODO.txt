@@ -1,2 +1,2 @@
-stack using queue, 
 queue using stack
+Sort a queue

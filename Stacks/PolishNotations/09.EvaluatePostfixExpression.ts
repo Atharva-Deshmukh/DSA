@@ -70,9 +70,10 @@ function preToPost(s) {
         if (!isNaN(s[i])) st.push(parseInt(s[i]));
         else {
             /* Operands will be in reversed order in stack */
-            const top2 = st.top(); st.pop();
-            const top1 = st.top(); st.pop();
-            st.push(applyOperation(top1, top2, s[i]));
+            const operand2 = st.top(); st.pop();
+            const operand1 = st.top(); st.pop();
+
+            st.push(applyOperation(operand1, operand2, s[i]));
         }
     }
     

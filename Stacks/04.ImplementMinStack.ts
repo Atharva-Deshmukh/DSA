@@ -24,41 +24,24 @@ When getMin() is called, it should return 18 which is the minimum in the current
   TC: O(n) for finding min() since we iterate full stack every time
   SC: O(n)
 
-                Approach-2: Modifing the stack by pushing <element, minElementTillNow>
-                            same can be modified to implement maxStack: <element, maxElementTillNow>
 
---> pop() direction
-    push(2) [(2, 2)]
-    push(1) [(2, 2), (1, 1)]
-    push(3) [(2, 2), (1, 1), (3, 1)]  minEle = 1
-    pop()   [(2, 2), (1, 1)]          minEle = 1
-
-  TC: O(1) for finding min() 
-  SC: O(2 * n)
-
-                                Approach-3: Using Mathematical result
+                                Approach-2: Using Mathematical result
 - while push(x): 
 
-    if currentEle(x) >= minEle, push(x)
-    if currentEle(x) < minEle, push((2*x) - minEle)
-
-    MATHEMATICAL PROOF:
-    if x < minEle, then (x - minEle) < 0
-    adding x to both sides
-                        ((2 * x) - minEle) < 0
+    stack empty -> push ele directly
+    x < minEle  -> push((2 * x) - minEle); 
+                   minEle = x;
+    x > minEle  -> push(x); 
+                   Don't update min Ele
 
 - while pop(y):
 
-    if currentEle(y) >= minEle, minEle does not change,        so pop(y)
-    if currentEle(y) < minEle, minEle = ((2*minEle) - y) and then pop(y)
+    st.top() < minEle -> minEle = (2 * minEle) - st.top();
+    if stack becomes empty after pop() -> minEle = INT_MAX;
 
-    MATHEMATICAL PROOF:
-    y = (2*x) - prevMin
-    value of minEle was made equal to x
-    minEle = x
-    new minEle = 2 * minEle – y 
-                   = 2*x – (2*x – prevMinEle)
-                   = prevMinEle // This is what we wanted
+  top()
+    Since we store encoded values
+    return topElement < this.minElement ? this.minElement : topElement;
 
   TC: O(1) for finding min()
   SC: O(1) */

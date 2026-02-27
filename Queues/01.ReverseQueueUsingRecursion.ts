@@ -5,7 +5,6 @@ Standard operations allowed :
     dequeue()
     empty()
 
-
 Input : Q = [5, 24, 9, 6, 8, 4, 1, 8, 3, 6]
 Output : Q = [6, 3, 8, 1, 4, 8, 6, 9, 24, 5]
 
@@ -21,6 +20,11 @@ SC: O(n) for recursion stack + O(n) for stack
 
 Way-2: recursion directly in the given queue
 
+    Take out front
+    recurse
+    when length 0 -> push back the last front
+    This way, the last element dequeued is enqueued which in turn reverses the order
+
 let queue = [1, 2, 3, 4]
 
                 reverseQueue([1,2,3,4]) - frontEle = 4        => return [4, 3, 2, 1]
@@ -32,8 +36,7 @@ let queue = [1, 2, 3, 4]
                             reverseQueue([1]) - frontEle = 1  => return [1]
                                            \
                                reverseQueue([]) - Queue empty => return []
-                                              \
-
+                                                  
 
 */
 

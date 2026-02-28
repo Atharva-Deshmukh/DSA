@@ -1,11 +1,6 @@
 /* 239. Sliding Window Maximum
 
-You are given an array of integers nums, there is a sliding window of size k which is moving from 
-the very left of the array to the very right. You can only see the k numbers in the window. 
-Each time the sliding window moves right by one position.
-
-Return the max sliding window.
-
+For each sliding window of size k in a subarray, return max for each window 
 
 Input: nums = [1,3,-1,-3,5,3,6,7], k = 3
 Output: [3,3,5,5,6,7]
@@ -25,7 +20,6 @@ Window position                Max
 Input: nums = [1], k = 1
 Output: [1]
  
-
 Constraints:
     1 <= nums.length <= 10^5
     -104 <= nums[i] <= 10^4
@@ -35,24 +29,17 @@ Constraints:
                                             Brute Force:
                                             ------------
 
-Simply have 2 loops
+Simply keep sliding the window, and for each widow, calculate the max and store in the answer
 
-for(i = 0 --- (n - k)) {
-    j = (i + k)
-
-    maxWindow = maxFn(a.slice(i, (j + 1)))
-    ans.push(maxWindow)
-}
-
-TC: get max value for each window = (O(n - k) * k)
-SC: no of windows = O(n - k)
+TC: get max value for each window = O(n * k)
+SC: no of windows = O(n) for answer
 
                                             OPTIMISATION
                                             ------------
 
 - We anyways need to traverse whole array, so (n - k) is required, but we can optimise the k part
   we can calculate and store the maxWindow in a single pass/iteration
-- We can solve this using a monotonic queue
+- We can solve this using a monotonic queue (a dequeue preferably so that sorting can be easily maintained)
 - Note: the queue will only have elements for the current window, so q.size <= k only
 - Also, store the indices only in queue, because we need to know the position of the element
   to determine if its in the window or not
@@ -68,6 +55,8 @@ Logic:
         2. Maintain decreasing order in the deque:
             while deque not empty AND nums[deque.rear()] <= nums[i]:
                 pop_rear()
+            
+            We are popping because we need to get the maximum of that window, so push max only
 
         3. Push current index i
 
@@ -75,7 +64,8 @@ Logic:
         4. If i >= k-1:
             answer.push(nums[deque.front()])
 
-*/
+TC: O(n) for iteration
+SC: O(n) for answer + O(k) for dequeue */
 
 class myDeQueue {
     public queue: number[];
@@ -148,7 +138,7 @@ function maxSlidingWindow(a: number[], k: number): number[] {
         /* Remove those indices from the queue that are not the part of the current window */
         if((!dq.isEmpty()) && (dq.getFront()! <= (i - k))) dq.dequeueFront();
 
-        /* Keep the queue monotonic */
+        /* Keep the queue monotonic - q.front() always has max ele's index*/
         while((!dq.isEmpty()) && (a[dq.getRear()!] <= a[i])) dq.dequeueRear();
 
         /* Push the current element index in the dequeue */

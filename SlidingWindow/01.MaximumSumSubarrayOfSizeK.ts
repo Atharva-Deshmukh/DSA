@@ -1,4 +1,6 @@
-/* Max Sum Subarray of size K
+/*SLIDING WINDOW PATTERN: Constant size sliding window 
+
+Max Sum Subarray of size K
 
 Given an array of integers arr[]  and a number k. 
 Return the maximum sum of a subarray of size k.
@@ -21,9 +23,6 @@ Constraints:
     1 ≤ arr[i] ≤ 10^6
     1 ≤ k ≤ arr.size()
 
-
-Problem Pattern: Constant size sliding window
-
 Approach:
 - Calculate the sum of the first window
 - window will be denoted by two pointers l and r
@@ -41,7 +40,10 @@ Approach:
   add incoming element to the sum a[i]
 
   TC: O(n)
-  SC: O(1) */
+  SC: O(1) 
+  
+  Don't use queue, because it unnecessarily takes O(k) space
+  */
 
 function maxSubarraySum(a, k) {
     const n = a.length;

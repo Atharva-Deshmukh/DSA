@@ -82,3 +82,63 @@ function countOccurencesOfAnagrams(pat: string, txt: string): number {
 
     return count;
 }
+
+/* Leetcode variation
+
+438. Find All Anagrams in a String
+
+Given two strings s and p, return an array of all the start indices of p's anagrams in s. 
+You may return the answer in any order.
+
+Input: s = "cbaebabacd", p = "abc"
+Output: [0,6]
+Explanation:
+The substring with start index = 0 is "cba", which is an anagram of "abc".
+The substring with start index = 6 is "bac", which is an anagram of "abc".
+
+Input: s = "abab", p = "ab"
+Output: [0,1,2]
+Explanation:
+The substring with start index = 0 is "ab", which is an anagram of "ab".
+The substring with start index = 1 is "ba", which is an anagram of "ab".
+The substring with start index = 2 is "ab", which is an anagram of "ab".
+*/
+
+function findAllOccurencesOfAnagrams(pat: string, txt: string): number[] {
+    let ans: number[] = [];
+
+    let txt_len: number = txt.length;
+    let pat_len: number = pat.length;
+
+    if(txt_len < pat_len) return [];
+
+    let hashPat = Array<number>(256).fill(0);
+    let hashTxt = Array<number>(256).fill(0);
+
+
+    /* First window
+       Here, pat_len is like k for k-sized window
+    */
+    let k = pat_len;
+    let i;
+    for (i = 0; i < k; i++) {
+        hashPat[pat.charCodeAt(i)]++;
+        hashTxt[txt.charCodeAt(i)]++;
+    }
+
+    /* Many times, this line can give TLE as its 256 chars */
+    if(JSON.stringify(hashPat) === JSON.stringify(hashTxt)) ans.push(0); /* Since, its the first window */
+
+    /* Subsequent windows */
+    for(let i = k; i < txt_len; i++) {
+
+        /* Update the hash */
+        hashTxt[txt.charCodeAt(i - k)]--;   /* remove first char of the previous window */
+        hashTxt[txt.charCodeAt(i)]++;       /* Add last character of current window */
+
+        /* If current window hash matches the pattern hash, push the window starting index */
+        if(JSON.stringify(hashPat) === JSON.stringify(hashTxt)) ans.push(i - k + 1);
+    }
+
+    return ans;
+}

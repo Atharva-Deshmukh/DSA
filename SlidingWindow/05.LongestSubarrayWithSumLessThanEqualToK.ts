@@ -181,5 +181,7 @@ function findMaxSubarraySum(a, k) {
         Longest Subarray with 0 Sum
         Longest Subarray with sum equal to K
         Longest subarray with equal 0s and 1s
+
+    But, they can also be solved using sliding window pattern 3
 */
 

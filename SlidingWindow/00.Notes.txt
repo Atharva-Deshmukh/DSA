@@ -10,3 +10,10 @@ Patterns in Sliding window problems
 1. Constant size sliding window 
 2. Longest subarray/substring where <Condition>
 3. No of subarrays where <condition>
+   
+    pattern 3 ex:
+     no of subarrays with sum = k -> Condition is constant here
+     In such problems
+     1 = Calculate no of subarrays with sum <= k      --> this can be solved using sliding window technique
+     2 = Calculate no of subaarays with sum <= (k - 1)
+     Do 1 - 2

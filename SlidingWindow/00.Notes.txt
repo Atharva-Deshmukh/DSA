@@ -1,0 +1,5 @@
+In an array of length n
+
+Total Subarrays = (n * (n + 1)) / 2
+
+Total Subsequences = 2 ^ n

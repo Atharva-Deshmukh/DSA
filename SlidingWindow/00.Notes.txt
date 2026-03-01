@@ -3,3 +3,10 @@ In an array of length n
 Total Subarrays = (n * (n + 1)) / 2
 
 Total Subsequences = 2 ^ n
+--------------------------------------------------------------------
+
+Patterns in Sliding window problems
+
+1. Constant size sliding window 
+2. Longest subarray/substring where <Condition>
+3. No of subarrays where <condition>

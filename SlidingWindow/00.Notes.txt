@@ -8,7 +8,23 @@ Total Subsequences = 2 ^ n
 Patterns in Sliding window problems
 
 1. Constant size sliding window 
+
+    Here, we calculate the first window,
+    then move the window ahead by 1
+    We keep the track of elements outside the window and incoming in the window
+
+    If queue is used, we use a k length queue and we store the 
+    indices in the queue
+
 2. Longest subarray/substring where <Condition>
+
+    This is a variable sized window pattern
+    we start with a window size 1 
+    l = 0 and r = 0
+    we expand and shrink to check the condition
+    l = shrinks the window
+    r = expands the window
+
 3. No of subarrays where <condition>
    
     pattern 3 ex:
@@ -17,3 +33,10 @@ Patterns in Sliding window problems
      1 = Calculate no of subarrays with sum <= k      --> this can be solved using sliding window technique
      2 = Calculate no of subaarays with sum <= (k - 1)
      Do 1 - 2
+
+4. Shortest/Minimum window <condition>
+
+    This is a variable sized window pattern
+    we start with a window size 1 
+    l = 0 and r = 0
+    Here, we try to shrink the window as much as we can

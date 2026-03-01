@@ -127,7 +127,7 @@ so, this will just shrink once and then alway increase the window size
  TC: O(n) ->  expanding (goes max till n)
  SC: O(1)
 
-
+NOTE: the above approaches only work for subarrays with all positive elements
 */
 
 function findMaxSubarrayLengthWithSumLessThanK(a, k) {
@@ -172,3 +172,14 @@ function findMaxSubarraySum(a, k) {
 
     return maxSum;
 }
+
+/* If, there are negative numbers in the array, then sliding window won't work
+    
+    Approach there: hashmap + prefixSum
+
+    TODO problems
+        Longest Subarray with 0 Sum
+        Longest Subarray with sum equal to K
+        Longest subarray with equal 0s and 1s
+*/
+

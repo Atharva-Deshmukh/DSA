@@ -1,4 +1,7 @@
-/* Longest Substring with K Uniques
+/* Two problems are covered here 
+
+Longest Substring with K Uniques
+Longest Substring with At most K Uniques
 
 You are given a string s consisting only lowercase alphabets and an integer k.
  Your task is to find the length of the longest substring that contains exactly k distinct characters.
@@ -27,7 +30,7 @@ Approach:
 - Same variable sliding window approach we used in sum <= k problem, just here
   instead of sum, we use map.size */
 
-function longestKSubstr(a, k) {
+function longestSubstrWithExactKDistinctChars(a, k) {
     const n = a.length
 
     let l = 0, r = 0, maxLen = -1; /* keep maxLen = -1, because return -1 if maxLen never updates */
@@ -55,4 +58,34 @@ function longestKSubstr(a, k) {
 
     return maxLen;
         
+}
+
+function longestSubstrWithAtMostKDistinctChars(a, k) {
+    const n = a.length
+
+    let l = 0, r = 0, maxLen = -1; /* keep maxLen = -1, because return -1 if maxLen never updates */
+    let map = new Map();
+
+    while (r < n) {
+        
+        /* Add the character to the map */
+        if(!map.has(a[r])) map.set(a[r], 1);
+        else map.set(a[r], map.get(a[r]) + 1);
+
+        /* shrink the window if map size exceeds k */
+        while ((l <= r) && (map.size > k)) {
+            if(map.get(a[l]) === 1) map.delete(a[l]);
+            else map.set(a[l], map.get(a[l]) - 1);
+
+            l++;
+        }
+
+        /* If map size <= k, update maxLen */
+        if (map.size <= k) maxLen = Math.max(maxLen, (r - l + 1));
+
+        r++;
     }
+
+    return maxLen;
+        
+}

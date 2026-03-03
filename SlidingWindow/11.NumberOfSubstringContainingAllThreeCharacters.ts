@@ -207,32 +207,36 @@ function numberOfSubstrings(s: string): number {
 }
 
 
-/* TODO - Sliding window here */
+/* Sliding window Logic - Its just simple observation I did 4 years ago, its actually derived from the above logic
+
+    b b a c b a
+    i   
+    j
+    - Keep increasing window
+    - shrink the window until it has all 3 chars
+    - for the left, when all three chars are not there -> do ans += left
+     
+
+*/
 function numberOfSubstringsSlidingWindow(s: string): number {
     const n = s.length;
-    let map = new Map();
-    let l = 0, r = 0, ans = 0;
 
-    while(r < n) {
+    let count = [0, 0, 0]; // a, b, c
+    let left = 0;
+    let ans = 0;
 
-        /* add current char to the map */
-        if(!map.has(s[r])) map.set(s[r], 1);
-        else map.set(s[r], map.get(s[r]) + 1);
+    for (let right = 0; right < n; right++) {
+        // Add current character
+        count[s.charCodeAt(right) - 97]++;
 
-        /* Shrink the window from left until we have all 3 chars in the substring/map */
-        while((l <= r) && (map.size === 3)) {
-            if(map.get(s[l]) === 1) map.delete(s[l]);
-            else map.set(s[l], map.get(s[l]) - 1);
-
-            ans += ()
-
-            l++;
-            ans++;
+        // Shrink while valid
+        while (count[0] > 0 && count[1] > 0 && count[2] > 0) {
+            count[s.charCodeAt(left) - 97]--;
+            left++;
         }
 
-        if(map.size === 3) ans++;
-
-        r++;
+        // All substrings ending at right
+        ans += left;
     }
 
     return ans;

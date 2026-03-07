@@ -108,7 +108,7 @@ How to calculate number of subarrays with sum <= k
     [1, 1, 0, 0], [1, 1, 0], [0, 0], [0] === length of this subarray
     hence count += (r - l + 1) */
 
-function findMaxSubarrayLengthWithSumLessThanK(a, k) {
+function findCountOfSubarraysWithSumLessThanK(a, k) {
     const n = a.length
     let count = 0;
 
@@ -131,8 +131,8 @@ function findMaxSubarrayLengthWithSumLessThanK(a, k) {
 }
 
 function numSubarraysWithSum(a: number[], k: number): number {
-    const lessThanEqualK = findMaxSubarrayLengthWithSumLessThanK(a, k);
-    const lessThanEqualKMinus1 = findMaxSubarrayLengthWithSumLessThanK(a, k-1);
+    const lessThanEqualK = findCountOfSubarraysWithSumLessThanK(a, k);
+    const lessThanEqualKMinus1 = findCountOfSubarraysWithSumLessThanK(a, k-1);
 
     return lessThanEqualK - lessThanEqualKMinus1;
 };

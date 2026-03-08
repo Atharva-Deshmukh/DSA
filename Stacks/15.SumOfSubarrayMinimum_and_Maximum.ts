@@ -57,7 +57,7 @@ then contribution = (count * a[i])
  a[4] = 3
  a[7] = 1
 
- elements Greater than or equal to 3 on right side -> 7 - 4 = 3         (3, 7, 7)
+ elements Greater than or equal to 3 on right side -> 7 - 4 = 3         (3, 7, 8)
  similarly, elements greater than or equal to 3 on left -> 4 - 0 = 4    (3, 7, 6, 4)
 
  Total subarrays with 3 as minimum combining both sides = (3 * 4) = 12

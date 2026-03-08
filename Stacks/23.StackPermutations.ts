@@ -32,6 +32,11 @@ Constraints:
 
 Approach:
 
+We cannot first simply push all the elements from a[] and then pop() from b[]
+We need to this side by side
+
+Iterate a[] and b[] simultaneously
+
        i                j
 a[] = [1, 2, 3], b[] = [2, 1, 3]
 

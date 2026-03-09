@@ -33,6 +33,8 @@ Constraints:
             A simple Better approach: Simply use hashing + sliding window
             -------------------------------------------------------------
 
+We need a fixed window size here
+
 - Instead of a hash function, simply maintain 2 hashes of size 256 corresponding to each ASCII char count
 - hash1 = hash for pattern
   hash2 = hash for current window
@@ -142,3 +144,20 @@ function findAllOccurencesOfAnagrams(pat: string, txt: string): number[] {
 
     return ans;
 }
+
+/* SAME Above logic is used to solve this problem also
+
+567. Permutation in String
+
+Given two strings s1 and s2, return true if s2 contains a permutation of s1, or false otherwise.
+
+In other words, return true if one of s1's permutations is the substring of s2.
+
+Input: s1 = "ab", s2 = "eidbaooo"
+Output: true
+Explanation: s2 contains one permutation of s1 ("ba").
+
+Input: s1 = "ab", s2 = "eidboaoo"
+Output: false
+
+*/

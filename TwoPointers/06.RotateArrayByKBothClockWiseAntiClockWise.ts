@@ -34,7 +34,7 @@ function rotateRightByK(arr, k) {
     // reverse last k numbers
     reverse(arr, n - k, n - 1);
 
-    // reverse the first n-k terms
+    // reverse remaining elements
     reverse(arr, 0, n - k - 1);
 
     // reverse the entire array

@@ -134,7 +134,8 @@ function pivotIndex(a: number[]): number {
     for (let i = 0; i < n; i++) {
 
         /* Calculate leftSum Variable at the runtime */
-        leftSum = (leftSum + a[i - 1]);
+        if(i == 0) leftSum = 0;
+        else leftSum = (leftSum + a[i - 1]);
 
         if (leftSum === rightSum[i]) return i;
     }

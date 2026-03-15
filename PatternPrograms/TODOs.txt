@@ -1,0 +1,13 @@
+Number Increasing Pyramid
+
+Number Increasing Reverse Pyramid
+
+Number Changing Pyramid
+
+Square Fill Pattern
+
+Reverse Number Triangle Pattern
+
+Mirror Image Triangle Pattern
+
+Right Pascal’s Triangle

@@ -17,7 +17,7 @@ Pattern observed is very straightforeward, just subtract previous number
 
 */
 
-function decodeArray(presum) {
+function decodeArray(presum: number[]) {
     const n = presum.length;
     let arr = new Array(n);
 

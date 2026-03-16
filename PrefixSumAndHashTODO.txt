@@ -1,23 +1,21 @@
-Top Problems on Prefix Sum Technique for Interviews
-
-Easy Problems
-    Equilibrium Index
-    Split an array into two equal Sum subarrays
-    Mean of range in array
-    Original Array from Prefix Sums
+HASHING + PREFIX Sum
+--------------------
 
 Medium and Hard Problems
-    Product of Array Except Self
-    Longest Subarray With Sum K
     Minimum Removals for Target Sum
-    Subarray with 0 sum
     Longest Span in two Binary Arrays
-    Largest Submatrix With Sum 0
     Maximum occurring integer in given ranges
-    Compute before Matrix
     Maximum occured integer
     Longest Span with same Sum in two Binary arrays
-    Maximum sum Rectangle
     Subarray Sum Divisible By K
-    Count Subarrays having Sum K
     Smallest sum contiguous subarray
+
+ARRAY BASED:
+-----------
+
+Contains Duplicate 
+Valid Anagram 
+Remove Element 
+Majority Element 
+Top K Frequent Elements 
+First Missing Positive 

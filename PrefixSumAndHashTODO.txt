@@ -2,20 +2,15 @@ HASHING + PREFIX Sum
 --------------------
 
 Medium and Hard Problems
-    Minimum Removals for Target Sum
-    Longest Span in two Binary Arrays
-    Maximum occurring integer in given ranges
-    Maximum occured integer
-    Longest Span with same Sum in two Binary arrays
-    Subarray Sum Divisible By K
+    Longest Subarray With Sum K
     Smallest sum contiguous subarray
+    Minimum Removals for Target Sum
 
 ARRAY BASED:
 -----------
 
-Contains Duplicate 
-Valid Anagram 
 Remove Element 
 Majority Element 
 Top K Frequent Elements 
 First Missing Positive 
+

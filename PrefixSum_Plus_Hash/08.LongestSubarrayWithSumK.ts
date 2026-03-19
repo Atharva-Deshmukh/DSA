@@ -62,3 +62,62 @@ function longestSubarrayWithSumK(a, k) {
 
     return (maxLen === Number.MIN_SAFE_INTEGER) ? 0 : maxLen;
 }
+
+/* Optimisation, we don't need to store all the occurrences, we can store the earliest/first occurrence only
+
+Earliest occurrence gives longest subarray
+
+Lets understand it with k = 0 example
+
+Suppose prefix sum repeats
+
+Let’s say:
+Index:      0   1   2   3   4   5
+Array:      1  -1   3  -3   2  -2
+Prefix:     1   0   3   0   2   0
+
+Focus on prefix sum = 0
+
+It appears at:
+
+index 1, 3, 5
+
+Possible subarrays with sum = 0
+    (0 → 1) → length = 2
+    (0 → 3) → length = 4
+    (0 → 5) → length = 6 ✅ (maximum)
+
+Key Observation
+
+To maximize length:
+    length = currentIndex - earliestIndex
+
+So for index 5:
+    Using index 1 → length = 4
+    Using index 3 → length = 2
+    Using index -1 → length = 6 ✅
+
+👉 The earliest occurrence always gives longest length
+
+*/
+
+function findMaxLength(a: number[], k: number): number {
+        const map = new Map(); // <prefixSum, firstIndex>
+        let currSum = 0;
+        let maxLen = 0;
+
+        map.set(0, -1); // base case
+
+        for (let i = 0; i < a.length; i++) {
+            currSum += a[i];
+
+            if (map.has(currSum - k)) {
+                maxLen = Math.max(maxLen, i - map.get(currSum));
+            } else {
+                // store only first occurrence
+                map.set(currSum, i);
+            }
+        }
+
+        return maxLen;
+};

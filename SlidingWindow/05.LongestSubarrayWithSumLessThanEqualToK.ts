@@ -173,6 +173,28 @@ function findMaxSubarraySum(a, k) {
     return maxSum;
 }
 
+/* ONLY IF all elements are POSITIVE, then we can use sliding window to find Longest Subarray with sum equal to K */
+function lengthOfLongestSubarrayWithSumK(arr: number[], k: number): number {
+    let left = 0;
+    let sum = 0;
+    let maxLen = -1;
+
+    for (let right = 0; right < arr.length; right++) {
+        sum += arr[right];
+
+        while (sum > k) {
+            sum -= arr[left];
+            left++;
+        }
+
+        if (sum === k) {
+            maxLen = Math.max(maxLen, right - left + 1);
+        }
+    }
+
+    return maxLen;
+}
+
 /* If, there are negative numbers in the array, then sliding window won't work
     
     Approach there: hashmap + prefixSum

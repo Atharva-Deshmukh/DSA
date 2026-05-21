@@ -1,34 +1,141 @@
-Kadane's algo - after time allows
+------------------------------------------------------------------------
+TODO - Only problems NOT yet solved in this repo
+------------------------------------------------------------------------
 
-Stacks
-- Infix, Prefix, Postfix
+# Stacks
+
 - Simplify Path
 
-Queues and sliding window
-- 2781. Length of the Longest Valid Substring
-- Queue using stack
-- Circular Queue implementation
-- Reverse queue using recursion
+---
+
+# Queues
+
 - Reverse first k elements of queue
 - Interleave the first half of the queue with second half
 - Find the first circular tour that visits all Petrol Pumps
 - Minimum time required to rot all oranges
-- First negative integer in every window of size "k"
-- Sum of minimum and maximum elements of all subarrays of size "k".
+- Sum of minimum and maximum elements of all subarrays of size k
+- 2781. Length of the Longest Valid Substring
 
-Intervals
-    Insert Interval 
-    Merge Intervals 
-    Non Overlapping Intervals 
-    Meeting Rooms 
-    Meeting Rooms II 
-    Meeting Rooms III 
-    Minimum Interval to Include Each Query 
+---
 
+# Intervals
 
-Linked List
+- Insert Interval
+- Merge Intervals
+- Non Overlapping Intervals
+- Meeting Rooms
+- Meeting Rooms II
+- Meeting Rooms III
+- Minimum Interval to Include Each Query
+
+---
+
+# Linked List
+
+- Reverse linked list
+- Detect cycle
+- Find middle node
+- Merge two sorted linked lists
+- Remove Nth node from end
+- Palindrome linked list
+- Intersection of linked lists
 - LRU Cache
 - LFU Cache
 
-Heap:
+---
+
+# Heap
+
 - Maximum Frequency Stack
+
+---
+
+# Strings
+
+1. Count vowels/consonants
+2. Count frequency of characters
+3. Remove duplicate characters
+4. Check if all characters are unique
+5. Reverse words in sentence
+6. Reverse each word individually
+7. Longest word in sentence
+8. Shortest word in sentence
+9. Count words in string
+10. Remove special characters
+11. Replace spaces with %20
+12. Convert to Title Case
+13. Extract numbers from string
+14. First non-repeating character
+15. Group anagrams
+16. Longest common prefix
+17. String compression
+18. Implement atoi
+19. Longest palindromic substring
+20. Compare version numbers
+21. Isomorphic strings
+22. Transform one string to another using minimum operations
+23. Minimum insertions to form a palindrome with permutations allowed
+24. Palindrome Substring Queries
+
+---
+
+# Arrays
+
+1. Find 2nd largest
+2. Move zeroes to end
+3. Check if array sorted
+4. Find missing number (0 to n)
+5. Count frequency of elements
+6. Running sum of array
+7. Rearrange even/odd
+8. Reverse subarray of size K
+9. Kth largest/smallest (Heap-based)
+10. Find duplicate number (Floyd's cycle detection)
+11. Longest consecutive sequence
+12. Maximum possible difference of two subsets of an array
+
+---
+
+# HashMap / Hashing
+
+## Frequency & Set Operations
+1. Find whether an array is a subset of another array
+2. Find the intersection of two arrays
+3. Print all distinct words from a paragraph
+4. Find the first repeating element in an array
+5. Sort an array according to the order defined by another array
+6. Count distinct elements in every window of size k
+7. Check if an array can be divided into pairs whose sum is divisible by k
+
+## Pairing Problems
+8. Find all pairs with a given sum in an array
+9. Count all distinct pairs with difference equal to k
+10. Find all pairs (a, b) in an array such that a % b = k
+
+## Prefix Sum + HashMap
+11. Print all subarrays with 0 sum
+12. Count the number of subarrays having a given XOR
+
+## Sliding Window + HashMap
+13. Smallest subarray with k distinct numbers
+14. Count subarrays having total distinct elements same as original array
+
+---
+
+# Automation-Oriented Coding Questions
+
+1. Parse logs and count errors
+2. Read large file efficiently
+3. Compare two JSON responses
+4. Flatten nested JSON
+5. Retry mechanism with exponential backoff
+6. Pagination handling
+7. API response validator
+8. File comparison utility
+9. CSV/Excel parser
+10. Find duplicate files
+11. Generate random test data
+12. Framework design structure
+13. Dynamic locator handling
+14. Parallel execution design

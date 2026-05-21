@@ -19,15 +19,13 @@ TODO - Only problems NOT yet solved in this repo
 
 ---
 
-# Intervals
+# Intervals - Heap basic JS implementation
 
 - Insert Interval
 - Merge Intervals
 - Non Overlapping Intervals
 - Meeting Rooms
 - Meeting Rooms II
-- Meeting Rooms III
-- Minimum Interval to Include Each Query
 
 ---
 

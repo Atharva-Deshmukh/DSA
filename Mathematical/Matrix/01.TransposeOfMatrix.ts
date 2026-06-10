@@ -24,7 +24,7 @@ Output:         [
                 ]
 
 
-Way-1: indexwise visualisation
+Way-1: indexwise visualisation + Extra space approach
 
                             00 01 02              00 10 20
                             10 11 12      -->     01 11 21  
@@ -41,7 +41,7 @@ Way-1: indexwise visualisation
 TC: O(m * n)
 SC: O(m * n)
 
-Way-2: In-place
+Way-2: Constand space approach - Works for square matrix only
 - NOTE: In place algo only works for square matrix (n * n)
 - Notice that diagonals are in-place unaffected, only elements around diagonals are swapped
 - We have a trick here -> i = 0, j = (i + 1) - MEMORISE this trick  */

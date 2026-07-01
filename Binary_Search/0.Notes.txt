@@ -1,0 +1,46 @@
+                                            PATTERNS
+
+Pattern 1: Standard Binary Search (find target / boundary)
+
+1	Binary Search
+2	Lower Bound
+3	Upper Bound
+4	First And Last Occurrence
+10	Single Element In Sorted Array
+11	Peak Element
+
+
+Pattern 2: Search in Rotated Sorted Array
+
+5	Search In Sorted Rotated Array 1 (distinct)
+6	Search In Sorted Rotated Array 2 (duplicates)
+7	Minimum Element In Sorted Rotated Array 1 (distinct)
+8	Minimum Element In Sorted Rotated Array 2 (duplicates)
+9	Rotation Count
+
+
+Pattern 3: Binary Search on Answer (min of max / max of min / feasibility check)
+
+12	Sqrt Using Binary Search
+13	Find Nth Root Of M
+14	Koko Eating Bananas
+15	Min Days To Make M Bouquets
+16	Smallest Divisor Given A Threshold
+17	Capacity To Ship Packages Within D Days
+18	Kth Missing Positive Integer
+19	Missing Cows (Aggressive Cows)
+20	Book Allocation Problem
+21	Painters Partition Problem
+22	Minimise Max Distance Between Gas Stations
+
+
+Pattern 4: Binary Search on Two Sorted Arrays / 2D Matrix
+
+23	Median Of Two Sorted Arrays Of Different Sizes
+24	Kth Element Of Merged Array
+25	Row With Max 1s
+26	Search In A 2D Matrix
+27	Row Number Column Number Of Target
+28	Peak Element In Matrix
+29	Median In A Row Wise Sorted Matrix
+

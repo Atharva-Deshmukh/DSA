@@ -25,27 +25,34 @@ function leftHalfPyramidStarPattern(n: number): void {
 }
 
 function leftHalfPyramidNumberPattern(n: number): void {
-  for(let i = 1; i <= n; i++) {
-    let patRow: string = '';
-    let counter: number = 1;
-    for(let j = 1; j <= n;) {
-      while(j <= (n - i)) {patRow += '  '; j++;}
-      while(j <= n) {patRow += ' ' + counter; counter++; j++;}
+    for(let i = 1; i <= n; i++) {
+        
+        let patRow: string = "";
+        
+        patRow += (('  ').repeat(n - i)); /* Spaces */
+        
+        for(let j = 1; j <= i; j++) {
+            patRow += " " + j;           /* Numbers */
+        }
+        
+        console.log(patRow);
     }
-    console.log(patRow);
-  }
 }
 
 function leftHalfPyramidAlphabetPattern(n: number, startChar: string = 'A'): void {
-  for(let i = 1; i <= n; i++) {
-    let patRow: string = '';
-    let counter: number = 1;
-    let startCharAsciiCode: number = startChar.charCodeAt(0);
-    for(let j = 1; j <= n;) {
-      while(j <= (n - i)) {patRow += '  '; j++;}
-      while(j <= n) {patRow += ' ' + String.fromCharCode(startCharAsciiCode + (counter - 1)); counter++; j++;}
+    const startCharCode = startChar.charCodeAt(0);
+    
+    for(let i = 1; i <= n; i++) {
+        
+        let patRow: string = "";
+        
+        patRow += (('  ').repeat(n - i)); /* Spaces */
+        
+        for(let j = 1; j <= i; j++) {     /* Generate characters */
+            patRow += " " + (String.fromCharCode(startCharCode + (j - 1)));
+        }
+        
+        console.log(patRow);
     }
-    console.log(patRow);
-  }
 }
 

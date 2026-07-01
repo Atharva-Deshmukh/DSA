@@ -1,8 +1,15 @@
-/* Its the smallest index (say i), for which arr[i] > key, just like the lower bound but there is NO EQUALITY
+/* Its the smallest index (say i), for which arr[i] > key, 
+   just like the lower bound but there is NO EQUALITY
 
 ex: arr: [0, 1, 2, 3, 3, 5, 8, 8 10, 10] & target = 9
    index  0  1  2  3  4  5  6  7  8  9  
    ans => 8
+
+Thought process:
+- Sorted array -> use BS
+- whenever elements are smaller than OR equal to key -> move ahead
+- whenever (elements > key) -> update ans only if current index is smaller and move back
+- iterate till low and high cross each other
 
 TC: O(log2(n))
 SC: O(1)

@@ -13,6 +13,8 @@ row no i --> [1---i] nos.
 
 Also note that we need to print space also in between
 
+No need to care for spaces at the end
+
 TC: O(n * n), here n = 5
 SC: O(1)
 
@@ -32,27 +34,26 @@ function rightHalfStarPattern(n: number): void {
 
 function rightHalfNumberPattern(n: number): void {
     for(let i = 1; i <= n; i++) {
-
-        // construct individual row and then print it
-        let patRow: string = '';
-        let counter: number = 1;
-        for(let j = 1; j <= i; j++) {
-            patRow += counter + ' ';
-            counter++;
-        }
-        console.log(patRow)
+        
+        let patRow: string = "";
+        
+        for(let j = 1; j <= i; j++) patRow += " " + j;
+        
+        console.log(patRow);
     }
 }
 
 function rightHalfAlphaPattern(n: number, startChar: string = 'A'): void {
+    const startCharCode = startChar.charCodeAt(0);
+    
     for(let i = 1; i <= n; i++) {
-
-        // construct individual row and then print it
-        let patRow: string = '';
-        let startCharCode: number = startChar.charCodeAt(0);
+        
+        let patRow: string = "";
+        
         for(let j = 1; j <= i; j++) {
-            patRow += String.fromCharCode((startCharCode + (j - 1))) + ' ';  
+            patRow += " " + (String.fromCharCode(startCharCode + (j - 1)));
         }
-        console.log(patRow)
+        
+        console.log(patRow);
     }
 }

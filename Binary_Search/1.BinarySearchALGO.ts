@@ -4,8 +4,6 @@ TARGET OF BS:
 - Search for the target element (done while comparing the mid with the target)
 - Eliminate half of the search space (done while we decide to check left or right half)
 
-- since the array is sorted, we divide the search space in half each time and check if the middle element is the 
-  key we are looking for
 - if arr[mid] === key return arr[mid] and stop
 - if arr[mid] > key search from arr[0...mid-1]
 - if arr[mid] < key search from arr[mid+1....n-1]
@@ -30,8 +28,8 @@ SC: O(1) in Iterative
 ---------------------------------------------------------------
 CORNER CASES
 ---------------------------------------------------------------
-if the array space is between [0 ..... INT_MAX] and when the key = last element, we will have to compare 
-a[mid] === key and mid === INT_MAX since only arr[INT_MAX] search space is left,
+if the array space is between [0 ..... INT_MAX] and when the key = last element, 
+and only the last element is left to be checked
 so here, low = INT_MAX && high = INT_MAX
 
 but mid = (INT_MAX + INT_MAX) / 2  ==> OVERFLOW

@@ -7,7 +7,7 @@ ex: arr: [0, 1, 2, 3, 3, 5, 8, 8, 10, 10] & target = 9
 Thought process:
 - Sorted array -> use BS
 - whenever elements are smaller than key -> move ahead
-- whenever elements >= key -> update ans only if current index is smaller and move back
+- whenever (elements >= key) -> update ans only if current index is smaller and move back
 - iterate till low and high cross each other
 
 TC: O(log2(n))

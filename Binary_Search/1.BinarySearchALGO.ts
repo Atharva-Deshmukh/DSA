@@ -1,19 +1,16 @@
 /* Used in a sorted search space ONLY.
 
 TARGET OF BS:
-- Search for the target element (done while comparing the mid with the target)
-- Eliminate half of the search space (done while we decide to check left or right half)
+- Search for the target element
+- Eliminate half of the search space
 
 - if arr[mid] === key return arr[mid] and stop
 - if arr[mid] > key search from arr[0...mid-1]
 - if arr[mid] < key search from arr[mid+1....n-1]
 
-- So, at each search, we are caclulating middle index in order to compare 
-  mid = (low + high)/2
+- So, at each search, we are caclulating mid = (low + high)/2
 
-
-if arr.length = 32
-I will be keep dividing by 2 till I get the key
+if arr.length = 32, Keep dividing by 2 till I get the key
 
 32/2 = 16
 16/2 = 8

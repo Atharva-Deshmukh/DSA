@@ -3,22 +3,12 @@
 ex: arr: [0, 1, 2, 3, 3, 5, 8, 8, 10, 10] & target = 9
    index  0  1  2  3  4  5  6  7  8  9   
 
-- Now there are two instances of 10, but we need the smallest index for our lower bound
-- instead of simply doing linear search O(n), we can use Binary Search O(logn) over here since array is sorted
-- let low = 0, high = 9  and ans = some hypothetical index = arr.length + 1 (say)
-  mid = (0 + 9)/2 => 4
-  arr[mid] NOT >= 9, so low = mid + 1 => low = 5
 
-- let low = 5, high = 9 
-  mid = (5 + 9)/2 => 7
-  arr[mid] NOT >= 9, so low = mid + 1 => low = 8 
-
-- let low = 8, high = 9 
-  mid = (8 + 9)/2 => 8
-  arr[mid] >= 9, so, its our POSSIBLE answer, replace the ans only if index is smaller than ans , ans = 8
-                 there is possibility for getting more similar indices ahead, so low = low - 1
-                 
-- LOOP ENDS when low > high
+Thought process:
+- Sorted array -> use BS
+- whenever elements are smaller than key -> move ahead
+- whenever elements >= key -> update ans only if current index is smaller and move back
+- iterate till low and high cross each other
 
 TC: O(log2(n))
 SC: O(1)   */

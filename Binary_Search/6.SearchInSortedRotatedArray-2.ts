@@ -1,26 +1,25 @@
-/* assume that all the elements are NON-distinct and the array is sorted
-   return true if key is in arr[] else return false, since if duplicate === key, if will be a problem to return index
+/* Leetcode 81:
+   assume that all the elements are NON-distinct and the array is sorted
+   return true if key is in arr[] else return false, since if duplicate === key, 
+   if will be a problem to return index
 
 Input: nums = [2,5,6,0,0,1,2], target = 0       Output: true
 Input: nums = [2,5,6,0,0,1,2], target = 3       Output: false
 
-in part-1, we were finding which array part is sorted by comparing, mid, low and high values 
-they were all distince there, but this won't work in case the array has duplicates in it
+in part-1, we could eliminate halves since we could determine if a[low] <= a[mid] <= a[high] 
+as all elements were distinct.
+
+But, if all 3 are same, then elimination is not possible
 
 ex: arr = [3, 1, 2, 3, 3, 3, 3], here, low === mid === high, so, we cannot determine which part to eliminate
-So, we can't use part 1 's logic here
 
-Niave way: Iterate in O(n) linearly
+if(low === mid === high) is the ONLY condition stopping us from using part 1's logic over here,
 
-Logic:
-- if(low === mid === high) is the ONLY condition stopping us from using part 1's logic over here,
-
-       0  1  2  3  4  5  6
-arr = [3, 1, 2, 3, 3, 3, 3]            low = 0, mid = 3, high = 6
-
-WHENEVER if((low === mid === high) && arr[low] !== key), simply reduce the search space by low = low + 1 and high = high - 1
-Bcoz, all 3 are equal and anyway, we first compare mid with key in part-1's logic
-So, if arr[mid] !== key, its guranteed that arr[low] && arr[high] are not equal since all 3 are equal, so reduce this search space
+Solution: 
+WHENEVER if((low === mid === high) && arr[low] !== key), simply reduce the search 
+space by low = low + 1 and high = high - 1
+So, if arr[mid] !== key, its guranteed that arr[low] && arr[high] are also not equal since all 3 are equal
+so reduce this search space
 
 TC: O(log2(n))
 SC: O(1)  */

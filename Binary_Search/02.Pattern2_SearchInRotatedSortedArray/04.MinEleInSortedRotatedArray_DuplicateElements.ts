@@ -6,9 +6,8 @@ Input: nums = [1,3,5]           Output: 1
 Input: nums = [2,2,2,0,1]       Output: 0
 
 Logic:
-- Almost same as part 1's logic except the modification required for the condition where low === mid === high
-- here we need to compare with mid as ususal and reduce the search space
-- DONT FORGET TO CONTINUE, we MUST begin a new iteration after the search space is reduced
+- We just need to handle the condition when low === mid === high
+- update minEle and reduce the search space, continue
 
 TC: O(log2(n))
 SC: O(1) */

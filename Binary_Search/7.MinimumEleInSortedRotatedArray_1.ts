@@ -1,12 +1,9 @@
-/* Given the sorted rotated array nums of UNIQUE elements, return the minimum element of this array.
-You must write an algorithm that runs in O(log n) time.
+/* Leetcode 153. Given the sorted rotated array of UNIQUE/DISTINCT elements, return the minimum element of this array.
 
-Logic: 
-- O(nlogn) = sort it and return arr[0]
-- O(n) = Linear search
-- But since the array is sorted in some parts, we can use BS
-- In BS, we eliminate one of the halves, so, get a sorted half and extract min ele from it and eliminate it
-- repeat the same in the right half 
+Way-1: Linear Search --> O(n)
+Way-2: Sort the array so min shifts to index 0 --> O(nlogn)
+Way-3: Since the array is partially sorted, we can think of Binary Search here
+       Get a sorted half and extract min ele from it and eliminate it and repeat the same in another half 
 
 ex: arr = [4, 5, 6, 7, 0, 1, 2]
            0  1  2  3  4  5  6

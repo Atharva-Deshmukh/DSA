@@ -1,17 +1,16 @@
 /* Given a non-negative integer x, return the square root of x rounded down to the nearest integer. 
    The returned integer should be non-negative as well.
-   You must not use any built-in exponent function or operator.
 
-   For example, do not use pow(x, 0.5) in c++ or x ** 0.5 in python.
+   You must not use any built-in exponent function or operator --> pow(x, 0.5) in c++ or x ** 0.5 in python.
  
 Input: x = 4            Output: 2
-Explanation: The square root of 4 is 2, so we return 2.
 
 Input: x = 8            Output: 2
-Explanation: The square root of 8 is 2.82842..., and since we round it down to the nearest integer, 2 is returned.
+Explanation: The square root of 8 is 2.82842... --> rounded value = 2 is returned.
 
-Logic (Linear):
-- lets first think linearly, say x = 28
+                                                    Way-1: Linear approach
+                                                    ----------------------
+- say x = 28
    1 * 1 = 1
    2 * 2 = 4
    3 * 3 = 9
@@ -35,43 +34,42 @@ function linearSqrt(x: number): number {
     return ans;
 }
 
-/* Logic: (Binary Search)
-- How can we think of binary search over here?
-  Whenever we see such cases where till certain point, the answers are possible and we need maximum possible,
-  and after certain point, the answer is not possible, we can use BS
+/* 
+                                                        Way-2: (Binary Search)
+                                                        ----------------------
+
+Why BS?
+  
+Whenever we see cases where till a certain point only the answer is possible, not after that and we need max value, we use BS
 
   ex: n = 28
 
-  1  ✓
-  2  ✓
-  3  ✓
-  4  ✓
-  5  ✓
-  6  X
-  7  X
-  8  X
-  9  X
-  .
-  .
-  .
-  28 X       --> We can think max of 28 instead of INT_MAX
-
-  See that the search space is also sorted
+        1  ✓
+        2  ✓
+        3  ✓
+        4  ✓
+        5  ✓
+        6  X
+        7  X                              NOTICE: the search space is also sorted
+        8  X
+        9  X
+        .
+        .
+        .
+        28 X       --> We can think max of 28 instead of INT_MAX
 
 TC: O(log2(n))
 SC: O(1) 
-__________________________________________________________________________________________________
-A GREAT OBSERVATION:
-__________________________________________________________________________________________________
 
-our BS array would be like this -> X, X, X, X, X, ✓, ✓, ✓, ✓, ✓, ✓
-                                   |                               |
-                                  low                            high
 
-IT IS OBSERVED THAT when while loop ends, high > low,  low is the minimum possible ans, we can directly return low
-                                    X, X, X, X, X, ✓, ✓, ✓, ✓, ✓, ✓
-                                                |  |
-                                              high low
+our BS array would be like this -> ✓, ✓, ✓, ✓, ✓, ✓, X, X, X, X, X, X
+                                   |                                  |
+                                  low                                high
+
+when high > low, we can directly return high as its the max value
+                                    ✓, ✓, ✓, ✓, ✓, ✓, X, X, X, X, X, X
+                                                     |  |
+                                                   high low
             
 
 
@@ -90,12 +88,11 @@ function sqrtUsingBinarySearch(x: number): number {
     while(low <= high) {
         let mid: number = low + Math.floor((high - low) / 2);
 
-        // Search part and Elimination part
         if((mid * mid) <= x) {
-            ans = mid;               // can be a possible ans
-            low = mid + 1;           // explore for a larger possible answer
+            ans = mid;               /* can be a possible ans */
+            low = mid + 1;           /* we are on right half -> explore for a larger possibility */
         }
-        else if((mid * mid) > ans) high = mid - 1;  
+        else high = mid - 1;         /* We are on wrong half, move left */
     }
 
     return ans;
@@ -131,7 +128,7 @@ function sqrtUsingBinarySearchWithPrecision(x: number, precision: number): numbe
             ans = mid;               // can be a possible ans
             low = mid + 1;           // explore for a larger possible answer
         }
-        else if((mid * mid) > ans) high = mid - 1;  
+        else high = mid - 1;  
     }
 
     // Decimal calculation

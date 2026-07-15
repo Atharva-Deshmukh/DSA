@@ -4,14 +4,19 @@ to the starting position of the array) k number of times, the task is to find th
 value of k.
 
 Input: arr[] = {15, 18, 2, 3, 6, 12}        Output: 2
+
 Explanation: Initial array must be {2, 3, 6, 12, 15, 18}. 
-We get the given array after rotating the initial array twice.
+             We get the given array after rotating the initial array twice.
 
 Input: arr[] = {7, 9, 11, 12, 5}            Output: 4
 
+                                                                TECHNIQUE TO REMEMBER
+                                                                ---------------------
+
 FOR RIGHT ROTATED ARRAY
-- let Pivot = smallest element in the array 
-- no. of rotations (k) = pivotEle_index
+-----------------------
+
+- no. of rotations (k) = smallest element index
 
  0  1  2  3  4
 [1, 2, 3, 4, 5] k = 0 OR k = 5
@@ -21,8 +26,9 @@ FOR RIGHT ROTATED ARRAY
 
 
 FOR LEFT ROTATED ARRAY
-- let Pivot = smallest element in the array 
-- no. of rotations (k) = arr.len - pivotEle_index
+----------------------
+
+- no. of rotations (k) = (arr.len - smallest element index)
 
  0  1  2  3  4
 [1, 2, 3, 4, 5] k = 0 OR k = 5
@@ -31,8 +37,7 @@ FOR LEFT ROTATED ARRAY
 [4, 5, 1, 2, 3] k = 3
 
 LOGIC
-- Building up further on the above pattern, we just need to keep the track of index of the min array element
-- return that index directly since the array is right-rotated
+- Find smallest element index in a sorted rotated array and return ans according to the type of rotation
 
 TC: O(log2(n))
 SC: O(1)  */

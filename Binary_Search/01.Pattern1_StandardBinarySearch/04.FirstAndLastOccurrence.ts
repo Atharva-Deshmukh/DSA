@@ -15,6 +15,14 @@ Way-2:
 - Sorted array --> BS
 - Its simply two times binary search logic
 
+Note: 
+- Upper bound and lower bound logic won't work when the element is not there at all
+
+       0  1  2  3  4   5
+  ex: [5, 6, 9, 9, 9, 10] and key = 8
+      
+      expected ans = [-1, -1]
+      we will get  = [2, 2] because we always look for >= or >, not ===
 
 TC: O(log2(n)) + O(log2(n)) = O(log2(n))
 SC: O(1)  */

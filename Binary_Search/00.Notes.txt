@@ -21,6 +21,17 @@ Pattern 2: Search in Rotated Sorted Array
 
 Pattern 3: Binary Search on Answer (min of max / max of min / feasibility check)
 
+           When we have something like this [X, X, X, X, X, ✓, ✓, ✓, ✓, ✓]
+                                                            |
+                                                           ans
+
+                                            [✓, ✓, ✓, ✓, ✓, X, X, X, X, X]
+                                                           |
+                                                          ans
+
+           i.e. after a particular range, we either start getting answer, or don't get answers
+           we can think of binary search, because here, our search space is from [1 --- INT_MAX] => sorted
+
 12	Sqrt Using Binary Search
 13	Find Nth Root Of M
 14	Koko Eating Bananas

@@ -73,6 +73,7 @@ when high > low, we can directly return high as its the max value
             
 
 
+Mathematically, O(sqrt(n)) > O(logn), so BS is better solution here
 
 */
 

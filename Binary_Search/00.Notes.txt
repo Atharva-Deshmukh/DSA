@@ -1,6 +1,8 @@
                                             PATTERNS
 
 Pattern 1: Standard Binary Search (find target / boundary)
+           
+           We just need simple BS -> Search something + eliminate one of the halves
 
 1	Binary Search
 2	Lower Bound
@@ -10,7 +12,7 @@ Pattern 1: Standard Binary Search (find target / boundary)
 11	Peak Element
 
 
-Pattern 2: Search in Rotated Sorted Array
+Pattern 2: Search Something in a Rotated Sorted Array
 
 5	Search In Sorted Rotated Array 1 (distinct)
 6	Search In Sorted Rotated Array 2 (duplicates)

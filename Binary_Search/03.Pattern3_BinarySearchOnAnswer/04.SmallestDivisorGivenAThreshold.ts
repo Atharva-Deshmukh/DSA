@@ -1,9 +1,11 @@
-/* Given an array of integers nums and an integer threshold, we will choose a positive integer divisor, 
+/* Leetcode 1283: 
+Given an array of integers nums and an integer threshold, we will choose a positive integer divisor, 
 divide all the array by it, and sum the division's result. Find the smallest divisor such that the result 
 mentioned above is less than or equal to threshold.
 
 Each result of the division is rounded to the nearest integer greater than or equal to that element. 
 (For example: 7/3 = 3 and 10/2 = 5).
+Math.ceil() basically
 
 The test cases are generated so that there will be an answer.
 
@@ -14,11 +16,19 @@ If the divisor is 4 we can get a sum of 7 (1+1+2+3) and if the divisor is 5 the 
 Input: nums = [44,22,33,11,1], threshold = 5    Output: 44
 
 
-Brute force Logic: 
+                                                    Way-1: BRUTE FORCE
+                                                    ------------------
+
 - we will use Math.ceil() since we have to get nearest greater integer >= element
 - iterate for divisor = 1 to INT_MAX
 - For every iteration, calculate the sum, and check if it is < threshold, return true;
-  It will be just like min. bouquets problem
+  
+- Since we are iterating from divisor = 1 to max in a sorted order, the first ans we will get will be minimum
+  when divisor = 1, we will get max possible sum
+  as divisor increases --> sum decreases
+                [X, X, X, X, ✓, ✓, ✓, ✓]
+                             |
+                      min sum possible
 
 TC: O((INT_MAX) * nums.length)
 SC: O(1) */
@@ -42,15 +52,23 @@ function bruteForceSolution(nums: number[], threshold: number): number {
     return -1;
 }
 
-/* Binary search optimisation
-- Modify isSumPossibleForThisDivisor() to return the sum itself, but its TC will be same
-- instead of iterating every divisor, we can use BS since we are anyways looping in a sorted manner
-- Range will be [1...Math.max(...arr)]
+/*                                       Way-2: Binary search optimisation
+                                         ---------------------------------
+        
+Thought Process:
+- In brute force, we start to get answer after a limit and we require a min value, we can think of BS
+  as the search space will be sorted
+
+                  [X, X, X, X, ✓, ✓, ✓, ✓]
+                             |
+                      min sum possible
+
+- Instead of iterating over every divisor from [1---INT_MAX], we just search and eliminate the larger parts
 
 TC: O(log2(INT_MAX) * nums.length)
 SC: O(1) */
 
-function calculateSum(nums: number[], threshold: number, currentDivisor: number): number {
+function calculateSum(nums: number[], currentDivisor: number): number {
     let sum: number = 0;
     nums.forEach((num) => {
         sum += Math.ceil(num / currentDivisor);
@@ -60,17 +78,20 @@ function calculateSum(nums: number[], threshold: number, currentDivisor: number)
 
 function BS_Solution(nums: number[], threshold: number): number {
     let low: number = 1;
-    let high: number = Math.max(...nums);
+    let high: number = Number.MAX_SAFE_INTEGER;
+    
     let ans: number = Number.MAX_SAFE_INTEGER;
 
     while(low <= high) {
-        let mid: number = low + Math.floor((high - low) / 2);
+        
+        const mid: number = low + Math.floor((high - low) / 2);
+        const currSum = calculateSum(nums, mid);
 
-        if(calculateSum(nums, threshold, mid) <= threshold) {
+        if(currSum <= threshold) {
             ans = mid;
-            high = mid - 1;  //explore smaller possiblities
+            high = mid - 1;  /* explore smaller possiblities */
         }
-        else if(calculateSum(nums, threshold, mid) > threshold) low = mid + 1;
+        else low = mid + 1;
     }
 
     return ans;

@@ -35,6 +35,114 @@ Pattern 3: Binary Search on Answer (min of max / max of min / feasibility check)
            i.e. after a particular range, we either start getting answer, or don't get answers
            we can think of binary search, because here, our search space is from [1 --- INT_MAX] => sorted
 
+
+           This also called OPPOSITE POLARITY BINARY SEARCH concept
+
+                                         [✓, ✓, ✓, ✓, ✓, X, X, X, X, X]    --> Before BS
+                                          |                            |
+                                         low                          high
+
+                                         [✓, ✓, ✓, ✓, ✓, X, X, X, X, X]    --> After BS
+                                                        |  |
+                                                      high low
+
+        After BS, the low pointer (pointing to solution regions) now points to non-solution regions
+
+
+        Where this is useful?
+
+        Say, we have k = 5 but array = [1, 1, 1, 3, 6]
+        k is not there in the array but we need a range where k can be there
+        We just apply BS and when low > high, BS ends
+        After BS ends, we are left with a range where k will definitely lie
+
+                             0  1  2  3  4
+                            [1, 1, 1, 3, 6]   mid = 2
+                             |     |     |    missing[mid] < k, low = mid + 1
+                             l     m     h
+
+                             0  1  2  3  4
+                            [1, 1, 1, 3, 6]   mid = 3
+                                      |  |    missing[mid] < k, low = mid + 1
+                                      m  h
+                                      |
+                                      l
+
+                             0  1  2  3  4
+                            [1, 1, 1, 3, 6]   mid = 4
+                                         |    missing[mid] > k, high = mid - 1
+                                         m
+                                         |
+                                         l
+                                         |
+                                         h
+
+                             0  1  2  3  4
+                            [1, 1, 1, 3, 6]  
+                                      |  |    
+                                      h  m
+                                         |
+                                         l
+
+                    here k lies between [a[h], a[l]]
+
+
+One corner case:
+
+                            0  1  2  3
+                     arr = [1, 2, 3, 4]
+Ideal array should be    = [1, 2, 3, 4]           -->  missing[i] = arr[i] - ideal[i]
+Missing numbers till now = [0, 0, 0, 0]
+
+now when k = 2, it doesn't lie between any of the above missing[] since missing[0] === missing[n - 1] === 0
+
+low = 0
+high = 3
+                             0  1  2  3
+                            [0, 0, 0, 0]   mid = 1
+                             |  |     |    missing[mid] < k, low = mid + 1 = 1 + 1 = 2
+                             l  m     h
+
+low = 2
+high = 3
+                             0  1  2  3
+                            [0, 0, 0, 0]   mid = 2
+                                   |  |    missing[mid] < k, low = mid + 1 = 2 + 1 = 3
+                                   l  h
+                                   |
+                                   m
+
+low = 3
+high = 3
+                             0  1  2  3
+                            [0, 0, 0, 0]   mid = 3
+                                      |    missing[mid] < k, low = mid + 1 = 3 + 1 = 4 = n
+                                      l
+                                      |
+                                      h
+                                      |
+                                      m
+
+low = 4
+high = 3  --> low > high --> loop ends
+
+                             0  1  2  3  4
+                            [0, 0, 0, 0]  
+                                      |  |  
+                                      h  l
+
+                        Here, k lies outside array, 
+
+        
+        IMPORTANT POINTS:
+        -----------------
+
+        - After BS, If low < n --> missing[high] < k <= missing[low] --> (high---k---low]
+        - if low == n --> All missing[] values are < k  --> k lies to the right of the array.
+
+
+
+
 12	Sqrt Using Binary Search
 13	Find Nth Root Of M
 14	Koko Eating Bananas

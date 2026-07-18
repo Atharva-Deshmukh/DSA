@@ -8,8 +8,9 @@ Pattern 1: Standard Binary Search (find target / boundary)
 2	Lower Bound
 3	Upper Bound
 4	First And Last Occurrence
-10	Single Element In Sorted Array
-11	Peak Element
+5	Single Element In Sorted Array
+6	Peak Element
+7   GuessNumberHigherOrLower
 
 
 Pattern 2: Search Something in a Rotated Sorted Array

@@ -25,14 +25,16 @@ stalls[4]. The minimum distance between cows, in this case, is 4, which also is 
 Expected Time Complexity: O(n*log(10^9)).
 Expected Auxiliary Space: O(1). 
 
-Logic:
+                                                  Way-1: Brute Force
+                                                  ------------------
+
 - let stalls = [0, 3, 4, 7, 10, 9] and cows = 4
-  We have to place ALL 4 cows in such a way that min dist between any two of them is max possible of all possibilities
+  We have to place ALL 4 cows in such a way that min dist between any two of them is max possible 
+  of all possibilities
 
-  Since its a coordinate/distance array, sort it first
+  --> Since its a coordinate/distance array, sort it first --> stalls = [0, 3, 4, 7, 9, 10]
 
-  stalls = [0, 3, 4, 7, 9, 10]
-  Now, the trick here for BS is -> Try all possible distance from 1 to INT_MAX (say currMinDist) and check if any two cows 
+  --> Try all possible distance from 1 to INT_MAX (say currMinDist) and check if any two cows 
   have (distBetweenThem >= currMinDist)
 
   let dry run (Note that all k cows should be placed)
@@ -57,14 +59,22 @@ Logic:
   [0,  3,  4,  7,  9,  10]
    c1      c2      c3       --> min distace overall = 4  NOT POSSIBLE since all 4 cows cannot be placed at this distance
    
+
+                                                  Way-2: Binary Search
+                                                  --------------------
+    
+  Thought Process:
+  - Note that we stop getting the solution after certain point.
+  - And our search space is sorted since we are trying all min distances from [1---INT_MAX]
+  
   1 ✓
   2 ✓
   3 ✓        ----> Recall, this is a BS pattern
   4 X
   5 X
 
-This linear search Brute force gives TLE since we are going till INT_MAX
-we can use binary search here To optimise the outer function, inner function need not be optimised
+
+we can use binary search here.
 low = 1
 high = stalls[n - 1] - stalls[0];  since this is the max possible distance between any two cows
                                    and our min distance will always between 1 and this high
@@ -74,30 +84,23 @@ if(mid === true) go right to get max possiblity
 
 */
 
-function isThisCurrMinPossible(stalls: number[], cows: number, currMinDist: number): boolean {
-  /* don't just use stalls = stalls.sort(); 
-  by default, this sort will sort as per strings not numeric value */
-  stalls = stalls.sort((a, b) => a - b);
-
-  let n: number = stalls.length;
-  let currOrigin: number = stalls[0];
-
-  // assuming first cow is placed at 0th index
-  cows--;
-
-  for(let i = 1; i < n; i++) {
-
-    // decrease no of cows and also replace origin with current origin (it denotes that) the current 
-    // cow is placed at this index , as now we will calculate next cow distance from this origin
-    if((stalls[i] - currOrigin) >= currMinDist) {
-        cows--;        
-        currOrigin = stalls[i]
+function isThisMinDistPossible(dist: number[], cows: number, currMinDist: number) {
+    
+    const n: number = dist.length;
+    
+    let lastCoordinateValue = dist[0];   // store the coordinate of the last placed cow
+    cows--;                              // first cow is already placed at 0th index
+    
+    for(let i = 1; i < n; i++) {
+        if((dist[i] - lastCoordinateValue) >= currMinDist) {
+            cows--;
+            lastCoordinateValue = dist[i];
+            
+             if(cows === 0) return true;   // if we exhaust all the cows, we are done, return true
+        }
     }
-    // if we exhaust cows in between, return true as this is a possible minDist, no need to traverse
-    // whole array
-    if(cows === 0) return true;
-  }
-  return false;
+    
+    return false;  // cows are still there but we finished the array traversal, return false
 }
 
 function missingCowsBruteForce(stalls: number[], cows: number): number {
@@ -106,11 +109,13 @@ function missingCowsBruteForce(stalls: number[], cows: number): number {
 
   // no. of cows should be always <= stalls length OR stalls length should be atleast 2
   if((n < cows) || (n < 2)) return -1;
+
+  stalls = stalls.sort((a, b) => a - b);
   
   for(let currMinDist = 1; currMinDist <= Number.MAX_SAFE_INTEGER; currMinDist++) {
 
      // since we are going from 1 to N, we will get the last true element as the max automatically 
-      if(isThisCurrMinPossible(stalls, cows, currMinDist) === true) {
+      if(isThisMinDistPossible(stalls, cows, currMinDist) === true) {
         ans = currMinDist; 
       }
       else break;
@@ -134,7 +139,7 @@ function missingCowsBinarySearch(stalls: number[], cows: number): number {
   while(low <= high) {
     let mid: number = low + Math.floor((high - low) / 2);
 
-    if(isThisCurrMinPossible(stalls, cows, mid) === true) low = mid + 1;
+    if(isThisMinDistPossible(stalls, cows, mid) === true) low = mid + 1; // explore higher possibilities
     else high = mid - 1;
   }
   

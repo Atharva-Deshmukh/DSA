@@ -18,7 +18,7 @@ LOGIC:
 
 */
 
-function kthEleConstSpace(a1: number[], a2: number[], k: number): number{
+function kthEleTwoPointersApproachConstSpace(a1: number[], a2: number[], k: number): number{
     let n1: number = a1.length;
     let n2: number = a2.length;
 
@@ -62,11 +62,101 @@ function kthEleConstSpace(a1: number[], a2: number[], k: number): number{
 
 /* BS APPROCACH
 
-- We can implement the BS approach just as we did in the question to find median of two sorted arrays using BS
-- There, we were trying to formulate left half and right half, here our left and right halves will be of 
-  k elements           and          (n - k) elements
 
-DRY run:
+- This time, our partitions will be
+    left      right
+     k       (n - k)
+
+
+In median of two sorted arrays problem, we iterated from [0 --- n1] elements to determine the correct half
+
+But in this problem, we know that the left half already has k elements, only unknown is how many of these
+k elements will be from a1[]
+
+                                    In median problem:
+
+    Left size = 5, we iterated in the following way
+
+    0 from a1 + 5 from a2
+    1 from a1 + 4 from a2
+    2 from a1 + 3 from a2
+    3 from a1 + 2 from a2
+
+                                    In kth element problem:
+        
+    Left size = k, we will iterate
+
+    0 from a1 + k from a2
+    1 from a1 + (k-1) from a2
+    2 from a1 + (k-2) from a2
+
+    We are searching for the correct cut in a1[]
+
+
+Need of Binary search is to check if we created the correct partitioning of elements,
+
+Because if picked too few from a1 -->  l2 > r1 --> move right
+        if picked too many from a1 --> l1 > r --> move left
+
+
+In median of two sorted arrays problem, every partition combination was worth trying
+since we ensured a1.length always <= a2.length, negative values were never picked
+
+In this problem now, 
+
+let 
+a1 = 6 elements
+a2 = 5 elements         and k = 7
+
+mid1 = elements from a1
+mid2 = 7 - mid1
+
+if mid1 = elements picked from a1 = 0, means mid2 = elements picked from a2 = 7
+but a2 only has 5 elements
+
+                                    MODIFICATION IN RANGES:
+                                    -----------------------
+
+Lets derive low and high:
+
+we can pick total k elements from both the arrays
+
+mid1 + mid2 = k
+       mid2 = k - mid1  
+
+no of elements picked from a2 = mid2 = always lies between 0 and a2.length
+0 <= mid2 <= n2
+
+0 <= k - mid1 <= n2
+
+Here, we can split this into two inequalities
+
+Equality-1:
+    0 <= k - mid1
+    mid1 <= k
+
+    mid1 has to satisfy two conditions at a time
+    mid1 ≤ n1
+    mid1 ≤ k
+
+    hence largest value possible for mid1 = min(n1, k)
+
+    our high = largest of mid1 = min(n1, k)
+
+
+Equality-2:
+    k - mid1 <= n2
+    k - n2  <= mid1
+
+    this means, we MUST take atleast (k - n2) elements from a1[]
+
+    Also, mid1 >= 0
+
+    hence low = max(0, (k - n2))
+
+
+                                NOTICE SOMETHING:
+                                ----------------
 
 a1[] = [2, 3, 6, 7, 9]  a2[] = [1, 4, 8, 10] k = 4
 mergedLen = 9 (ODD)
@@ -82,25 +172,8 @@ mergedLen = 8 (EVEN)
 
             In both the cases, the kth element = max(l1,l2)
 
-MODIFICATION IN RANGES:
 
-we cannot pick 0 from a1 when k > n2 because when k exceeds n2, we need some minimum contribution from n1 also
-low = max(0, (k - n2));
-let k = 7, a1 contain 6 elements
-           a2 contain 5 elements
-
-           now we need    7 | 4       combination
-
-           even if we pick all 5 from a2, we still need 2 elements from a1 to make 7 on left
-
-high cannot be simply n1 since left has total size of k and we need only that much elements from a1 that make upto k
-high = min(n1, k) 
- if a1[] = [1,2,3,4,5]  k = 3
- we need only 3 elements not all the n1 elements
-
-
-
-TC: O(log(l1) + log(l2))
+TC: O(log(min(n1, n2))) because we at max try to take all elements from the smaller array
 SC: O(1), We are using constant space. */
 
 function kthEle_BS(a1: number[], a2: number[], k: number): number{

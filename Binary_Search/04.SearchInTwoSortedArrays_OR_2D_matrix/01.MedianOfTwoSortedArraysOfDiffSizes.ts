@@ -424,8 +424,10 @@ If that array is the larger one, we can end up asking the other array to contrib
 number of elements or more elements than it contains.
 
 Searching on the smaller array prevents these impossible partition counts
-*/
 
+TC: O(log(min(n1, n2))) because we at max try to take all elements from the smaller array
+SC: O(1)
+*/
 
 function medianUsingBS(a1: number[], a2: number[]): number {
     let n1: number = a1.length;

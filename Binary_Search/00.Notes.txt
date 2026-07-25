@@ -10,7 +10,9 @@ Pattern 1: Standard Binary Search (find target / boundary)
 4	First And Last Occurrence
 5	Single Element In Sorted Array
 6	Peak Element
-7   GuessNumberHigherOrLower
+7      Find element in mountain array
+8      Guess Number higher or Lower
+9      Time based key value store
 
 
 Pattern 2: Search Something in a Rotated Sorted Array

@@ -1,9 +1,10 @@
-/* A peak element in a 2D grid is an element that is strictly greater than all of its adjacent neighbors to the left, 
-right, top, and bottom. (NOT DIAGONAL)
+/* Leetcode 1901:
+
+A peak element in a 2D grid is an element that is strictly greater than all of its adjacent neighbors 
+in all 4 directions - the left, right, top, and bottom. (NOT DIAGONAL)
 Given a 0-indexed m x n matrix mat where no two adjacent cells are equal, find any peak element mat[i][j] 
 and return the length 2 array [i,j].
 You may assume that the entire matrix is surrounded by an outer perimeter with the value -1 in each cell.
-You must write an algorithm that runs in O(m log(n)) or O(n log(m)) time.
 
 Input: mat = [[1,4],[3,2]]          Output: [0,1]
 
@@ -21,15 +22,19 @@ Input: mat = [[10,20,15],
 Output: [1,1]
 Explanation: Both 30 and 32 are peak elements so [1,1] and [2,2] are both acceptable answers.
 
-LOGIC: (BRUTE FORCE)
+                                            Way-1: BRUTE FORCE
+                                            ------------------
+
 - Iterate full matrix.
 - For 4 corner elements, there will be separate 4 if()s to check if it is a peak, and return it there itself
-- For other elements, iterations continue and based on their positions (first/last row or col), there will be if()s
+- For other elements, iterations continue and based on their positions (first/last row or col), 
+  there will be if()s
 
 TC: O(rows * cols)
 SC: O(1)
 
-OPTIMISATION: BINARY SEARCH
+                                            Way-2: BINARY SEARCH
+                                            --------------------
 
 let mat = [  0  1  2  3  4  5   --> col Index
             [4, 2, 5, 1, 4, 5],
@@ -43,19 +48,22 @@ let mat = [  0  1  2  3  4  5   --> col Index
 APPROACH:
 - consider traversing column-wise (we can also do this row-wise, either of them is correct)
 - use BS low and high for column index --> low = 0, high = 5, mid = 2
-- now, from mid row, get the max element 5
-                                         2
-                                         6  --> (max)
-                                         2
+- now, from mid column, get the max element 
+                                            5
+                                            2
+                                            6  --> (max)
+                                            2
    
-    See, if 6 is max, its greater than its top and bottom elements in its column, out of left, right, top and bottom,
+    See, if 6 is max, its greater than all four of its neighbours, left, right, top and bottom,
     we eliminated top and bottom, now left and right remains
 
-    here, if(max > left && max > right) -> return this
-    else if(max < right) -> max was largest element in mid col, someone at right of max is even greater than this
-    this means our peak may be at right, we can eliminate whole of this current column and move right
-    else if(max < left) -> max was largest element in mid col, someone at left of max is even greater than this
-    this means our peak may be at left, we can eliminate whole of this current column and move left
+    if(max > left && max > right) -> return this as this is our peak
+    else if(max < right)
+        max was largest element in mid col, someone at right of max is even greater than this
+        this means our peak may be at right, we can eliminate whole of this current column and move right
+    else if(max < left)
+        max was largest element in mid col, someone at left of max is even greater than this
+        this means our peak may be at left, we can eliminate whole of this current column and move left
    
 
 TC: O(rows * log2(cols)) -> we need to iterate whole rows to get max
@@ -80,33 +88,33 @@ function peakIn2D(mat: number[][]): number[] {
     if(rows === 0) return [-1, -1];
     let cols: number = mat[0].length;
 
-    // only element is always peak
+    /* only element is always peak */
     if((rows === 1) && (cols === 1)) return [0, 0];
 
-    // if first element is the peak, return it
+    /* if first element is the peak, return it */
     if((mat[0][0] > mat[0][1]) && (mat[0][0] > mat[1][0])) return [0, 0];
 
-    // BS on columns
+    /* BS on columns */
     let low: number = 0;
-    let high: number = cols - 1;
+    let high: number = cols - 1; 
     
     while(low <= high) {
         let mid: number = low + Math.floor((high - low) / 2);
         
-        //store coordinates of maxEle of this column
+        /* Store coordinates of maxEle of this column */
         let [x, y] = maxInCol(mat, mid);
         let maxColEle: number = mat[x][y]; 
 
-        // when we compare left and right values of the mid, we may face overflow if we have <= 2 rows and cols
-        // better way is to make left and right as -1 then 
-        let left: number = (mid > 0)? mat[x][y - 1]: -1;  // something should be there on left of mid
-        let right: number = (mid < cols - 1)? mat[x][y + 1]: -1;  // something should be there on right of mid
+        /* Possible Overflows 
+           Here, mid is the column, hence if mid = 0, means, on left we have nothing, hence -1
+           Similary, if mid >= cols - 1, then on right, we have nothing, hence -1 */
+        let left: number = (mid > 0)? mat[x][y - 1]: -1; 
+        let right: number = (mid < cols - 1)? mat[x][y + 1]: -1;
 
         if((maxColEle > left) && (maxColEle > right)) return [x, y];
-        else if(maxColEle < left) high = mid - 1;
-        else if(maxColEle < right) low = mid + 1;
+        else if(maxColEle < left) high = mid - 1;  /* Move left */
+        else if(maxColEle < right) low = mid + 1;  /* Move right */
     }
 
-    // we will never reach here
     return [-1, -1];
 }

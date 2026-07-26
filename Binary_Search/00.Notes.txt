@@ -155,7 +155,6 @@ high = 3  --> low > high --> loop ends
 19	Missing Cows (Aggressive Cows)
 20	Book Allocation Problem
 21	Painters Partition Problem
-22	Minimise Max Distance Between Gas Stations
 
 
 Pattern 4: Binary Search on Two Sorted Arrays / 2D Matrix

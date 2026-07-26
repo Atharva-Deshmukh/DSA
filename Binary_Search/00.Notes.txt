@@ -4,6 +4,22 @@ Pattern 1: Standard Binary Search (find target / boundary)
            
            We just need simple BS -> Search something + eliminate one of the halves
 
+Template:
+
+       while(low <= high){
+
+       mid = ...
+
+       if(answer)
+              return
+
+       if(go left)
+              high = mid-1;
+
+       else
+              low = mid+1;
+       }
+
 1	Binary Search
 2	Lower Bound
 3	Upper Bound
@@ -17,6 +33,18 @@ Pattern 1: Standard Binary Search (find target / boundary)
 
 Pattern 2: Search Something in a Rotated Sorted Array
 
+Template:
+
+       Which side is sorted?
+
+       Is target inside sorted half?
+
+       If yes
+       go there
+
+       Else
+       go other half
+
 5	Search In Sorted Rotated Array 1 (distinct)
 6	Search In Sorted Rotated Array 2 (duplicates)
 7	Minimum Element In Sorted Rotated Array 1 (distinct)
@@ -25,6 +53,31 @@ Pattern 2: Search Something in a Rotated Sorted Array
 
 
 Pattern 3: Binary Search on Answer (min of max / max of min / feasibility check)
+
+       Can I finish?
+
+       Can I place?
+
+       Can I ship?
+
+       Can I eat?
+
+       Can I divide?
+
+       Template
+
+              while(low <= high){
+
+              mid
+
+              if(isPossible(mid))
+                     high = mid-1;
+
+              else
+                     low = mid+1;
+              }
+
+              return low;
 
            When we have something like this [X, X, X, X, X, ✓, ✓, ✓, ✓, ✓]
                                                             |

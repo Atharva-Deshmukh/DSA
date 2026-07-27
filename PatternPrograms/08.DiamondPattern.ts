@@ -9,7 +9,7 @@
       * * *         |         1 2 3         |         A B C
         *           |           1           |           A
 
-n = 9
+n = 5
 
 row1 -> 4 spaces + 1 char + 4 spaces
 row2 -> 3 spaces + 3 char + 3 spaces

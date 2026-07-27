@@ -1,1 +1,4 @@
 Source: https://www.geeksforgeeks.org/pattern-programs-in-c/?ref=lbp
+
+to get char number           - 'A'.charCodeAt(0);
+to get char from char number - String.fromCharCode(charNum)

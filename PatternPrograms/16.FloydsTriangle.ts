@@ -21,15 +21,16 @@ spaces will be adjusted automatically
 
 function pattern(n: number): void {
 
-    let counter: number = 1;
+    let counter: number = 0;
 
     for(let i = 1; i <= n; i++) {
         let patRow: string = '';
 
         for(let j = 1; j <= i; j++) {
-            patRow += counter + ' ';
+            patRow += (counter + 1) + ' ';
             counter++;
         }
+        
         console.log(patRow);
     }
 }

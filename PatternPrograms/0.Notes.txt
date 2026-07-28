@@ -5,6 +5,29 @@ to get char from char number - String.fromCharCode(charNum)
 
 ------------------------------ LOGICS THAT SHOULD BE REVISED ------------------------------------------------
 
+         *           |           1           |           A
+       * * *         |         1 2 3         |         A B C
+     * * * * *       |       1 2 3 4 5       |       A B C D E
+   * * * * * * *     |     1 2 3 4 5 6 7     |     A B C D E F G
+ * * * * * * * * *   |   1 2 3 4 5 6 7 8 9   |   A B C D E F G H I
+
+
+Pattern: (n = 5)
+
+    - rows = 5, Maxcolumns = nth odd number => 9 (1, 3, 5, 7, 9)
+                No of stars/row = (row)th odd number
+
+    - row1 => 4 spaces + 1 stars + 4 spaces         stars = ((2 * 1) - 1)
+    - row2 => 3 spaces + 3 stars + 3 spaces         stars = ((2 * 2) - 1)
+    - row3 => 2 spaces + 5 stars + 2 spaces         stars = ((2 * 3) - 1)
+    - row4 => 1 spaces + 7 stars + 1 spaces         stars = ((2 * 4) - 1)
+    - row5 => 0 spaces + 9 stars + 0 spaces         stars = ((2 * 5) - 1)
+
+    So, total columns/row = max odd nums till n = ((2 * n) - 1);
+
+    No. of spaces both sides of stars = (n - no of stars) / 2
+
+-------------------------------------------------------------------------------------------------------------
 1
 0 1
 1 0 1
@@ -51,3 +74,33 @@ LOGIC:
 
 
 -------------------------------------------------------------------------------------------------------------
+
+*               *
+* *           * *
+* * *       * * *
+* * * *   * * * *
+* * * * * * * * *
+* * * *   * * * *
+* * *       * * *
+* *           * *
+*               *
+
+n = 9
+
+row1 -> 1 chars + 7 spaces + 1 chars
+row2 -> 2 chars + 5 spaces + 2 chars
+row3 -> 3 chars + 3 spaces + 3 chars
+row4 -> 4 chars + 1 spaces + 4 chars
+
+row5 = row(mid + 1) -> 9 chars
+
+row6 -> 4 chars + 1 spaces + 4 chars
+row7 -> 3 chars + 3 spaces + 3 chars
+row8 -> 2 chars + 5 spaces + 2 chars
+row9 -> 1 chars + 7 spaces + 1 chars
+
+first 4 rows OR rows before mid:
+- chars = rowNum, get spaces from this number 
+
+last 4 rows OR rows after mid:
+- spaces = series of odd numbers 1, 3, 5, 7 => get chars from this number now

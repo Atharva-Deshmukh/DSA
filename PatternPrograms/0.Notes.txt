@@ -2,3 +2,52 @@ Source: https://www.geeksforgeeks.org/pattern-programs-in-c/?ref=lbp
 
 to get char number           - 'A'.charCodeAt(0);
 to get char from char number - String.fromCharCode(charNum)
+
+------------------------------ LOGICS THAT SHOULD BE REVISED ------------------------------------------------
+
+1
+0 1
+1 0 1
+0 1 0 1
+
+Logic:
+based on even/odd row, determine starter
+flip the bit of the starter while iterating the row
+Way to flip => XOR
+
+    for(let i = 1; i <= n; i++) {
+
+        let patRow: string = '';
+        let starter: number = ((i % 2) === 0)? 0: 1;
+
+        for(let j = 1; j <= i; j++) {
+            patRow += starter + ' ';
+            starter = starter ^ 1
+        } 
+
+        console.log(patRow);
+    }
+
+-------------------------------------------------------------------------------------------------------------
+          
+                1
+              2 1 2
+            3 2 1 2 3
+          4 3 2 1 2 3 4
+
+rows = 4, max nums = 7  => ((2 * rows) - 1)
+
+row1 => 3 spaces + 1 numbers + 3 spaces
+row2 => 2 spaces + 3 numbers + 2 spaces
+row3 => 1 spaces + 5 numbers + 1 spaces
+row4 => 0 spaces + 7 numbers + 0 spaces 
+
+LOGIC:
+- Instead of calculating spaces and numbers like everytime, there is something easier here
+- each row's max number = rowNum (row-1 -> 1, row-2 -> 2)
+- we just append and prepend the numbers in a loop
+- row-1 -> ' ' + 1 + ' '
+  row-2 -> ' ' + 2 + ' ' + 1 + ' ' + 2 + ' ' 
+
+
+-------------------------------------------------------------------------------------------------------------

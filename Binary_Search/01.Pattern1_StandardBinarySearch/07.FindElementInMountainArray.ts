@@ -40,7 +40,7 @@ Constraints:
 
 - Its guaranteed that there will be one peak since its a mountain array
 - Hence get the index of peak element using BS
-- Then we know that elements before peak are sorted in descending order and after peak are in ascending order.
+- Then we know that elements before peak are sorted in ascending order and after peak are in descending order.
 - Apply binary search accordingly before and after the index
 
 Find peak: O(log n)

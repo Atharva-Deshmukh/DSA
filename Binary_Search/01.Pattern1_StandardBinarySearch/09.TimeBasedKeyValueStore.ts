@@ -6,7 +6,7 @@ at different time stamps and retrieve the key's value at a certain timestamp.
 Implement the TimeMap class:
 
 TimeMap() --> Initializes the object of the data structure.
-void set(String key, String value, int timestamp) --> Stores the key key with the value value at the given time timestamp.
+void set(String key, String value, int timestamp) --> Stores the key key with the value at the given time timestamp.
 String get(String key, int timestamp) --> Returns a value such that set was called previously, with timestamp_prev <= timestamp. 
                                           If there are multiple such values, it returns the value associated with the 
                                           largest timestamp_prev. If there are no values, it returns "".
@@ -109,7 +109,7 @@ class TimeMap {
             this.timeMap.get(key)?.push([value, timestamp]);
         }
 
-        /* If there is already now value, then add new tuple */
+        /* If there is already no value, then add new tuple */
         else {
             this.timeMap.set(key, [[value, timestamp]]);
         }

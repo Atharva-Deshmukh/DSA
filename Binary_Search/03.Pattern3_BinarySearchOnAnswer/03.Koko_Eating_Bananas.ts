@@ -19,6 +19,12 @@ Input: piles = [30,11,23,4,20], h = 5   Output: 30
   if totalTime < h, that is the ans
 
   let's say koko decided the rate = k
+
+  k bananas           ---        in 1 hr
+  piles[i] bananas    ---        in x hrs
+
+  x = (piles[i] / k)
+
   time taken = Math.ceil(piles[i] / k)
 
   ceil because if (arr[i] < k), that hour will be wasted, koko will take full hour even though 

@@ -70,23 +70,11 @@ Brute force --> iterate from [max(...pages[]) --- INT_MAX] fully
 Binary Search Approach --> [max(...pages[]) --- sum(pages[])]
                            we can clearly see that after some point, all answers will be greater than min
                            use BS directly
+                           
+                           We will use greedy approach here
 
-                                while(low <= high) {
-                                    
-                                   if(isThisMAPValid() === true) {
-                                        ans = mid;
-                                        high = mid - 1 // explore minimum possibilities
-                                   } 
-                                   else low = mid + 1
-
-                                }
-
-    We now need to figure out this isThisMAPValid()
-    for a MAP to be valid:
-    - low <= MAP <= high
-    - all m's should be consumed (each student should get some book)
-
-    We will use greedy approach here
+NOTE: to get max(...pages[]), we to O(n)
+This is acceptable as BS is done on search space, not books[]
 */
 
 function isMAP_Possible(books: number[], m: number, MAP: number): boolean {

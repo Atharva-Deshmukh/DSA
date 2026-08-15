@@ -1,7 +1,8 @@
 /* This is a new pattern of BS problem -> find max of min OR min of max
 
-You are given an array consisting of n integers which denote the position of a stall. You are also given an integer 
-k which denotes the number of aggressive cows. You are given the task of assigning stalls to k cows such that the 
+You are given an array consisting of n integers which denote the position of a stall. 
+You are also given an integer k which denotes the number of aggressive cows. 
+You are given the task of assigning stalls to k cows such that the 
 minimum distance between any two of them is the maximum possible.
 The first line of input contains two space-separated integers n and k.
 The second line contains n space-separated integers denoting the position of the stalls.
@@ -11,16 +12,18 @@ k=3
 stalls = [1 2 4 8 9]   --> Its a distance array
 Output: 3
 
-The first cow can be placed at stalls[0],  the second cow can be placed at stalls[2] and the third cow can be placed at 
-stalls[3]. The minimum distance between cows, in this case, is 3, which also is the largest among all possible ways.
+The first cow can be placed at stalls[0],  the second cow can be placed at stalls[2] and the third cow 
+can be placed at stalls[3]. The minimum distance between cows, in this case, is 3, 
+which also is the largest among all possible ways.
 
 n=5 
 k=3
 stalls = [10 1 2 7 5]
 Output: 4
 
-The first cow can be placed at stalls[0], the second cow can be placed at stalls[1] and the third cow can be placed at 
-stalls[4]. The minimum distance between cows, in this case, is 4, which also is the largest among all possible ways.
+The first cow can be placed at stalls[0], the second cow can be placed at stalls[1] and the third cow 
+can be placed at stalls[4]. The minimum distance between cows, in this case, is 4, which also is the 
+largest among all possible ways.
 
 Expected Time Complexity: O(n*log(10^9)).
 Expected Auxiliary Space: O(1). 
@@ -39,7 +42,8 @@ Expected Auxiliary Space: O(1).
 
   let dry run (Note that all k cows should be placed)
   
-  currMinDist = 1     first cow should always be placed at 0th index since that is the min coordinate after sorting
+  currMinDist = 1     first cow should always be placed at 0th index since that is the 
+                      min coordinate after sorting
   place cows only in those places where currentDistBetThem >= currMinDist
   [0,  3,  4,  7,  9,  10]
    c1  c2  c3  c4             --> min distace overall = 1 POSSIBLE
@@ -57,7 +61,8 @@ Expected Auxiliary Space: O(1).
   currMinDist = 4
   place cows only in those places where currentDistBetThem >= currMinDist
   [0,  3,  4,  7,  9,  10]
-   c1      c2      c3       --> min distace overall = 4  NOT POSSIBLE since all 4 cows cannot be placed at this distance
+   c1      c2      c3       --> min distace overall = 4  NOT POSSIBLE since all 4 
+                                cows cannot be placed at this distance
    
 
                                                   Way-2: Binary Search

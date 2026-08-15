@@ -1,5 +1,6 @@
-/* You have n books, each with arr[i] a number of pages. m students need to be allocated contiguous books, 
-with each student getting at least one book. Out of all the permutations, the goal is to find the permutation 
+/* You have an arr[] of n books, each with arr[i] number of pages. 
+m students need to be allocated contiguous books, with each student getting at least one book. 
+Out of all the permutations, the goal is to find the permutation 
 where the sum of the maximum number of pages in a book allotted to a student should be the minimum, out of all 
 possible permutations.
 
@@ -26,11 +27,8 @@ Expected Auxilliary Space: O(1)
                                             ------------------
 
 Thought proces:
-- Seeing the language of the problem, it seems that the brute force will be to try out every possible 
-  combinations and then find which student has min maximum pages.
-- But how we will determine if this combination HAS min max pages, we will have to keep track of every sum then
-
-- Better way is to try out every Max Allocated Pages (MAP) rather than trying out every combination
+- Don't try out every possible combination of allocation here, that will be very complex
+- Better way is to try out every Max Allocated Pages (MAP)
 
 - Now we don't need to iterate MAP = [1 --- INT_MAX]
   MAP = 1 --> no student can get any book if array has all elements > 1
@@ -88,34 +86,7 @@ Binary Search Approach --> [max(...pages[]) --- sum(pages[])]
     - low <= MAP <= high
     - all m's should be consumed (each student should get some book)
 
-    We will use greedy approach here:
-
-    let pages = [5, 10, 20, 30], m = 3
-
-    let MAP = 30
-    let index = 0 // we will use index to traverse pages[] rather than loop - just like capacity to ship packages problem
-
-    Don't use a for() inside while() to traverse pages[], it becomes very complicated, 
-    Instead, use index/some pointer variable to traverse the array.
-
-    while (m > 0) {
-            let pagesPerStudent = 0;
-
-            while((index <= pages.length) && (pagesPerStudent + pages[index]) <= currentMAP) {
-                pagesPerStudent += pages[index];
-                index++;
-            }
-                
-            m--;  // sum exceeds, then this student cannot be allocated more books, move to next
-    }
-
-    return (index === n); // all books are distributed for this MAP among m students
-
-TC: O(n) + O(n log(sum))
-     |
-getting low and high     
-
-SC: O(1)
+    We will use greedy approach here
 */
 
 function isMAP_Possible(books: number[], m: number, MAP: number): boolean {

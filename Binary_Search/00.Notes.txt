@@ -192,8 +192,8 @@ high = 3  --> low > high --> loop ends
         IMPORTANT POINTS:
         -----------------
 
-        - After BS, If low < n --> missing[high] < k <= missing[low] --> (high---k---low]
-        - if low == n --> All missing[] values are < k  --> k lies to the right of the array.
+        - After BS, If low < n  --> (high---k---low]
+        -           If low == n --> All missing[] values are < k  --> k lies to the right of the array.
 
 
 

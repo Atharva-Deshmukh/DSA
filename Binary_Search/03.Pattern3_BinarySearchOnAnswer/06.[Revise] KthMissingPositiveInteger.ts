@@ -20,93 +20,6 @@ if arr = [5], k = 6            Output: 7
 
 --------------------------------------------------------------------------------------------
             Tried To Figure Out Brute Force myself - Didn't work, see BF approach to memorise
-
-[5, 6, 7, 8], k = 4
-
-counter = 1 k = 3
-counter = 2 k = 2
-counter = 3 k = 1     --> we don't need a loop for this, this can be handled directly
-counter = 4 k = 0
-
-if(k < a[0]) directly return k as its missing kth value itself
-
-[2,3,4,7,11], k = 5
-
-counter = 1  k = 4    // 1 is missing
-counter = 2  k = 4    // 2 is there so counter++
-counter = 3  k = 4    // 3 is there so counter++
-counter = 4  k = 4    // 4 is there so counter++
-counter = 5  k = 3    // 5 is missing
-counter = 6  k = 2    // 6 is missing
-counter = 7  k = 2    // 7 is there so counter++
-counter = 8  k = 1    // 8 is missing
-counter = 9  k = 0    // 9 is missing and k = 0 --> return 9
-
-[1, 2, 3], k = 5
-
-counter = 1  k = 5    // 1 is there so counter++
-counter = 2  k = 5    // 2 is there so counter++
-counter = 3  k = 5    // 3 is there so counter++
-counter = 4  k = 4    // 4 is missing
-counter = 5  k = 3    // 5 is missing
-counter = 6  k = 2    // 6 is missing
-counter = 7  k = 1    // 7 is missing
-counter = 8  k = 0    // 8 is missing and k = 0 --> return 8
-
-
-function BruteForce(a: number[], k: number): number {
-    const n: number = a.length;
-    let counter: number = 1;  // positive integer counter to track missing
-    let i: number = 0;
-    
-    // Corner case
-    if(k < a[0]) return k;
-    
-    for(i = 0; i < n; i++) {
-        if((k > 0) && (a[i] === counter)) {
-            counter++; 
-            console.log();
-            console.log('a[i] -> ' + a[i]);
-            console.log('Counter in loop -> ' + counter);
-            continue;
-        }
-        while((k > 0) && (a[i] !== counter)) {
-            counter++;
-            k--;
-        }
-        if(k === 0) return counter;
-    }
-    
-    // If k is still remaining after array is traversed
-    while((k > 0) && (i >= n)) {
-        counter++;
-        k--;
-        console.log('counter -> ' + counter + ' ' + 'k -> ' + k);
-    }
-    
-    return counter;
-} 
-
-console.log(BruteForce([1,2,3,4], 2));
-The counter was always +1 more hence wrong answer here
-
-Logs: console.log(BruteForce([1,2,3,4], 2));    
-
-a[i] -> 1
-Counter in loop -> 2
-
-a[i] -> 2
-Counter in loop -> 3
-
-a[i] -> 3
-Counter in loop -> 4
-
-a[i] -> 4
-Counter in loop -> 5
-counter -> 6 k -> 1
-counter -> 7 k -> 0
-7
-
 --------------------------------------------------------------------------------------------
   
                                     MEMORISE this brute force algo
@@ -165,8 +78,8 @@ Missing numbers till now = [1, 1, 1, 3, 6]
 
 Since the array is sorted and ideal array with 0 missing would be a consequtive array from [1---INT_MAX]
 
-so, missing[i] --> Denotes count of missing nos. till ith index of arr[] 
-i.e missing[3] = 3 --> 3 nos are missing till index 3
+so, missing[i] --> Denotes count of missing nos. till arr[i] 
+i.e missing[3] = 3 --> 3 nos are missing till arr[3]
 
 When k = 5, it lies between 3 and 6 => 7 and 11
 

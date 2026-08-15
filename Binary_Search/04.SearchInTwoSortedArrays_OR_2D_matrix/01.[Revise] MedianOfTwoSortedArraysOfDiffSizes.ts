@@ -1,6 +1,7 @@
 /* Leetcode 4: 
 
-Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.
+Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the 
+two sorted arrays.
 
 Input: nums1 = [1,3], nums2 = [2]                                       Output: 2.00000
 merged array = [1,2,3] and median is 2.
@@ -103,7 +104,7 @@ ind1          ind2
     a1[index1] would be added in mergedArray
     mergedArray would be [1, 2]
     to simulate this, mergedIndex = 1 
-    ele1 = a1[index1] = 1
+    ele1 = a1[index1] = 2
     ele2 = a2[index2] = 4
 
  0  1  2  3    0  1  2
@@ -142,7 +143,8 @@ DRY RUN - when (m + n) is even
 [1, 2, 3]  [4, 5, 6]
 
 
-mergedLength = 3 + 3 = 6 = even, so there will be two mergeIndices since two medians will be there, index1 = 2 & index2 = 3
+mergedLength = 3 + 3 = 6 = even, so there will be two mergeIndices since two medians will be there, 
+index1 = 2 & index2 = 3
 
  0  1  2    0  1  2
 [1, 2, 3]  [4, 5, 6]
@@ -195,63 +197,74 @@ ind1       ind2
 */
 
 function bruteForceConstSpace(a1: number[], a2: number[]): number {
-        let l1: number = a1.length;
-        let l2: number = a2.length;
-        let mergedLen: number = l1 + l2;
+    let l1: number = a1.length;
+    let l2: number = a2.length;
+    let mergedLen: number = l1 + l2;
+    /* 
+        Median indices:
+            odd length  -> index2 is the median
+            even length -> index1 and index2 are the two middle elements
 
-        // median indices  (n/2) and (n/2 - 1)
-        let index2: number = Math.floor(mergedLen / 2);  // to handle 0 based indexing
-        /*
-            [1,2,3,4]     -> 4/2 gives 2 and its proper index of index2
-             0 1 2 3
+         0 1 2 3
+        [1,2,3,4] -> 4/2 gives 2 and its proper index of index2
+        
+         0 1 2
+        [1,2,3]   -> 3/2 gives 1 and its proper index of index2
+    */
+    let index2: number = Math.floor(mergedLen / 2);
+    let index1: number = index2 - 1;
 
-            [1,2,3]     -> 3/2 gives 1 and its proper index of index2
-             0 1 2
-        */
+    let mid1: number = 0;
+    let mid2: number = 0;
 
-        let index1: number = index2 - 1;  
-        /* Ideally, index1 and index2 should be these */                 
+    let i1: number = 0;
+    let i2: number = 0;
+    let mergedIndex: number = 0;
 
-        let ele1: number = 0;
-        let ele2: number = 0;
+    // Simulate merging, but only store the two median elements
+    while ((i1 < l1) && (i2 < l2)) {
 
-        let i1: number = 0; /* i1 and i2 are the iterators that will iterate till ideal indices */
-        let i2: number = 0;
-        let mergedIndex: number = 0;  // to track current index of merged[]
-    
-        while((i1 < l1) && (i2 < l2)) {
-            if(a1[i1] <= a2[i2]) {
-                if(mergedIndex === index1) ele1 = a1[i1];  /* If mergedIndex reaches index1 due to a1[i], update ele1 = a1[i] */
-                if(mergedIndex === index2) ele2 = a1[i1];  /* If mergedIndex reaches index2 due to a2[i], update ele2 = a2[i] */
-                mergedIndex++;
-                i1++;
-            }
-            else if(a1[i1] > a2[i2]){
-                if(mergedIndex === index1) ele1 = a2[i2];
-                if(mergedIndex === index2) ele2 = a2[i2];
-                mergedIndex++;
-                i2++;
-            }
-        }
-    
-        // if a1 is exhausted
-        while(i1 < l1) {
-            if(mergedIndex === index1) ele1 = a1[i1];
-            if(mergedIndex === index2) ele2 = a1[i1];
+        if (a1[i1] <= a2[i2]) {
+            if (mergedIndex === index1) mid1 = a1[i1];
+            if (mergedIndex === index2) mid2 = a1[i1];   /* Due to a1[i1], we reached median index */
+
             mergedIndex++;
             i1++;
         }
-    
-        // if a2 is exhausted
-        while(i2 < l2) {
-            if(mergedIndex === index1) ele1 = a2[i2];
-            if(mergedIndex === index2) ele2 = a2[i2];
+        else {
+            if (mergedIndex === index1) mid1 = a2[i2];
+            if (mergedIndex === index2) mid2 = a2[i2];
+
             mergedIndex++;
             i2++;
         }
+    }
 
-        if((mergedLen % 2) === 1) return ele2; /* Because index2 is the median for odd length mergedArray */
-        else return ((ele1 + ele2) / 2);
+    // If a1 is exhausted, continue with a2
+    while (i2 < l2) {
+
+        if (mergedIndex === index1) mid1 = a2[i2];
+        if (mergedIndex === index2) mid2 = a2[i2];
+
+        mergedIndex++;
+        i2++;
+    }
+
+    // If a2 is exhausted, continue with a1
+    while (i1 < l1) {
+
+        if (mergedIndex === index1) mid1 = a1[i1];
+        if (mergedIndex === index2) mid2 = a1[i1];
+
+        mergedIndex++;
+        i1++;
+    }
+
+    // Odd -> index2 is the median
+    if (mergedLen % 2 === 1) return mid2;
+
+    // Even -> average of the two middle elements
+    return (mid1 + mid2) / 2;
 }
 
 /*                                                Way-3: Binary Search Approach
@@ -351,7 +364,7 @@ elements picked from a1[]: 3
         combination is valid when (l1 <= r2) && (l2 <= r1)
 
 
--------------------------------
+------------------------------------------------------------------------
 HOW TO DETERMINE median then
 
                  1 3 4 (left1) | 7 (right1) 10 12
@@ -403,6 +416,7 @@ hence elementsOnLeft = (n1 + n2 + 1) / 2
 After finding the correct partition, the median is simply: max(l1, l2)
 because that extra element on the left is the middle element.
 
+------------------------------------------------------------------------------------------------
 
                                             NOTE:
                                             -----

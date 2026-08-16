@@ -70,7 +70,8 @@ NOTE: For problems like LC 240 - seach in 2D matrix-2, the input matrix is row-w
 - Check the row where the key is supposed to be present: a[row][0] <= key <= a[row][col-1]
 - Then apply BS on that row only                       
 
-  TC: O(rows) + O(log2(cols)) = O(rows)  --> '+' because we will do inner BS only once when we get the suitable row
+  TC: O(rows) + O(log2(cols)) = O(rows)  --> '+' because we will do inner BS only once when we get the 
+                                                 suitable row
   SC: O(1)
 
                                                   Way-3: LC Variation Solution
@@ -85,13 +86,16 @@ matrix = [
            [23,30,34,60]
          ],         
 
-- So we can think of flattening this whole matrix so that the entire rows and columns are converted to a single flattened[]
+- So we can think of flattening this whole matrix so that the entire rows and columns are converted to 
+  a single flattened[]
   And then we can directly apply BS over this flattened[]
 
-- But, if we actually flatten[] this matrx, we require space to store it (SC = O(m*n)) and in doing so, we will take
+- But, if we actually flatten[] this matrx, we require space to store it (SC = O(m*n)) and in doing so, 
+  we will take
   TC = O(m * n) = Brute force
 
-- So, we have to simulate the flattening of the matrix into 1D array, by converting the 2D coordinates --> 1D indices
+- So, we have to simulate the flattening of the matrix into 1D array, 
+  by converting the 2D coordinates --> 1D indices
 
   OBSERVATION HERE:
   -----------------
@@ -106,10 +110,11 @@ matrix = [
 
   cols = 4,
 
-  FORMULA => x-coordinate = rowIndex / cols   => 6 / 4 = 1
-             y-coordinate = rowIndex / cols   => 6 % 4 = 2
+  FORMULA => x-coordinate = 1D_Index / no_of_cols   => 6 / 4 = 1
+             y-coordinate = 1D_Index % no_of_cols   => 6 % 4 = 2
 
-  We will be applying BS on input matrix assuming it to be a flattened array -> hence we try to find x and y coordinates in our code
+  We will be applying BS on input matrix assuming it to be a flattened array -> 
+  hence we try to find x and y coordinates in our code
 
 TC: O(log2(m*n))
 SC: O(1) */

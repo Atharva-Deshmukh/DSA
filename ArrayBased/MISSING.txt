@@ -1,0 +1,86 @@
+Union of two arrays
+
+Intersection of two arrays - with order preserved
+
+---
+# Common Array-Based Questions (SDET-2, mid-product/mid-startup India)
+---
+
+1. Find 2nd largest/smallest element in array
+2. Move all zeroes to end of array
+3. Find the missing number in array (1 to N)
+4. Find the duplicate number in array
+5. Find all duplicates in an array
+6. Rotate array by K places (left/right) - Already covered
+7. Find pair with given sum (Two Sum) - Already covered
+8. Find all pairs with given sum
+9. Maximum and minimum element in array - Already covered
+10. Find the equilibrium/pivot index - Already covered
+11. Rearrange array in alternate positive/negative order
+12. Left rotate array by one place - Already covered
+13. Kth largest/smallest element in array
+14. Union of two arrays
+15. Intersection of two arrays
+16. Find common elements in three sorted arrays
+17. Check if array is sorted (and rotated)
+18. Merge two sorted arrays without extra space - Already covered
+19. Cyclically rotate array by one - Already covered
+20. Find majority element (appears more than n/2 times) - Already covered
+21. Minimize the maximum difference between heights
+22. Find the "Kth" missing positive number - Already covered
+23. Segregate 0s, 1s and 2s in array (Dutch National Flag) - Already covered
+24. Find subarray with given sum (non-negative numbers) - Already covered
+25. Maximum subarray sum (Kadane's Algorithm) - Already covered
+26. Count inversions in an array - Already covered
+27. Best time to buy and sell stock - Already covered
+28. Find factorial of a large number using array - Already covered
+29. Maximum product subarray - Already covered
+30. Longest consecutive sequence in array
+31. Trapping rainwater problem - Already covered
+32. Chocolate distribution problem
+33. Stock span problem - Already covered
+34. Find all elements that appear more than n/3 times - Already covered
+35. Array leaders (element greater than all elements to its right)
+36. Wave array (arrange in zig-zag: a<b>c<d>e style)
+
+---
+# Common String-Based Questions (SDET-2, mid-product/mid-startup India)
+---
+
+1. Reverse a string (with and without built-in functions) - Already covered
+2. Check if a string is a palindrome - Already covered
+3. Check if two strings are anagrams - Already covered
+4. Count vowels and consonants in a string
+5. Find the frequency of each character in a string
+6. Remove duplicate characters from a string
+7. Find the first non-repeating character in a string
+8. Reverse the words in a sentence
+9. Reverse each word in a sentence individually
+10. Check if a string contains only digits/alphabets
+11. Find the longest word in a sentence
+12. Count the number of words in a string
+13. Remove all white spaces from a string
+14. Replace spaces with a given character (e.g. %20)
+15. Convert a string to title case / camel case
+16. Check if a string is a rotation of another string - Already covered
+17. Find all permutations of a string - Already covered
+18. String compression (e.g. "aabbccc" -> "a2b2c3")
+19. Check if two strings are isomorphic
+20. Longest common prefix among an array of strings
+21. Longest palindromic substring
+22. Group anagrams from a list of strings
+23. Implement atoi (string to integer conversion)
+24. Check if brackets/parentheses in a string are balanced - Already covered
+25. Find the first repeated character in a string
+26. Count occurrences of a substring in a string - Already covered
+27. Find the longest substring without repeating characters - Already covered
+28. Check if a string can be formed by rearranging another string's characters - Already covered
+29. Convert Roman numeral to integer and vice versa - Already covered
+30. Find duplicate characters in a string
+31. Implement strstr() / substring search - Already covered
+32. Toggle case of each character in a string
+33. Remove a specific character from a string
+34. Check if one string is a subsequence of another
+35. Print all subsequences of a string - Already covered
+36. Minimum number of insertions to make a string palindrome - Already covered
+37. Find the smallest window containing all characters of another string - Already covered

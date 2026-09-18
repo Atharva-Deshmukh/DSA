@@ -1,0 +1,28 @@
+P0 — VERY IMPORTANT
+├── Array + HashMap
+├── Strings
+├── Sliding Window
+├── Two Pointers
+└── Prefix Sum
+
+P1 — IMPORTANT
+├── Binary Search
+├── Stack
+├── Kadane
+├── Linked List
+├── Basic Trees
+└── Intervals
+
+P2 — USEFUL
+├── Heap
+├── Greedy
+├── Basic Graphs
+├── Recursion
+├── Backtracking
+└── Basic DP
+
+P3 — LOW ROI
+├── Advanced DP
+├── Advanced Graphs
+├── Advanced Bit Manipulation
+└── Advanced Kadane variants

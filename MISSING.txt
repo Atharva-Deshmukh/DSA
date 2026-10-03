@@ -15,34 +15,35 @@
 10. Kth largest/smallest element in array (Heap-based / QuickSelect)
 11. Jump Game - minimum/possible jumps to reach end of array - DP (greedy alt. exists)
 12. Swap two numbers without a third/temp variable
+13. Rotate array left/right by K positions (reversal algorithm / block swap) - LC 189
 
 ## Optional / lower priority (niche, GFG filler, or trivial building blocks)
-13. Find largest and smallest element in array (single traversal)
-14. Find a repeating AND a missing number together
-15. Best Time to Buy/Sell Stock II (multiple transactions) - DP (greedy alt. exists)
-16. Find common elements in three sorted arrays
-17. Rearrange array in alternate positive/negative order
-18. Minimize the maximum difference between heights (aggressive cows style)
-19. Array leaders (element greater than all elements to its right)
-20. Wave array (zig-zag: a<b>c<d>e)
-21. Chocolate distribution problem
-22. Find third largest element in array
-23. Reverse an array in groups of given size
-24. Maximum product of a triplet in array
-25. Missing ranges of numbers in a sorted array
-26. Sum of all subarrays
-27. Subarrays with product less than K
-28. Split array into three equal sum segments
-29. Meeting scheduler for two persons (given busy slots, find common free slot)
-30. Longest mountain subarray
-31. Minimum swaps required to group all 1s together
-32. Check equality of two arrays without built-in equals()/toString()
-33. Find sum and average of all elements in array
-34. Count frequency of elements in an array
-35. Running sum of array
-36. Rearrange array elements as even-indexed then odd-indexed
-37. Reverse subarray of size K
-38. Maximum possible difference of two subsets of an array
+14. Find largest and smallest element in array (single traversal)
+15. Find a repeating AND a missing number together
+16. Best Time to Buy/Sell Stock II (multiple transactions) - DP (greedy alt. exists)
+17. Find common elements in three sorted arrays
+18. Rearrange array in alternate positive/negative order
+19. Minimize the maximum difference between heights (aggressive cows style)
+20. Array leaders (element greater than all elements to its right)
+21. Wave array (zig-zag: a<b>c<d>e)
+22. Chocolate distribution problem
+23. Find third largest element in array
+24. Reverse an array in groups of given size
+25. Maximum product of a triplet in array
+26. Missing ranges of numbers in a sorted array
+27. Sum of all subarrays
+28. Subarrays with product less than K
+29. Split array into three equal sum segments
+30. Meeting scheduler for two persons (given busy slots, find common free slot)
+31. Longest mountain subarray
+32. Minimum swaps required to group all 1s together
+33. Check equality of two arrays without built-in equals()/toString()
+34. Find sum and average of all elements in array
+35. Count frequency of elements in an array
+36. Running sum of array
+37. Rearrange array elements as even-indexed then odd-indexed
+38. Reverse subarray of size K
+39. Maximum possible difference of two subsets of an array
 
 
 --------------------------------------------------------------------------------

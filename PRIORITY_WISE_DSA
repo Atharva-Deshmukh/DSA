@@ -1,28 +1,21 @@
-P0 — VERY IMPORTANT
-├── Array + HashMap
-├── Strings
-├── Sliding Window
-├── Two Pointers
-└── Prefix Sum
+P0 — VERY IMPORTANT (dsatracker's core 7 + confirmed at Amazon/Zomato/Swiggy/NetApp)
+├── Arrays + HashMap (10 solved + 19 must-have missing = 29)
+├── Strings (18 solved + 16 must-have missing = 34)
+├── Kadanes (4 solved, 0 missing = 4)
+├── Basic recursion (27 solved [6 core + 21 bonus], 0 missing)
+├── Sliding Window (18 solved, 0 missing = 18)
+├── Two Pointers (16 solved, 0 missing = 16)
+└── Stacks and queues (Stacks: 41 solved + 1 missing = 42 | Queues: 6 solved + 4 must-have missing = 10)
+└── Binary Search (30 solved, 0 missing = 30; only Pattern 1+2 ~14 are core)
+└── Prefix Sum (10 solved + 1 missing = 11)
+└── LinkedList (2 solved + 5 must-have missing = 7 necessary, +7 optional)
+└── Maths (12)
+└── Sorting (10 solved, 0 missing = 10)
+└── SDET-SPECIFIC DESIGN/UTILITY (0 solved + 8 necessary missing = 8, +5 bonus)
 
-P1 — IMPORTANT
-├── Binary Search
-├── Stack
-├── Kadane
-├── Linked List
-├── Basic Trees
-└── Intervals
-
-P2 — USEFUL
-├── Heap
-├── Greedy
-├── Basic Graphs
-├── Recursion
-├── Backtracking
-└── Basic DP
-
-P3 — LOW ROI
-├── Advanced DP
-├── Advanced Graphs
-├── Advanced Bit Manipulation
-└── Advanced Kadane variants
+P2 — SDET-SPECIFIC DESIGN/UTILITY (unique to this role, no SDE equivalent)
+├── LRU / LFU Cache (2 - LRU necessary, LFU bonus)
+├── Rate Limiter / Retry with Exponential Backoff (2 - Retry necessary, Rate Limiter bonus)
+├── Trie (confirmed asked at Apple SDET) (1 - bonus)
+├── Test Automation Framework design (POM, dynamic locators, parallel execution) (3 - POM + locators necessary, parallel exec bonus)
+└── API/JSON utilities (deep diff, schema validation, mock/stub REST) (3 - all necessary)

@@ -1,0 +1,242 @@
+--------------------------------------------------------------------------------
+# 1. ARRAYS (Core - highest priority, confirmed at Amazon/Zomato/Swiggy/NetApp)
+--------------------------------------------------------------------------------
+
+## Must-have (classic, high-frequency across GFG/InterviewBit/company reports)
+1. Find 2nd largest/smallest element in array (single traversal, no sorting)
+2. Move all zeroes to end of array
+3. Find the missing number in array (1 to N) - sum formula n(n+1)/2
+4. Find the duplicate number in array (Floyd's cycle detection variant)
+5. Find all duplicates in an array (LC 442)
+6. Longest Consecutive Sequence (LC 128)
+7. Union of two arrays
+8. Intersection of two arrays (LC 349) - with order preserved
+9. Check if array is sorted (and rotated)
+10. Kth largest/smallest element in array (Heap-based / QuickSelect)
+11. Jump Game - minimum/possible jumps to reach end of array - DP (greedy alt. exists)
+12. Swap two numbers without a third/temp variable
+
+## Optional / lower priority (niche, GFG filler, or trivial building blocks)
+13. Find largest and smallest element in array (single traversal)
+14. Find a repeating AND a missing number together
+15. Best Time to Buy/Sell Stock II (multiple transactions) - DP (greedy alt. exists)
+16. Find common elements in three sorted arrays
+17. Rearrange array in alternate positive/negative order
+18. Minimize the maximum difference between heights (aggressive cows style)
+19. Array leaders (element greater than all elements to its right)
+20. Wave array (zig-zag: a<b>c<d>e)
+21. Chocolate distribution problem
+22. Find third largest element in array
+23. Reverse an array in groups of given size
+24. Maximum product of a triplet in array
+25. Missing ranges of numbers in a sorted array
+26. Sum of all subarrays
+27. Subarrays with product less than K
+28. Split array into three equal sum segments
+29. Meeting scheduler for two persons (given busy slots, find common free slot)
+30. Longest mountain subarray
+31. Minimum swaps required to group all 1s together
+32. Check equality of two arrays without built-in equals()/toString()
+33. Find sum and average of all elements in array
+34. Count frequency of elements in an array
+35. Running sum of array
+36. Rearrange array elements as even-indexed then odd-indexed
+37. Reverse subarray of size K
+38. Maximum possible difference of two subsets of an array
+
+
+--------------------------------------------------------------------------------
+# 2. STRINGS (Core - confirmed at Zomato/Swiggy/Apple/InMobi, biggest repo gap)
+--------------------------------------------------------------------------------
+
+## Must-have (classic, high-frequency across GFG/InterviewBit/company reports)
+1. Count vowels and consonants in a string
+2. Find the frequency of each character in a string
+3. Remove duplicate characters from a string (preserve order)
+4. Check if all characters in a string are unique
+5. Find the first non-repeating character (LC 387)
+6. Find the first repeated character
+7. Reverse the words in a sentence (LC 151)
+8. Longest / shortest word in a sentence
+9. Group Anagrams (LC 49)
+10. Longest Common Prefix (LC 14)
+11. String Compression / Run-Length Encoding (LC 443)
+12. Implement atoi (LC 8)
+13. Compare version numbers (LC 165)
+14. Isomorphic Strings (LC 205)
+15. FizzBuzz
+16. Is Subsequence (LC 392)
+
+## Optional / lower priority (niche, trivial building blocks, or DP-tagged)
+17. Reverse each word in a sentence individually
+18. Count words in a string / count word frequency in a sentence
+19. Remove special characters / remove all white spaces
+20. Replace spaces with %20
+21. Convert to Title Case / camel case
+22. Extract numbers from a string
+23. Longest Palindromic Substring (LC 5) - DP - NOT the same as your existing
+    Longest Palindromic Subsequence (DP/LongestPalindromicSubsequence.ts)
+24. Check if a string is a pangram
+25. Validate an IPv4 address
+26. Add two binary strings
+27. Convert a number to words
+28. Check if a sentence is a palindrome (ignore spaces/punctuation)
+29. Look-and-say sequence generation
+30. Check if a string can be formed by rearranging another (permutation check)
+31. Toggle case of each character in a string
+32. Remove a specific character from a string
+33. Swap case of vowels only
+34. Check if a number (not string) is a palindrome
+35. Check if given year is a leap year
+36. Count vowels/consonants/digits/special characters separately
+37. Find second most frequent character in a string
+38. Lexicographic rank of a string among its permutations
+39. Check if a string is an interleaving of two other strings
+40. Transform one string to another using minimum operations (Edit Distance) - DP
+41. Minimum insertions to form a palindrome with permutations allowed
+42. Palindrome Substring Queries - DP
+
+
+--------------------------------------------------------------------------------
+# 3. HASHMAP / HASHING (Core - overlaps arrays/strings, asked as a distinct lens)
+--------------------------------------------------------------------------------
+
+## Must-have (classic hashing patterns)
+1. Find whether an array is a subset of another array
+2. Find all pairs with a given sum in an array
+3. Check if two arrays are equal (same elements, any order)
+4. Find the element that appears once when all others appear twice/thrice
+5. Find the highest frequency element (mode) in an array
+6. Design a HashMap from scratch (put/get/remove, no built-in library)
+7. Find the first repeating element in an array
+
+## Optional / lower priority (niche, GFG filler)
+8. Print all distinct words from a paragraph
+9. Sort an array according to the order defined by another array
+10. Count distinct elements in every window of size k
+11. Check if an array can be divided into pairs whose sum is divisible by k
+12. Count all distinct pairs with difference equal to k
+13. Find all pairs (a, b) such that a % b = k
+14. Print all subarrays with 0 sum
+15. Count subarrays having a given XOR
+16. Smallest subarray with k distinct numbers
+17. Count subarrays having total distinct elements same as original array
+18. Find symmetric pairs in an array of pairs (a,b) and (b,a)
+19. Check if array contains a subarray with 0 sum
+20. Count pairs with given difference K
+21. Check if two strings are k-anagrams
+
+
+--------------------------------------------------------------------------------
+# 4. TWO POINTERS (Core)
+--------------------------------------------------------------------------------
+Fully covered - no missing questions.
+
+
+--------------------------------------------------------------------------------
+# 5. SLIDING WINDOW (Core)
+--------------------------------------------------------------------------------
+Fully covered - no missing questions.
+
+
+--------------------------------------------------------------------------------
+# 6. STACKS (Core)
+--------------------------------------------------------------------------------
+1. Simplify Path (LC 71 - Unix-style path simplification)
+
+
+--------------------------------------------------------------------------------
+# 7. QUEUES (Core)
+--------------------------------------------------------------------------------
+
+## Must-have (classic queue applications, most likely to be asked)
+1. Minimum time required to rot all oranges (BFS via queue) - LC 994, textbook multi-source BFS
+2. Design a Circular Double-Ended Queue (distinct from existing Deque) - LC 641
+3. Generate binary numbers from 1 to N using a queue
+4. Reverse first K elements of a queue
+
+## Optional / lower priority (niche, less commonly asked)
+5. Interleave the first half of queue with the second half
+6. First circular tour that visits all petrol pumps
+7. Sum of minimum and maximum elements of all subarrays of size K
+8. 2781. Length of the Longest Valid Substring - hard, not really queue-specific
+
+
+--------------------------------------------------------------------------------
+# 8. RECURSION BASICS (Core - confirmed a core topic by dsatracker.tech)
+--------------------------------------------------------------------------------
+All already covered in RecursionAndBacktracking/. Necessary ones to keep sharp:
+1. Factorial of N (recursive)
+2. Sum of N natural numbers (recursive)
+3. Nth Fibonacci / Fibonacci series (recursive)
+4. Reverse a string/array using recursion
+5. Check if a string is a palindrome (recursive)
+6. Print all subsequences of a string/array
+
+
+--------------------------------------------------------------------------------
+# 9. SORTING (Core)
+--------------------------------------------------------------------------------
+Fully covered - no missing questions. Be ready to explain time/space
+complexity and stability of each, not just recite the code.
+
+
+--------------------------------------------------------------------------------
+# 10. LINKED LIST (Second-tier per dsatracker, but HIGH VALUE due to LRU Cache)
+--------------------------------------------------------------------------------
+## Must-have (foundational + building blocks for LRU Cache, which IS confirmed)
+1. Reverse a Linked List
+2. Detect cycle in a Linked List (Floyd's)
+3. Find middle node of a Linked List
+4. Merge two sorted Linked Lists
+5. Insert a node into a sorted circular linked list - confirmed asked at Microsoft SDET
+
+
+
+--------------------------------------------------------------------------------
+# 11. BINARY SEARCH (Second-tier per dsatracker; you're over-invested already)
+--------------------------------------------------------------------------------
+Fully covered - no missing questions. Prioritize revising Pattern 1 (standard)
+and Pattern 2 (rotated array) - these are the only ones with direct SDET
+evidence. The rest are bonus/secondary, ranked by plausibility for SDET-2:
+- Pattern 5 (2D Matrix search) - most plausible of the three, still just bonus
+- Pattern 3 (binary search on answer - Koko, Book Allocation, etc.) - bonus
+- Pattern 4 (Median of Two Sorted Arrays, Kth Element of Merged Array) - least
+  likely; Median of Two Sorted Arrays is an SDE-Hard-round classic, not SDET
+
+
+--------------------------------------------------------------------------------
+# 12. PREFIX SUM (Supporting pattern under Arrays/HashMap)
+--------------------------------------------------------------------------------
+1. Continuous Subarray Sum (LC 523)
+
+
+--------------------------------------------------------------------------------
+# 13. MATHEMATICAL (Low priority for SDET-2)
+--------------------------------------------------------------------------------
+Fully covered - no missing questions. Don't over-invest further revision time
+here; number-theory-heavy topics rarely appear in SDET-2 product rounds.
+
+
+--------------------------------------------------------------------------------
+# 14. PATTERN PROGRAMS (Lowest priority)
+--------------------------------------------------------------------------------
+Fully covered - no missing questions. Do not add more; rarely asked in
+product-company SDET-2 rounds.
+
+
+================================================================================
+# 15. DESIGN / AUTOMATION UTILITIES SECTION
+# (Senior-tier "reusable utility" style - confirmed via NetApp "Design LRU
+#  Cache", Apple's Trie question, and careerintel.dev's framework-design round)
+================================================================================
+
+## Necessary for SDET-2 (baseline expectation)
+1. LRU Cache (LinkedList + HashMap) - confirmed at NetApp, Amazon, Google
+2. Retry mechanism with exponential backoff
+3. Page Object Model base class with lazy element loading
+4. Dynamic locator handling (parameterized XPath/CSS built at runtime)
+5. Compare two JSON responses (deep diff, ignore volatile keys like timestamps/IDs)
+6. API response validator (schema/contract validation)
+7. Mock/stub a REST API response for contract testing
+8. Generate random test data respecting constraints (valid email, phone, date formats)

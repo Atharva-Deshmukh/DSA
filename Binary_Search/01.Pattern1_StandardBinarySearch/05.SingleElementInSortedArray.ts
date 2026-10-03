@@ -9,29 +9,38 @@ Input: nums = [3,3,7,7,10,11,11]            Output: 10
                                                     Way-1: Bit manipulation XOR Concept 
                                                     -----------------------------------
 
-- Either iterate linearly or use Array.reduce((ele, acc) => acc ^ arr[i], 0)
+- Either iterate linearly or use Array.reduce((acc, ele) => acc ^ ele, 0)
   TC = O(n)
 
                                                       Way-2: Sorted --> BS possibility
                                                       --------------------------------
 
+SEARCH LOGIC:
+-------------
+
 - whenever a[mid] === target, we have a[mid-1] < a[mid] < a[mid + 1]
 
-  corner cases here:   for ele = a[0] --> mid - 1 is not there
-                       for ele = a[n-1] --> mid + 1 is not there
-                       there will be many if cases, hence we reduce the search space to [index 1 ... index (n - 2)] 
-                                                                             instead of [index 0 ... index (n - 1)
+  for ele = a[0] --> mid - 1 is not there
+  for ele = a[n-1] --> mid + 1 is not there
+  Reduce the search space to [index 1 ... index (n - 2)]
 
-for a.length === 0 --> return -1;
-for a.length === 1 --> return a[0]; as this is the unique element
-for a.length === 2 --> if(a[0] !== a[1]) return any of them, say a[0];
-for a.length === 3 --> if(a[0] === a[1])
-                            return a[2]
-                       if(a[1] === a[2])
-                            return a[0]
+Corner cases here:
+    for a.length === 0 --> return -1;
+    for a.length === 1 --> return a[0]; as this is the unique element
+    for a.length === 2 --> if(a[0] !== a[1]) return any of them, say a[0];
+    for a.length === 3 --> if(a[0] === a[1])
+                                return a[2]
+                        if(a[1] === a[2])
+                                return a[0]
 
-- But on what basis we can eliminate the left and right search space?
-  Let us see if we can get some pattern in the index
+ELIMINATION LOGIC:
+------------------
+
+  Notice the pattern in the even/odd indices:
+
+  NOTE: Every element before the unique one forms complete pairs (2 elements each),
+  so the prefix length before the unique element is always even. This means the
+  unique element's index is ALWAYS even, never odd.
 
   0  1  2  3  4  5  6  7  8  9  10
  [1, 1, 2, 2, 3, 3, 4, 5, 5, 6, 6]
@@ -51,7 +60,8 @@ if((mid === odd) && (a[mid] !== a[mid-1]) --> we are on the right half
 if((mid === even) && (a[mid] === a[mid-1]) --> we are on the right half
     high = mid - 1
 
-Combining these conditions into one
+
+Combining ALL conditions above
 
 if(mid === odd) {
   if(a[mid] === a[mid - 1]) low = mid + 1;

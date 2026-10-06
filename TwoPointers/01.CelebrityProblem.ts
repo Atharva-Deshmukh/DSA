@@ -10,31 +10,19 @@ Note: Follow 0-based indexing.
 
 Input: mat[][] = [
                     [1, 1, 0],
-                    [0, 1, 0],
+                    [0, 1, 0],                             Output: 1
                     [0, 1, 1]
                  ]
-Output: 1
-
-Explanation:
-Every person knows themselves, hence a[0][0], a[1][1] and a[2][2] are 1 always.
-
-Now, 0th person knows 1
-     1st person knows 1 (obviously)
-     2nd person knows 1
-
-     Hence celebrity = 1
-
 
                                                 BRUTE FORCE
                                                 -----------
                                                 
 Criteria for being a celebrity:
-- knowMe = n (including myself)
-- iKnow  = 0
+-------------------------------
+- Everybody knows the celebrity (including myself) --> Hence row of this person should have only one 1 (itself)
+- Celebrity knows nobody                           --> column of this person should have all 1s
 
-So, iterate the whole matrix and maintain these two arrays
-iKnow  = []
-knowMe = []
+
 Lets iterate this matrix:
 Input: mat[][] = [
                     P0, P1, P2
@@ -46,115 +34,109 @@ Input: mat[][] = [
                               Knows me
                  ]
          
-row0: for i = 0, see each j -> thats people who i knows, fill iKnow[]
-      see j = 0 now vertically -> thats people who knows i, fill knowMe[]
+For each a[i][j] -> Iterate full ith row and jth column
+                    check if condition for candidate is satisfied
 
-              0  1  2
-    iKnow  = [1, 1, 0]   
-    knowMe = [1, 0, 0]    
-
-row1: for i = 1, see each j -> thats people who i knows, fill iKnow[]
-      see j = 1 now vertically -> thats people who knows i, fill knowMe[]
-
-              0  1  2
-    iKnow  = [1, 2, 0]   
-    knowMe = [2, 1, 1]   
-
-row2: for i = 2, see each j -> thats people who i knows, fill iKnow[]
-      see j = 2, now vertically -> thats people who knows i, fill knowMe[]
-
-              0  1  2
-    iKnow  = [1, 3, 1]   
-    knowMe = [2, 1, 2]      
-
-
-Finally, need to check the condition, where iKnow[i] = n and knowMe[i] = 1, thats our answer
-here its index 1
-
-TC: 2 * O(n * n) + 2 * O(n)  -> Iterate matrix and then iterate the arrays
-SC: O(2n)
+TC: O(n * n) * (n + n)  -> O(n^3)
+SC: O(1)
 
 There is one observation here:
-Minimum celebrities we can have = 0
-Maximum Celebrities we can have = 1 because celebrity must not know anyone as per definition, and 
-                                  if there are > 1 celebrities, then this definition fails
+    Minimum celebrities we can have = 0
+    Maximum Celebrities we can have = 1 because celebrity must not know anyone as per definition, and 
+                                        if there are > 1 celebrities, then this definition fails
 
 
 
                                               OPTIMAL APPROACH
                                               ----------------
 
-                    We know that the celebrity is within 0 - (n - 1)
-                    so we initialise two pointers top = 0, and bottom = (n - 1)
-                        
-                   top ->  [1, 1, 1, 0]
-                           [0, 1, 0, 0]
-                           [0, 1, 1, 0] 
-                bottom ->  [1, 1, 0, 1] 
+We are eliminating people who definitely cannot be celebrities until only one candidate remains.
+
+A celebrity, if present, must be somewhere in [0 ... n - 1].
+Hence, initialize two pointers:
+                                top = 0
+                                bottom = n - 1
+
+                                      0  1  2  3
+                           top ->  0 [1, 1, 1, 0]
+                                   1 [0, 1, 0, 0]
+                                   2 [0, 1, 1, 0]
+                        bottom ->  3 [1, 1, 0, 1]
+
+Step 1:
+    Check mat[top][bottom] = mat[0][3] = 0 --> Person 0 does NOT know Person 3.
+                                               Person 3 CANNOT be a celebrity because everybody must know the celebrity.
+    Hence, eliminate Person 3: bottom--
+
+                           top ->   [1, 1, 1, 0]
+                                    [0, 1, 0, 0]
+                        bottom ->   [0, 1, 1, 0]
+                                    [1, 1, 0, 1]
+
+Step 2:
+    Check mat[top][bottom] = mat[0][2] = 1 --> Person 0 knows Person 2.
+                                               Person 0 CANNOT be a celebrity because a celebrity does not know anyone (except themselves).
+    Hence, eliminate Person 0: top++
+
+
+                                    [1, 1, 1, 0]
+                           top ->   [0, 1, 0, 0]
+                        bottom ->   [0, 1, 1, 0]
+                                    [1, 1, 0, 1]
+
                 
-                now top[bottom] = a[0][3] = 0, so 0 can be a celebrity candidate
-                    bottom[top] = a[3][0] = 1, so 0 don't know 3 but 3 knows 0 -> 3 is definitely now a celebrity
-                                               because he knows 1 person at least
+Step 3:
+    Check mat[top][bottom] = mat[1][2] = 0 --> Person 1 does NOT know Person 2. 
+                                               Person 2 CANNOT be a celebrity because everybody must know the celebrity.
+    Hence, eliminate Person 2: bottom--
 
-                no need to check i = 3 (bottom) now, so bottom--
 
-                   top ->  [1, 1, 1, 0]
-                           [0, 1, 0, 0]
-                 bottom -> [0, 1, 1, 0] 
-                           [1, 1, 0, 1] 
+                                    [1, 1, 1, 0]
+                       top,bottom ->[0, 1, 0, 0]
+                                    [0, 1, 1, 0]
+                                    [1, 1, 0, 1]
 
-                now top[bottom] = a[0][2] = 1, so 0 cannot be a celebrity because 0 knows someone
-                top++
 
-                           [1, 1, 1, 0]
-                    top -> [0, 1, 0, 0]
-                 bottom -> [0, 1, 1, 0] 
-                           [1, 1, 0, 1] 
+    Now: top == bottom == 1
 
-                now top[bottom] = a[1][2] = 0, so 1 can be a celebrity candidate
-                    bottom[top] = a[2][1] = 1, 2 knows 1 but 1 doesn't know 2
+    Therefore, Person 1 is the ONLY POSSIBLE celebrity.
 
-                bottom--;
+    NOTE:  Being the only remaining candidate does NOT guarantee that Person 1 is actually a celebrity.
+           We must verify the candidate.
+           - Check the candidate's row --> mat[1][j] == 0 for every j != 1
+           - Check the candidate's column --> mat[i][1] == 1 for every i != 1
 
-                            [1, 1, 1, 0]
-             top, bottom -> [0, 1, 0, 0]
-                            [0, 1, 1, 0] 
-                            [1, 1, 0, 1] 
-
-                To confirm if this row is a celebrity, scan the row and if except[i][i], anyone else is 1
-                return -1, else return i
-
-TC: O(n)
+TC: O(n) (Elimination phase = O(n) + Verification = O(n))
 SC: O(1)
 */
 
 class Solution {
     celebrity(m) {
-        
         const rows = m.length;
         const cols = m[0].length;
-        
+
         let top = 0;
         let bottom = (rows - 1);
-        
+
         while(top < bottom) {
-            if(m[top][bottom] === 1) top++;
-            else if(m[bottom][top] === 1) bottom--;
-            else {            // at least someone must know each other, both cannot be 0
-                top++;
-                bottom--;
-            }
+            if(m[top][bottom] === 0) bottom--;
+            else top++;
+        }
+
+        if(top > bottom) return -1;
+
+        /* If we reach here, it means Top === bottom */
+        
+        /* Verify Row */
+        for(let j = 0; j < cols; j++) {
+            if((top != j) && (m[top][j] === 1)) return -1; /* only one 1 should be there in row */
         }
         
-        if(top > bottom) return -1;
-        
-        /* Top === bottom */
-        for(let j = 0; j < cols; j++) {
-            if((top !== j) && (m[top][j] === 1)) return -1;
+        /* Verify Col */
+        for(let i = 0; i < rows; i++) {
+            if(m[i][top] === 0) return -1;               /* All elements should be 1 in this col*/
         }
         
         return top;
-        
-        
     }
 }

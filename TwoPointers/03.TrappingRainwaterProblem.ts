@@ -1,4 +1,69 @@
-/* Refer the stack solution first */
+/* LC 42. Trapping Rain Water
+
+Given n non-negative integers representing an elevation map where the width of each bar is 1, 
+compute how much water it can trap after raining.
+
+Input: height = [0,1,0,2,1,0,1,3,2,1,2,1]
+Output: 6
+Explanation: 
+                              X
+                      X       X X   X
+                _ X _ X X _ X X X X X X
+
+             In this case, 6 units of rain water are being trapped.
+
+Input: height = [4,2,0,3,2,5]
+Output: 9
+ 
+
+Constraints:
+    n == height.length
+    1 <= n <= 2 * 10^4
+    0 <= height[i] <= 10^5
+
+NOTE: 
+-----
+Refer the stack solution first 
+
+
+                                            TWO POINTER APPROACH
+                                            --------------------
+
+The amount of water trapped at index i is:  
+
+                                water[i] = min(leftMax, rightMax) - height[i]
+
+    where:
+        leftMax  = maximum height on the left side
+        rightMax = maximum height on the right side
+
+    Normally, finding leftMax and rightMax for every index would take
+    O(n) extra space using prefix/suffix arrays.
+
+    We can avoid those arrays using TWO POINTERS.
+
+--------------------------------------------------------------------------------------------------------
+
+    Start with two pointers:
+                            left  = 0
+                            right = n - 1
+
+    Also maintain:
+                            leftMax  = maximum height seen so far from the left
+                            rightMax = maximum height seen so far from the right
+
+                    left                  right
+                      ↓                      ↓
+
+              [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]
+
+
+    At every step, compare: height[left] & height[right]
+    We process the side having the SMALLER current height.
+
+TC: O(n) Both pointers move at most n times in total
+SC: O(1)
+*/
 
 function trap(height: number[]): number {
     const n: number = height.length;

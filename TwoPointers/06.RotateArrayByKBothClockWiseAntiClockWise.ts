@@ -11,7 +11,7 @@ rotate 2 steps to the right: [7,8,1,2,3,4,5,6]
 rotate 3 steps to the right: [6,7,8,1,2,3,4,5]
 rotate 4 steps to the right: [5,6,7,8,1,2,3,4]
 
-Just remeber the technique for O(1) space
+Just remember the technique for O(1) space
 */
 
 /* Reverse using 2 pointers */
@@ -43,6 +43,7 @@ function rotateRightByK(arr, k) {
 
 function rotateLeftByK(arr, k) {
     let n = arr.length;
+
     k = k % n;  /* When k > n */
 
     // Reverse the first k elements
@@ -54,3 +55,8 @@ function rotateLeftByK(arr, k) {
     // Reverse the entire array
     reverse(arr, 0, n - 1);
 }
+
+/*
+TC: O(k + (n - k) + n) = O(2n) = O(n)
+SC: O(1)
+*/

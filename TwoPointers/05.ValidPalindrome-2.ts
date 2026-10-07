@@ -15,16 +15,32 @@ Output: false
 Input: s = "abbda"
 Output: true
 
-Logic:
+Way-1: Brute Force:
+-------------------
 
-- Use two pointers approach
-- Move inward while characters match.
-- If a mismatch occurs, we have one chance to delete a character, so we check:
+- At most one character can be removed.
+- Remove each char one by one and check if its palindrome
+
+function validPalindromeBruteForce(s: string): boolean {
+    if (isWholePalindrome(s)) return true;
+
+    for (let i = 0; i < s.length; i++) {
+        const candidate = s.slice(0, i) + s.slice(i + 1); --> O(n1 + n2) -> adds upto O(n) always
+        if (isWholePalindrome(candidate)) return true;
+    }
+
+    return false;
+}
+
+Way-2: Two pointers approach:
+-----------------------------
+
+Two pointers: left = 0 | right = (n - 1)
+
+Check for possibilites Whenever there is a mismatch:
     Skip the left character → check if remaining is palindrome
     Skip the right character → check if remaining is palindrome
     If either works → return true.
-
-Basically, we are checking two possibilites, its better done with the help of recursion
 
 */
 
@@ -55,3 +71,11 @@ function validPalindrome(s: string): boolean {
 
     return true;
 };
+
+/*
+
+TC: O(n^2) -> But actually it will be O(n)
+              inner iterations runs only for mismatches
+SC: O(1)
+
+*/

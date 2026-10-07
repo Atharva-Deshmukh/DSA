@@ -1,4 +1,4 @@
-/*v881. Boats to Save People
+/* 881. Boats to Save People
 
 You are given an array people where people[i] is the weight of the ith person, and an 
 infinite number of boats where each boat can carry a maximum weight of limit. 
@@ -29,21 +29,45 @@ Constraints:
     1 <= people[i] <= limit <= 3 * 10^4
 
 
-Approach:
-- Here, we cannot directly apply 2 pointer approach since a pattern is not recognisable here
-- We also cannot convert it to -> Numer of subarrays with sum <= k since subarray is not compulsory here
-  Persons can be picked in any order
+Thought of a BRUTE FORCE, but it doesn't work because we need combination of one light and one heavy
+person to make boats count minimum, but here we are just filling the boats starting from mins to maxs.
+This gives wrong output for some tests
 
-- Hence, to make everything deterministic, we will sort this array
-  This will shift lightest person on left and heaviest person on right
+function numRescueBoats(people: number[], limit: number): number {
+    people.sort((a, b) => a - b);
+    
+    const n: number = people.length;
+    let boats: number = 0, i = 0;
+    
+    while(i < n) {
+        
+        let currentBoatWeight: number = 0;
+        let peopleInBoat: number = 0;
+        
+        while(((currentBoatWeight + people[i]) <= limit) && (peopleInBoat <= 2)) {
+            currentBoatWeight = currentBoatWeight + people[i];
+            peopleInBoat++;
+            i++;
+        }
+        
+        boats++;
+    }
+    
+    return boats;
+};
+
+
+Two Pointer Approach:
+---------------------
+- Sort this array --> This will shift lightest person on left and heaviest person on right
 - now left = 0 (points to the lightest person)
       right = (n - 1) (points to the heaviest person)
+- One boat = 2 people's capacity
 - If both the persons can sit in the same boat, count++, left++, right-- of boats. 
-- Otherwise, make the heavier person sit in the boat and decrement right. Also, increase the count of boats.
-  Why heavier person is made to sit in the boat, because we can then explore the possibility that 
-  right-- and left can together be made to sit in same boat, as boat can carry <= 2 persons
+- Otherwise, make the heavier person sit in the boat since we need min boats and right--. 
+  Also, increase the count of boats.
 
-TC: O(n)
+TC: O(n log n) + O(n) = O(n log n)
 SC: O(1)  */
 
 function numRescueBoats(a: number[], limit: number): number {
@@ -58,8 +82,8 @@ function numRescueBoats(a: number[], limit: number): number {
             r--;
         }
         else {
-            if(a[l] <= a[r]) { r--; count++; }
-            else { l++; count++; }
+            if(a[l] <= a[r]) { r--; count++; } /* If right is heavy, make heavier person to sit in boat and right-- */
+            else { l++; count++; }             /* If left is heavy, make heavier person to sit in boat and left++ */
         }
     }
 

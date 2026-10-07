@@ -1,4 +1,4 @@
-/* Container With Most Water
+/* 11. Container With Most Water
 
 You are given an integer array height of length n. There are n vertical lines drawn 
 such that the two endpoints of the ith line are (i, 0) and (i, height[i]).
@@ -62,16 +62,20 @@ Constraints:
 TC: O(n^2)
 SC: O(1)
 
-We need to optimise this, now, since we need both walls left and right, we can think of trapping rainwater like 
-two pointer approach, but with a change
+                                            TWO POINTERS
+                                            ------------
+
+We need both walls left and right
+we can think of trapping rainwater like two pointer approach, but with a change
 
 left = 0, right = (n - 1)
 
-vol = Math.max(vol, ((right - left) * (Math.min(a[left], a[right]))))
+Current volume = ((right - left) * (Math.min(a[left], a[right])))
 
-Now, whichever pointer is smaller, move that pointer only because
-we need max volume
-Moving pointers decreases the width as indices come closer
+maxVol = Math.max(maxVol, currentVol)
+
+Whichever pointer is smaller, move that pointer only
+we need max volume and moving pointers closer decreases the width
 So, we try to increase the height at least so that we can maximise the volume
 
 TC: O(n)
@@ -86,9 +90,11 @@ function maxArea(a: number[]): number {
     while(left < right) {
 
         maxVol = Math.max(maxVol, ((right - left) * (Math.min(a[left], a[right]))));
+        //                            width                      height
 
+        /* Just move the smaller pointer */
         if(a[left] <= a[right]) left++;
-        else if(a[left] > a[right]) right--;   /* don't use two ifs because updated left will be used in next one then */
+        else if(a[left] > a[right]) right--;
     }
 
     return maxVol;

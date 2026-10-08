@@ -5,7 +5,6 @@ Given an integer array nums, return all the triplets
 
 Notice that the solution set must not contain duplicate triplets.
 
-
 Input: nums = [-1,0,1,2,-1,-4]
 Output: [[-1,-1,2],[-1,0,1]]
 Explanation: 
@@ -57,25 +56,14 @@ Better Approach:
     a[i] + a[j] + a[k] = 0
                   a[i] = -(a[j] + a[k])
 
-    We will store this in map: -(a[j] + a[k])
-    if this is there, we can form triplets
+    We will store this in map: -(a[j] + a[k]) if this is there, we can form triplets
+    Actual triplet = {a[i], a[j], -(a[i] + a[j])}
           
-    But, we need to be careful that -(a[j] + a[k]) results into unique element, different from a[i] and a[j]
-    i.e. the element may be duplicate, but should not be at a[i] and a[j]
 
     Ex: [-1, 0, 1, 2, -1, -4]
                    i       j
 
-          a[k] = - (2 - (-4)) = 2 = a[i] only!
-          
-          Put only the elements between i and j to avoid this situation
-          Don't simply put every element in the map
-
-          Requirement of the problem: i, j and k should be UNIQUE!
-
-        Ex: [-1, 0, 1, 2, -1, -4]
-              i            j
-          map = [0, 1, 2]
+    Elements in the map represent nos. between i and j, hence map should be reset for each i
 
     DRY RUN:
     -------
@@ -101,7 +89,7 @@ Better Approach:
 
     map [ 0
     map.has(-(a[i] + a[j])) = IN MAP!
-    ans = [[-1, 0, 1]]
+    ans = [[-1, 0, 1]]  --> Triplet = {a[i], a[j], -(a[i] + a[j])}
 
     before j++, add a[j] to map
     map [ 0, 1
@@ -129,7 +117,7 @@ Better Approach:
     map [ 0, 1, 2
     map.has(-(a[i] + a[j])) = 2 = IN MAP!
 
-    ans = [[-1, 0, 1], [-1, -1, 2]]
+    ans = [[-1, 0, 1], [-1, -1, 2]]   --> Triplet = {a[i], a[j], -(a[i] + a[j])}
 
     before j++, add a[j] to map
     map [ 0, 1, 2, -1
@@ -149,12 +137,13 @@ Better Approach:
     j over! stop!
 
 
-    NOTE: avoid ansSet if we want duplicates also
+    Storing and retrieving answer needs another set = ansSet()
+    we store stringified values in ansSet and check if they are unique
 */
 
 function threeSum(a: number[]): number[][] {
     const n = a.length;
-    let ans = [];
+    let ans = []; 
     let ansSet = new Set();
     
     for(let i = 0; i < (n-1); i++) {
@@ -181,20 +170,21 @@ function threeSum(a: number[]): number[][] {
 /*
 TC: O(n^2), sorting for 3 elements will be always O(k)
 SC: O(n) + O(no of unique triplets) + O(no of unique triplets) for answer
+*/
 
+/* More Optimisation is needed because we are sorting each triplet and storing it in set to get unique triplets
 
-Still optimisation is needed because we are sorting each triplet and storing it in set  to get unique triplets
-
-We can just sort the whole array initially and then try to formulate an algorithm to get unique triplets
+Approach: Sort the whole array.
+          i = 0
+          j = (i + 1)
+          k = (n - 1)
 
 
       0   1   2   3   4   5  6  7  8  9  10 11 12
 a = [-2, -2, -2, -1, -1, -1, 0, 0, 0, 2, 2, 2, 2]
       i   j                                    k
-      
-      Keep i constant, j = i+1 and k at last
-      
-      Now, sum = -2 < 0 -> move j so that we can get near to 0
+
+      sum = a[i] + a[j] + a[k] = -2 < 0 -> move j so that we can get near to 0, j++ since array is sorted now
       
       0   1   2   3   4   5  6  7  8  9  10 11 12
 a = [-2, -2, -2, -1, -1, -1, 0, 0, 0, 2, 2, 2, 2]
@@ -229,7 +219,7 @@ a = [-2, -2, -2, -1, -1, -1, 0, 0, 0, 2, 2, 2, 2]
 a = [-2, -2, -2, -1, -1, -1, 0, 0, 0, 2, 2, 2, 2]
       i                      j                 k
 
-      Now, sum = 0
+      sum = 0
       ans = [-2, 0, 2] -> already sorted
 
       Now, catch here,
@@ -308,10 +298,10 @@ function threeSumOptimal(a: number[]): number[][] {
 
     for(let i = 0; i < n; i++) {
 
-        /* Don't try this i if its not the first element and its equivalent to previous element - we avoid using while() */
-        if((i > 0) && (a[i] === a[i - 1])) continue;
+        /* Our triplets will be in sorted order now, and we need unique, hence avoid those i's which are duplicates */
+        if(a[i] === a[i - 1]) continue;
 
-        /* For this i, create j and k */
+        /* For this unique i, create j and k */
         let j = (i + 1), k = (n - 1);
 
         while(j < k) {
@@ -319,12 +309,12 @@ function threeSumOptimal(a: number[]): number[][] {
 
             if(sum < 0) j++;
             else if(sum > 0) k--;
-            else { /* sum === 0 is answer */ 
+            else { /* sum === 0 */ 
                 ans.push([a[i], a[j], a[k]]);
-                j++;
+                j++;  /* Above j and k were already unique, hence move them ahead */
                 k--;
 
-                /* After we get the triplet, we avoid duplicate j and k */
+                /* After moving j and k ahead, we try to avoid duplicate j and k */
                 while((j < k) && (a[j] === a[j - 1])) j++;
                 while((j < k) && (a[k] === a[k + 1])) k--;
             }

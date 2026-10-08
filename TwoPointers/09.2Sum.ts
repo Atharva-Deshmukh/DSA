@@ -1,4 +1,65 @@
-/* 167. Two Sum II - Input Array Is Sorted
+/* 1. Two Sum - Input array is unsorted
+
+                                        BRUTE FORCE
+                                        -----------
+   
+- Find all possible pairs and check which pair has sum = target
+
+function twoSum(nums: number[], target: number): number[] {
+    const n: number = nums.length;
+
+    for (let i = 0; i < (n - 1); i++) {
+        for (let j = i + 1; j < n; j++) {
+            const sum: number = (nums[i] + nums[j]);
+            if (sum === target) return [i, j];
+        }
+    }
+
+    return [-1, -1];
+};
+
+TC: O(n^2)
+SC: O(1)
+
+                                        Hash Map
+                                        --------
+
+   nums = [3,2,4], target = 6
+
+   let map = []
+
+   i=0:
+    map is empty, so push 3
+    map = [3]
+
+   i=1:
+    check if map has (target - a[i]) = (6 - 2) = 4
+    no, push a[i] in map and i++
+    map = [3, 2]
+
+   i=2:
+    check if map has (target - a[i]) = (6 - 4) = 2
+    yes it has!, return true as we have pair with sum = target.
+    num1 = a[i], num2 = (target - a[i]) in map
+
+
+    function twoSum(nums: number[], target: number): number[] {
+        const n: number = nums.length;
+        let map: Map<number, number> = new Map<number, number>();
+
+        for (let i = 0; i < n; i++) {
+            if(map.has(target - nums[i])) return [i, map.get(target - nums[i])!]
+            else map.set(nums[i], i);
+        }
+
+        return [-1, -1];
+    };
+
+    TC: O(n)
+    SC: O(n)
+
+
+167. Two Sum II - Input Array Is Sorted
 
 Given a 1-indexed array of integers numbers that is already sorted in non-decreasing order, 
 find two numbers such that they add up to a specific target number. 

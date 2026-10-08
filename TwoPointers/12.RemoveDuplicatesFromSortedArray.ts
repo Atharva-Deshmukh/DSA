@@ -24,7 +24,7 @@ Constraints:
 - Finally, iterate the set and return all unique elements that are stored in it
 
 TC: O(n)
-SC: O(1)
+SC: O(n)
 
 
                                               BETTER APPROACH
@@ -74,13 +74,13 @@ function removeDuplicates(a: number[]): number[] {
 
     while (i < n) {
 
-        j = i;
+        j = i; /* j moves to current i */
 
-        while (j < n && a[j] === a[i]) j++;
+        while ((j < n) && a[j] === a[i]) j++;
 
         ans.push(a[i]);
 
-        i = j;
+        i = j; /* i moves to current j */
     }
 
     return ans;
@@ -98,30 +98,28 @@ Input: nums = [0,0,1,1,1,2,2,3,3,4]
 Output: 5, nums = [0,1,2,3,4,_,_,_,_,_]
                    0 1 2 3 4 5
 
-There is a Technique to do this:
-- Start with idx = 1 
-  (idx is going to hold the index of the next distinct item. Since there is nothing before the 
-   first item, we consider it as the first distinct item and begin idx with 1.)
-- Loop through the array for i = 0 to n-1.
-- At each index i, if (arr[i] !== arr[i-1]) --> arr[idx] = arr[i] and idx++
-- After the loop, arr[] contains the unique elements in the first idx positions.
+There is a Technique to do this - Memorize
 
 TC: O(n)
 SC: O(1) */
 
-function removeDuplicates(a: number[]): number {
+function removeDuplicatesLeetCode(a: number[]): number {
     const n = a.length;
 
     if(n === 1) return 1; /* means till 0th index, we can accomodate unique elements */
 
-    let idx = 1;
+    /*
+      uniqueIndex is going to hold the index of the next distinct item.
+      a[0] will always be considered unique. Hence uniqueIndex = 1 initially
+    */
+    let uniqueIndex = 1;
 
     for(let i = 1; i < n; i++) {
         if(a[i] !== a[i - 1]) {
-            a[idx] = a[i];
-            idx++;
+            a[uniqueIndex] = a[i];
+            uniqueIndex++;
         }
     }
 
-    return idx;
+    return uniqueIndex;
 };

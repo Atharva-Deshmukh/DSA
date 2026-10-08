@@ -114,11 +114,10 @@ function fourSum(a: number[], target: number): number[][] {
 
     for (let i = 0; i < (n - 1); i++) {
 
-        /* Don't try this i if its not the first element and its equivalent to previous element - we avoid using while() */
-        if ((i > 0) && (a[i] === a[i - 1])) continue;
+        if (a[i] === a[i - 1]) continue;
 
         for (let j = (i + 1); j < n; j++) {
-           if (j > i + 1 && a[j] === a[j - 1]) continue; // This ensures we only skip duplicates after the first valid j for a given i.
+           if ((j > i + 1) && a[j] === a[j - 1]) continue; // This ensures we only skip duplicates after the first valid j for a given i.
 
             
             let k = (j + 1), l = (n - 1);

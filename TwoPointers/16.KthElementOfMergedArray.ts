@@ -23,9 +23,9 @@ function kthEleConstSpaceUsingTwoPointers(a1: number[], a2: number[], k: number)
     let n2: number = a2.length;
 
     // corner cases
+    if(k > (n1 + n2)) return -1;
     if((n1 === 0) && (k < n2)) return a2[k-1];
     if((n2 === 0) && (k < n1)) return a1[k-1];
-    if(k > (n1 + n2)) return -1;
 
     let i1: number = 0;
     let i2: number = 0;
@@ -34,7 +34,7 @@ function kthEleConstSpaceUsingTwoPointers(a1: number[], a2: number[], k: number)
     while((i1 < n1) && (i2 < n2)) {
         if(a1[i1] <= a2[i2]) {
             mergedLength++;
-            if(mergedLength === k) return a1[i1];
+            if(mergedLength === k) return a1[i1]; /* because a1[i1] is contributing to merged[] */
             i1++;
         }
         else if(a1[i1] > a2[i2]) {
@@ -56,6 +56,6 @@ function kthEleConstSpaceUsingTwoPointers(a1: number[], a2: number[], k: number)
         i2++;
     }
 
-    // we will not reach here
+    // we may never reach here
     return -1;
 }

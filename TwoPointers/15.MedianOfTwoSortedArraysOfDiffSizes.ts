@@ -42,13 +42,13 @@ function bruteForceSpace(a1: number[], a2: number[]): number {
         }
     }
 
-    // if a1 is exhausted
+    // if a1[] not yet exhausted
     while(i1 < l1) {
         merged.push(a1[i1]);
         i1++;
     }
 
-    // if a2 is exhausted
+    // if a2[] not yet exhausted
     while(i2 < l2) {
         merged.push(a2[i2]);
         i2++;
@@ -62,135 +62,40 @@ function bruteForceSpace(a1: number[], a2: number[]): number {
 /*                                               Way-2: const space using 2 pointers
                                                 ------------------------------------
 
-Thought process:
-- Simulate the merged Sorted Array and medians using variables and two pointers approach
-  mergedIndex -> will store the middle element's index
-         ele1 ->  mid1
-         ele2 ->  mid2
+SIMULATE the merged array
 
-- we can figure out the final median based on whether merged array length = (m + n) is even or odd
+- mergedLen = l1 + l2
+- index2 = floor(mergedLen / 2)       -> position of the 2nd median element (0-based)
+- index1 = index2 - 1                 -> position of the 1st median element (only matters when mergedLen is even)
+- i1, i2  -> actual pointers into a1[] and a2[]
+- mergedIndex -> position we'd be at in the VIRTUAL merged array
 
-DRY RUN - when (m + n) is odd
------------------------------
+                                    EVEN LENGTH EXAMPLE
+                                    --------------------
+a1 = [1, 2, 3], a2 = [4, 5, 6]  -> mergedLen = 6, index1 = 2, index2 = 3
 
-keep index1 = 0, index 2 = 0
-       ele1 = 0     ele2 = 0
-mergedLength = 4 + 3 = 7 = odd, so index1 = 3
+step   compare            picks   i1  i2  mergedIndex   capture?
+1      a1[0]=1 <= a2[0]=4   a1     1   0      0
+2      a1[1]=2 <= a2[0]=4   a1     2   0      1
+3      a1[2]=3 <= a2[0]=4   a1     3   0      2          mergedIndex==index1 -> ele1 = 3
+4      i1 exhausted, take a2[0]=4 ->  -   1      3          mergedIndex==index2 -> ele2 = 4
 
-let mergedIndex = -1; this is our iterator, initially -1 which simulates mergedArray[] = []
+median = (ele1 + ele2) / 2 = (3 + 4) / 2 = 3.5
 
- 0  1  2  3    0  1  2
-[1, 2, 3, 4]  [4, 5, 6]
- |             |
-ind1          ind2
+                                    ODD LENGTH EXAMPLE
+                                    -------------------
+a1 = [1, 2, 3, 4], a2 = [4, 5, 6]  -> mergedLen = 7, index1 = 2, index2 = 3   (index1 unused here)
 
-(m + n)/2= (4 + 3)/2 = 7/2 = 3 = our medianIndex, iterate till here
+step   compare            picks   i1  i2  mergedIndex   capture?
+1      a1[0]=1 <= a2[0]=4   a1     1   0      0
+2      a1[1]=2 <= a2[0]=4   a1     2   0      1
+3      a1[2]=3 <= a2[0]=4   a1     3   0      2          mergedIndex==index1 -> ele1 = 3 (ignored, length is odd)
+4      a1[3]=4 <= a2[0]=4   a1     4   0      3          mergedIndex==index2 -> ele2 = 4
 
-    a1[index1] <= a2[index2] 
-    a1[index1] would be added in mergedArray
-    mergedArray would be [1]
-    to simulate this, mergedIndex = 0
-    ele1 = a1[index1] = 1
-    ele2 = a2[index2] = 4
+mergedLen is odd -> answer is just ele2 = 4 (ele1 never gets used)
 
-
- 0  1  2  3    0  1  2
-[1, 2, 3, 4]  [4, 5, 6]
-    |          |
-   ind1       ind2
-
-    a1[index1] <= a2[index2] 
-    a1[index1] would be added in mergedArray
-    mergedArray would be [1, 2]
-    to simulate this, mergedIndex = 1 
-    ele1 = a1[index1] = 1
-    ele2 = a2[index2] = 4
-
- 0  1  2  3    0  1  2
-[1, 2, 3, 4]  [4, 5, 6]
-       |       |
-      ind1    ind2
-
-    a1[index1] <= a2[index2] 
-    a1[index1] would be added in mergedArray
-    mergedArray would be [1, 2, 3]
-    to simulate this, mergedIndex = 2
-    ele1 = a1[index1] = 3
-    ele2 = a2[index2] = 4
-
- 0  1  2  3    0  1  2
-[1, 2, 3, 4]  [4, 5, 6]
-          |    |
-         ind1 ind2
-
-    a1[index1] <= a2[index2] 
-    a1[index1] would be added in mergedArray
-    mergedArray would be [1, 2, 3, 4]
-    to simulate this, mergedIndex = 3
-    ele1 = a1[index1] = 4
-    ele2 = a2[index2] = 4
-
- this is our required index,
- Now we have been storing ele1 and ele2 side by side, now use them
- medianEle = (ele1 + ele2) / 2 = (4 + 4) / 2 = 4
-
-
-DRY RUN - when (m + n) is even
-------------------------------
-
- 0  1  2    0  1  2
-[1, 2, 3]  [4, 5, 6]
-
-
-mergedLength = 3 + 3 = 6 = even, so there will be two mergeIndices since two medians will be there, index1 = 2 & index2 = 3
-
- 0  1  2    0  1  2
-[1, 2, 3]  [4, 5, 6]
- |          |
-ind1       ind2
-
-    a1[index1] <= a2[index2] 
-    a1[index1] would be added in mergedArray
-    mergedArray would be [1]
-    to simulate this, mergedIndex = 0
-    ele1 = a1[index1] = 1
-    ele2 = a2[index2] = 4
-
- 0  1  2    0  1  2
-[1, 2, 3]  [4, 5, 6]
-    |       |
-   ind1    ind2
-
-    a1[index1] <= a2[index2] 
-    a1[index1] would be added in mergedArray
-    mergedArray would be [1, 2]
-    to simulate this, mergedIndex = 1
-    ele1 = a1[index1] = 2
-    ele2 = a2[index2] = 4
-
- 0  1  2    0  1  2
-[1, 2, 3]  [4, 5, 6]
-       |    |
-      ind1 ind2
-
-    a1[index1] <= a2[index2] 
-    a1[index1] would be added in mergedArray
-    mergedArray would be [1, 2, 3]
-    to simulate this, mergedIndex = 2 --> first mergedIndex
-    ele1 = a1[index1] = 3
-    ele2 = a2[index2] = 4
-
-    From now on, calculate second mergedIndex only
-
-
- 0  1  2    0  1  2
-[1, 2, 3]  [4, 5, 6]
-            |
-           ind2
-
-  mergedIndex = 3 (4 merged) this is second required index, so ele2 = 4
-
-  return (ele1 + ele2) / 2
+TC: O(l1 + l2) — single merge-style pass, no extra array built
+SC: O(1) — only the space consumed by variables
 
 */
 
@@ -222,7 +127,7 @@ function twoPointersApproach(a1: number[], a2: number[]): number {
         while((i1 < l1) && (i2 < l2)) {
             if(a1[i1] <= a2[i2]) {
                 if(mergedIndex === index1) ele1 = a1[i1];  /* If mergedIndex reaches index1 due to a1[i], update ele1 = a1[i] */
-                if(mergedIndex === index2) ele2 = a1[i1];  /* If mergedIndex reaches index2 due to a2[i], update ele2 = a2[i] */
+                if(mergedIndex === index2) ele2 = a1[i1];  /* If mergedIndex reaches index2 due to a1[i], update ele2 = a1[i] */
                 mergedIndex++;
                 i1++;
             }
@@ -234,7 +139,7 @@ function twoPointersApproach(a1: number[], a2: number[]): number {
             }
         }
     
-        // if a1 is exhausted
+        // if a1 is not exhausted
         while(i1 < l1) {
             if(mergedIndex === index1) ele1 = a1[i1];
             if(mergedIndex === index2) ele2 = a1[i1];
@@ -242,7 +147,7 @@ function twoPointersApproach(a1: number[], a2: number[]): number {
             i1++;
         }
     
-        // if a2 is exhausted
+        // if a2 is not exhausted
         while(i2 < l2) {
             if(mergedIndex === index1) ele1 = a2[i2];
             if(mergedIndex === index2) ele2 = a2[i2];

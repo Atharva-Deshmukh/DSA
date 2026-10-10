@@ -13,18 +13,28 @@ To be accepted, the first k elements of nums must contain only elements not equa
 Return k as the final result.
 
 Input: nums = [1,1,2,3,4], val = 1
-Output: [2,3,4]
-Explanation: You should return k = 3 as we have 3 elements which are not equal to val = 1.
+Output: 3 
+Explanation: [2,3,4] You should return k = 3 as we have 3 elements which are not equal to val = 1.
 
 Input: nums = [0,1,2,2,3,0,4,2], val = 2
-Output: [0,1,3,0,4]
-Explanation: You should return k = 5 as we have 5 elements which are not equal to val = 2.
+Output: 5
+Explanation: [0,1,3,0,4] You should return k = 5 as we have 5 elements which are not equal to val = 2.
 
 Constraints:
     0 <= nums.length <= 100
     0 <= nums[i] <= 50
     0 <= val <= 100
 
+
+                                                            BRUTE FORCE:
+                                                            ------------
+- Create a new array without val and return its size.
+
+TC: O(n)
+SC: O(n)
+
+                                                           OPTIMAL APPROACH:
+                                                           -----------------
 
 Approach:
 - Since we require in-place solution, we can think of swapping the non-val elements
@@ -42,8 +52,8 @@ SWAP-LEFT (bring all non-vals to left side)
   left++
 
 return left finally
-
-DRY RUN:
+                                                                    DRY RUN
+                                                                    -------
 
 a = [1,1,2,3,4], val = 1
 
@@ -52,8 +62,8 @@ l = 0
 
     0  1  2  3  4
     [1, 1, 2, 3, 4]
-    i
-    l
+     i
+     l
 
     a[i] === val --> i++
 

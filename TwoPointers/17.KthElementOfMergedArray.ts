@@ -11,8 +11,7 @@ LOGIC:
   TC: O(l1 + l2)
   SC: O(l1 + l2)
 
-- As seen in question of median two sorted arrays, instead of actually storing merged[], use some counter to keep
-  track of kth element in the merged array 
+- Instead of actually storing merged[], use some counter to keep track of kth element in the merged array 
   TC: O(l1 + l2)
   SC: O(l)
 

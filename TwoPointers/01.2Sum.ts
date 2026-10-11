@@ -1,7 +1,8 @@
-/* 1. Two Sum - Input array is unsorted
+/*                                          Type-1. Two Sum - Input array is UNSORTED
+                                            -----------------------------------------
 
-                                        BRUTE FORCE
-                                        -----------
+                                                        BRUTE FORCE
+                                                        -----------
    
 - Find all possible pairs and check which pair has sum = target
 
@@ -21,8 +22,8 @@ function twoSum(nums: number[], target: number): number[] {
 TC: O(n^2)
 SC: O(1)
 
-                                        Hash Map
-                                        --------
+                                                        Hash Map
+                                                        --------
 
    nums = [3,2,4], target = 6
 
@@ -59,7 +60,8 @@ SC: O(1)
     SC: O(n)
 
 
-167. Two Sum II - Input Array Is Sorted
+                                            Type-2: 167.Two Sum II - Input Array Is Sorted
+                                            ----------------------------------------------
 
 Given a 1-indexed array of integers numbers that is already sorted in non-decreasing order, 
 find two numbers such that they add up to a specific target number. 

@@ -23,7 +23,13 @@ Constraints:
 
 NOTE: 
 -----
-Refer the stack solution first 
+Refer the stack solution first  --> Two pointers is the more optimal of the two
+
+Approach	    TC	    SC
+--------------------------------------------------------------
+Stack	        O(n)	O(n) — stack can hold up to n indices
+Two Pointers	O(n)	O(1) — just a few scalar variables
+
 
 
                                             TWO POINTER APPROACH

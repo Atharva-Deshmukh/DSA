@@ -18,7 +18,7 @@ But we are using an extra space here, we need to avoid this
                                            Better Approach
                                            ---------------
                                     
-- We just need to swap the rightmost element in a[] with leftmost element in b[], 
+- Swap the rightmost element in a[] with leftmost element in b[], 
   then second rightmost element in a[] with second leftmost element in b[] and so on. 
   This will continue until the selected element from a[] is larger than selected element from b[].
 - Now sort both the arrays to maintain the order.
@@ -73,8 +73,8 @@ function mergeArrays(a, b) {
 
 But There is a slight difference to note about how the gap is calculated in shell sort and here in this problem
 
-                                                    Floor vs ceil for gap
-                                                    ---------------------
+Floor vs ceil for gap
+---------------------
 
 Classical Shell Sort loop --> for(gap = Math.floor(n/2); gap >= 1; gap = Math.floor(gap/2)) 
 
@@ -236,12 +236,47 @@ BEST APPROACH: 3-Pointer technique (not the gap method)
 TC: O(m + n) — single backward pass, each element placed exactly once
 SC: O(1) — merges in-place within a[]
 
+                                                                DRY RUN:
+                                                                --------
+
+Let's trace it with nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3:
+
+     0  1  2  3  4  5     
+a = [1, 2, 3, 0, 0, 0]
+b = [2, 5, 6]
+
+p1 = 2 (points to a[2]=3)
+p2 = 2 (points to b[2]=6)
+p  = 5 (last slot in a[])
+
+Step 1: a[p1]=3 vs b[p2]=6 → 3 > 6 is false → take from b
+a[5] = 6 → a = [1,2,3,0,0,6], p2=1, p=4
+
+Step 2: a[p1]=3 vs b[p2]=5 → 3 > 5 is false → take from b
+a[4] = 5 → a = [1,2,3,0,5,6], p2=0, p=3
+
+Step 3: a[p1]=3 vs b[p2]=2 → 3 > 2 is true → take from a
+a[3] = 3 → a = [1,2,3,3,5,6], p1=1, p=2
+
+Step 4: a[p1]=2 vs b[p2]=2 → 2 > 2 is false → take from b
+a[2] = 2 → a = [1,2,2,3,5,6], p2=-1, p=1
+
+Loop ends (p2 < 0) → remaining elements in a[0..1] (1, 2) are already in their correct final positions, so nothing more to do.
+
+Result: a = [1, 2, 2, 3, 5, 6] ✅
+
+Why it works: You're filling the array from the back, always placing the larger of the two "current largest remaining" 
+candidates (a[p1] from the front part, b[p2] from nums2) into the last unfilled slot. Since you always write to a slot 
+behind both p1 and p2, you never overwrite a value before it's been compared/used — that's what makes the in-place 
+merge safe without needing extra space. The loop only needs to run until b[] is exhausted (p2 < 0), because once that happens, 
+whatever's left in a[0..p1] is already sorted and already in the correct front positions.
+
 */
 
 function merge(a: number[], m: number, b: number[], n: number): void {
-    let p1 = m - 1;
-    let p2 = n - 1;
-    let p = m + n - 1;
+    let p1 = m - 1;     /* First array's last index  */
+    let p2 = n - 1;     /* Second array's last index */
+    let p = m + n - 1;  /* Merged array's last index */
 
     while (p2 >= 0) {
         if ((p1 >= 0) && (a[p1] > b[p2])) {

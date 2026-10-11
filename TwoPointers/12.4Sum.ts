@@ -141,3 +141,8 @@ function fourSum(a: number[], target: number): number[][] {
 
     return ans;
 };
+
+/*
+TC: O(n^3) — outer two loops (i, j) are O(n^2), inner two-pointer (k, l) scan is O(n) each time
+SC: O(1) extra (excluding output array) — in-place two pointers, no hashing/sets used
+*/

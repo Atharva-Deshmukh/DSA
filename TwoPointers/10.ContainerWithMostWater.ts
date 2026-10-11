@@ -8,7 +8,7 @@ the container contains the most water.
 
 Return the maximum amount of water a container can store.
 
-Notice that you may not slant the container.
+Notice that you may not slant/tilt the container.
 
 Input: arr[] = [1, 5, 4, 3]
 Output: 6

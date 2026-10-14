@@ -1,0 +1,69 @@
+--------------------------------------------------------------------------------
+# 2. STRINGS - FULL LIST (every string problem identified across all research)
+--------------------------------------------------------------------------------
+No dedicated "Strings" folder exists, so this is the complete master list in
+one place as requested. Per the governing rule, nothing here is assumed
+complete except items tagged [DONE - TwoPointers/, exempt] - everything else,
+including items that live in SlidingWindow/PatternMatching/Mathematical, is
+back on the redo list.
+
+MUST-DO (P0 - core, highest frequency, do these first):
+P0 2. Find the frequency of each character in a string
+P0 3. Check if all characters in a string are unique
+P0 4. Find the first non-repeating character (LC 387)
+P0 5. Find the first repeated character
+P0 6. Reverse the words in a sentence (LC 151)
+P0 7. Group Anagrams (LC 49)
+P0 8. Longest Common Prefix (LC 14)
+P0 9. String Compression / Run-Length Encoding (LC 443)
+P0 10. FizzBuzz (yes, actually practice it - reported verbatim in SDET rounds)
+P0 11. [DONE - TwoPointers/, exempt] Reverse a String (LC 344)
+P0 12. [DONE - TwoPointers/, exempt] Valid Palindrome (LC 125) + Valid
+       Palindrome II
+P0 13. Longest Substring Without Repeating Chars (LC 3) - redo (file exists
+       in SlidingWindow/, but that topic is not exempt, treat as new)
+P0 14. Minimum Window Substring (LC 76) - redo (same reason as above)
+
+GOOD TO HAVE (P1 - reuse P0 patterns, quick once P0 is solid):
+P1 15. Remove duplicate characters from a string (preserve order)
+P1 16. Longest / shortest word in a sentence
+P1 17. Implement atoi (LC 8)
+P1 18. Compare version numbers (LC 165)
+P1 19. Isomorphic Strings (LC 205)
+P1 20. Is Subsequence (LC 392)
+P1 21. Reverse each word in a sentence individually
+P1 22. Count words in a string / count word frequency in a sentence
+P1 23. Check if a string is a pangram
+P1 24. Validate an IPv4 address
+P1 25. Check if a sentence is a palindrome (ignore spaces/punctuation)
+P1 26. Check if a string can be formed by rearranging another (permutation check)
+P1 27. [DONE - TwoPointers/, exempt] Merge Strings Alternately
+P1 28. Count Occurrences of Anagrams - redo (file exists in SlidingWindow/,
+       not exempt)
+P1 29. Longest Substring with At Most K Unique Chars - redo (same reason)
+P1 30. Check if Strings are Rotations of Each Other - redo (file exists in
+       PatternMatching/, not exempt)
+P1 31. Sum of two large numbers (string-based big-number addition) - redo
+       (file exists in Mathematical/ArithmeticUsingString/, not exempt -
+       explicitly flagged by you to include here)
+
+SKIP unless time remains (low-ROI filler, zero/near-zero SDET evidence):
+Remove special characters / remove all white spaces, Replace spaces with
+%20, Convert to Title Case / camel case, Extract numbers from a string, Add
+two binary strings, Convert a number to words, Toggle case of each
+character, Remove a specific character from a string, Check if a number (not
+string) is a palindrome, Check if given year is a leap year, Count
+vowels/consonants/digits/special characters separately, Find second most
+frequent character in a string, Check if two strings are k-anagrams,
+Look-and-say sequence generation ("Count and Say", LC 38), KMP Algorithm -
+redo (file exists in PatternMatching/, not exempt, still lower priority),
+Rabin-Karp Algorithm - redo (same), Count Distinct Substrings - redo (file
+exists in HashingConcept/, not exempt, still lower priority).
+
+[Still excluded - DP-tagged or genuinely out of round-1 scope, unchanged
+from earlier research]: Longest Palindromic Substring (LC 5) - DP,
+Lexicographic rank of a string among its permutations, Swap case of vowels
+only (duplicate of Toggle Case), Check if a string is an interleaving of two
+other strings - DP, Transform one string to another / Edit Distance - DP,
+Minimum insertions to form a palindrome with permutations allowed - DP,
+Palindrome Substring Queries - DP.

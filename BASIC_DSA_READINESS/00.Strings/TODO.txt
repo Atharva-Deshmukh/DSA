@@ -8,21 +8,12 @@ including items that live in SlidingWindow/PatternMatching/Mathematical, is
 back on the redo list.
 
 MUST-DO (P0 - core, highest frequency, do these first):
-P0 2. Find the frequency of each character in a string
-P0 3. Check if all characters in a string are unique
-P0 4. Find the first non-repeating character (LC 387)
 P0 5. Find the first repeated character
 P0 6. Reverse the words in a sentence (LC 151)
 P0 7. Group Anagrams (LC 49)
 P0 8. Longest Common Prefix (LC 14)
 P0 9. String Compression / Run-Length Encoding (LC 443)
 P0 10. FizzBuzz (yes, actually practice it - reported verbatim in SDET rounds)
-P0 11. [DONE - TwoPointers/, exempt] Reverse a String (LC 344)
-P0 12. [DONE - TwoPointers/, exempt] Valid Palindrome (LC 125) + Valid
-       Palindrome II
-P0 13. Longest Substring Without Repeating Chars (LC 3) - redo (file exists
-       in SlidingWindow/, but that topic is not exempt, treat as new)
-P0 14. Minimum Window Substring (LC 76) - redo (same reason as above)
 
 GOOD TO HAVE (P1 - reuse P0 patterns, quick once P0 is solid):
 P1 15. Remove duplicate characters from a string (preserve order)
@@ -37,9 +28,6 @@ P1 23. Check if a string is a pangram
 P1 24. Validate an IPv4 address
 P1 25. Check if a sentence is a palindrome (ignore spaces/punctuation)
 P1 26. Check if a string can be formed by rearranging another (permutation check)
-P1 27. [DONE - TwoPointers/, exempt] Merge Strings Alternately
-P1 28. Count Occurrences of Anagrams - redo (file exists in SlidingWindow/,
-       not exempt)
 P1 29. Longest Substring with At Most K Unique Chars - redo (same reason)
 P1 30. Check if Strings are Rotations of Each Other - redo (file exists in
        PatternMatching/, not exempt)

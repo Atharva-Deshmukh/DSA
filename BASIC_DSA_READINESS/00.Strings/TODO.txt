@@ -9,7 +9,6 @@ back on the redo list.
 
 MUST-DO (P0 - core, highest frequency, do these first):
 P0 9. String Compression / Run-Length Encoding (LC 443)
-P0 10. FizzBuzz (yes, actually practice it - reported verbatim in SDET rounds)
 
 GOOD TO HAVE (P1 - reuse P0 patterns, quick once P0 is solid):
 P1 15. Remove duplicate characters from a string (preserve order)

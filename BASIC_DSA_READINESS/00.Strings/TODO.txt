@@ -8,10 +8,6 @@ including items that live in SlidingWindow/PatternMatching/Mathematical, is
 back on the redo list.
 
 MUST-DO (P0 - core, highest frequency, do these first):
-P0 5. Find the first repeated character
-P0 6. Reverse the words in a sentence (LC 151)
-P0 7. Group Anagrams (LC 49)
-P0 8. Longest Common Prefix (LC 14)
 P0 9. String Compression / Run-Length Encoding (LC 443)
 P0 10. FizzBuzz (yes, actually practice it - reported verbatim in SDET rounds)
 

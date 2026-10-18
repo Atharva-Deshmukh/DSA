@@ -1,4 +1,7 @@
-/*                                          Type - 1 => Use the same two input arrays
+/*                                          
+                                                  MEMORIZE BOTH APPROACHES
+
+                                            Type - 1 => Use the same two input arrays
                                             -----------------------------------------
 
 Input: a[] = [2, 4, 7, 10], b[] = [2, 3]
@@ -18,9 +21,9 @@ But we are using an extra space here, we need to avoid this
                                            Better Approach
                                            ---------------
                                     
-- Swap the rightmost element in a[] with leftmost element in b[], 
-  then second rightmost element in a[] with second leftmost element in b[] and so on. 
-  This will continue until the selected element from a[] is larger than selected element from b[].
+- while(a[i] > b[j]) 
+    Swap the rightmost element in a[] with leftmost element in b[], 
+    then second rightmost element in a[] with second leftmost element in b[] and so on. 
 - Now sort both the arrays to maintain the order.
 
        0  1  2  3           0  1
@@ -54,7 +57,7 @@ function mergeArrays(a, b) {
     // Swap smaller elements from b[] with larger elements from a[]
     while ((i >= 0) && (j < b.length)) {
         if (a[i] < b[j]) {
-            i--;
+            i--; /* Explore smaller possibilities in a[] */
         } else {
             [a[i], b[j]] = [b[j], a[i]];
             i--;
@@ -67,9 +70,9 @@ function mergeArrays(a, b) {
     b.sort((x, y) => x - y);
 }
 
-/*                                             BEST APPROACH FOR TYPE-1
-                                               ------------------------ 
-                                       Gap Method to merge two sorted arrays
+/*                                          BEST APPROACH FOR TYPE-1 - MEMORISE
+                                            ----------------------------------- 
+                                           Gap Method to merge two sorted arrays
 
 But There is a slight difference to note about how the gap is calculated in shell sort and here in this problem
 
@@ -81,11 +84,8 @@ Classical Shell Sort loop --> for(gap = Math.floor(n/2); gap >= 1; gap = Math.fl
 But we won't use this floor() in our method because it skips some iterations.
 
 Ex: m + n = 10:
-    floor(gap/2)	5 → 2 → 1
+    floor(gap/2)	5 → 2 → 1                    Notice: floor skips some gaps
     ceil(gap/2)	    5 → 3 → 2 → 1
-
-Notice: floor skips gap = 3 entirely — it jumps straight from 5 to 2. 
-        ceil never skips an intermediate value like that.
 
 Algo:
 - Treat a[] and b[] as one single virtual array of size (m + n).
@@ -145,7 +145,7 @@ so both need the same "- m" conversion to map them to actual positions inside b[
 
 */
 
-function mergeArrays(a, b) {
+function mergeArraysGapMethod(a: number[], b: number[]) {
     let m = a.length; 
     let n = b.length;
     let gap = Math.ceil((m + n) / 2);
@@ -174,6 +174,7 @@ function mergeArrays(a, b) {
             right++;
         }
 
+        // reaching gap = 1 is necessary to finish, hence keep while loop approach only - don't use for loop approach
         // the gap = 1 pass just ran above; stop here, otherwise ceil(1/2) keeps giving 1 forever
         if (gap === 1) break;
 
@@ -189,7 +190,7 @@ SC: O(1)
 
 /*                                         Type - 2: first array has extra space for second array
                                             -----------------------------------------------------
-                                                   88. Merge Sorted Array
+                                                         88. Merge Sorted Array
 
 Change: nums1 has a length of m + n, 
 nums1 has first m elements + space to store n elements (0 initially)
@@ -224,14 +225,11 @@ BEST APPROACH: 3-Pointer technique (not the gap method)
 - a[] has trailing empty slots (all zeros) reserved exactly for n elements from b[],
   so we fill a[] starting from the back — this avoids ever overwriting existing values of a[]
 
-- p1 -> last valid element in a[] (index m - 1)
-- p2 -> last element in b[] (index n - 1)
-- p  -> last index of the merged array (index m + n - 1)
+- p1 -> last index in a[] (m - 1)
+- p2 -> last index in b[] (n - 1)
+- p  -> last index of the simulated merged[] (m + n - 1)
 
 - At each step, place the larger of a[p1] and b[p2] at a[p], then move that pointer and p back by 1.
-
-- Once p2 < 0, a[] is already fully in order (its own elements never needed moving),
-  so we can stop. If p1 < 0 first, the remaining b[] elements are copied as-is.
 
 TC: O(m + n) — single backward pass, each element placed exactly once
 SC: O(1) — merges in-place within a[]

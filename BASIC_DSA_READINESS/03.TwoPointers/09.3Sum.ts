@@ -224,11 +224,9 @@ a = [-2, -2, -2, -1, -1, -1, 0, 0, 0, 2, 2, 2, 2]
 
       Now, catch here,
       i is constant
-      no point in j++ as its same element
-      no point in k-- as its also the same element
+      a[i+1] = a[i] and a[k-1] = a[k]
 
-      Hence, j++ until we get different element
-      Hence, k-- until we get different element
+      Hence, j++ and k-- until we get different element
 
       Since array is sorted, we can do this using while()
 
@@ -304,20 +302,21 @@ function threeSumOptimal(a: number[]): number[][] {
         /* For this unique i, create j and k */
         let j = (i + 1), k = (n - 1);
 
-        while(j < k) {
+        while (j < k) {
             const sum = a[i] + a[j] + a[k];
 
-            if(sum < 0) j++;
-            else if(sum > 0) k--;
-            else { /* sum === 0 */ 
+            if (sum === 0) { /* sum === 0 */
                 ans.push([a[i], a[j], a[k]]);
                 j++;  /* Above j and k were already unique, hence move them ahead */
                 k--;
 
                 /* After moving j and k ahead, we try to avoid duplicate j and k */
-                while((j < k) && (a[j] === a[j - 1])) j++;
-                while((j < k) && (a[k] === a[k + 1])) k--;
+                while ((j < k) && (a[j] === a[j - 1])) j++;
+                while ((j < k) && (a[k] === a[k + 1])) k--;
             }
+
+            else if (sum < 0) j++;
+            else if (sum > 0) k--;
         }
     }
 

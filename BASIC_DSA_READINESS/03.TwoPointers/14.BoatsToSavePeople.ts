@@ -1,8 +1,9 @@
-/* 881. Boats to Save People
+/* 881. Boats to Save People - Memorize approach
 
 You are given an array people where people[i] is the weight of the ith person, and an 
 infinite number of boats where each boat can carry a maximum weight of limit. 
-Each boat carries at most two people at the same time, provided the sum of the weight of those people is at most limit.
+Each boat carries at most two people at the same time, provided the sum of the weight of 
+those people is at most limit.
 
 Return the minimum number of boats to carry every given person.
 
@@ -56,8 +57,8 @@ function numRescueBoats(people: number[], limit: number): number {
 };
 
 
-Two Pointer Approach:
----------------------
+Sort + Two Pointer Approach:
+----------------------------
 - Sort this array --> This will shift lightest person on left and heaviest person on right
 - now left = 0 (points to the lightest person)
       right = (n - 1) (points to the heaviest person)

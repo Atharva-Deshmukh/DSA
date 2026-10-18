@@ -1,4 +1,4 @@
-/* 26. Remove Duplicates from Sorted Array
+/* 26. Remove Duplicates from Sorted Array - Memorise techniques
 
 You are given a sorted array arr[] containing positive integers. 
 Your task is to remove all duplicate elements from this array such that each element appears only once. 

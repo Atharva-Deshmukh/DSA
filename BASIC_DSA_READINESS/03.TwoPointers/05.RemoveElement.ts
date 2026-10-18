@@ -37,7 +37,7 @@ SC: O(n)
                                                            -----------------
 
 Approach:
-- Since we require in-place solution, we can think of swapping the non-val elements
+- Since we require in-place solution, we can think of swapping the non-val elements to either start or end of the array
 
 SWAP-RIGHT (basically bring vals to right side)
 - Initialise a pointer to right = n - 1

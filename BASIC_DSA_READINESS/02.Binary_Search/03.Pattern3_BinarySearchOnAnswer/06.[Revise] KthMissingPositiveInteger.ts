@@ -231,7 +231,7 @@ function BS_Solution(arr: number[], k: number): number {
         /* Note: there is no a[mid] === key condition here */
 
         if(missing_mid < k) low = mid + 1;
-        else high = mid -1;
+        else high = mid - 1;
     }
 
     return (low === n)? (low + k): (arr[high] + (k - (arr[high] - (high + 1)))); 

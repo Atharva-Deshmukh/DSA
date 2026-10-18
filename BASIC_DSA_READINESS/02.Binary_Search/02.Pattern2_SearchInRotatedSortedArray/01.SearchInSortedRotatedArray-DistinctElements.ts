@@ -29,7 +29,7 @@ function searchInSortedRotated(arr: number[], key: number): number {
     while(low <= high) {
         let mid: number = low + Math.floor((high - low) / 2);
 
-        if(arr[mid] ===  key) return mid;
+        if(arr[mid] === key) return mid;
 
         // if any one half is not sorted, its guaranteed that the other half is sorted since the array is sorted rotated and pivot 
         // element lies in one of the halves, So, in code, we can check with any one of the half and simply add the other half 

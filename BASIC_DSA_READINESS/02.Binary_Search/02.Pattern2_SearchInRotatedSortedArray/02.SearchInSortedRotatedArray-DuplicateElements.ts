@@ -36,13 +36,13 @@ function searchInSortedRotated(arr: number[], key: number): boolean {
         let mid: number = low + Math.floor((high - low) / 2);
 
         // reduce the search space
-        if((arr[mid] !==  key) && ((arr[mid] === arr[low]) && (arr[mid] === arr[high]))) {
+        if((arr[mid] !== key) && ((arr[mid] === arr[low]) && (arr[mid] === arr[high]))) {
             low = low + 1;
             high = high - 1;
             continue;   //start a new iteration now, with a reduced search space
         }
 
-        if(arr[mid] ===  key) return true
+        if(arr[mid] === key) return true
 
         // if any one half is not sorted, its guaranteed that the other half is sorted since the array is sorted rotated and pivot element lies in 
         // one of the halves, So, in code, we can check with any one of the half and simply add the other half in the else condition

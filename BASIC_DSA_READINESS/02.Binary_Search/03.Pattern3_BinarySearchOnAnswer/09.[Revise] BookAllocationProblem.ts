@@ -31,26 +31,25 @@ Thought proces:
 - Better way is to try out every Max Allocated Pages (MAP)
 
 - Now we don't need to iterate MAP = [1 --- INT_MAX]
-  MAP = 1 --> no student can get any book if array has all elements > 1
-  MAP = INT_MAX --> max case is, if a single student has all the books -> sum of all pages --> Its NOT INT_MAX
-
-let arr = [5, 10, 20, 30] and m = 3
-
-our low should be max(pages[])
-    high should be sum(pages[])
+  MAP = 1 --> no student can get only 1 page of book - a student can get full book only
+  MAP = INT_MAX --> Not possible, a single student can at max get all the books = sum(...pages[])
 
 low = max(pages[])
 ------------------
-- no student will ever receive a book with 29 pages, a full book is to be given to any student
-  student-1: 5, 10
-  student-2: 20
-  student-3: 30
 
-MAP cannot go below 30 = max(...pages[])
+Input: n = 4, arr[] = [12, 34, 67, 90], m = 2           Output: 113
+Allocation can be done in following ways:
+{12} and {34, 67, 90} Maximum Pages = 191
+{12, 34} and {67, 90} Maximum Pages = 157
+{12, 34, 67} and {90} Maximum Pages = 113.
+Therefore, the minimum of these cases is 113, which is selected as the output.z
 
-high = sum(pages[])
--------------------
-- this is obvious that at max, a single student would be allocated all the books = sum(pages[])
+From the given example itself its very clear that sum is min when a single student is given largest book
+
+Hence MAP cannot go below 30 = max(...pages[])
+
+high = sum(pages[]) - Obvious as mentioned above
+------------------------------------------------
 
 MAP will go on increasing by +1 til sum(pages[])
 
@@ -77,11 +76,11 @@ NOTE: to get max(...pages[]), we to O(n)
 This is acceptable as BS is done on search space, not books[]
 */
 
+/* For the MAP to be possible, try distributing all books to all m students */
 function isMAP_Possible(books: number[], m: number, MAP: number): boolean {
     let index: number = 0;
     let n: number = books.length;
 
-    // checking if this MAP is possible within given m
     while(m > 0) {
         let sum: number = 0;
         while((index < n) && ((books[index] + sum) <= MAP)) {
@@ -91,7 +90,7 @@ function isMAP_Possible(books: number[], m: number, MAP: number): boolean {
         m--;
     }
 
-    // if I reached last index, then all books have been allocated within m students
+    // if last index is reached, then all books have been allocated within m students
     return (index === n);
 }
 

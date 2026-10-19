@@ -7,8 +7,6 @@ complete except items tagged [DONE - TwoPointers/, exempt] - everything else,
 including items that live in SlidingWindow/PatternMatching/Mathematical, is
 back on the redo list.
 
-MUST-DO (P0 - core, highest frequency, do these first):
-P0 9. String Compression / Run-Length Encoding (LC 443)
 
 GOOD TO HAVE (P1 - reuse P0 patterns, quick once P0 is solid):
 P1 15. Remove duplicate characters from a string (preserve order)

@@ -18,7 +18,7 @@ SC: O(1)
 
 */
 
-function longestWordLen(s) {
+function longestWordLen(s: string) {
     let n = s.length;
     let res = 0, currLen = 0;
 

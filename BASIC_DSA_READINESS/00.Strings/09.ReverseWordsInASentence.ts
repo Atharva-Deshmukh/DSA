@@ -45,6 +45,8 @@ Way-2:
 TC: O(n)
 SC: O(n)
 
+Way-3: Don't use any built-in function
+
 */
 
 function reverseWordsInString(s: string): string {
@@ -65,3 +67,35 @@ function reverseWordsInString_Way2(s: string): string {
 
     return reversedString;
 };
+
+/* WITHOUT USING ANY BUILT-IN FUCTION 
+
+- The trick is to scan the string from the end. 
+- You meet the words in reverse order, and you copy each one forward.
+*/
+function reverseWordsInString_NoBuiltInFunc(s: string): string {
+    let result = '';
+    let i = s.length - 1;
+
+    while (i >= 0) {
+        // skip spaces (trailing, leading, or repeated)
+        while (i >= 0 && s[i] === ' ') i--;
+        if (i < 0) break;                 // only leading spaces were left
+
+        // add one separator before every word except the first
+        if (result.length > 0) result += ' ';
+
+        // find the start of the word: s[start+1..end]
+        const end = i;
+        while (i >= 0 && s[i] !== ' ') i--;
+
+        // append the word in its normal (forward) order
+        for (let k = i + 1; k <= end; k++) {
+            result += s[k];
+        }
+    }
+    return result;
+}
+
+console.log(`[${reverseWordsInString_NoBuiltInFunc("  hello world  ")}]`);   // [world hello]
+console.log(`[${reverseWordsInString_NoBuiltInFunc("a good   example")}]`); // [example good a]

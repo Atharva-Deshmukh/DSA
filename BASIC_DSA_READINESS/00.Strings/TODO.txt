@@ -3,7 +3,6 @@
 --------------------------------------------------------------------------------
 
 GOOD TO HAVE (P1 - reuse P0 patterns, quick once P0 is solid):
-P1 21. Reverse each word in a sentence individually
 P1 22. Count words in a string / count word frequency in a sentence
 P1 23. Check if a string is a pangram
 P1 24. Validate an IPv4 address

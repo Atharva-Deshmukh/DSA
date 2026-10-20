@@ -3,12 +3,9 @@
 --------------------------------------------------------------------------------
 
 GOOD TO HAVE (P1 - reuse P0 patterns, quick once P0 is solid):
-P1 22. Count words in a string / count word frequency in a sentence
-P1 23. Check if a string is a pangram
 P1 24. Validate an IPv4 address
 P1 25. Check if a sentence is a palindrome (ignore spaces/punctuation)
 P1 26. Check if a string can be formed by rearranging another (permutation check)
-P1 29. Longest Substring with At Most K Unique Chars - redo (same reason)
 P1 30. Check if Strings are Rotations of Each Other - redo (file exists in
        PatternMatching/, not exempt)
 P1 31. Sum of two large numbers (string-based big-number addition) - redo
@@ -18,13 +15,10 @@ P1 31. Sum of two large numbers (string-based big-number addition) - redo
 Look-and-say sequence generation ("Count and Say", LC 38)
 
 22. Extract numbers from a string
-23. Check if a string is a pangram
 25. Add two binary strings
     Add two large numbers
 26. Convert a number to words
 27. Check if a sentence is a palindrome (ignore spaces/punctuation)
-28. Check if a string can be formed by rearranging another (permutation check)
-31. Check if a number (not string) is a palindrome
 34. Find second most frequent character in a string
 35. [RESTORED round 2] Check if two strings are k-anagrams (frequency-count
     variant of the Anagram check) - on GFG's official String top-50 (Medium)

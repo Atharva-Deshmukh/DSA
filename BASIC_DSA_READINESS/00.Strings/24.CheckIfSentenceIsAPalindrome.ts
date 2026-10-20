@@ -38,7 +38,7 @@ SC: O(1)
 
 */
 
-function isPalinSent(s) {
+function isPalinSent(s: string) {
     let i = 0, j = s.length - 1;
 
     // Compares character until they are equal

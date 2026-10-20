@@ -1,20 +1,8 @@
 --------------------------------------------------------------------------------
 # 2. STRINGS - FULL LIST (every string problem identified across all research)
 --------------------------------------------------------------------------------
-No dedicated "Strings" folder exists, so this is the complete master list in
-one place as requested. Per the governing rule, nothing here is assumed
-complete except items tagged [DONE - TwoPointers/, exempt] - everything else,
-including items that live in SlidingWindow/PatternMatching/Mathematical, is
-back on the redo list.
-
 
 GOOD TO HAVE (P1 - reuse P0 patterns, quick once P0 is solid):
-P1 15. Remove duplicate characters from a string (preserve order)
-P1 16. Longest / shortest word in a sentence
-P1 17. Implement atoi (LC 8)
-P1 18. Compare version numbers (LC 165)
-P1 19. Isomorphic Strings (LC 205)
-P1 20. Is Subsequence (LC 392)
 P1 21. Reverse each word in a sentence individually
 P1 22. Count words in a string / count word frequency in a sentence
 P1 23. Check if a string is a pangram
@@ -28,23 +16,19 @@ P1 31. Sum of two large numbers (string-based big-number addition) - redo
        (file exists in Mathematical/ArithmeticUsingString/, not exempt -
        explicitly flagged by you to include here)
 
-SKIP unless time remains (low-ROI filler, zero/near-zero SDET evidence):
-Remove special characters / remove all white spaces, Replace spaces with
-%20, Convert to Title Case / camel case, Extract numbers from a string, Add
-two binary strings, Convert a number to words, Toggle case of each
-character, Remove a specific character from a string, Check if a number (not
-string) is a palindrome, Check if given year is a leap year, Count
-vowels/consonants/digits/special characters separately, Find second most
-frequent character in a string, Check if two strings are k-anagrams,
-Look-and-say sequence generation ("Count and Say", LC 38), KMP Algorithm -
-redo (file exists in PatternMatching/, not exempt, still lower priority),
-Rabin-Karp Algorithm - redo (same), Count Distinct Substrings - redo (file
-exists in HashingConcept/, not exempt, still lower priority).
+Look-and-say sequence generation ("Count and Say", LC 38)
 
-[Still excluded - DP-tagged or genuinely out of round-1 scope, unchanged
-from earlier research]: Longest Palindromic Substring (LC 5) - DP,
-Lexicographic rank of a string among its permutations, Swap case of vowels
-only (duplicate of Toggle Case), Check if a string is an interleaving of two
-other strings - DP, Transform one string to another / Edit Distance - DP,
-Minimum insertions to form a palindrome with permutations allowed - DP,
-Palindrome Substring Queries - DP.
+22. Extract numbers from a string
+23. Check if a string is a pangram
+25. Add two binary strings
+    Add two large numbers
+26. Convert a number to words
+27. Check if a sentence is a palindrome (ignore spaces/punctuation)
+28. Check if a string can be formed by rearranging another (permutation check)
+31. Check if a number (not string) is a palindrome
+34. Find second most frequent character in a string
+35. [RESTORED round 2] Check if two strings are k-anagrams (frequency-count
+    variant of the Anagram check) - on GFG's official String top-50 (Medium)
+36. [RESTORED round 2] Look-and-say sequence generation ("Count and Say",
+    LC 38) - on GFG's official String top-50 (Medium); plain string-building
+    loop, not DP

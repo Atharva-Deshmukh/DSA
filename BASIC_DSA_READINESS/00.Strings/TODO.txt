@@ -3,13 +3,10 @@
 --------------------------------------------------------------------------------
 
 GOOD TO HAVE (P1 - reuse P0 patterns, quick once P0 is solid):
-P1 24. Validate an IPv4 address
-P1 26. Check if a string can be formed by rearranging another (permutation check)
-P1 30. Check if Strings are Rotations of Each Other - redo (file exists in
-       PatternMatching/, not exempt)
 
    31. Look-and-say sequence generation ("Count and Say", LC 38)
 
 35. [RESTORED round 2] Check if two strings are k-anagrams (frequency-count
     variant of the Anagram check) - on GFG's official String top-50 (Medium)
 
+Print all permutation of string - Will see at run time

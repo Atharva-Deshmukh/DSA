@@ -1,120 +1,50 @@
-Summary of Sorting Algorithms:
+﻿SORTING ALGORITHMS - SUMMARY
 
-Sorting Algorithm | Best TC   | Avg TC     | Worst TC   | Worst SC | Stable | In-place | Online
-------------------|-----------|------------|------------|----------|--------|----------|--------
-Bubble Sort       | O(n)      | O(n^2)     | O(n^2)     | O(1)     | Yes    | Yes      | No
-Insertion Sort    | O(n)      | O(n^2)     | O(n^2)     | O(1)     | Yes    | Yes      | Yes
-Selection Sort    | O(n^2)    | O(n^2)     | O(n^2)     | O(1)     | No     | Yes      | No
-Merge Sort        | O(n log n)| O(n log n) | O(n log n) | O(n)     | Yes    | No       | No
-Quick Sort        | O(n log n)| O(n log n) | O(n^2)     | O(log n) | No     | Yes      | No
-Heap Sort         | O(n log n)| O(n log n) | O(n log n) | O(1)     | No     | Yes      | No
-Radix Sort        | O(nk)     | O(nk)      | O(nk)      | O(n + k) | Yes    | No       | No
-Counting Sort     | O(n + k)  | O(n + k)   | O(n + k)   | O(k)     | Yes    | No       | No
-Bucket Sort       | O(n + k)  | O(n + k)   | O(n^2)     | O(n)     | Yes    | No       | No
-Shell Sort        | O(n log n)| O(n log n) | O(n^2)     | O(1)     | No     | Yes      | No
+Algorithm      | Best       | Avg        | Worst      | Worst SC | Stable | In-place | Online
+---------------|------------|------------|------------|----------|--------|----------|-------
+Bubble Sort    | O(n)       | O(n^2)     | O(n^2)     | O(1)     | Yes    | Yes      | No
+Insertion Sort | O(n)       | O(n^2)     | O(n^2)     | O(1)     | Yes    | Yes      | Yes
+Selection Sort | O(n^2)     | O(n^2)     | O(n^2)     | O(1)     | No     | Yes      | No
+Merge Sort     | O(n log n) | O(n log n) | O(n log n) | O(n)     | Yes    | No       | No
+Quick Sort     | O(n log n) | O(n log n) | O(n^2)     | O(log n) | No     | Yes      | No
+Heap Sort      | O(n log n) | O(n log n) | O(n log n) | O(1)     | No     | Yes      | No
+Radix Sort     | O(nk)      | O(nk)      | O(nk)      | O(n + k) | Yes    | No       | No
+Counting Sort  | O(n + k)   | O(n + k)   | O(n + k)   | O(k)     | Yes    | No       | No
+Bucket Sort    | O(n + k)   | O(n + k)   | O(n^2)     | O(n)     | Yes    | No       | No
+Shell Sort     | O(n log n) | O(n log n) | O(n^2)     | O(1)     | No     | Yes      | No
 
-
-
-                                                ONLINE OFFLINE ALGOS
-                                                --------------------
-
-Offline Sorting Algorithms:
-- They require the entire dataset to be available before they start processing. They cannot handle data 
-  incrementally as it arrives. The algorithm assumes that all the data is known and stored beforehand.
-
-Example:
-
-Merge Sort: The algorithm needs all the input data before it can begin sorting. It divides the data into 
-smaller chunks, sorts them, and then merges them together.
-
-Quick Sort: Similarly, Quick Sort requires access to the entire data set to perform its partitioning and 
-recursive sorting.
-
-Use case: Offline sorting is suitable when the entire dataset is already available, such as when sorting 
-files on a disk or sorting data in memory where all items are accessible at once.
-
-Online Sorting Algorithms:
-- They can handle data that arrives incrementally, i.e., they can start processing data as soon as it starts 
-  coming in, Basically in stream. 
-  They don’t need the complete dataset to be available upfront. They adjust their sorting as new data arrives.
-  The algorithm can update its sort in real-time as new elements are added to the data.
-
-Example:
-
-Insertion Sort: It processes data one element at a time. Each new element is inserted into its correct position relative 
-                to the elements already sorted. As each new element arrives, it’s placed in the right spot.
-
-Use case: Online sorting is useful in scenarios where data is continuously coming in, such as real-time data streams, 
-live sensor data, or when processing incoming network packets.
+Quick recall:
+- Only Insertion Sort is ONLINE.
+- Stable: Bubble, Insertion, Merge, Counting, Radix, Bucket (impl-dependent).
+- Unstable: Quick, Heap, Selection, Shell.
+- Not in-place (extra O(n)-ish space): Merge, Radix, Counting, Bucket.
 
 
-                                                STABLE UNSTABLE ALGOS
-                                                ---------------------
+ONLINE vs OFFLINE
+-----------------
+Offline : needs the ENTIRE dataset upfront; cannot process incrementally.
+          Ex: Merge Sort (divide -> sort -> merge), Quick Sort (partition needs full data).
+          Use: data already in memory / on disk.
 
-Stable sorting algorithms preserve the relative order of records with equal keys (values). 
-For example, if two elements have the same key, they will appear 
-in the same order in the sorted output as they did in the input.
+Online  : handles data as it ARRIVES (stream); sort updates in real time per new element.
+          Ex: Insertion Sort - each new element inserted into its correct position among already-sorted ones.
+          Use: real-time streams, live sensor data, incoming network packets.
 
-Ex: 
-Merge Sort
-Bubble Sort
-Insertion Sort
-Counting Sort
-Radix Sort
-Bucket Sort (can be stable, depending on the implementation)
 
-REAL LIFE EXAMPLE
+STABLE vs UNSTABLE
+------------------
+Stable  : equal keys keep their INPUT relative order in the output.
+          Ex: Merge, Bubble, Insertion, Counting, Radix, Bucket (impl-dependent).
+          Why it matters: MULTI-LEVEL sorting (sort by key A, then by key B keeps A-grouping intact).
+          Real life: employees sorted by department, then by salary -> same-salary employees stay in department order.
+          Tim Sort (Python sorted(), Java Collections.sort()) is stable for exactly this reason.
 
-You have a list of employees sorted by their department, and you now need to sort them by their salary.
-Using a stable sort ensures that employees with the same salary remain in the same order as they were 
-based on their department.
+Unstable: equal keys may get reordered.
+          Ex: Quick (most impls), Heap, Selection, Shell.
+          When it's fine: order of ties is irrelevant and performance / memory wins.
+          Real life: search engine sorting pages by relevance score - ties don't matter, huge input, Quick/Heap are faster.
 
-Why Stability Matters:
-
-Stability is crucial in multi-level sorting (e.g., sorting on multiple keys or criteria).
-If the sorting is unstable, the grouping by the first sort (e.g., department) would be disrupted.
-
-Algorithm Example: Tim Sort
-Tim Sort, used in Python (sorted()) and Java (Collections.sort()), is stable. 
-It ensures the integrity of multi-level sortings like the one mentioned above.
-
-------------------------------------------------------------------------------------------
-
-Unstable sorting algorithms may change the relative order of records with equal keys during sorting.
-
-Ex: 
-Quick Sort (in most implementations)
-Heap Sort
-Selection Sort
-Shell Sort
-
-REAL LIFE EXAMPLE
-
-A search engine needs to sort web pages by relevance score. If two pages have the same score, 
-their relative order in the sorted list doesn't matter.
-
-Why Stability Isn't Important:
-
-Performance is more critical than maintaining relative order.
-The input size can be huge, and unstable algorithms like Quick Sort or Heap Sort are generally faster
-or require less memory.
-
-Quick Sort, being unstable, is often used in applications where the data size is large, and stability 
-isn't required. It's efficient due to its divide-and-conquer approach.
-
-Can we make any sorting algorithm stable? 
-Yes, any sorting algorithm can be made stable, but it might come at the cost of additional time or 
-space complexity.
-
-Steps to implement above:
-Pair each element with its original position.
-Transform the input array into pairs like (value, original_index). Example: Input [3, 1, 3] 
-becomes [(3, 0), (1, 1), (3, 2)].
-
-Sort the array.
-Use the algorithm of choice, ensuring it considers the original index as a tie-breaker.
-
-Primary key: value
-Secondary key: original_index
-Extract the sorted values.
-Remove the auxiliary information once the sorting is complete.
+Can any sort be made stable? YES - at extra time/space cost:
+  1. Pair each element with its index: [3, 1, 3] -> [(3,0), (1,1), (3,2)]
+  2. Sort with primary key = value, secondary key = original_index (tie-breaker)
+  3. Strip the index.

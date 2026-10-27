@@ -67,14 +67,10 @@ Q: Is Array.sort() stable? Algorithm? Complexity?
 - O(n log n) typical.
 
 Q: Does sort() mutate?
-- ARRAYS only: sorts in place and returns the SAME array reference.
-  Non-mutating: arr.toSorted() (ES2023) or [...arr].sort().
-- STRINGS have no sort() (immutable). Sort via s.split("").sort().join("") -> NEW string,
-  original untouched. (Same trick for Is Anagram.)
+- Yes, in place and returns the same array. Non-mutating: arr.toSorted() (ES2023) or [...arr].sort().
 
 Q: Sort strings / locale?
-- Default is code-unit order ("B" < "a"). Use a.localeCompare(b) for human order;
-  localeCompare(b, undefined, { numeric: true }) for "file2" < "file10".
+- Use a.localeCompare(b) for human order;
 
 Q: Sort objects by multiple keys?
 - (a, b) => a.dept.localeCompare(b.dept) || a.salary - b.salary   // first non-zero wins
@@ -82,67 +78,123 @@ Q: Sort objects by multiple keys?
 --- TESTING ANGLE (SDET twist - expect a follow-up on EVERY coding answer) ---------
 
 Q: How do you test a sorting function?
-- Empty, single element, two elements, already sorted, reverse sorted, all equal, duplicates,
-  negatives / zeros, mixed types or strings-as-numbers, nulls/undefined, very large n (perf),
-  stability check (equal keys keep order), input not mutated (if contract says so).
-
-Q: How do you assert an API/UI list is sorted?
-- Don't hard-code expected order. Pull the field, compare against a sorted copy with the SAME
-  comparator the product claims (asc/desc, case, locale, nulls). Or check every adjacent pair.
+- Empty
+- single element
+- two elements
+- already sorted
+- reverse sorted, 
+- all equal
+- duplicates
+- negatives / zeros
 
 Q: Sorting + pagination - common bug?
 - Sorting by a NON-UNIQUE field (createdAt) -> ties reorder between pages -> duplicates/missing rows.
 - Fix/test: sort by a unique deterministic key or composite (createdAt + id); test page boundaries.
 
 Q: Sorting in distributed systems - what to test?
-- Multiple nodes / shards / parallel writes -> clock skew, per-shard order != global order.
 - Test with composite keys (timestamp + unique id), cross-shard merge, consistency after retries.
 
 Q: Sorting with nulls?
 - Clarify first: nulls first, last, ignored, or invalid? Verify it is CONSISTENT across pages
-  and asc/desc.
+  and asc/desc. (JS: undefined always sorts to the end, comparator is not even called for it.)
 
-  JS INPUT -> OUTPUT (verified, Node 22 / V8):
-
-  # | Input                              | Call                              | Output                   | Why
-  --|------------------------------------|-----------------------------------|--------------------------|--------------------------------------------
-  1 | [3, undefined, 1]                  | .sort()                           | [1, 3, undefined]        | undefined ALWAYS last; comparator never
-    |                                    |                                   |                          | called for it (only 1 call made here)
-  2 | [3, null, 1]                       | .sort()                           | [1, 3, null]             | no comparator = string compare:
-    |                                    |                                   |                          | "1" < "3" < "null"
-  3 | [3, null, 1]                       | .sort((a,b) => a - b)             | [null, 1, 3]             | null coerces to 0 -> sorts as 0 -> FIRST
-  4 | [3, null, 1]                       | .sort((a,b) => b - a)             | [3, 1, null]             | desc: null (0) now LAST -> position FLIPS
-    |                                    |                                   |                          | between asc/desc = BUG to report
-  5 | [3, null, 1, undefined]            | .sort((a,b) => a - b)             | [null, 1, 3, undefined]  | null first (as 0), undefined last - the two
-    |                                    |                                   |                          | "empty" values land at OPPOSITE ends
-  6 | [null, undefined, 2]               | .sort()                           | [2, null, undefined]     | "2" < "null" as strings, undefined last
-  7 | ["b", null, "a"]                   | .sort()                           | ["a", "b", null]         | "null" string sorts after "b"
-  8 | ["b", null, "a"]                   | .sort((a,b) => a.localeCompare(b))| TypeError                | null.localeCompare -> crash. Guard nulls
-    |                                    |                                   |                          | BEFORE calling string methods
-  9 | [3, NaN, 1, 2, 0]                  | .sort((a,b) => a - b)             | [3, NaN, 0, 1, 2]        | a - NaN = NaN -> treated as 0 ("equal") ->
-    |                                    |                                   |                          | comparator inconsistent -> GARBAGE order,
-    |                                    |                                   |                          | no error thrown. Filter/guard NaN first
- 10 | users = [{age:30},{age:null},      | .sort((a,b) => a.age - b.age)     | ages: [null, 20, 30]     | same as #3 on an object field - the real
-    |          {age:20}]                 |                                   |                          | API/UI case
- 11 | [3, null, 1]                       | nulls-last comparator (below), asc| [1, 3, null]             | explicit guard -> nulls pinned LAST
- 12 | [3, null, 1]                       | nulls-last comparator, desc       | [3, 1, null]             | still LAST in desc -> consistent
- 13 | users (from #10)                   | nulls-last comparator on .age     | ages: [20, 30, null]     | fixed version of #10
-
-  Nulls-last comparator (works for asc and desc, numbers or objects):
-    const nullsLast = (a, b) => (a == null) - (b == null) || a - b;      // asc
-    const nullsLastDesc = (a, b) => (a == null) - (b == null) || b - a;  // desc
-    users.sort((x, y) => nullsLast(x.age, y.age));
-    // (a == null) covers BOTH null and undefined. true - false = 1 -> a goes after b.
-    // Swap the subtraction order for nulls-FIRST.
-
-- DB behaviour differs: Postgres ASC -> NULLS LAST, DESC -> NULLS FIRST (flips); MySQL ASC ->
-  NULLs FIRST. Test: API sorted asc vs desc, nulls should land where the SPEC says, not where
-  the DB default puts them; and a null-row must not duplicate/vanish across page boundaries.
-
-- Test cases to list out loud: all-null, no-null, single null at start/middle/end, null + undefined
-  mixed, null in the sort key of an object, asc vs desc both, null row on a page boundary.
 
 Q: Why is sorting large data expensive / when NOT to sort?
 - CPU O(n log n), memory for copies, network shuffle in distributed sorts.
 - Don't sort if you only need min/max (O(n)), top-k (heap), membership (hash set),
   or data is streaming (use Insertion / heap, not a full re-sort).
+
+
+  T1. undefined -> ALWAYS last, comparator is never called for it
+
+  Input                              | Call                      | Output                          | Why
+  -----------------------------------|---------------------------|---------------------------------|--------------------------------------------
+  [3, undefined, 1]                  | .sort()                   | [1, 3, undefined]           ✔   | engine strips undefineds, sorts the rest,
+                                     |                           |                                 | appends undefineds (only 1 comparator call)
+  [undefined, 2, undefined, 1]       | .sort()                   | [1, 2, undefined, undefined]    | all undefineds go to the tail, count kept
+  ["b", undefined, "a"]              | .sort()                   | ["a", "b", undefined]           | same rule for strings
+  [3, undefined, 1]                  | .sort((a,b) => b - a)     | [3, 1, undefined]               | even in DESC undefined stays LAST -
+                                     |                           |                                 | your comparator cannot move it
+
+  T2. null with NO comparator -> string compare ("null" sorts after digits and letters)
+
+  Input                              | Call                      | Output                          | Why
+  -----------------------------------|---------------------------|---------------------------------|--------------------------------------------
+  [3, null, 1]                       | .sort()                   | [1, 3, null]                ✔   | "1" < "3" < "null"
+  [10, null, 9]                      | .sort()                   | [10, 9, null]                   | "10" < "9" (string!) < "null" - two bugs
+                                     |                           |                                 | in one line: numeric order AND null
+  [null, "a", 1]                     | .sort()                   | [1, "a", null]                  | digits < letters < "null" in UTF-16 order
+  [null, undefined, 2]               | .sort()                   | [2, null, undefined]        ✔   | "2" < "null", then undefined appended
+  ["b", null, "a"]                   | .sort()                   | ["a", "b", null]            ✔   | "a" < "b" < "null"
+
+  T3. null WITH numeric comparator -> coerces to 0 -> sorts as zero -> position FLIPS asc/desc
+
+  Input                              | Call                      | Output                          | Why
+  -----------------------------------|---------------------------|---------------------------------|--------------------------------------------
+  [3, null, 1]                       | .sort((a,b) => a - b)     | [null, 1, 3]                ✔   | null -> 0, 0 < 1 -> FIRST
+  [3, null, 1]                       | .sort((a,b) => b - a)     | [3, 1, null]                ✔   | desc: 0 is smallest -> LAST. Flipped = BUG
+  [-1, null, 1]                      | .sort((a,b) => a - b)     | [-1, null, 1]                   | null is not "first", it is ZERO - lands in
+                                     |                           |                                 | the MIDDLE when negatives exist
+  [-1, null, 1]                      | .sort((a,b) => b - a)     | [1, null, -1]                   | same, reversed
+  [null, null, 1]                    | .sort((a,b) => a - b)     | [null, null, 1]                 | nulls compare equal to each other (0 - 0)
+
+  T4. null + undefined TOGETHER -> opposite ends
+
+  Input                              | Call                      | Output                          | Why
+  -----------------------------------|---------------------------|---------------------------------|--------------------------------------------
+  [3, null, 1, undefined]            | .sort((a,b) => a - b)     | [null, 1, 3, undefined]     ✔   | null -> 0 -> first; undefined -> forced last
+  [2, undefined, null, 1]            | .sort((a,b) => b - a)     | [2, 1, null, undefined]         | desc: null (0) last of the numbers, then
+                                     |                           |                                 | undefined after it - the two "empty" values
+                                     |                           |                                 | are NOT treated the same
+
+  T5. null + string method -> TypeError (crash, not wrong order)
+
+  Input                              | Call                                      | Output                  | Why
+  -----------------------------------|-------------------------------------------|-------------------------|--------------------------------
+  ["b", null, "a"]                   | .sort((a,b) => a.localeCompare(b))        | TypeError           ✔   | null.localeCompare is not a fn
+  [{n:"b"},{n:null},{n:"a"}]         | .sort((a,b) => a.n.localeCompare(b.n))    | TypeError               | same on an object field
+  ["b", null, "a"]                   | .sort((a,b) => (a ?? "").localeCompare(b ?? "")) | [null, "a", "b"] | guard with ?? -> "" sorts
+                                     |                                           |                         | FIRST (empty string < "a")
+
+  T6. NaN / non-numeric -> comparator inconsistent -> SILENT garbage order, no error
+
+  Input                              | Call                                      | Output                  | Why
+  -----------------------------------|-------------------------------------------|-------------------------|--------------------------------
+  [3, NaN, 1]                        | .sort((a,b) => a - b)                     | [3, NaN, 1]         ✔   | a - NaN = NaN -> treated as 0
+                                     |                                           |                         | ("equal") -> NOTHING moved
+  [3, NaN, 1, 2, 0]                  | .sort((a,b) => a - b)                     | [3, NaN, 0, 1, 2]   ✔   | partially sorted garbage; 3 is
+                                     |                                           |                         | stuck before 0
+  [3, "x", 1, 2, 0]                  | .sort((a,b) => a - b)                     | unpredictable           | "x" - n = NaN -> same failure;
+                                     |                                           |                         | parseInt'd API values do this
+  [3, NaN, 1, 2, 0]                  | .sort((a,b) => isNaN(a) - isNaN(b) || a - b) | [0, 1, 2, 3, NaN]    | guard -> consistent -> NaN last
+
+  T7. Object field (the real API / UI table case) - broken vs fixed
+  users = [{name:"x", age:30}, {name:"y", age:null}, {name:"z", age:20}]        (output shows .age only)
+
+  Call                                                               | Output (ages)       | Why
+  -------------------------------------------------------------------|---------------------|--------------------------------------
+  users.sort((a,b) => a.age - b.age)                                 | [null, 20, 30]  ✔   | T3 on a field: null -> 0 -> first
+  users.sort((a,b) => b.age - a.age)                                 | [30, 20, null]      | desc: null last -> FLIPS vs asc
+  users.sort((a,b) => nullsLast(a.age, b.age))                       | [20, 30, null]  ✔   | fixed asc
+  users.sort((a,b) => nullsLastDesc(a.age, b.age))                   | [30, 20, null]      | fixed desc - null stays LAST
+
+  T8. Nulls-last comparator -> consistent in asc AND desc
+  
+    const nullsLast     = (a, b) => (a == null) - (b == null) || a - b;   // asc
+    const nullsLastDesc = (a, b) => (a == null) - (b == null) || b - a;   // desc
+    const nullsFirst    = (a, b) => (b == null) - (a == null) || a - b;   // asc, nulls first
+    // (a == null) is true for BOTH null and undefined. true - false = 1 -> a after b.
+    // || falls through to the numeric compare only when neither side is null.
+
+  Input                              | Call                      | Output                          | Why
+  -----------------------------------|---------------------------|---------------------------------|--------------------------------------------
+  [3, null, 1]                       | .sort(nullsLast)          | [1, 3, null]                ✔   | null pinned last
+  [3, null, 1]                       | .sort(nullsLastDesc)      | [3, 1, null]                ✔   | STILL last in desc -> consistent
+  [3, null, 1]                       | .sort(nullsFirst)         | [null, 1, 3]                    | swap the subtraction -> nulls first
+  [3, null, 1, undefined]            | .sort(nullsLast)          | [1, 3, null, undefined]         | undefined still appended by the engine
+                                     |                           |                                 | AFTER null - note the order null, undefined
+  [-1, null, 1]                      | .sort(nullsLast)          | [-1, 1, null]                   | fixes the T3 "null in the middle" case
+
+- Test cases to list out loud: all-null, no-null, single null at start/middle/end, null + undefined
+  mixed, negatives + null (middle trap), NaN / non-numeric string in a numeric column, null in the
+  sort key of an object, asc vs desc both, null row on a page boundary.

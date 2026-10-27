@@ -19,10 +19,8 @@ Approach: Swapping during recursion
 
 - To keep the permutations sorted, we first sort the initial given string and then generate all permutations
 
-    => We fix the first position and try every character in that position.
-    => After we fix the first position, we recursive repeat the process for the remaining string.  
-    => Once we generate all permutations beginning with the current character, to bring the next character at 
-       its position in current string, we swap the next character, with the current character.
+    => The idea is to fix one element at a time and recursively generate permutations for the rest. 
+    => At each step, we swap the current element with another, explore further recursively, and then backtrack by swapping back.
 
 Recursion Tree for Permutations of String "ABC" (swapping approach)
 [ ] marks the characters that are FIXED at that level
@@ -31,6 +29,9 @@ Recursion Tree for Permutations of String "ABC" (swapping approach)
                                                                  [A B C]
                                                               /     |     \
                                                          /          |          \
+
+                                            Here, we bring indices 0, 1 and 2 and 0th index one by one
+
                                         swap(0,0)  /                | swap(0,1)      \ swap(0,2)
                                  (A with A)  /                      | (A with B)           \ (A with C)
                                        /                            |                            \
@@ -56,10 +57,7 @@ Recursion Tree for Permutations of String "ABC" (swapping approach)
                 "ABC"               "ACB"               "BAC"               "BCA"               "CBA"               "CAB"
             (AB is fixed)       (AC is fixed)       (BA is fixed)       (BC is fixed)       (CB is fixed)       (CA is fixed)
 
-   Level index = 2 has a single iteration (currentIndex = 2), so it always swaps with itself and goes to index = 3.
-   Base case: index === n -> push the string to output and return (no further swaps).
-   After returning from every child we swap back (backtrack) so the siblings see the original order.
-   Total leaves = 3! = 6
+
 */
 function permutations(arr: number[]): number[][] {
 
@@ -73,15 +71,20 @@ function permutations(arr: number[]): number[][] {
             return;
         } 
 
+        /* We swap (index, index) (index, index + 1) (index, index + 2)... */
         for(let currentIndex = index; currentIndex < n; currentIndex++) {
 
             [arr[index], arr[currentIndex]] = [arr[currentIndex], arr[index]];
 
+            /* After swapping currentIndex, explore index + 1 FOR THIS SWAP!! - See the tree */
             recurse(arr, index + 1);
 
             /* Because you're modifying the array in-place, and without restoring the previous state 
-            after recursion, it carries over wrong values to future calls. */
-            [arr[index], arr[currentIndex]] = [arr[currentIndex], arr[index]]; // swap again to restore state for next recursion
+            after recursion, it carries over wrong values to future calls. 
+            
+            index and currentIndex was swapped, so again swap them to nullify the swap
+            */
+            [arr[index], arr[currentIndex]] = [arr[currentIndex], arr[index]];
         }
     } 
 
@@ -90,19 +93,25 @@ function permutations(arr: number[]): number[][] {
     return output;
 }
 
-/* 
-TC: O(n * n!)
-    - Recursion tree has n!/(n-k)! nodes at level k, i.e. sum ~ e * n! nodes in total, 
-      each doing O(1) work (2 swaps) -> O(n!) for all the internal work.
-    - Each of the n! leaves copies / joins a permutation of length n -> O(n) per leaf -> O(n * n!).
-    - Dominant term: O(n * n!)
 
-SC: O(n) auxiliary (excluding output)
-    - Recursion stack depth = n + 1, swaps are done in place (no extra array per call).
-    - The temporary copy ([...arr] / join) is O(n) and is not held beyond the push.
-    
-    O(n * n!) if the output array is also counted (n! permutations * n elements each).
+/*
+TIME COMPLEXITY: O(n * n!)
+
+- There are n! possible permutations of n distinct elements.
+- At each leaf, we copy the array using [...arr], which takes O(n) time.
+- Therefore, generating and storing all permutations takes O(n * n!) time.
+
+SPACE COMPLEXITY: O(n * n!)
+
+- OUTPUT SPACE: There are n! permutations, and each permutation contains n elements.
+                Therefore, storing all permutations requires O(n * n!) space.
+
+- RECURSION STACK: The maximum recursion depth is n --> Hence O(n)
+
+Overall auxiliary space (excluding output): O(n)
+Overall space (including output): O(n * n!)
 */
+
 
 // For strings
 function permutationsString(str: string[]): string[] {

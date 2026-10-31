@@ -8,17 +8,16 @@ Output: e2 l1 p1 h1 a1 n1 t1
 
 
 WAY-1:
-- Iterate the string and store char wise frequency in map.
-  (in a map, order of occurrence is preserved)
+- Iterate the string and store char wise frequency in map. (In a map, order of occurrence is preserved)
 - Iterate the map now and print char-freq pair
 
-TC: O(n) + O(n)
+TC: O(n) + O(k), k = unique chars in map
 SC: O(n)
 
 WAY-2: (follow-up: Can u do it without any extra Data structure?)  ---  Much expected ans
-- Declare one const array of all ASCII Chars with fixed size of 256 - This will store count of char
+- Declare ASCII array[256] - This will store count of char
 - Fill this in first iteration
-- Declare another const array of size 256 that just stores true, false -> denoting, if this element is seen before
+- Declare another visited[256] = true/false -> denoting, if this element is seen before
 - Iterate string for second time, and if the current element is not seen, then only fill its char-count
 
 TC: O(n) + O(k), k = unique chars in set

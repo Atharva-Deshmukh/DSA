@@ -50,39 +50,37 @@ know) have been restored with a note.
 8. Intersection of two arrays (LC 349) - with order preserved
 9. Check if array is sorted (and rotated)
 10. Kth largest/smallest element in array (Heap-based / QuickSelect)
-11. Jump Game - minimum/possible jumps to reach end of array - DP (greedy alt. exists)
-12. Swap two numbers without a third/temp variable
-13. Rotate array left/right by K positions (reversal algorithm / block swap) - LC 189
-14. [ADDED] Find pair with given difference K in array (HashSet lookup) -
+11. Swap two numbers without a third/temp variable
+12. Rotate array left/right by K positions (reversal algorithm / block swap) - LC 189
+13. [ADDED] Find pair with given difference K in array (HashSet lookup) -
     the one genuinely missing simple item; confirmed as a common companion
     to "pair with given sum" across multiple SDET question banks
-15. [ADDED round 2] Next Permutation (LC 31) - rearrange array in-place into
+14. [ADDED round 2] Next Permutation (LC 31) - rearrange array in-place into
     the next lexicographically greater permutation (two-pointer + reverse,
     O(n), no DP) - genuinely missing, confirmed on GFG's official Array top-50
 
 ## Optional / lower priority (niche, GFG filler, or trivial building blocks)
-16. Find largest and smallest element in array (single traversal)
-17. Find a repeating AND a missing number together
-18. Best Time to Buy/Sell Stock II (multiple transactions) - DP (greedy alt. exists)
-19. Rearrange array in alternate positive/negative order
-20. Array leaders (element greater than all elements to its right)
-21. Wave array (zig-zag: a<b>c<d>e)
-22. Chocolate distribution problem
-23. Find third largest element in array
-24. Reverse an array in groups of given size
-25. Maximum product of a triplet in array
-26. Sum of all subarrays
-27. Subarrays with product less than K
-28. Check equality of two arrays without built-in equals()/toString()
-29. Find sum and average of all elements in array
-30. Count frequency of elements in an array
-31. Running sum of array
-32. Rearrange array elements as even-indexed then odd-indexed
-33. Reverse subarray of size K
-34. [RESTORED round 2] Missing ranges of numbers in a sorted array - on GFG's
+15. Find largest and smallest element in array (single traversal)
+16. Find a repeating AND a missing number together
+17. Rearrange array in alternate positive/negative order
+18. Array leaders (element greater than all elements to its right)
+19. Wave array (zig-zag: a<b>c<d>e)
+20. Chocolate distribution problem
+21. Find third largest element in array
+22. Reverse an array in groups of given size
+23. Maximum product of a triplet in array
+24. Sum of all subarrays
+25. Subarrays with product less than K
+26. Check equality of two arrays without built-in equals()/toString()
+27. Find sum and average of all elements in array
+28. Count frequency of elements in an array
+29. Running sum of array
+30. Rearrange array elements as even-indexed then odd-indexed
+31. Reverse subarray of size K
+32. [RESTORED round 2] Missing ranges of numbers in a sorted array - on GFG's
     official Array top-50 (Easy); quick 10-line function, cheap insurance
     even though no SDET source specifically mentioned it
-35. [RESTORED round 2] Split array into three equal sum segments - on GFG's
+33. [RESTORED round 2] Split array into three equal sum segments - on GFG's
     official Array top-50 (Medium); reuses the prefix-sum pattern you already
     know from PrefixSum_Plus_Hash
 
@@ -233,7 +231,6 @@ All already covered in RecursionAndBacktracking/. Necessary ones to keep sharp:
 3. Nth Fibonacci / Fibonacci series (recursive)
 4. Reverse a string/array using recursion
 5. Check if a string is a palindrome (recursive)
-6. Print all subsequences of a string/array
 
 
 --------------------------------------------------------------------------------

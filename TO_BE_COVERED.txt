@@ -1,249 +1,90 @@
-================================================================================
-# TO_BE_COVERED.txt - Round 1 DSA prep, scoped to YOUR stated priority list
-# Scope: Array, String, HashMaps, Two Pointers, Sliding Window, Stacks,
-#        Binary Search, Prefix Sum + Hash, Maths, Star Patterns
-# Goal: Highest ROI only - you still need to prep Playwright + scenario
-#       testing, so this file ignores everything outside the scope above.
-================================================================================
-OUT OF SCOPE FOR ROUND 1 (not touched in this file, not because they're
-unimportant, but because YOU explicitly deferred them): DP, Trees, Greedy,
-Intervals, Heap, Recursion/Backtracking, Bit Manipulation, Queues. Revisit
-these in round 2 after Playwright + scenario prep is solid.
-
-EXCEPTION: LinkedList was also deferred by you, but fresh web evidence
-changed this - see section 12 below. A 3-item mini-slice is pulled into round
-1; the rest of LinkedList stays deferred to round 2.
-
-GOVERNING RULE (latest instruction): do not assume ANY topic is complete
-except Two Pointers and Binary Search - those are the only two you've
-explicitly confirmed finished. Every other topic below is now a FULL REDO,
-even where files already exist in the repo (Sliding Window, Stacks, Prefix
-Sum + Hash, Maths, Star Patterns, and the handful of string/hash items that
-lived under PatternMatching/Mathematical/HashingConcept). A file existing
-doesn't mean interview-ready recall.
-
-Method: every item below was checked directly against your actual repo folders
-(not assumed) - ArrayBased/, HashingConcept/, Mathematical/, PatternPrograms/,
-PrefixSum_Plus_Hash/, SlidingWindow/, Stacks/, TwoPointers/, Binary_Search/,
-PatternMatching/.
-
-
---------------------------------------------------------------------------------
-# STATUS AT A GLANCE
---------------------------------------------------------------------------------
-✅ CONFIRMED DONE (your own confirmation, nothing else gets this status):
-          Two Pointers, Binary Search
-🔴 FULL REDO - everything else, including topics with existing files:
-          Arrays, Strings, HashMaps, Sliding Window, Stacks, Prefix Sum +
-          Hash, Maths, Star Patterns
-
-Strings has ZERO dedicated files anywhere in the repo (no "Strings" folder
-exists - a handful of string problems are solved inside TwoPointers/
-SlidingWindow/PatternMatching; only the TwoPointers-tagged ones stay exempt
-below, the rest are back on the redo list per the governing rule above).
-Arrays, HashMaps, Sliding Window, Stacks, Prefix Sum + Hash, Maths, and Star
-Patterns are now ALL full-redo lists - this is your real round-1 work.
-
-
 --------------------------------------------------------------------------------
 # 1. ARRAYS - FULL REDO LIST (assume ArrayBased/ is NOT done - redo everything)
 --------------------------------------------------------------------------------
-Per your request, this section treats ArrayBased/ as if nothing is solved -
-the 10 files you already have there (6 problems + 4 Kadane's) are folded back
-into the list below as redo items, not skipped. Array problems that live
-under Two Pointers (2Sum/3Sum/4Sum, Sort Colors, Rotate Array, Merge Sorted
-Arrays, Container With Most Water, Trapping Rainwater, etc.) are NOT repeated
-here - that topic stays confirmed done per your own earlier confirmation.
-
-MUST-DO (P0 - core, highest frequency, do these first):
-P0 1. Is Anagram - redo (hashmap or sorted-compare)
-P0 2. Contains Duplicate (LC 217) - redo
-P0 3. Majority Element I (LC 169) - redo (Boyer-Moore voting)
-P0 4. Majority Element II (LC 229) - redo (extended Boyer-Moore, >n/3)
-P0 5. First Missing Positive (LC 41) - redo
-P0 6. Top K Frequent Elements (LC 347) - redo (bucket sort or heap)
-P0 7. Kadane's - Maximum Subarray Sum - redo
-P0 8. Kadane's - Maximum Product Subarray - redo
-P0 9. Find 2nd largest/smallest element (single traversal, no sort)
-P0 10. Move all zeroes to end of array
-P0 11. Find the missing number in array 1..N (sum formula n(n+1)/2)
-P0 12. Find the duplicate number in array (Floyd's cycle detection variant)
-P0 13. Find all duplicates in an array (LC 442)
-P0 14. Longest Consecutive Sequence (LC 128)
-P0 15. Intersection of two arrays (LC 349)
-P0 16. Union of two arrays
-
-GOOD TO HAVE (P1 - reuse P0 patterns, quick once P0 is solid):
-P1 17. Kadane's - Minimum Subarray Sum - redo (mirror of max)
-P1 18. Kadane's - Maximum Circular Subarray Sum - redo (extension of max)
-P1 19. Check if array is sorted (and rotated)
-P1 20. Kth largest/smallest element in array (heap or QuickSelect)
-P1 21. Find pair with given difference K in array (HashSet lookup)
-P1 22. Next Permutation (LC 31) - two-pointer + reverse, no DP
-P1 23. Find largest and smallest element (single traversal) - trivial warm-up
-P1 24. Find a repeating AND a missing number together
-P1 25. Array leaders (element greater than all elements to its right)
-P1 26. Find third largest element in array
-P1 27. Maximum product of a triplet in array
-P1 28. Reverse an array in groups of given size
-P1 29. Sum of all subarrays
-P1 30. Missing ranges of numbers in a sorted array
-P1 31. Split array into three equal sum segments (reuses the prefix-sum
-       pattern you already know from PrefixSum_Plus_Hash)
-
-SKIP unless time remains (low-ROI filler, zero/near-zero SDET evidence):
-Jump Game (greedy works, skip the DP version too), Swap two numbers without a
-temp variable (trivial, 2 min, don't over-invest), Best Time to Buy/Sell
-Stock II (DP-alt exists, lower priority than the single-transaction version
-you already have via Stacks), Rearrange alternate positive/negative, Wave
-array (zig-zag), Chocolate distribution problem, Subarrays with product less
-than K, Check equality of two arrays without built-ins, Sum/average of array
-elements, Count frequency of elements, Running sum of array, Rearrange
-even-indexed then odd-indexed, Reverse subarray of size K.
-
-
---------------------------------------------------------------------------------
-# 2. STRINGS - FULL LIST (every string problem identified across all research)
---------------------------------------------------------------------------------
-No dedicated "Strings" folder exists, so this is the complete master list in
-one place as requested. Per the governing rule, nothing here is assumed
-complete except items tagged [DONE - TwoPointers/, exempt] - everything else,
-including items that live in SlidingWindow/PatternMatching/Mathematical, is
-back on the redo list.
-
-MUST-DO (P0 - core, highest frequency, do these first):
-P0 1. Count vowels and consonants in a string
-P0 2. Find the frequency of each character in a string
-P0 3. Check if all characters in a string are unique
-P0 4. Find the first non-repeating character (LC 387)
-P0 5. Find the first repeated character
-P0 6. Reverse the words in a sentence (LC 151)
-P0 7. Group Anagrams (LC 49)
-P0 8. Longest Common Prefix (LC 14)
-P0 9. String Compression / Run-Length Encoding (LC 443)
-P0 10. FizzBuzz (yes, actually practice it - reported verbatim in SDET rounds)
-P0 11. [DONE - TwoPointers/, exempt] Reverse a String (LC 344)
-P0 12. [DONE - TwoPointers/, exempt] Valid Palindrome (LC 125) + Valid
-       Palindrome II
-P0 13. Longest Substring Without Repeating Chars (LC 3) - redo (file exists
-       in SlidingWindow/, but that topic is not exempt, treat as new)
-P0 14. Minimum Window Substring (LC 76) - redo (same reason as above)
-
-GOOD TO HAVE (P1 - reuse P0 patterns, quick once P0 is solid):
-P1 15. Remove duplicate characters from a string (preserve order)
-P1 16. Longest / shortest word in a sentence
-P1 17. Implement atoi (LC 8)
-P1 18. Compare version numbers (LC 165)
-P1 19. Isomorphic Strings (LC 205)
-P1 20. Is Subsequence (LC 392)
-P1 21. Reverse each word in a sentence individually
-P1 22. Count words in a string / count word frequency in a sentence
-P1 23. Check if a string is a pangram
-P1 24. Validate an IPv4 address
-P1 25. Check if a sentence is a palindrome (ignore spaces/punctuation)
-P1 26. Check if a string can be formed by rearranging another (permutation check)
-P1 27. [DONE - TwoPointers/, exempt] Merge Strings Alternately
-P1 28. Count Occurrences of Anagrams - redo (file exists in SlidingWindow/,
-       not exempt)
-P1 29. Longest Substring with At Most K Unique Chars - redo (same reason)
-P1 30. Check if Strings are Rotations of Each Other - redo (file exists in
-       PatternMatching/, not exempt)
-P1 31. Sum of two large numbers (string-based big-number addition) - redo
-       (file exists in Mathematical/ArithmeticUsingString/, not exempt -
-       explicitly flagged by you to include here)
-
-SKIP unless time remains (low-ROI filler, zero/near-zero SDET evidence):
-Remove special characters / remove all white spaces, Replace spaces with
-%20, Convert to Title Case / camel case, Extract numbers from a string, Add
-two binary strings, Convert a number to words, Toggle case of each
-character, Remove a specific character from a string, Check if a number (not
-string) is a palindrome, Check if given year is a leap year, Count
-vowels/consonants/digits/special characters separately, Find second most
-frequent character in a string, Check if two strings are k-anagrams,
-Look-and-say sequence generation ("Count and Say", LC 38), KMP Algorithm -
-redo (file exists in PatternMatching/, not exempt, still lower priority),
-Rabin-Karp Algorithm - redo (same), Count Distinct Substrings - redo (file
-exists in HashingConcept/, not exempt, still lower priority).
-
-[Still excluded - DP-tagged or genuinely out of round-1 scope, unchanged
-from earlier research]: Longest Palindromic Substring (LC 5) - DP,
-Lexicographic rank of a string among its permutations, Swap case of vowels
-only (duplicate of Toggle Case), Check if a string is an interleaving of two
-other strings - DP, Transform one string to another / Edit Distance - DP,
-Minimum insertions to form a palindrome with permutations allowed - DP,
-Palindrome Substring Queries - DP.
+P0 1. Contains Duplicate (LC 217)
+P0 2. Majority Element I (LC 169)
+P0 3. Majority Element II (LC 229)
+P0 4. First Missing Positive (LC 41)
+P0 5. Top K Frequent Elements (LC 347)
+P0 6. Maximum Subarray Sum — Kadane's
+P0 7. Minimum Subarray Sum
+P0 8. Maximum Product Subarray
+P0 9. Maximum Circular Subarray Sum
+TODO 10. Kth Largest Element using QuickSelect
+P0 11. Second Largest DISTINCT Element — single traversal
+P0 12. Second Smallest DISTINCT Element — single traversal
+P0 13. Move Zeroes to the End — in-place
+P0 14. Find Missing Number in 1..N
+P0 15. Find Duplicate Number — Floyd's cycle detection
+P0 16. Find All Duplicates — LC 442
+P0 17. Longest Consecutive Sequence — LC 128
+P0 18. Union of Two Arrays
+P0 19. Intersection of Two Arrays
+P0 20. Check Whether an Array Is Sorted and Rotated
+P0 21. Find First Repeating Element
+P0 22. Maximum Sum of i * arr[i] Over All Rotations
+P0 23. Find Minimum and Maximum in One Traversal
+P1 24. Find Repeating and Missing Numbers Together
+(retain only if not treated as a duplicate of your existing
+missing/duplicate-number practice)
+P1 25. Find Pair With Given Difference K
+(already in your planned array backlog; don't duplicate)
+P1 26. Next Permutation — LC 31
+(already covered in Two Pointers; mark DONE or omit)
+P1 27. Array Leaders
+P1 28. Third Largest DISTINCT Element
+P1 29. Maximum Product of Three Elements
+P1 30. Reverse Array in Groups of K
+P1 31. Missing Ranges in a Sorted Array
+P1 32. Split Array Into Three Equal-Sum Segments
+(prefix-sum pattern; optional because prefix sums are covered)
+P1 33. Maximum Sum Path Through Two Sorted Arrays
+P1 34. Minimum Swaps Required to Sort an Array
+P1 35. Maximum Gap Between Successive Elements
+P1 36. Longest Strictly Increasing Contiguous Subarray
+P1 37. Closest Pair to a Target
+P1 38. Smallest Subarray That Must Be Sorted to Sort the Entire Array
+P1 39. Count Inversions in an Array
+P1 40. Partition an Array Around a Pivot
+P1 41. K Closest Elements in a Sorted Array
+P1 42. Find All Missing Values in 1..N
+(LC 448-style; solve only if the index-marking approach is new)
+P2 43. Move Negative Numbers to One Side
+P2 44. Stable Rearrangement of Negative Numbers
+P2 45. Wave Array
 
 
 --------------------------------------------------------------------------------
 # 3. HASHMAPS - FULL REDO (HashingConcept/ has only 2 files, not exempt)
 --------------------------------------------------------------------------------
-Per the governing rule, the 2 existing files (hashing theory + Count
-Distinct Substrings) go back on the list too, same as everything else
-outside Two Pointers/Binary Search.
 
-TO SOLVE (priority order):
-P0 1. Find all pairs with a given sum in an array
-P0 2. Find the element that appears once when all others appear twice/thrice
-P0 3. Find the first repeating element in an array
-P0 4. Find the highest frequency element (mode) in an array
-P1 5. Find whether an array is a subset of another array
-P1 6. Check if two arrays are equal (same elements, any order)
-P1 7. Design a HashMap from scratch (put/get/remove, no built-in library) -
-      good senior-signal question, practice once even if time-crunched
-P2 8. Count Distinct Substrings in a String - redo (exists in
-      HashingConcept/, not exempt; string+hash hybrid, revisit after P0/P1)
-P2 9. Hashing theory (0.Concept.ts) - quick re-read, not a coding problem,
-      just confirm you can explain hashing/collisions out loud
+1. Design a HashMap from scratch: put/get/remove
+Include collision handling, bucket design and expected complexity.
+2. Check whether one array is a subset of another
+3. Check whether two arrays contain the same multiset of elements
+(same values with the same frequencies, regardless of order)
+4. Find the lowest-frequency element with tie-breaking rules
+5. Find all elements occurring more than N/K times
+6. Find two unique elements when every other element occurs twice
+7. Find the first element that occurs only once
+8. Find the element that appears once when all others appear K times
 
 
 --------------------------------------------------------------------------------
 # 6. STACKS - PRECISE REDO LIST (assume you're starting over; ignore volume)
 --------------------------------------------------------------------------------
-You have 41+ files in Stacks/, but if redoing from zero for highest SDET-2 ROI,
-only ~7 are must-do and another ~7 are worth a quick pass. The rest is
-over-prep - identical to the Bit Manipulation trap, don't repeat it here.
-Confirmed online: Balanced Parentheses + Min Stack are the two most-cited
-stack questions specifically in SDET interview content.
-
-MUST-DO (P0 - do these first, in this order, this IS the stack topic):
-P0 1. Stack using Array (implement push/pop/peek from scratch, no library) -
-      trivial but "implement a stack" is still literally asked
-P0 2. Balanced Parentheses / Valid Parentheses - THE #1 cited stack question
-      for SDET rounds, must be flawless and fast
-P0 3. Min Stack (LC 155) - O(1) getMin() design question, almost always
-      paired with Balanced Parentheses in SDET prep content
-P0 4. Next Greater Element - Simple - the template/pattern for every other
-      monotonic stack problem; master this one deeply, the rest derive from it
-P0 5. Daily Temperatures (LC 739) - classic monotonic stack application,
-      consistently reported across interview lists
-P0 6. Evaluate Postfix / RPN Expression (LC 150) - "Evaluate Reverse Polish
-      Notation" shows up by name in multiple SDET question banks
-P0 7. Simplify Path (LC 71) - Unix-style path simplification; realistic for
-      an SDET (mirrors real file-path handling) and genuinely missing today
-
-GOOD TO HAVE (P1 - only after P0 is solid, quick since they reuse P0 patterns):
-P1 8. Remove Redundant Brackets - same technique as Balanced Parentheses
-P1 9. Next Smaller Element - mirror of Next Greater Element, same template
-P1 10. Stock Span Problem - another monotonic-stack classic, reused logic
-P1 11. Largest Rectangle in Histogram - pick this ONE "hard" monotonic-stack
-       problem as your safety net; skip Maximal Rectangle (its 2D extension)
-P1 12. Infix to Postfix conversion - ONE conversion direction is enough to
-       demonstrate understanding; you already have all 6 variants, don't
-       re-revise all of them
-P1 13. Decode String (LC 394) - good stack+string hybrid showcase
-P1 14. Stack using Queue (or vice versa) - conceptual, quick to recall
-
-SKIP ENTIRELY for round 1 (low ROI for SDET-2, even though solved in repo):
-Maximal Rectangle, Remove K Digits, Stack Permutations, Find/Delete Middle of
-Stack, Car Fleet, Baseball Game, Asteroid Collisions, Next Greater Element
-Circular + Next-Permutation variant, Sum of Subarray Min/Max/Ranges (these are
-really an Arrays-topic monotonic-stack extension, not core stack prep),
-Trapping Rainwater via stack (you already have the two-pointer version - don't
-relearn the same problem twice), Best Time to Buy/Sell Stock via stack (the
-plain greedy/two-variable version from Arrays/Kadane's is what you need, not
-a stack-tagged re-solve), remaining 5 infix/postfix/prefix conversions + 2
-extra eval functions beyond the one kept above.
-
+P0 1. Stack using Array
+P0 2. Balanced Parentheses / Valid Parentheses
+P0 3. Min Stack (LC 155)
+P0 4. Next Greater Element
+P0 5. Daily Temperatures (LC 739)
+P0 6. Evaluate Postfix / RPN Expression (LC 150)
+P0 7. Simplify Path (LC 71)
+P1 8. Remove Redundant Brackets
+P1 9. Next Smaller Element
+P1 10. Stock Span Problem
+P1 11. Largest Rectangle in Histogram
+P1 12. Stack using Queue (or vice versa)
 
 --------------------------------------------------------------------------------
 # 8. PREFIX SUM + HASH - FULL REDO (10 files exist, none exempt)
@@ -264,14 +105,13 @@ P0 9. Minimum Removals for Target Sum
 P0 10. Longest Subarray With Equal 0s and 1s
 P0 11. Continuous Subarray Sum (LC 523) - the one genuinely new item, same
        pattern as the 10 above, cheap to add once they're fresh again
+12. Range Sum Query — Immutable Array (LC 303)
+13. Count subarrays with XOR equal to K
 
 
 --------------------------------------------------------------------------------
 # 9. MATHS - FULL REDO, LOW PRIORITY (19+ files in Mathematical/, none exempt)
 --------------------------------------------------------------------------------
-Per the governing rule these go back on the list too - but this remains
-genuinely low priority for SDET-2 product rounds, so don't over-invest time
-here even on a redo.
 
 P1 1. HCF / LCM
 P1 2. Is Prime / Sieve of Eratosthenes
@@ -282,20 +122,11 @@ P1 6. Transpose / Rotate 90 / Set Zero / Spiral Traversal (Matrix/)
 P1 7. Add / Subtract / Multiply / Divide large numbers as strings
       (ArithmeticUsingString/)
 
-SKIP unless time remains: Armstrong Number, Perfect Square check, Factorial
-of a large number, Happy Number, Excel Sheet Column Title/Number, P&C
-concept, reverseNumber, primeFactors/smallestPrimeFactor/allFactors,
-PrimesInRange - niche number-theory filler, near-zero SDET-2 signal even on
-a redo.
-
 
 --------------------------------------------------------------------------------
 # 10. STAR PATTERNS - QUICK REDO, LOW VOLUME (21 patterns exist, only ~5
 #     needed even on a full redo)
 --------------------------------------------------------------------------------
-Per the governing rule this isn't zero-touch either, but patterns are
-mechanical (print a shape), so a fast re-practice pass covers it - don't
-treat this like Strings/Arrays where real gaps exist.
 
 P1 1. Right-aligned / left-aligned star triangle
 P1 2. Inverted triangle
@@ -303,98 +134,13 @@ P1 3. Number triangle (Floyd's Triangle)
 P1 4. Diamond pattern
 P1 5. Hollow rectangle / hollow square
 
-SKIP unless time remains: the other 16 patterns in PatternPrograms/ (rhombus,
-hourglass variants, hollow diamond/pyramid variants, butterfly, K-pattern,
-zero-one triangle, palindrome triangular) - over-prep, same trap as Bit
-Manipulation, don't re-revise all 21 just because they exist.
-
-
---------------------------------------------------------------------------------
-# 11. DESIGN (bonus - not in your original 10-topic list, but cheap + high
-#     signal; verified against fresh web evidence, not assumption)
---------------------------------------------------------------------------------
-Web evidence check: "SDET + LRU cache / implement a stack / implement a
-queue" turns up almost nothing SDET-specific - what surfaces is generic
-Amazon SDE-2 and System-Design/LLD content for senior SWE roles. So most of
-this category is genuinely low-ROI noise. Two exceptions:
-
-P0 1. Design a HashMap from scratch (put/get/remove, no built-in library) -
-      cheap, real conceptual-depth signal, already flagged in your Hashing
-      must-have list above
-P0 2. LRU Cache - the only "design" question worth doing. Confirmed
-      specifically at NetApp in your own baseline notes (not generic web
-      noise). Your prerequisite - Doubly Linked List - has a file
-      (LinkedList/Double_LL.ts), but per the governing rule don't assume
-      it's solid either - re-verify/redo the DLL node operations (insert at
-      head, remove a node, move-to-front) as part of this
-
-SKIP entirely: LFU Cache (zero SDET evidence anywhere, needs frequency-bucket
-+ nested-DLL complexity, purely a senior-SWE/FAANG hard-round pattern),
-implement Queue / Circular Queue / Circular Deque from scratch (Queues are
-outside your round-1 scope), implement Stack using Queue or vice versa
-(already solved - StackUsingQueue.ts - just a P1 revision item per Stacks
-section above, not new work).
-
-
 --------------------------------------------------------------------------------
 # 12. LINKEDLIST - MINI-SLICE EXCEPTION (you deferred this, but don't fully)
 --------------------------------------------------------------------------------
-You have Single_LL.ts and Double_LL.ts, but per the governing rule don't
-assume that implementation is solid either - re-verify it as you go. Direct
-web evidence changed my earlier "skip it all" stance: a real reported SDET
-interview account (usegreenroom.app, 2026) describes an experienced
-automation engineer - 6 years of Selenium work - getting caught flat-footed
-by "Reverse a linked list." That is exactly your risk profile (strong
-automation background, DSA treated as secondary), so this one slice is worth
-the small time cost. Everything else in LinkedList stays deferred.
 
-P0 1. Reverse a Linked List - the single most-cited LinkedList question
-      everywhere, and the one confirmed to catch SDETs off guard specifically
-P0 2. Detect Cycle in a Linked List (Floyd's) - same slow/fast-pointer
-      technique as #1 and #3, cheap once you've done one
-P0 3. Find Middle Node of a Linked List - same slow/fast-pointer technique;
-      these 3 are really ONE technique (two pointers, applied to node links
-      instead of array indices) that you already half-know from TwoPointers
-P1 4. Merge Two Sorted Linked Lists - building block for LRU Cache internals
-      and any future merge-based LL question; do only if P0 is solid
-
-SKIP for round 1 (defer to round 2 with the rest of LinkedList): Insert into
-a sorted circular linked list (narrower, single-company anecdote - Microsoft
-SDET - not broadly confirmed), Remove Nth Node From End, Add Two Numbers (as
-linked lists), Reorder List, and any DP/tree-adjacent LL problems.
-
-
-================================================================================
-# SUGGESTED ORDER OF ATTACK (highest ROI first, given limited time)
-================================================================================
-1. Strings P0 (14 items) - foundational, reused in almost every other topic;
-   your biggest blind spot, and most items need a fresh redo since only Two
-   Pointers is exempt here.
-2. HashMaps P0 (4 items) - directly reuses the frequency-map technique you
-   just practiced in Strings.
-3. Arrays P0 (16 items) - several reuse the same two-pointer technique
-   you've confirmed is solid, so these should go fast.
-4. Stacks P0 (7 items) - full redo per the precise list in that section, not
-   just Simplify Path.
-5. Prefix Sum + Hash P0 (11 items) - full redo, same core technique repeated
-   10 times, should move fast as a block.
-6. Design a HashMap from scratch + Continuous Subarray Sum - quick wins
-   folded into the blocks above, call them out so you don't skip them.
-7. LinkedList mini-slice P0 (3 items) - Reverse LL, Detect Cycle, Find Middle;
-   one shared technique, and directly unlocks LRU Cache next.
-8. LRU Cache (Design, bonus topic) - do this once the LinkedList mini-slice
-   is done; re-verify the Doubly Linked List node operations as you build it.
-9. Maths P1 + Star Patterns P1 - quick low-volume redo passes, genuinely low
-   priority, don't let these eat time from Strings/Arrays/HashMaps.
-10. All remaining P1 items across every section, only if time remains before
-    your Playwright + scenario-testing prep needs to start.
-11. Skip every SKIP/P2 bucket entirely in round 1 - revisit only with spare
-    time after Playwright prep is solid.
-
-ONLY assumed complete: Two Pointers and Binary Search (your own
-confirmation). Everything else above - even where files already exist in the
-repo - is a full redo per your latest instruction.
-
-Do NOT touch: DP, Trees, Greedy, Intervals, Heap, Recursion/Backtracking, Bit
-Manipulation, Queues, and the rest of LinkedList beyond the 4-item mini-slice
-above - not in your round-1 scope.
+P0 1. Reverse a Linked List
+P0 2. Detect Cycle in a Linked List (Floyd's)
+3. Find the Start of a Cycle
+P0 4. Find Middle Node of a Linked List
+P1 5. Merge Two Sorted Linked Lists
+6. Remove the Nth Node From the End

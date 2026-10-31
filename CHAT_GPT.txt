@@ -1,0 +1,51 @@
+================================================================================
+SECTION 1: ARRAY FUNDAMENTALS AND IN-PLACE MANIPULATION
+================================================================================
+
+05. [P0] Rotate an array left or right by K positions in-place
+07. [P1] Reverse a subarray between indices L and R
+08. [P1] Move all negative numbers to one side
+09. [P1] Move negative numbers to the beginning while preserving relative order
+18. [P2] Find the previous permutation
+19. [P1] Implement cyclic rotation by one position
+20. [P2] Rearrange an array so that arr[i] = i where possible
+
+================================================================================
+SECTION 2: SEARCHING AND ORDER STATISTICS
+================================================================================
+
+23. [P0] Count occurrences of a target in a sorted array
+31. [P1] Find a target in a nearly sorted array
+34. [P1] Find the closest element to a target in a sorted array
+36. [P2] Find a fixed point where arr[i] = i in a sorted array
+37. [P2] Search an element in an array where adjacent elements differ by 1
+39. [P2] Find the Kth element in the union of two sorted arrays
+
+================================================================================
+SECTION 4: TWO POINTERS AND PAIR / TRIPLET PROBLEMS
+================================================================================
+
+70. [P1] Count pairs with a given difference
+71. [P1] Find a triplet whose sum is closest to a target
+73. [P1] Find the pair whose sum is closest to zero
+76. [P2] Find all pairs with an absolute difference less than K
+
+
+================================================================================
+SECTION 8: SORTING AND ARRAY PARTITIONING
+================================================================================
+
+136. [P1] Find the inversion count in an array
+141. [P2] Implement QuickSort
+142. [P2] Implement MergeSort for arrays
+144. [P2] Partition an array around a pivot value
+145. [P2] Find the K closest elements to a target in a sorted array
+
+================================================================================
+SECTION 9: SPECIAL ARRAY PATTERNS
+================================================================================
+
+151. [P1] Find the maximum length of a turbulent subarray
+155. [P2] Find the maximum length of a mountain subarray
+158. [P2] Find the maximum number of consecutive equal elements
+160. [P2] Find all missing values in the range 1 to N

@@ -6,14 +6,13 @@ Input : hutg9mnd!nk9
 Output : false
 
 Approach-1:
-- Store everything in a map and check for freq-1 in the map
+- Store everything in a map and check for freq = 1 for every key in the map
 
 TC: O(n) + O(uniqueChars)
 SC: O(uniqueChars)
 
 Approach-2:
-- Iterate the string
-- If current char is not in the set, store it
+- No need of map, simply use a set
 - If current char already exists in set -> return false, as no point in further computations,
   We don't have unique chars 
 

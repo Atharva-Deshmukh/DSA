@@ -12,7 +12,7 @@ Input: s1 = "abcd", s2 = "acbd"
 Output: false
 
 Way-1: Brute force
-- Generate all rotations manually for any of the s1/s1 and verify if s1 === s2
+- Generate all rotations manually for any of the s1/s2 and verify if s1 === s2
 
 TC: O(n^2)
 SC: O(1)

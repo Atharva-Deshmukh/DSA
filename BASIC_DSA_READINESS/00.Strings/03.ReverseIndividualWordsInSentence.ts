@@ -33,28 +33,27 @@ SC: O(n) - for storing answer
 
 */
 
-function reverseIndividualWords_NoBuiltInFunc(s: string): string {
-    const n = s.length;
-    let result = '';
-    let i = 0;
-
-    while (i < n) {
-        // skip all spaces (leading, trailing, or repeated)
-        while (i < n && s[i] === ' ') i++;
-        if (i === n) break;               // only trailing spaces were left
-
-        // add one separator before every word except the first
-        if (result.length > 0) result += ' ';
-
-        // find the end of the word: s[start..i-1]
-        const start = i;
-        while (i < n && s[i] !== ' ') i++;
-
-        // append the word's characters from last to first
-        for (let k = i - 1; k >= start; k--) {
-            result += s[k];
+function reverseWordsOfSentence(s: string): string {
+    const n: number = s.length;
+    let result: string = "";
+    let i: number = 0;
+    
+    while(i < n) {
+        
+        while((i < n) && (s[i] === ' ')) i++;
+        if(i >= n) break;
+        
+        let word: string = "";
+        while((i < n) && (s[i] !== ' ')) {
+            word = s[i] + word;
+            i++;
         }
+        
+        if(result.length > 0) result += " ";
+        result += word;
+        
     }
+    
     return result;
 }
 

@@ -59,3 +59,29 @@ function isAnagram(s: string, t: string): boolean {
 
     return (JSON.stringify(map1) === JSON.stringify(map2));
 }
+
+/* OPTIMISATION: 
+    - we don't need all 256 here if question only says smallcase alphabets
+    - stringify() is costly and it may fail when frequencies are 1, 11 and 11, 1
+                                                                "111" = "111"
+    - Join with '#' here that will be better
+      "1#11" !== "11#1"
+*/
+
+function isAnagram(s: string, t: string): boolean {
+    const n1 = s.length;
+    const n2 = t.length;
+
+    /* Anagrams should be of same length */
+    if(n1 !== n2) return false;
+
+    const hash1 = new Array(26).fill(0);
+    const hash2 = new Array(26).fill(0);
+
+    for(let i = 0; i < n1; i++) {
+        hash1[s.charCodeAt(i) - 'a'.charCodeAt(0)]++;
+        hash2[t.charCodeAt(i) - 'a'.charCodeAt(0)]++;
+    }
+
+    return hash1.join('#') === hash2.join('#');
+}

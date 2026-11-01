@@ -1,10 +1,7 @@
 --------------------------------------------------------------------------------
 # 1. ARRAYS - FULL REDO LIST (assume ArrayBased/ is NOT done - redo everything)
 --------------------------------------------------------------------------------
-P0 1. Contains Duplicate (LC 217)
-P0 2. Majority Element I (LC 169)
-P0 3. Majority Element II (LC 229)
-P0 4. First Missing Positive (LC 41)
+
 P0 5. Top K Frequent Elements (LC 347)
 P0 6. Maximum Subarray Sum — Kadane's
 P0 7. Minimum Subarray Sum

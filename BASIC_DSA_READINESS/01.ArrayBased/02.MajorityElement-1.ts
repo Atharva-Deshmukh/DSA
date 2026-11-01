@@ -18,7 +18,6 @@ Constraints:
     -10^9 <= nums[i] <= 10^9
 
 The input is generated such that a majority element will exist in the array.
- 
 
 Follow-up: Could you solve the problem in linear time and in O(1) space?
 
@@ -48,6 +47,8 @@ ALGO:
 - If the candidate's count is > (n / 2), return the candidate as the majority element.
 
 
+TC: O(n) + O(n) = O(n)
+SC: O(1)
 */
 
 function majorityElement1(a: number[]): number {
@@ -56,6 +57,8 @@ function majorityElement1(a: number[]): number {
     let count = 0, candidate = -1;
 
     for(let i = 0; i < n; i++) {
+
+        /* Initially count = 0, but later due to count-- also it can reduce to 0 */
         if(count === 0) {
             candidate = a[i];
             count = 1;

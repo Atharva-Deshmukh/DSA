@@ -1,4 +1,4 @@
-/* Smallest Missing Positive Number / 41. First Missing Positive
+/* 41. First Missing Positive || Smallest Missing Positive Number
 
 Given an unsorted integer array nums. 
 Return the smallest positive integer that is not present in nums.
@@ -54,7 +54,7 @@ function missingNumber(arr) {
 /*                                  Using Cycle Sort - O(n) Time and O(1) Space
                                     -------------------------------------------
 
-Observation:
+OBSERVATION:
 - If the array has all elements in range [1, n] and its is sorted, then
  
          0  1  2  3  4
@@ -65,18 +65,12 @@ Observation:
         3 is at 2
         .
         .
-        a[i] is always at position a[i] - 1
-
-        This is also the core idea of cycle sort algo
+        a[i] is always at (a[i] - 1)th index - Idea of cycle sort algo
        
 
-The idea is similar to Cycle Sort and move each element in the array to its correct position based on its value.
-So for each number, say x, such that 1 ≤ x ≤ n, is placed at the (x - 1)th index. 
-
-Finally, iterate through the array and check if the numbers are in the expected indexes or not. 
-The first place where the number doesn’t match its index gives us the first missing positive number. 
-If all the numbers from 1 to n, are at their correct indexes, then the next number i.e., n + 1, 
-is the smallest missing positive number. 
+Idea: Move each element in the array to its correct position based on its value.
+      For each number, say x, such that 1 ≤ x ≤ n, verify if its placed at the (x - 1)th index.
+      If not at correct place --> Move to its correct place by swap(a[x], a[a[x] - 1])
 
 Dry run:
 
@@ -89,7 +83,7 @@ i = 0:
     [2, -3, 4, 1, 1, 7]
      i
 
-     a[i] = 2, it should be at 2 - 1 = 1th index, swap
+     a[i] = 2, it should be at 2 - 1 = 1st index, swap(a[i], a[a[i] - 1])
 
      0   1  2  3  4  5
     [-3  2, 4, 1, 1, 7]
@@ -111,13 +105,13 @@ i = 2:
     [-3, 2, 4, 1, 1, 7]
             i
 
-      a[i] = 4, it should be at 4 - 1 = 3rd index swap
+      a[i] = 4, it should be at 4 - 1 = 3rd index swap(a[i], a[a[i] - 1])
 
       0  1  2  3  4  5
     [-3, 2, 1, 4, 1, 7]
             i
        
-      a[i] = 1, it should be at 1 - 1 = 0th index, swap
+      a[i] = 1, it should be at 1 - 1 = 0th index, swap(a[i], a[a[i] - 1])
       
       0  1  2  3  4  5
     [ 1, 2,-3, 4, 1, 7]
@@ -155,26 +149,29 @@ If no such index is there, then return n + 1
 
 */
 
-function missingNumber(a) {
+function missingNumber_CycleSort(a: number[]) {
     let n = a.length;
 
     for (let i = 0; i < n; i++) {
 
-        // if a[i] is within the range 1 to n and a[i] is not placed at (a[i]-1)th index in a
+        /* if a[i] is within [1, n]   a[i] is not placed at (a[i]-1)th index in a */
         while ((a[i] >= 1 && a[i] <= n) && (a[i] !== a[a[i] - 1])) {
-
-            // then swap a[i] and a[a[i]-1] to place a[i] to its corresponding index
-            let temp = a[i];
-            a[i] = a[a[i] - 1];
-            a[temp - 1] = temp;
+            
+            /* Note:
+               Don't do this: [a[i], a[a[i] - 1]] = [a[a[i] - 1], a[i]];
+               while swapping, a[i] changes, hence original value gets lost
+               Workaround is to store the original value
+            */
+            const idx = a[i] - 1;
+            [a[i], a[idx]] = [a[idx], a[i]];
         }
     }
 
-    // Scan array again and If any number is not at its corresponding index it is then missing,
-    for (let i = 1; i <= n; i++) {
-        if (i !== a[i - 1]) return i;
+    /* Scan array again and If any number is not at its corresponding index it is then missing */
+    for (let i = 0; i < n; i++) {
+        if (a[i] !== (i + 1)) return (i + 1);
     }
 
-    // If all number from 1 to n are present then n+1 is smallest missing number
+    /* If all number from 1 to n are present then n+1 is smallest missing number */
     return n + 1;
 }

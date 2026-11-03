@@ -1,4 +1,4 @@
-/* Maximum Circular Subarray Sum
+/* 918.Maximum Circular Subarray Sum
 
 Given a circular array arr[], find the maximum sum of any non-empty subarray. 
 A circular array allows wrapping from the end back to the beginning.
@@ -37,55 +37,43 @@ Explanation: The circular subarray [3, 4, 5] gives the maximum sum of 12.
                                     KADANE'S ALGO
                                     -------------
 
-🧠 Intuition in One Line -> “Either take the best normal subarray OR take everything except the worst part.”
+Intuition: Use Kadane's algo to get max of normal sum or the rotated/wrapped sum
 
-[8, -8, 9, -9, 10, -11, 12]
-Remove worst: [-11]
-Remaining (circular): [12, 8, -8, 9, -9, 10]
+Case 1 (normal):    [ . . [ X X X X ] . . ]      the best part is in the middle
+Case 2 (wrapping):  [ X X ] . . . . [ X X X ]    it uses the ends and wraps around
+                    It takes a suffix and a prefix, and it skips a contiguous chunk in the middle.
 
-Key Trick: Circular max = Total Sum − Minimum Subarray Sum
+wrapping sum = totalSum − (sum of the skipped middle chunk)
 
-Why?
-Wrapping subarray = “everything except a middle bad part”
-That “bad part” is the minimum subarray
+To make the wrapping sum as large as possible, make the skipped chunk as small as possible. 
+The smallest-sum contiguous chunk is the minimum subarray sum. 
+You find it with Flipped Kadane's algo for min sum subarray.
 
-Important Edge Case
-
-If all elements are negative: totalSum - minSubarray = 0 ❌ (invalid)
-So return normalMax
-
-
+Answer = max( normalMaxSubarray , totalSum − minSubarray ).
 */
 
 function maxCircularSubarraySum(arr) {
-
-    // 1. Normal Kadane (max subarray)
     let currentMax = arr[0], maxSum = arr[0];
-
-    // 2. Min Kadane (min subarray)
     let currentMin = arr[0], minSum = arr[0];
-
-    // 3. Total sum
     let totalSum = arr[0];
 
     for (let i = 1; i < arr.length; i++) {
-        let x = arr[i];
 
-        // Standard Kadane (max)
-        currentMax = Math.max(x, currentMax + x);
-        maxSum = Math.max(maxSum, currentMax);
+        // Max Kadane: negative prefix hurts, so drop it
+        if (currentMax < 0) currentMax = arr[i];
+        else currentMax += arr[i];
+        if (currentMax > maxSum) maxSum = currentMax;
 
-        // Reverse Kadane (min)
-        currentMin = Math.min(x, currentMin + x);
-        minSum = Math.min(minSum, currentMin);
+        // Min Kadane: positive prefix hurts, so drop it
+        if (currentMin > 0) currentMin = arr[i];
+        else currentMin += arr[i];
+        if (currentMin < minSum) minSum = currentMin;
 
-        // Total sum
-        totalSum += x;
+        totalSum += arr[i];
     }
 
     // Edge case: all negative
     if (maxSum < 0) return maxSum;
 
-    // Circular case
     return Math.max(maxSum, totalSum - minSum);
 }

@@ -20,12 +20,12 @@ APPROACH: Minimum subarray sum = Kadane with reversed logic
 */
 
 function minSubarraySum(arr) {
-    let currentSum = arr[0]; // sum ending at current index
-    let minSum = arr[0];     // best (minimum) sum found so far
+    let currentSum = arr[0]; /* sum till current index */
+    let minSum = arr[0];     /* max sum found so far */
 
     for (let i = 1; i < arr.length; i++) {
 
-        // This time, If previous sum is positive, drop it, because we need minimum
+        /* This time, If previous sum is positive, drop it, because we need minimum */
         if (currentSum > 0) currentSum = arr[i];
         else currentSum += arr[i]; // else extend this
 
@@ -48,9 +48,8 @@ function minSubarraySumActualSubarray(arr) {
         if (currentSum > 0) {
             currentSum = arr[i];
             tempStart = i;
-        } else {
-            currentSum += arr[i];
-        }
+        } 
+        else currentSum += arr[i];
 
         // Update minimum
         if (currentSum < minSum) {

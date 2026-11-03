@@ -3,10 +3,6 @@
 --------------------------------------------------------------------------------
 
 P0 5. Top K Frequent Elements (LC 347)
-P0 6. Maximum Subarray Sum — Kadane's
-P0 7. Minimum Subarray Sum
-P0 8. Maximum Product Subarray
-P0 9. Maximum Circular Subarray Sum
 TODO 10. Kth Largest Element using QuickSelect
 P0 11. Second Largest DISTINCT Element — single traversal
 P0 12. Second Smallest DISTINCT Element — single traversal
@@ -18,7 +14,6 @@ P0 17. Longest Consecutive Sequence — LC 128
 P0 18. Union of Two Arrays
 P0 19. Intersection of Two Arrays
 P0 20. Check Whether an Array Is Sorted and Rotated
-P0 21. Find First Repeating Element
 P0 22. Maximum Sum of i * arr[i] Over All Rotations
 P0 23. Find Minimum and Maximum in One Traversal
 P1 24. Find Repeating and Missing Numbers Together

@@ -34,7 +34,6 @@ P1 35. Maximum Gap Between Successive Elements
 P1 36. Longest Strictly Increasing Contiguous Subarray
 P1 37. Closest Pair to a Target
 P1 38. Smallest Subarray That Must Be Sorted to Sort the Entire Array
-P1 39. Count Inversions in an Array
 P1 40. Partition an Array Around a Pivot
 P1 41. K Closest Elements in a Sorted Array
 P1 42. Find All Missing Values in 1..N

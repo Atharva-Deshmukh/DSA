@@ -4,11 +4,8 @@
 
 P0 5. Top K Frequent Elements (LC 347)
 TODO 10. Kth Largest Element using QuickSelect
-P0 11. Second Largest DISTINCT Element — single traversal
-P0 12. Second Smallest DISTINCT Element — single traversal
 P0 14. Find Missing Number in 1..N
 P0 16. Find All Duplicates — LC 442
-P0 17. Longest Consecutive Sequence — LC 128
 P0 20. Check Whether an Array Is Sorted and Rotated
 P0 22. Maximum Sum of i * arr[i] Over All Rotations
 P1 24. Find Repeating and Missing Numbers Together

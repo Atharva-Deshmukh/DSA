@@ -6,9 +6,7 @@ P0 5. Top K Frequent Elements (LC 347)
 TODO 10. Kth Largest Element using QuickSelect
 P0 11. Second Largest DISTINCT Element — single traversal
 P0 12. Second Smallest DISTINCT Element — single traversal
-P0 13. Move Zeroes to the End — in-place
 P0 14. Find Missing Number in 1..N
-P0 15. Find Duplicate Number — Floyd's cycle detection
 P0 16. Find All Duplicates — LC 442
 P0 17. Longest Consecutive Sequence — LC 128
 P0 20. Check Whether an Array Is Sorted and Rotated
@@ -28,7 +26,6 @@ P1 31. Missing Ranges in a Sorted Array
 P1 32. Split Array Into Three Equal-Sum Segments
 (prefix-sum pattern; optional because prefix sums are covered)
 P1 33. Maximum Sum Path Through Two Sorted Arrays
-P1 34. Minimum Swaps Required to Sort an Array
 P1 35. Maximum Gap Between Successive Elements
 P1 36. Longest Strictly Increasing Contiguous Subarray
 P1 37. Closest Pair to a Target

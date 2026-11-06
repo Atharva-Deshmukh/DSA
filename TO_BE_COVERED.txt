@@ -4,7 +4,6 @@
 
 P0 5. Top K Frequent Elements (LC 347)
 TODO 10. Kth Largest Element using QuickSelect
-P0 14. Find Missing Number in 1..N
 P0 16. Find All Duplicates — LC 442
 P0 20. Check Whether an Array Is Sorted and Rotated
 P0 22. Maximum Sum of i * arr[i] Over All Rotations

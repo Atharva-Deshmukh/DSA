@@ -18,7 +18,6 @@ P1 27. Array Leaders
 P1 28. Third Largest DISTINCT Element
 P1 29. Maximum Product of Three Elements
 P1 30. Reverse Array in Groups of K
-P1 31. Missing Ranges in a Sorted Array
 P1 32. Split Array Into Three Equal-Sum Segments
 (prefix-sum pattern; optional because prefix sums are covered)
 P1 33. Maximum Sum Path Through Two Sorted Arrays

@@ -28,8 +28,6 @@ P1 37. Closest Pair to a Target
 P1 38. Smallest Subarray That Must Be Sorted to Sort the Entire Array
 P1 40. Partition an Array Around a Pivot
 P1 41. K Closest Elements in a Sorted Array
-P1 42. Find All Missing Values in 1..N
-(LC 448-style; solve only if the index-marking approach is new)
 P2 43. Move Negative Numbers to One Side
 P2 44. Stable Rearrangement of Negative Numbers
 P2 45. Wave Array

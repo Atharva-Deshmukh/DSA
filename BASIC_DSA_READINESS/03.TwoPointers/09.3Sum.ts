@@ -297,8 +297,10 @@ function threeSumOptimal(a: number[]): number[][] {
     for(let i = 0; i < n; i++) {
 
         /* Skip those i's which have duplicate a[i]s 
-           Our triplets will be in sorted order now, and we need unique, hence avoid those i's which are duplicates */
-        if(a[i] === a[i - 1]) continue;
+           Our triplets will be in sorted order now, and we need unique, hence avoid those i's which are duplicates 
+           We will need first i of every duplicates since first element of every duplicate groups is always unique   
+        */
+        if ((i !== 0) && a[i] === a[i - 1]) continue;
 
         /* For this unique i, create j and k */
         let j = (i + 1), k = (n - 1);
@@ -311,7 +313,7 @@ function threeSumOptimal(a: number[]): number[][] {
                 j++;  /* Above j and k were already unique, hence move them ahead */
                 k--;
 
-                /* After moving j and k ahead, we try to avoid duplicate j and k */
+                /* After j and k are updated, make sure a[updatedk] and a[updatedj] are not equal to previous values */
                 while ((j < k) && (a[j] === a[j - 1])) j++;
                 while ((j < k) && (a[k] === a[k + 1])) k--;
             }

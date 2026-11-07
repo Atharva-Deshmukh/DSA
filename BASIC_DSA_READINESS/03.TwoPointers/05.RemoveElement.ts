@@ -28,10 +28,10 @@ Constraints:
 
                                                             BRUTE FORCE:
                                                             ------------
-- Create a new array without val and return its size.
+- Simply iterate the array and count elements !== val
 
 TC: O(n)
-SC: O(n)
+SC: O(1)
 
                                                            OPTIMAL APPROACH:
                                                            -----------------
@@ -39,13 +39,12 @@ SC: O(n)
 Approach:
 - Since we require in-place solution, we can think of swapping the non-val elements to either start or end of the array
 
-SWAP-RIGHT (basically bring vals to right side)
+SWAP-RIGHT (basically bring vals to right side) - DISTURBS ORDER
 - Initialise a pointer to right = n - 1
 - if(a[left] === val) swap(a[left], a[right])
   left++, right--
-- But, order of non-vals is disturbed this way
 
-SWAP-LEFT (bring all non-vals to left side)
+SWAP-LEFT (bring all non-vals to left side)    - PRESERVES ORDER
 - Initialise left = 0
 - if(a[left] !== val) swap(a[left], a[i])
   i++
@@ -91,7 +90,7 @@ l = 0
 i = 3
 l = 1
 
-     0  1  2  3  4
+    0  1  2  3  4
     [2, 1, 1, 3, 4]
         l     i
 
@@ -101,9 +100,9 @@ l = 1
         i++
 
 i = 4
-l = 1
+l = 2
 
-     0  1  2  3  4
+    0  1  2  3  4
     [2, 3, 1, 1, 4]
            l     i
 
@@ -113,16 +112,13 @@ l = 1
         i++
 
 i = 5 -> STOP!
-l = 1
+l = 3
 
-     0  1  2  3  4
+    0  1  2  3  4
     [2, 3, 4, 1, 1]
               l      i
 
-    a[i] !== val
-        swap(a[l], a[i])
-        l++
-        i++
+return l = 3 --> first 3 elements [2, 3, 4] do not contain val
 
 TC: O(n)
 SC: O(1) */

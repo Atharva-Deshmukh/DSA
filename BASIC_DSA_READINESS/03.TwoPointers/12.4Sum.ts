@@ -115,7 +115,7 @@ function fourSum(a: number[], target: number): number[][] {
     for (let i = 0; i < (n - 1); i++) {
 
         /* Skip those i's which have duplicate a[i]s */
-        if (a[i] === a[i - 1]) continue;
+        if ((i !== 0) && a[i] === a[i - 1]) continue;
 
         for (let j = (i + 1); j < n; j++) {
 

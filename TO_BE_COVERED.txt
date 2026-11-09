@@ -2,8 +2,19 @@
 # 1. ARRAYS - FULL REDO LIST (assume ArrayBased/ is NOT done - redo everything)
 --------------------------------------------------------------------------------
 
+Group A — Don't skip these
+1. Top K Frequent Elements
+3. Find All Duplicates
+4. Sorted and Rotated Array
+5. Repeating and Missing Numbers
+6. Pair With Given Difference K
+7. Maximum Product of Three
+8. Longest Increasing Contiguous Subarray
+9. Closest Pair to Target
+10. Smallest Subarray to Sort
+11. K Closest Elements
+
 P0 5. Top K Frequent Elements (LC 347)
-TODO 10. Kth Largest Element using QuickSelect
 P0 16. Find All Duplicates — LC 442
 P0 20. Check Whether an Array Is Sorted and Rotated
 P0 22. Maximum Sum of i * arr[i] Over All Rotations
@@ -15,7 +26,6 @@ P1 25. Find Pair With Given Difference K
 P1 26. Next Permutation — LC 31
 (already covered in Two Pointers; mark DONE or omit)
 P1 27. Array Leaders
-P1 28. Third Largest DISTINCT Element
 P1 29. Maximum Product of Three Elements
 P1 30. Reverse Array in Groups of K
 P1 32. Split Array Into Three Equal-Sum Segments
@@ -25,10 +35,7 @@ P1 35. Maximum Gap Between Successive Elements
 P1 36. Longest Strictly Increasing Contiguous Subarray
 P1 37. Closest Pair to a Target
 P1 38. Smallest Subarray That Must Be Sorted to Sort the Entire Array
-P1 40. Partition an Array Around a Pivot
 P1 41. K Closest Elements in a Sorted Array
-P2 43. Move Negative Numbers to One Side
-P2 44. Stable Rearrangement of Negative Numbers
 
 
 --------------------------------------------------------------------------------

@@ -29,15 +29,6 @@ Follow up: Your algorithm's time complexity must be better than O(n log n), wher
 TC: O(n) + O(k * logk)
 SC: O(k)
 
-                                                 HASH + MIN HEAP:
-                                                 ----------------
-
-- Calculate frequencies using a map and then store this map's key-values into a minheap,
-- Highest frequencies are on top this way
-
-TC: O(n) + O(k * logk)
-SC: O(k) k -> distince elements
-
                                                 QUICK SELECT LOGIC:
                                                 -------------------
                                     

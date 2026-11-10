@@ -3,9 +3,6 @@
 --------------------------------------------------------------------------------
 
 Group A — Don't skip these
-1. Top K Frequent Elements
-3. Find All Duplicates
-4. Sorted and Rotated Array
 5. Repeating and Missing Numbers
 6. Pair With Given Difference K
 7. Maximum Product of Three
@@ -14,10 +11,6 @@ Group A — Don't skip these
 10. Smallest Subarray to Sort
 11. K Closest Elements
 
-P0 5. Top K Frequent Elements (LC 347)
-P0 16. Find All Duplicates — LC 442
-P0 20. Check Whether an Array Is Sorted and Rotated
-P0 22. Maximum Sum of i * arr[i] Over All Rotations
 P1 24. Find Repeating and Missing Numbers Together
 (retain only if not treated as a duplicate of your existing
 missing/duplicate-number practice)

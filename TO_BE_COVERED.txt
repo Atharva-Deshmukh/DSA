@@ -4,10 +4,8 @@
 
 Group A — Don't skip these
 5. Repeating and Missing Numbers
-6. Pair With Given Difference K
 7. Maximum Product of Three
 8. Longest Increasing Contiguous Subarray
-9. Closest Pair to Target
 10. Smallest Subarray to Sort
 11. K Closest Elements
 

@@ -5,15 +5,11 @@
 Group A — Don't skip these
 5. Repeating and Missing Numbers
 7. Maximum Product of Three
-8. Longest Increasing Contiguous Subarray
 10. Smallest Subarray to Sort
-11. K Closest Elements
 
 P1 24. Find Repeating and Missing Numbers Together
 (retain only if not treated as a duplicate of your existing
 missing/duplicate-number practice)
-P1 25. Find Pair With Given Difference K
-(already in your planned array backlog; don't duplicate)
 P1 26. Next Permutation — LC 31
 (already covered in Two Pointers; mark DONE or omit)
 P1 27. Array Leaders
@@ -23,8 +19,6 @@ P1 32. Split Array Into Three Equal-Sum Segments
 (prefix-sum pattern; optional because prefix sums are covered)
 P1 33. Maximum Sum Path Through Two Sorted Arrays
 P1 35. Maximum Gap Between Successive Elements
-P1 36. Longest Strictly Increasing Contiguous Subarray
-P1 37. Closest Pair to a Target
 P1 38. Smallest Subarray That Must Be Sorted to Sort the Entire Array
 P1 41. K Closest Elements in a Sorted Array
 

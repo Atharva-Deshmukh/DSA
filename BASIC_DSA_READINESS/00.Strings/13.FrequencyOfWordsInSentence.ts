@@ -46,9 +46,6 @@ function frequencyOfWords(s: string): void {
 
         if(!map.has(wordExtracted)) map.set(wordExtracted, 1);
         else map.set(wordExtracted, map.get(wordExtracted)! + 1);
-
-        /* Current i is on space (' ') - nudge ahead */
-        if(s[i] === ' ') i++;
     }
 
     for(const [key, value] of map) {

@@ -24,7 +24,6 @@ Include collision handling, bucket design and expected complexity.
 4. Find the lowest-frequency element with tie-breaking rules
 5. Find all elements occurring more than N/K times
 6. Find two unique elements when every other element occurs twice
-7. Find the first element that occurs only once
 8. Find the element that appears once when all others appear K times
 
 

@@ -15,20 +15,23 @@ Output: false
 Explanation: In the above example, we cannot divide the array into two subarrays with equal sum. 
 Hence, the answer is false.
 
-Approach: We will use same approach of prefix sum for finding equilibrium index problem
-          With a change.
-          There, we were calculating sum before and after ith index
-          Now, we need to include the current index as well
+Approach: Almost same approach as the equilibrium index problem
+          Change: We need to include the current index as well
+                  include it in leftSum
 
-          Things we can notice:
-          leftSum + rightSum = totalSum
-                2 * rightSum = totalSum   (As leftSum = rightSum)
-                    rightSum = totalSum / 2 
+                  We also don't need to get both leftSum and rightSum
+
+          OBSERVATION:
+
+            leftSum + rightSum = totalSum
+                  2 * rightSum = totalSum   (As leftSum = rightSum)
+                     rightSum = totalSum / 2 
 
           Basically, we only need to find the sum which is totalSum / 2
           If its there, we can return true, else return false
 
-          Compute any one prefixSum, not left and right both
+          since we go from left -> right, better to calculate leftSum
+          totalSum = leftSum[n - 1]
 
 
             0  1  2   3   4   5
@@ -47,7 +50,6 @@ function canSplit(a) {
 
     if(n === 1) return false;  /* Single element cannot be split into two subarrays */
 
-
     let leftSum = Array(n).fill(0);
     leftSum[0] = a[0];
 
@@ -58,9 +60,7 @@ function canSplit(a) {
 
     if(totalSum % 2 === 1) return false;  /* totalSum MUST be even */
 
-    /* Check if leftSum[] has any sum which is half of total sum 
-       Not allowing split at the last element, since then rightHalf = []
-    */
+    /* Not allowing split at the last element, since then rightHalf = [] */
     for(let i = 0; i < (n - 1); i++) if(leftSum[i] === (totalSum / 2)) return true;
 
     return false;   

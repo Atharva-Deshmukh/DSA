@@ -81,9 +81,7 @@ function pivotIndexBrute(a: number[]): number {
 
 /* Better Approach:
 
-We need a linear time complexity
-We can precompute sums till ith index from left in leftSum[]  and from right in rightSum[]
-wherever they are equal, return that index, else return -1
+Precompute leftSum[] and rightSum[] >> wherever they are equal, return that index, else return -1
  
             0  1  2   3   4   5
    nums =  [1, 7, 3,  6,  5,  6 ]
@@ -99,7 +97,8 @@ function pivotIndex(a: number[]): number {
 
     if(n === 1) return 0;
 
-    let leftSum = Array(n).fill(0), rightSum = Array(n).fill(0);
+    let leftSum = Array(n).fill(0);
+    let rightSum = Array(n).fill(0);
 
     /* Calculate leftSum[] */
     for(let i = 1; i < n; i++) leftSum[i] = (leftSum[i - 1] + a[i - 1]);
@@ -116,7 +115,7 @@ function pivotIndex(a: number[]): number {
 
 We can optimise it by avoiding precomputation of leftSum[]
 
-It can be calculated at the run time and stored in a variable
+Anyways we are iterating from left -> right, It can be calculated at the run time and stored in a variable
 
 TC: O(2n)
 SC: O(1) */

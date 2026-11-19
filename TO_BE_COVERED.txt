@@ -62,8 +62,6 @@ P0 9. Minimum Removals for Target Sum
 P0 10. Longest Subarray With Equal 0s and 1s
 P0 11. Continuous Subarray Sum (LC 523) - the one genuinely new item, same
        pattern as the 10 above, cheap to add once they're fresh again
-12. Range Sum Query — Immutable Array (LC 303)
-13. Count subarrays with XOR equal to K
 
 
 --------------------------------------------------------------------------------

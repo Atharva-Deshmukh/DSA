@@ -57,7 +57,7 @@ function findMean(a, q) {
             let sum;
 
             if (l === 0) {
-                sum = prefSum[r];
+                sum = prefSum[r];  /* l = 0, prefSum[-1] = undefined, hence no left part is there to be removed */
             } else {
                 sum = prefSum[r] - prefSum[l - 1];
             }
@@ -85,9 +85,6 @@ Query 1: L = 0 and R = 2 Sum = 6 Integer Count = 3 So, Mean is 2
 Input : arr[] = [6, 7, 8, 10] and q[] = [0, 3, 1, 2]
 Output : [7, 7]
 Explanation: Element count is 3 and sum of element from 0 to 3 are 21. So mean is 7.
-
-
-
 */
 
 function findMean(a, q) {

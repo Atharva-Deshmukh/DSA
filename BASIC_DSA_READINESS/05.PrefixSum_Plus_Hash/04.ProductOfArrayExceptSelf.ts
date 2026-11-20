@@ -1,4 +1,4 @@
-/* Product array puzzle
+/* 238. Product of Array Except Self
 Given an array, arr[] construct a product array, res[] where each element in res[i] 
 is the product of all elements in arr[] except arr[i]. Return this resultant array, res[].
 Note: Each element is res[] lies inside the 32-bit integer range.
@@ -29,17 +29,13 @@ TC: O(n ^ 2)
 SC: O(1)
 
 OPTIMAL APPROACH: Using Prefix and Suffix Array - O(n) Time and O(n) Space
-- We need to think of avoiding this recalculation of products again and again, 
-  we can precompute this 
+- Precompute the prefix and suffix products and store them in two arrays. 
 
-  Its like splitting an array into two equal sum subarrays
-  
-- The idea is to precompute the prefix and suffix products and store them in two arrays. 
-  Now we can find the product of array except i-th element, by using these precomputed arrays 
-  in O(1)
-  product of array except i-th element = prefProduct[i] * suffProduct[i]
     prefProduct[i] stores product of all elements before i-th index in the array.
-    suffProduct[i] stores product of all elements after i-th index in the array. */
+    suffProduct[i] stores product of all elements after i-th index in the array. 
+
+    product of array except i-th element = prefProduct[i] * suffProduct[i]
+*/
 
 function productExceptSelf(arr: number[]) {
     const n = arr.length;
@@ -59,11 +55,10 @@ function productExceptSelf(arr: number[]) {
     return res;
 }
 
-/* But the above solution is a double pass solution, we can make it single pass by computing
-   prefProduct[] at the run time since while 0 -- (n - 1) traversal, we know the left elements of array.
+/* Above solution is two pass
 
 
-   But there is another efficient solution than this.
+   More efficient way:
    - If there is no zero in the array, we can simply get productExcept[i] = totalproduct / a[i]
    - If there is exactly one zero, we can calculate products before it and after it and rest other
      element's answer = 0 always as zero will be included there

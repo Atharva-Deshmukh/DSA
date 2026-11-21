@@ -55,7 +55,7 @@ function minRemovals(arr: number[], k: number): number {
         currSum += arr[i];
 
         if (map.has(currSum - target)) {
-            maxLen = Math.max(maxLen, i - map.get(currSum - target)!);
+            maxLen = Math.max(maxLen, i - (map.get(currSum - target)! + 1) + 1);
         }
 
         if (!map.has(currSum)) map.set(currSum, i);

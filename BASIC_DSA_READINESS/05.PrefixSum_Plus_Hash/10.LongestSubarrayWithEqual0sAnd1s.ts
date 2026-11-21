@@ -1,4 +1,4 @@
-/* Longest Subarray With Equal Number of 0s and 1s
+/* 525. Contiguous Array || Longest Subarray With Equal Number of 0s and 1s
 
 Given an array arr[] containing only 0s and 1s, find the longest subarray 
 which contains equal no of 0s and 1s.
@@ -39,7 +39,7 @@ function longestSubarrayWithEqual0sAnd1s(a) {
     let currSum = 0;
     let maxLen = Number.MIN_SAFE_INTEGER;
 
-    map.set(0, [-1]); // special case when targetSubarray starts from 0th index - we add imaginary index -1
+    map.set(0, [-1]); // special case when required subarray starts from 0th index
 
     for (let i = 0; i < n; i++) {
         currSum += (a[i] === 0)? -1: a[i];  /* add -1 when there is a 0 */
@@ -55,7 +55,6 @@ function longestSubarrayWithEqual0sAnd1s(a) {
             });
         }
 
-        /* map = <sum, arr[indices] */
         if (!map.has(currSum)) map.set(currSum, [i]);
         else map.get(currSum).push(i);
     }
@@ -63,40 +62,8 @@ function longestSubarrayWithEqual0sAnd1s(a) {
     return (maxLen === Number.MIN_SAFE_INTEGER) ? 0 : maxLen;
 }
 
-/* But this solution will give TLE because we are calculating all the subarray lengths by storing 
-   all the indices of occurrences of sum, but for problem subarray sum 0, we need only 1st occurrence
-
-Why store the first occurrence?
-
-Suppose prefix sum repeats
-
-Let’s say:
-Index:      0   1   2   3   4   5
-Array:      1  -1   3  -3   2  -2
-Prefix:     1   0   3   0   2   0
-
-Focus on prefix sum = 0
-
-It appears at:
-
-index 1, 3, 5
-
-Possible subarrays with sum = 0
-    (0 → 1) → length = 2
-    (0 → 3) → length = 4
-    (0 → 5) → length = 6 ✅ (maximum)
-
-Key Observation
-
-To maximize length:
-    length = currentIndex - earliestIndex
-
-So for index 5:
-    Using index 1 → length = 4
-    Using index 3 → length = 2
-    Using index -1 → length = 6 ✅
-
-👉 The earliest occurrence always gives longest length
+/* Above solution gives TLE since we are storing all prefixSums, which is redundant
+   We only need the max sum, so store the first index only
 */
 
 function findMaxLength(a: number[]): number {
@@ -110,10 +77,9 @@ function findMaxLength(a: number[]): number {
             currSum += (a[i] === 0 ? -1 : 1);
 
             if (map.has(currSum)) {
-                maxLen = Math.max(maxLen, i - map.get(currSum));
+                maxLen = Math.max(maxLen, i - (map.get(currSum) + 1) + 1);
             } else {
-                // store only first occurrence
-                map.set(currSum, i);
+               if(!map.has(currSum)) map.set(currSum, i);
             }
         }
 

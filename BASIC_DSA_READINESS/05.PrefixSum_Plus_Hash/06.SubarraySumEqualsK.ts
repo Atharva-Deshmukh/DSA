@@ -21,15 +21,6 @@ Constraints:
 BRUTE FORCE:
 - Generate all subarrays and see which are having sum = k, return the count
 
-                                    for(let i = 0; i < n; i++) {
-                                        
-                                        let sum = 0;
-                                        for(let j = i; i < n; j++) {
-                                            sum += a[j];
-                                            if(sum === k) count++;
-                                        }
-                                    }
-
 TC: O(n^2)
 SC: O(1) */
 
@@ -49,14 +40,10 @@ function subarraySumBrute(a: number[], k: number): number {
     return count;
 };
 
-/* Optimal approach:
+/* Optimal approach: Prefix sum
 
-Since its a subarray problem, we can think of sliding window BUT
-Sliding window works only when all numbers are non-negative because we need to be sure about:
-- When we shrink the window, sum should decrease, but this is not guaranteed when a[i] < 0
-- Like wise for increasing the window
-
-So, most optimal solution for this problem is the prefix sum approach
+- No sliding window use since sliding window works only for positive numbers
+- Prefix sum approach remains
 
      0  1  2   3  4  5  6  7  8   9
 a = [1, 2, 3, -3, 1, 1, 1, 4, 2, -3],    k = 3
@@ -64,24 +51,39 @@ a = [1, 2, 3, -3, 1, 1, 1, 4, 2, -3],    k = 3
 
 p = [1  3  6   3  4  5  6  10 12  9]
      
-    Now, for j = 6 currSum[j] = 6
-    No of times there appeared currentSum - k = 6 - 3 = 3 --> 2 times,
-    So, there exists two subarrays whose sum was x - k
-    So, there are two subarrays whose sum is k
+    KEY IDEA
+    --------
+    prefixSum[j] = sum(0, j)
+    A subarray (i+1 .. j) has sum = prefixSum[j] - prefixSum[i]
+                      we want sum = k 
+                                k = (prefixSum[j] - prefixSum[i])
+                     prefixSum[i] = prefixSum[j] - k
 
-    [1, 3] Sum was 6 - 3        --> [3, -3, 1, 1, 1] has sum 3
-    [1, 2, 3, -3] Sum was 6 - 3 --> [1, 1, 1] has sum 3
+    So at every j we ask --> "How many earlier prefix sums were equal to (prefixSum[j] - k)?"
 
-    We think reverse, in terms of no of (x - k)s rather than ks because its easy to store prefix sums
-    rather than just sums in somewhere middle
+    We look for currSum - k
 
-    In map, we also store (0 -> 1) to handle a special case when subarray starts from 0th index itself
-    ex: nums = [2,3], k = 5
-    i = 0:
-        2 - 5 does not exists in map so move ahead
+    ----------------------------------------------------------------------------------
+    Corner Case: a[0..j] that sums to k, i.e, required subarray starts from 0th index --> map.set(0, 1)
+    ----------------------------------------------------------------------------------
+    
+    At index j, if currSum == k, we look up currSum - k = 0. 
+    The map must already contain 0 for that prefix to be counted.
 
-    i = 1:
-        5 - 5 = 0 SHOULD exist in map to count this also
+    a = [0, 5], k = 5
+
+    pre-seed map = {0: 1}
+
+    j=0: currSum = 0. We look up 0 - 5 = -5, which isn't there. 
+         Then we store 0
+         map = {0: 2}
+
+    j=1: currSum = 5. We look up 5 - 5 = 0 and find its count = 2
+         because answers = [0, 5] and [5]
+
+        IF WE HADN't pre-seed map = {0: 1}
+
+        then count would be 1 and one subarray would be missing
 */
 
 function subArraySum(a, k) {
@@ -91,14 +93,14 @@ function subArraySum(a, k) {
     let count = 0;
     let currSum = 0;
 
-    map.set(0, 1); // special case when targetSubarray starts from 0th index
+    map.set(0, 1); // seed map = {0: 1}
 
     for (let i = 0; i < n; i++) {
         currSum += a[i];
         
         if (map.has(currSum - k)) count += map.get(currSum - k);
 
-        /* The prefix sum must be stored every iteration, regardless of whether we found a subarray. */
+        /* store currSum in any case */
         if (map.has(currSum)) map.set(currSum, map.get(currSum) + 1); 
         else map.set(currSum, 1);
     }
@@ -106,15 +108,13 @@ function subArraySum(a, k) {
     return count;
 }
 
-/* Now, since we have figured out how to find the counts, 
-Lets try to find the actual subarrays, we can do that by the below observation
+/* Now, Lets try to find the actual subarrays
 
      0   1  2  3
 a = [2, -1, 1, 2], k = 2
 p = [2   1  2  4]
 
-We store the array of indices of the frequencies in the map
-Since we have to get all the subarrays with sum k, we will store the indices of all (sum - k)s
+Technique: Store the indices of all (sum - k)s
 
                                 Sum  |  Index
                                 ------------
@@ -155,7 +155,7 @@ function subArraySumActualSubarrays(a, k) {
     let ans: number[][] = [];
     let currSum: number = 0;
 
-    map.set(0, [-1]); // special case when targetSubarray starts from 0th index - we add imaginary index -1
+    map.set(0, [-1]); // seed for {0: 1}
 
     for (let i = 0; i < n; i++) {
         currSum += a[i];
@@ -165,9 +165,8 @@ function subArraySumActualSubarrays(a, k) {
             indexArr.forEach((mapIndex) => ans.push([mapIndex + 1, i]));
         }
 
-        /* map = <sum, arr[indices] */
-        if(!map.has(currSum)) map.set(currSum, [i]);
-        else map.set(currSum, [...map.get(currSum)!, i]); 
+        if (!map.has(currSum)) map.set(currSum, [i]);
+        else map.get(currSum)!.push(i);
     }
 
     return ans;

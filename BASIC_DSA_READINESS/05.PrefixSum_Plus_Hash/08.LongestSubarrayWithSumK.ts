@@ -109,7 +109,7 @@ function findMaxLength(a: number[], k: number): number {
             currSum += a[i];
 
             if (map.has(currSum - k)) {
-                maxLen = Math.max(maxLen, i - map.get(currSum - k));
+                maxLen = Math.max(maxLen, i - (map.get(currSum - k) + 1) + 1);
             }
 
             // store only first occurrence

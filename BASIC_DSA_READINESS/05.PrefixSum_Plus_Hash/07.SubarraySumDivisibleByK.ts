@@ -57,22 +57,26 @@ So the subarray: (i+1 → j) is divisible by k.
 arr = [4, 5, 0, -2, -3, 1], k = 5
 
 To handle negatives → ((sum % k) + k) % k
+                OR -> r = sum % k; if (r < 0) r += k;
 
-       0  1  2   3   4  5
-arr = [4, 5, 0, -2, -3, 1], k = 5
+Derivation:
+    a % b gives result in (-b, b), both excluded
+    sum % k gives result in (-k, k), both excluded
+            inclusive range [(-k - 1), (k + 1)]
+            +k to both      [1, 2k - 1]
+            A negative remainder becomes positive. 
+            Positive remainder is now too big by k, hence %k
+            which folds everything back into [0, k-1]
 
-To handle negatives → ((sum % k) + k) % k
+NOTE: we again need to seed map.set(0, 1);
+      
+     a = [3, 2], k = 5
 
-| i  | sum | rem | count map       | index map                         | result | subarrays formed |
-|----|-----|-----|-----------------|-----------------------------------|--------|------------------|
-| -1 | 0   | 0   | {0:1}           | {0:[-1]}                          | 0      | —                |
-| 0  | 4   | 4   | {0:1,4:1}       | {0:[-1],4:[0]}                    | 0      | —                |
-| 1  | 9   | 4   | {0:1,4:2}       | {0:[-1],4:[0,1]}                  | +1     | [5]              |
-| 2  | 9   | 4   | {0:1,4:3}       | {0:[-1],4:[0,1,2]}                | +2     | [5,0], [0]       |
-| 3  | 7   | 2   | {0:1,4:3,2:1}   | {0:[-1],4:[0,1,2],2:[3]}          | 3      | —                |
-| 4  | 4   | 4   | {0:1,4:4,2:1}   | {0:[-1],4:[0,1,2,4],2:[3]}        | +3     |                  |
-| 5  | 5   | 0   | {0:2,4:4,2:1}   | {0:[-1,5],4:[0,1,2,4],2:[3]}      | +1     | [4,5,0,-2,-3,1]  |
-
+     j=0: sum = 3, remainder 3. Not in the map, so count stays 0. We store remainder 3.
+    
+     j=1: sum = 5, remainder 0. We look up remainder 0.
+          With the seed, it's found once, so count = 1 ([3, 2]). ✓
+          Without the seed, count = 0. ✗
 */
 
 function countSubarraysDivByK(a: number[], k: number): number {
@@ -86,12 +90,12 @@ function countSubarraysDivByK(a: number[], k: number): number {
     for(let i = 0; i < n; i++) {
         sum += a[i];
 
-        const remainder = (((sum % k) + k) % k);
+        const remainder = (((sum % k) + k) % k); /* Handles negatives */
 
         /* Update count */
         if(map.has(remainder)) count += map.get(remainder);
 
-        /* Regardless of we have remainder in map or not, we update the map always */
+        /* Update remainder count in map always */
         if(!map.has(remainder)) map.set(remainder, 1);
         else map.set(remainder, map.get(remainder) + 1);
     }
@@ -99,11 +103,7 @@ function countSubarraysDivByK(a: number[], k: number): number {
     return count;
 }
 
-/* Lets find out the actual subarrays whose sum is divisible by k
-Pattern is similar to the one in subarray sum equals k
-
-*/
-
+/* Lets find out actual subarrays */
 function exactSubarraysDivByK(a: number[], k: number): number[][] {
     const n = a.length;
     let ans: number[][] = [];
@@ -125,7 +125,7 @@ function exactSubarraysDivByK(a: number[], k: number): number[][] {
 
         /* Regardless of we have remainder in map or not, we update the map always */
         if(!map.has(remainder)) map.set(remainder, [i]);
-        else map.set(remainder, [...map.get(remainder)!, i]); 
+        else map.get(remainder)!.push(i); 
     }
 
     return ans;

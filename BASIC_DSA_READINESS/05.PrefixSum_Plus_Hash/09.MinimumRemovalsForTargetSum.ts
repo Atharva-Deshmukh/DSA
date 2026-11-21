@@ -36,29 +36,30 @@ So problem becomes: Find the longest subarray with sum = (totalSum - k)
                       our ans => number of removals => (n - longestLen)  
 
 We will modify the logic of length of longest subarray with sum k function
+We will use that optimal approach, where we put index in map only once
                       
 */
 
-function lengthOfLongestSubarrayWithSumK(arr: number[], k: number): number {
+function minRemovals(arr: number[], k: number): number {
     const n = arr.length;
-    const totalSum = arr.reduce((acc, ele) => ele + acc);
+    const target = arr.reduce((acc, ele) => acc + ele, 0) - k;  /* totalSum - k */
 
-    let left = 0, sum = 0, maxLen = -1, target = (totalSum - k);
+    const map = new Map<number, number>();                      /* <prefixSum, first index > */
+    map.set(0, -1);
 
-    if(target < 0) return -1;
+    let currSum = 0;
+    let maxLen = target === 0 ? 0 : -1; // keeping nothing is valid when target = 0
 
-    for (let right = 0; right < n; right++) {
-        sum += arr[right];
+    for (let i = 0; i < n; i++) {
 
-        while (sum > target) {
-            sum -= arr[left];
-            left++;
+        currSum += arr[i];
+
+        if (map.has(currSum - target)) {
+            maxLen = Math.max(maxLen, i - map.get(currSum - target)!);
         }
 
-        if (sum === target) {
-            maxLen = Math.max(maxLen, right - left + 1);
-        }
+        if (!map.has(currSum)) map.set(currSum, i);
     }
 
-    return (maxLen === -1)? -1: (n - maxLen);
+    return maxLen === -1 ? -1 : n - maxLen; /* Minimum removals = n - maxLen */
 }

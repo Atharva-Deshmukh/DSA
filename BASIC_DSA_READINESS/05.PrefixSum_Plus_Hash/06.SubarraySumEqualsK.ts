@@ -96,7 +96,7 @@ function subArraySum(a, k) {
     map.set(0, 1); // seed map = {0: 1}
 
     for (let i = 0; i < n; i++) {
-        currSum += a[i];
+        currSum += a[i];             /* Calculate and store the prefixSum on the go */
         
         if (map.has(currSum - k)) count += map.get(currSum - k);
 

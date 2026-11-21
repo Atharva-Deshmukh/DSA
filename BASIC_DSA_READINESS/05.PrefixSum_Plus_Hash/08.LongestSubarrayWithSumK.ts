@@ -26,8 +26,6 @@ Explanation: No subarray with sum = 5 is present in arr[].
                                                 PREFIX SUM
                                                 ----------
 
-- We cannot use sliding window technique here since negative numbers don't gurantee that
-  sum decrease when we shrink the window from left
 - Use to logic of Subarray with sum k with a slight change that the length of every subarray of sum k is stored
   and maxLen is updated */
 
@@ -55,9 +53,8 @@ function longestSubarrayWithSumK(a, k) {
             });
         }
 
-        /* map = <sum, arr[indices] */
         if (!map.has(currSum)) map.set(currSum, [i]);
-        else map.set(currSum, [...map.get(currSum), i]);
+        else map.get(currSum)!.push(i);
     }
 
     return (maxLen === Number.MIN_SAFE_INTEGER) ? 0 : maxLen;
@@ -112,11 +109,11 @@ function findMaxLength(a: number[], k: number): number {
             currSum += a[i];
 
             if (map.has(currSum - k)) {
-                maxLen = Math.max(maxLen, i - map.get(currSum));
-            } else {
-                // store only first occurrence
-                map.set(currSum, i);
+                maxLen = Math.max(maxLen, i - map.get(currSum - k));
             }
+
+            // store only first occurrence
+            if (!map.has(currSum)) map.set(currSum, i);
         }
 
         return maxLen;

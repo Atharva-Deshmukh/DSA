@@ -44,27 +44,6 @@ P1 11. Largest Rectangle in Histogram
 P1 12. Stack using Queue (or vice versa)
 
 --------------------------------------------------------------------------------
-# 8. PREFIX SUM + HASH - FULL REDO (10 files exist, none exempt)
---------------------------------------------------------------------------------
-Per the governing rule, these 10 files go back on the list as redo items too
-- file existing in the repo doesn't mean interview-ready recall.
-
-MUST-DO (P0 - redo all 10, same core prefix-sum + hashmap technique):
-P0 1. Equilibrium Index
-P0 2. Split Array Into Two Equal Sum Subarrays
-P0 3. Original Array From Prefix Sums
-P0 4. Product of Array Except Self
-P0 5. Mean of Range in Array
-P0 6. Subarray Sum Equals K
-P0 7. Subarray Sum Divisible by K
-P0 8. Longest Subarray With Sum K
-P0 9. Minimum Removals for Target Sum
-P0 10. Longest Subarray With Equal 0s and 1s
-P0 11. Continuous Subarray Sum (LC 523) - the one genuinely new item, same
-       pattern as the 10 above, cheap to add once they're fresh again
-
-
---------------------------------------------------------------------------------
 # 9. MATHS - FULL REDO, LOW PRIORITY (19+ files in Mathematical/, none exempt)
 --------------------------------------------------------------------------------
 
